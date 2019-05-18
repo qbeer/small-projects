@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 class TransferModel:
     def __init__(self, initial_image_path,
                  style_layers=['block1_conv1', 'block2_conv1',
-                               'block3_conv1', 'block4_conv1'],
+                               'block3_conv1', 'block4_conv1', 'block5_conv1'],
                  content_layers=['block5_conv2']):
         self.style_layers = style_layers
         self.content_layers = content_layers
@@ -17,7 +17,7 @@ class TransferModel:
             Loading the VGG19 model without its dense layers. Not trainable
             only the input image will change during optimization.
         """
-        self.vgg = VGG19(weights='imagenet', pooling='avg', include_top=False)
+        self.vgg = VGG19(weights='imagenet', include_top=False)
         self.vgg.trainable = False
 
         self.model_style_layers = [self.vgg.get_layer(
@@ -129,11 +129,11 @@ class TransferModel:
                         i + 1, loss, style_score, content_score))
                 img = self.initial_image.numpy()[0]
 
-                img[:,:,0] += 103.939
-                img[:,:,1] += 116.779
-                img[:,:,2] += 123.68
+                img[:, :, 0] += 103.939
+                img[:, :, 1] += 116.779
+                img[:, :, 2] += 123.68
 
-                img = img[:,:,::-1]
+                img = img[:, :, ::-1]
                 img = np.clip(img, 0, 255).astype(int)
 
                 plt.imshow(img)
