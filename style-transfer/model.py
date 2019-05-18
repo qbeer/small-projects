@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 class TransferModel:
     def __init__(self, initial_image_path,
                  style_layers=['block1_conv1', 'block2_conv1',
-                               'block3_conv1'],
+                               'block3_conv1', 'block4_conv1'],
                  content_layers=['block5_conv2']):
         self.style_layers = style_layers
         self.content_layers = content_layers
@@ -93,7 +93,7 @@ class TransferModel:
 
     def style_transfer(self, content_path,
                        style_path, max_iter=1000,
-                       content_weight=1e3, style_weight=1e-2):
+                       content_weight=1e2, style_weight=1e-2):
         """
             Freezing the model!
         """
