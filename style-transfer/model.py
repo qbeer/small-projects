@@ -91,7 +91,7 @@ class TransferModel:
         return tape.gradient(total_loss, self.initial_image), all_loss
 
     def style_transfer(self, content_path,
-                       style_path, max_iter=30,
+                       style_path, max_iter=1000,
                        content_weight=1e3, style_weight=1e-2):
         """
             Freezing the model!
@@ -118,7 +118,7 @@ class TransferModel:
             opt.apply_gradients([(grads, self.initial_image)])
             clipped = tf.clip_by_value(self.initial_image, min_vals, max_vals)
             self.initial_image.assign(clipped)
-            if i % 3 == 0:
+            if i % 100 == 0:
                 print(
                     "Iter %d : loss %.2f, style_score %.2f, content_score %.2f" % (
                         i + 1, loss, style_score, content_score))
