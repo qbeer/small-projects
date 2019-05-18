@@ -48,7 +48,7 @@ class TransferModel:
 
     def _style_loss(self, style_image_features, generated_image_features):
         style_gram, generated_gram = self._gram_matrix(
-            style_image_features), generated_image_features
+            style_image_features), self._gram_matrix(generated_image_features)
         return tf.reduce_mean(tf.square(style_gram - generated_gram))
 
     def _get_style_features(self, style_image):
