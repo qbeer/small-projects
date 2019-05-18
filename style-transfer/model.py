@@ -93,7 +93,7 @@ class TransferModel:
 
     def style_transfer(self, content_path,
                        style_path, max_iter=1000,
-                       content_weight=1e2, style_weight=1e-2):
+                       content_weight=1e2, style_weight=1e-4):
         """
             Freezing the model!
         """
