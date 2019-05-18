@@ -91,8 +91,8 @@ class TransferModel:
         return tape.gradient(total_loss, self.initial_image), all_loss
 
     def style_transfer(self, content_path,
-                       style_path, max_iter=1000,
-                       content_weight=1e3, style_weight=1e-2):
+                       style_path, max_iter=5000,
+                       content_weight=1, style_weight=1e5):
         """
             Freezing the model!
         """
@@ -105,7 +105,7 @@ class TransferModel:
         content_image = self.prep.get_preprocessed_input(content_path)
         self.content_features = self._get_content_features(content_image)
 
-        opt = tf.train.AdamOptimizer(learning_rate=5, beta1=0.99, epsilon=1e-1)
+        opt = tf.train.AdamOptimizer(learning_rate=6, beta1=0.99, epsilon=1e-1)
         loss_weights = (style_weight, content_weight)
 
         norm_means = np.array([103.939, 116.779, 123.68])
