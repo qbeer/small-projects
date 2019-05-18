@@ -39,12 +39,16 @@ class TransferModel:
     def _content_loss(self, base_content_features, generated_content_features):
         return 0.5*tf.reduce_sum(tf.square(base_content_features - generated_content_features))
 
-    def _gram_matrix(self, feature):
-        return tf.matmul(feature, feature, transpose_b=True)
+    def _gram_matrix(self, input_tensor):
+        channels = int(input_tensor.shape[-1])
+        a = tf.reshape(input_tensor, [-1, channels])
+        n = tf.shape(a)[0]
+        gram = tf.matmul(a, a, transpose_a=True)
+        return gram / tf.cast(n, tf.float32)
 
     def _style_loss(self, style_image_features, generated_image_features):
         style_gram, generated_gram = self._gram_matrix(
-            style_image_features), self._gram_matrix(generated_image_features)
+            style_image_features), generated_image_features
         return tf.reduce_mean(tf.square(style_gram - generated_gram))
 
     def _get_style_features(self, style_image):
@@ -93,7 +97,7 @@ class TransferModel:
 
     def style_transfer(self, content_path,
                        style_path, max_iter=1000,
-                       content_weight=1e4, style_weight=1e-4):
+                       content_weight=1e2, style_weight=1e-3):
         """
             Freezing the model!
         """
@@ -106,7 +110,7 @@ class TransferModel:
         content_image = self.prep.get_preprocessed_input(content_path)
         self.content_features = self._get_content_features(content_image)
 
-        opt = tf.train.AdamOptimizer(learning_rate=10, beta1=0.99, epsilon=1e-1)
+        opt = tf.train.AdamOptimizer(learning_rate=5, beta1=0.99, epsilon=1e-1)
         loss_weights = (style_weight, content_weight)
 
         norm_means = np.array([103.939, 116.779, 123.68])
