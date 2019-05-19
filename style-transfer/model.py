@@ -39,12 +39,8 @@ class TransferModel:
     def _content_loss(self, base_content_features, generated_content_features):
         return 0.5*tf.reduce_sum(tf.square(base_content_features - generated_content_features))
 
-    def _gram_matrix(self, input_tensor):
-        channels = int(input_tensor.shape[-1])
-        a = tf.reshape(input_tensor, [-1, channels])
-        n = tf.shape(a)[0]
-        gram = tf.matmul(a, a, transpose_a=True)
-        return gram / tf.cast(n, tf.float32)
+    def _gram_matrix(self, feature):
+        return tf.matmul(feature, feature, transpose_b=True) / tf.cast(tf.shape(feature)[0], tf.float32)
 
     def _style_loss(self, style_image_features, generated_image_features):
         style_gram, generated_gram = self._gram_matrix(
@@ -120,7 +116,7 @@ class TransferModel:
         for i in range(max_iter):
             grads, all_loss = self.compute_grads(loss_weights)
             loss, style_score, content_score = all_loss
-            opt.apply_gradients([(grads, self.initial_image)])
+            opt.apply_gradients([(-grads, self.initial_image)])
             clipped = tf.clip_by_value(self.initial_image, min_vals, max_vals)
             self.initial_image.assign(clipped)
             if i % 100 == 0:
