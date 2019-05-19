@@ -116,7 +116,7 @@ class TransferModel:
         for i in range(max_iter):
             grads, all_loss = self.compute_grads(loss_weights)
             loss, style_score, content_score = all_loss
-            opt.apply_gradients([(-grads, self.initial_image)])
+            opt.apply_gradients([(grads, self.initial_image)])
             clipped = tf.clip_by_value(self.initial_image, min_vals, max_vals)
             self.initial_image.assign(clipped)
             if i % 100 == 0:
