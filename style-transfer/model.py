@@ -40,8 +40,12 @@ class TransferModel:
     def _content_loss(self, base_content_features, generated_content_features):
         return 0.5*tf.reduce_sum(tf.square(generated_content_features - base_content_features))
 
-    def _gram_matrix(self, feature):
-        return tf.matmul(feature, feature, transpose_b=True)
+    def _gram_matrix(self, input_tensor):
+        channels = int(input_tensor.shape[-1])
+        a = tf.reshape(input_tensor, [-1, channels])
+        n = tf.shape(a)[0]
+        gram = tf.matmul(a, a, transpose_a=True)
+        return gram / tf.cast(n, tf.float32)
 
     def _style_loss(self, style_image_features, generated_image_features):
         style_gram, generated_gram = self._gram_matrix(
@@ -96,7 +100,7 @@ class TransferModel:
 
     def style_transfer(self, content_path,
                        style_path, max_iter=1000,
-                       content_weight=1e2, style_weight=1e-2):
+                       content_weight=1e3, style_weight=1e-2):
         """
             Freezing the model!
         """
