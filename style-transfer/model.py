@@ -42,9 +42,7 @@ class TransferModel:
 
     def _gram_matrix(self, input_tensor):
         channels = int(input_tensor.shape[-1])
-        print(tf.shape(input_tensor))
         a = tf.reshape(input_tensor, [-1, channels])
-        print(tf.shape(a))
         n = tf.shape(a)[0]
         gram = tf.matmul(a, a, transpose_a=True)
         return gram / tf.cast(n, tf.float32)
@@ -113,9 +111,6 @@ class TransferModel:
         content_image = self.prep.get_preprocessed_input(content_path)
         self.content_features = self._get_content_features(content_image)
 
-        print("Style : ", np.min(style_image), np.max(style_image))
-        print("Content : ", np.min(content_image), np.max(content_image))
-
         opt = tf.train.AdamOptimizer(learning_rate=5, beta1=0.99, epsilon=1e-1)
         loss_weights = (style_weight, content_weight)
 
@@ -133,7 +128,6 @@ class TransferModel:
                 print(
                     "Iter %d : loss %.2f, style_score %.2f, content_score %.2f" % (
                         i + 1, loss, style_score, content_score))
-                print("Ndim : ", self.initial_image.numpy().ndim)
                 img = self.initial_image.numpy()[0]
 
                 img[:, :, 0] += 103.939
