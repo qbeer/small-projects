@@ -129,6 +129,7 @@ class TransferModel:
                 print(
                     "Iter %d : loss %.2f, style_score %.2f, content_score %.2f" % (
                         i + 1, loss, style_score, content_score))
+                print("Ndim : ", self.initial_image.numpy().ndim)
                 img = self.initial_image.numpy()
 
                 img[:, :, 0] += 103.939
