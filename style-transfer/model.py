@@ -42,7 +42,9 @@ class TransferModel:
 
     def _gram_matrix(self, input_tensor):
         channels = int(input_tensor.shape[-1])
+        print(tf.shape(input_tensor))
         a = tf.reshape(input_tensor, [-1, channels])
+        print(tf.shape(a))
         n = tf.shape(a)[0]
         gram = tf.matmul(a, a, transpose_a=True)
         return gram / tf.cast(n, tf.float32)
