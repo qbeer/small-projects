@@ -9,7 +9,8 @@ import matplotlib.pyplot as plt
 class TransferModel:
     def __init__(self, initial_image_path,
                  style_layers=['block1_conv1', 'block2_conv1',
-                               'block3_conv1', 'block4_conv1', 'block5_conv1'],
+                               'block3_conv1', 'block4_conv1',
+                               'block5_conv1'],
                  content_layers=['block5_conv2']):
         self.style_layers = style_layers
         self.content_layers = content_layers
@@ -40,7 +41,7 @@ class TransferModel:
         return 0.5*tf.reduce_sum(tf.square(base_content_features - generated_content_features))
 
     def _gram_matrix(self, feature):
-        return tf.matmul(feature, feature, transpose_b=True) / tf.cast(tf.shape(feature)[0], tf.float32)
+        return tf.matmul(feature, feature, transpose_b=True)
 
     def _style_loss(self, style_image_features, generated_image_features):
         style_gram, generated_gram = self._gram_matrix(
