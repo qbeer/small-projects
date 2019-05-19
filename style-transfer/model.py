@@ -43,16 +43,16 @@ class TransferModel:
     def _gram_matrix(self, input_tensor):
         channels = int(input_tensor.shape[-1])
         a = tf.reshape(input_tensor, [-1, channels])
-        n = tf.shape(a)[0]
+        width_squared = tf.shape(a)[0]
         gram = tf.matmul(a, a, transpose_a=True)
-        return gram / tf.cast(n, tf.float32)
+        return gram / tf.cast(width_squared, tf.float32)
 
     def _style_loss(self, style_image_features, generated_image_features):
         style_gram, generated_gram = self._gram_matrix(
             style_image_features), self._gram_matrix(generated_image_features)
-        _, width, height, channels = tf.shape(style_gram).numpy()
+        _, channels_squared = tf.shape(style_gram).numpy()
         return tf.reduce_sum(tf.square(generated_gram - style_gram)) \
-            / tf.cast(4 * width*height*channels**2, dtype=tf.float32)
+            / tf.cast(4 * channels_squared, dtype=tf.float32)
 
     def _get_style_features(self, style_image):
         features = self.model(style_image)
