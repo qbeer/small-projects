@@ -8,17 +8,18 @@ from sklearn.metrics import accuracy_score
 from model import Model
 from keras.utils import to_categorical
 from preprocessor import acquire_data
-
-seq = Model()
-seq.add(DenseLayer(784, 10, Relu()))
-seq.add(DenseLayer(10, 5, Relu()))
-seq.add(DenseLayer(5, 2, Relu()))
-seq.add(DenseLayer(2, 1, Relu()))
+from keras.datasets.mnist import load_data
 
 (x, y), (x_test, y_test) = acquire_data()
 
-seq.fit(x, y, EPOCHS=5)
+seq = Model()
+seq.add(DenseLayer(784, 512, Relu()))
+seq.add(DenseLayer(512, 256, Relu()))
+seq.add(DenseLayer(256, 64, Relu()))
+seq.add(DenseLayer(64, 1, Relu()))
 
-pred_test = seq.predict(x_test).astype(int)
+seq.fit(x, y, lr=5e-6, EPOCHS=250)
 
-print("Accuracy : ", accuracy_score(pred_test, y_test))
+pred_test = seq.predict(x_test)
+
+print("\nAccuracy : ", accuracy_score(pred_test.astype(int), y_test))

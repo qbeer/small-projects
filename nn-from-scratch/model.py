@@ -17,7 +17,7 @@ class Model:
                 grad = -2*(y[ind] - yhat)
                 grad = self._backward_pass(grad)
                 self._apply_grads(lr)
-                print('Loss in epoch %d, iteration %d : %.5f' % (epoch, ind, loss))
+            if epoch % 5 == 0: print('Loss in epoch %d : %.5f' % (epoch, loss))
 
     def _forward_pass(self, x):
         input_ = x

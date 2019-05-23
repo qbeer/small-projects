@@ -3,7 +3,7 @@ import numpy as np
 class DenseLayer:
     def __init__(self, input_size, layer_size, activation_fn):
         self.input_size = input_size
-        scaler = np.sqrt(2./self.input_size)
+        scaler = np.sqrt(2./(self.input_size + layer_size))
         self.weights = np.random.normal(size=(layer_size, input_size)) * scaler # e.g. 20 * 784
         self.biases = np.random.normal(size=layer_size) * scaler
         self.activation_fn = activation_fn
