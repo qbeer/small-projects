@@ -18,7 +18,7 @@ seq.add(DenseLayer(512, 256, Relu()))
 seq.add(DenseLayer(256, 64, Relu()))
 seq.add(DenseLayer(64, 1, Relu()))
 
-seq.fit(x, y, lr=5e-6, EPOCHS=250)
+seq.fit(x, y, lr=5e-6, EPOCHS=25)
 
 pred_test = seq.predict(x_test)
 
