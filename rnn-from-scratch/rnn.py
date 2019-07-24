@@ -32,6 +32,14 @@ class RNN:
         self.V *= matrix_scaler
         self.b *= vector_scaler
         self.c *= vector_scaler
+        ###########################################
+        ##### Gradient memory for AdaGrad opt. ####
+        ###########################################
+        self.memory_W = np.zeros_like(self.W)
+        self.memory_U = np.zeros_like(self.U)
+        self.memory_V = np.zeros_like(self.V)
+        self.memory_b = np.zeros_like(self.b)
+        self.memory_c = np.zeros_like(self.c)
 
     def _foward_step(self, input):
         """
@@ -71,20 +79,25 @@ class RNN:
         np.clip(self.b_derivative, -1, 1, out=self.b_derivative)
         np.clip(self.c_derivative, -1, 1, out=self.c_derivative)
         ##########################################
-        #########   Gradient descent    ##########
+        #######     AdaGrad optiization    #######
         ##########################################
-        self.W -= self.learning_rate * self.W_derivative
-        self.U -= self.learning_rate * self.U_derivative
-        self.V -= self.learning_rate * self.V_derivative
-        self.b -= self.learning_rate * self.b_derivative
-        self.c -= self.learning_rate * self.c_derivative
+        self.memory_W += self.W_derivative ** 2
+        self.memory_U += self.U_derivative ** 2
+        self.memory_V += self.V_derivative ** 2
+        self.memory_b += self.b_derivative ** 2
+        self.memory_c += self.c_derivative ** 2
+        self.W -= self.learning_rate * self.W_derivative / np.sqrt(self.memory_W + 1e-12)
+        self.U -= self.learning_rate * self.U_derivative / np.sqrt(self.memory_U + 1e-12)
+        self.V -= self.learning_rate * self.V_derivative / np.sqrt(self.memory_V + 1e-12)
+        self.b -= self.learning_rate * self.b_derivative / np.sqrt(self.memory_b + 1e-12)
+        self.c -= self.learning_rate * self.c_derivative / np.sqrt(self.memory_c + 1e-12)
 
-    def _sample(self, seed_idx):
+    def _sample(self, seed_idx, sample_length=250):
         x = np.zeros((self.vocabulary_size, 1))
         x[seed_idx] = 1.
         seq = []
         h = np.zeros(shape=(self.hidden_size, 1))
-        for t in range(self.sequence_length * 2):
+        for t in range(sample_length):
             a = self.b + np.dot(self.W, h) + np.dot(self.U, x)
             h = np.tanh(a)
             o = self.c + np.dot(self.V, h)
@@ -104,7 +117,7 @@ class RNN:
         self.learning_rate = learning_rate
         for epoch in range(epochs):
             loss_on_epoch_end = self._epoch_train()
-            sample_seq = self._sample(self.char2idx["S"])
+            sample_seq = self._sample(self.char2idx["k"])
             print("Epoch : %d/%d" % (epoch + 1, epochs), "\t Loss : ",
                   loss_on_epoch_end)
             print("Sample : \n", sample_seq)

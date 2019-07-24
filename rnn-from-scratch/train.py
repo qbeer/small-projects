@@ -19,4 +19,4 @@ idx_to_char = {ind: ch for ind, ch in enumerate(unique_chars)}
 
 data = {"chars": chars, "char_to_idx": char_to_idx, "idx_to_char": idx_to_char}
 
-rnn.train(data, learning_rate=0.009)
+rnn.train(data, learning_rate=0.1)
