@@ -10,7 +10,7 @@ print("Number of characters : ", len(chars))
 print("Number of unique characters : ", len(unique_chars))
 
 vocabulary_size = len(unique_chars)
-sequence_length = 100
+sequence_length = 25
 
 rnn = RNN(sequence_length, vocabulary_size)
 
@@ -19,4 +19,4 @@ idx_to_char = {ind: ch for ind, ch in enumerate(unique_chars)}
 
 data = {"chars": chars, "char_to_idx": char_to_idx, "idx_to_char": idx_to_char}
 
-rnn.train(data, learning_rate=0.005)
+rnn.train(data, learning_rate=0.009)

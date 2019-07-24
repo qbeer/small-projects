@@ -84,7 +84,7 @@ class RNN:
         x[seed_idx] = 1.
         seq = []
         h = np.zeros(shape=(self.hidden_size, 1))
-        for t in range(self.sequence_length):
+        for t in range(self.sequence_length * 2):
             a = self.b + np.dot(self.W, h) + np.dot(self.U, x)
             h = np.tanh(a)
             o = self.c + np.dot(self.V, h)
@@ -104,7 +104,7 @@ class RNN:
         self.learning_rate = learning_rate
         for epoch in range(epochs):
             loss_on_epoch_end = self._epoch_train()
-            sample_seq = self._sample(self.char2idx["D"])
+            sample_seq = self._sample(self.char2idx["S"])
             print("Epoch : %d/%d" % (epoch + 1, epochs), "\t Loss : ",
                   loss_on_epoch_end)
             print("Sample : \n", sample_seq)
@@ -140,11 +140,6 @@ class RNN:
             self._back_propagate(one_hot_chars, target_seq, probs, activations,
                                  hidden_states)
             self._apply_gradients()
-
-            if offset + 1 % 5000 == 0:
-                sample_seq = self._sample(self.char2idx["D"])
-                print("Sample after %d iterations : \n%s" %
-                      (offset, sample_seq))
 
             offset += 1
 
