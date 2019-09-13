@@ -9,6 +9,7 @@ verify_ssl = true
 tensorflow-probability = "*"
 matplotlib = "*"
 tensorflow-gpu = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.6"

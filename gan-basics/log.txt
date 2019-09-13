@@ -1,0 +1,37 @@
+WARNING:tensorflow:From train.py:9: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From train.py:11: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2019-09-13 19:32:48.502723: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-09-13 19:32:48.508452: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcuda.so.1
+2019-09-13 19:32:48.977261: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x3ed1750 executing computations on platform CUDA. Devices:
+2019-09-13 19:32:48.977308: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): GeForce GTX 1070, Compute Capability 6.1
+2019-09-13 19:32:48.979634: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3598925000 Hz
+2019-09-13 19:32:48.980039: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x3f43670 executing computations on platform Host. Devices:
+2019-09-13 19:32:48.980061: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-09-13 19:32:48.980728: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1640] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+2019-09-13 19:32:48.980963: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcudart.so.10.0
+2019-09-13 19:32:48.982151: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcublas.so.10.0
+2019-09-13 19:32:48.983168: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcufft.so.10.0
+2019-09-13 19:32:48.983411: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcurand.so.10.0
+2019-09-13 19:32:48.984841: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcusolver.so.10.0
+2019-09-13 19:32:48.985898: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcusparse.so.10.0
+2019-09-13 19:32:48.989212: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcudnn.so.7
+2019-09-13 19:32:48.990312: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1763] Adding visible gpu devices: 0
+2019-09-13 19:32:48.990356: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcudart.so.10.0
+2019-09-13 19:32:48.991064: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1181] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-09-13 19:32:48.991080: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1187]      0 
+2019-09-13 19:32:48.991087: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1200] 0:   N 
+2019-09-13 19:32:48.992132: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1326] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 4059 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+WARNING:tensorflow:From train.py:12: The name tf.enable_eager_execution is deprecated. Please use tf.compat.v1.enable_eager_execution instead.
+
+Traceback (most recent call last):
+  File "train.py", line 12, in <module>
+    tf.enable_eager_execution()
+  File "/home/qbeer666/.local/share/virtualenvs/gan-basics-T-RvEp0q/lib/python3.6/site-packages/tensorflow/python/framework/ops.py", line 5878, in enable_eager_execution
+    server_def=None)
+  File "/home/qbeer666/.local/share/virtualenvs/gan-basics-T-RvEp0q/lib/python3.6/site-packages/tensorflow/python/framework/ops.py", line 5936, in enable_eager_execution_internal
+    "tf.enable_eager_execution must be called at program startup.")
+ValueError: tf.enable_eager_execution must be called at program startup.
