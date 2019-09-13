@@ -135,4 +135,4 @@ class GAN:
         fig.suptitle('Generated images')
         fig.tight_layout()
         plt.savefig('generated_after_epoch_%d.png' % current_epoch)
-        fig.close()
+        plt.close(fig)
