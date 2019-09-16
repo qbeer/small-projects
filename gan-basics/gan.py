@@ -83,7 +83,7 @@ class GAN:
 
     def _generator_loss(self, generated):
         return -tf.losses.sigmoid_cross_entropy(tf.zeros_like(generated),
-                                               generated)
+                                                generated)
 
     def _discriminator_loss(self, real, generated):
         real_loss = tf.losses.sigmoid_cross_entropy(
@@ -109,10 +109,14 @@ class GAN:
         grads_of_disc = disc_tape.gradient(disc_loss,
                                            self.discriminator.variables)
 
-        tf.train.AdamOptimizer(1e-4).apply_gradients(
+        tf.train.AdamOptimizer(1e-3).apply_gradients(
             zip(grads_of_gen, self.generator.variables))
-        tf.train.AdamOptimizer(1e-4).apply_gradients(
-            zip(grads_of_disc, self.discriminator.variables))
+
+        capped_disc_grad = [
+            tf.clip_by_value(grad, -1., 1.) for grad in grads_of_disc
+        ]
+        tf.train.AdamOptimizer(1e-3).apply_gradients(
+            zip(capped_disc_grad, self.discriminator.variables))
 
     def train(self, dataset, batch_size, epochs=50):
 
@@ -132,7 +136,8 @@ class GAN:
                                  figsize=(10, 10))
         for ind, ax in enumerate(axes.flatten()):
             ax.imshow(generated[ind].numpy().reshape(28, 28), vmin=0, vmax=1)
-        fig.suptitle('Generated images')
+            ax.set_xticks([])
+            ax.set_yticks([])
         fig.tight_layout()
-        plt.savefig('generated_after_epoch_%d.png' % current_epoch)
+        plt.savefig('images/test_generated_after_epoch_%d.png' % current_epoch)
         plt.close(fig)
