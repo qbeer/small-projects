@@ -1,0 +1,17 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+gym = {extras = ["atari"],version = "*"}
+tensorflow-gpu = {file = "https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-2.0.0-cp36-cp36m-manylinux2010_x86_64.whl"}
+numpy = "*"
+
+[requires]
+python_version = "3.6"
+
+[pipenv]
+allow_prereleases = true
