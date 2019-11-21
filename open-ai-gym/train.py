@@ -1,8 +1,11 @@
+import os
+os.environ["CUDA_VISIBLE_DEVICES"]="-1"  
+
 import tensorflow as tf
 import datetime as dt
 
 train_writer = tf.summary.create_file_writer(
-    "./logs" + f"/DQN_{dt.datetime.now().strftime('%d%m%Y%H%M')}")
+    "./logs")
 
 import gym
 import numpy as np
@@ -53,14 +56,11 @@ def train_decision_network(counter):
         rewards = np.array([sample[1] for sample in experience_samples])
 
         with tf.GradientTape() as tape:
-            q_target = rewards + discount_factor * q_hat(
-                updated_observations / 255.)
-            loss = q.train_on_batch(
-                tf.convert_to_tensor(previous_observations / 255.),
-                tf.convert_to_tensor(q_target))
-
-        if update_target_counter < update_interval:
-            update_target_counter += 1
+            _q = tf.reduce_max(q_hat(updated_observations / 255.), axis=1)
+            q_target = rewards + discount_factor * _q
+            loss = tf.reduce_sum(tf.square(q_target - tf.reduce_max(q(previous_observations / 255.))))
+        grads = tape.gradient(loss, q.trainable_variables)
+        optimizer.apply_gradients(zip(grads, q.trainable_variables))
 
         return loss
     return 0
@@ -78,16 +78,17 @@ for i_episode in range(1_000):
     for t in range(100):
         experience = [None] * 4
         experience[0] = observation  # previous observation
-        env.render()
+        #env.render()
         action = select_a_with_epsilon_greedy(observation)
         observation, reward, done, info = env.step(action)
         experience[1] = action
         experience[2] = reward
         experience[3] = observation  # next observation
         memory.add_experience(experience)
-        loss = train_decision_network(memory.counter)
-
-        print('Loss : {}, Counter : {}'.format(loss, memory.counter))
+        if memory.counter > 1000:
+            loss = train_decision_network(memory.counter)
+            update_target_counter += 1
+            print('Loss : {}, Counter : {}'.format(loss, memory.counter))
 
         if done:
             with train_writer.as_default():
