@@ -14,9 +14,20 @@ discount_factor = 0.95
 update_interval = 100
 eps = 1
 
-# actions are : NOPE, FIRE (new ball), RIGHT, LEFT
-q = DeepQNetwork(n_actions)
-q.load_weights('q_weights.h5')
+model = tf.keras.models.Sequential()
+model.add(tf.keras.layers.Conv2D(16, (3, 3), strides=(2, 2),
+                                 activation='relu'))
+model.add(tf.keras.layers.Conv2D(32, (3, 3), strides=(2, 2),
+                                 activation='relu'))
+model.add(tf.keras.layers.Flatten())
+model.add(tf.keras.layers.Dense(64, activation='relu'))
+model.add(tf.keras.layers.Dense(n_actions))
+
+model.build(input_shape=(1, 210, 160, 3))
+
+model.load_weights('q_weights.h5')
+
+q = model
 
 
 # epsilon - greedy algorithm
@@ -42,6 +53,8 @@ for i_episode in range(12):
         experience[1] = action
         experience[2] = reward
         experience[3] = observation  # next observation
+
+        print(reward)
 
         if done:
             break
