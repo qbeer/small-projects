@@ -15,8 +15,8 @@ env = gym.make('Breakout-v0')
 
 n_actions = env.action_space.n
 discount_factor = 0.99
-update_interval = 500
-eps = 0.8
+update_interval = 1000
+eps = 1
 sample_size = 256
 
 # actions are : NOPE, FIRE (new ball), RIGHT, LEFT
@@ -26,7 +26,7 @@ q_hat = DeepQNetwork(n_actions)
 # Initialize both networks with the same weights
 q_hat.set_weights(q.get_weights())
 
-memory = ReplayMemory(5_000)
+memory = ReplayMemory(50_000)
 
 optimizer = tf.keras.optimizers.RMSprop()
 
@@ -63,7 +63,7 @@ def train_decision_network():
 
 steps = 0
 
-for i_episode in range(100):
+for i_episode in range(1500):
 
     print('Episode : {}'.format(i_episode + 1))
 
