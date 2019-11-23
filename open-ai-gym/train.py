@@ -1,5 +1,5 @@
 import os
-#os.environ["CUDA_VISIBLE_DEVICES"]="-1"  
+os.environ["CUDA_VISIBLE_DEVICES"]="0"  
 
 import tensorflow as tf
 import datetime as dt
@@ -15,9 +15,9 @@ env = gym.make('Breakout-v0')
 
 n_actions = env.action_space.n
 discount_factor = 0.99
-update_interval = 1000
+update_interval = 25000
 eps = 1
-sample_size = 256
+sample_size = 32
 
 # actions are : NOPE, FIRE (new ball), RIGHT, LEFT
 q = DeepQNetwork(n_actions)
@@ -36,7 +36,7 @@ def select_a_with_epsilon_greedy(state, epsilon=eps):
     q_value = q(np.expand_dims(state / 255., axis=0)).numpy()
     action = np.argmax(q_value)
     if np.random.rand() < epsilon:
-        action = np.random.randint(4)
+        action = np.random.randint(n_actions)
     return action
 
 
@@ -63,13 +63,13 @@ def train_decision_network():
 
 steps = 0
 
-for i_episode in range(1500):
+for i_episode in range(5000):
 
     print('Episode : {}'.format(i_episode + 1))
 
-    if update_target_counter > 0 and update_target_counter % update_interval == 0:
+    if update_target_counter > 0 and update_target_counter == update_interval:
         q_hat.set_weights(q.get_weights())
-        eps = eps - 0.1 if eps > 0.2 else 0.01
+        eps = eps - 0.01 if eps > 0.02 else 0.01
         update_target_counter = 0
         print('Target network updated, eps : {}'.format(eps))
 
@@ -83,8 +83,9 @@ for i_episode in range(1500):
         experience[1] = action
         experience[2] = reward
         experience[3] = observation  # next observation
-        memory.add_experience(experience)
-        if memory.counter > 5000:
+        if reward > 0:
+            memory.add_experience(experience)
+        if memory.counter > 100:
             loss = train_decision_network()
             update_target_counter += 1
             with train_writer.as_default():
