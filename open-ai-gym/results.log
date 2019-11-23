@@ -1,0 +1,6850 @@
+2019-11-23 10:36:52.344391: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
+2019-11-23 10:36:52.723860: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+2019-11-23 10:36:52.725966: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2019-11-23 10:36:52.759297: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+2019-11-23 10:36:52.774949: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10.0
+2019-11-23 10:36:52.780133: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10.0
+2019-11-23 10:36:52.816539: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10.0
+2019-11-23 10:36:52.839119: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10.0
+2019-11-23 10:36:52.894396: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2019-11-23 10:36:52.896330: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Adding visible gpu devices: 0
+2019-11-23 10:36:52.896951: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-11-23 10:36:52.917167: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3599070000 Hz
+2019-11-23 10:36:52.918169: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x41b7780 executing computations on platform Host. Devices:
+2019-11-23 10:36:52.918214: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): Host, Default Version
+2019-11-23 10:36:53.003619: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x41b8e70 executing computations on platform CUDA. Devices:
+2019-11-23 10:36:53.003656: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): GeForce GTX 1070, Compute Capability 6.1
+2019-11-23 10:36:53.004341: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+2019-11-23 10:36:53.004378: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2019-11-23 10:36:53.004390: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+2019-11-23 10:36:53.004400: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10.0
+2019-11-23 10:36:53.004409: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10.0
+2019-11-23 10:36:53.004418: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10.0
+2019-11-23 10:36:53.004427: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10.0
+2019-11-23 10:36:53.004437: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2019-11-23 10:36:53.005514: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Adding visible gpu devices: 0
+2019-11-23 10:36:53.005950: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2019-11-23 10:36:53.007473: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1159] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-11-23 10:36:53.007490: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1165]      0 
+2019-11-23 10:36:53.007497: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1178] 0:   N 
+2019-11-23 10:36:53.009372: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1304] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7627 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+WARNING:tensorflow:Layer deep_q_network is casting an input tensor from dtype float64 to the layer's dtype of float32, which is new behavior in TensorFlow 2.  The layer has dtype float32 because it's dtype defaults to floatx.
+
+If you intended to run this layer in float32, you can safely ignore this warning. If in doubt, this warning is likely only an issue if you are porting a TensorFlow 1.X model to TensorFlow 2.
+
+To change all layers to have dtype float64 by default, call `tf.keras.backend.set_floatx('float64')`. To change just this layer, pass dtype='float64' to the layer constructor. If you are the author of this layer, you can disable autocasting by passing autocast=False to the base Layer constructor.
+
+Episode : 1
+Traceback (most recent call last):
+  File "train.py", line 81, in <module>
+    action = select_a_with_epsilon_greedy(observation, eps)
+  File "train.py", line 36, in select_a_with_epsilon_greedy
+    q_value = q(np.expand_dims(state / 255., axis=0)).numpy()
+  File "/home/qbeer666/.local/share/virtualenvs/open-ai-gym-uI-0ppHr/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/base_layer.py", line 891, in __call__
+    outputs = self.call(cast_inputs, *args, **kwargs)
+  File "/home/qbeer666/small-projects/open-ai-gym/deep_q_network.py", line 18, in call
+    x = self.conv1(inputs)
+  File "/home/qbeer666/.local/share/virtualenvs/open-ai-gym-uI-0ppHr/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/base_layer.py", line 887, in __call__
+    self._maybe_build(inputs)
+  File "/home/qbeer666/.local/share/virtualenvs/open-ai-gym-uI-0ppHr/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/base_layer.py", line 2122, in _maybe_build
+    self.input_spec, inputs, self.name)
+  File "/home/qbeer666/.local/share/virtualenvs/open-ai-gym-uI-0ppHr/lib/python3.6/site-packages/tensorflow_core/python/keras/engine/input_spec.py", line 177, in assert_input_compatibility
+    str(x.shape.as_list()))
+ValueError: Input 0 of layer conv2d is incompatible with the layer: expected ndim=4, found ndim=2. Full shape received: [1, 4]
+2019-11-23 14:20:21.072282: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
+2019-11-23 14:20:21.429242: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+2019-11-23 14:20:21.431775: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2019-11-23 14:20:21.461784: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+2019-11-23 14:20:21.476495: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10.0
+2019-11-23 14:20:21.481794: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10.0
+2019-11-23 14:20:21.517146: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10.0
+2019-11-23 14:20:21.539396: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10.0
+2019-11-23 14:20:21.587101: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2019-11-23 14:20:21.588545: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Adding visible gpu devices: 0
+2019-11-23 14:20:21.591430: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-11-23 14:20:21.612505: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3599070000 Hz
+2019-11-23 14:20:21.613354: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5c04fc0 executing computations on platform Host. Devices:
+2019-11-23 14:20:21.613375: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): Host, Default Version
+2019-11-23 14:20:21.980099: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5c066b0 executing computations on platform CUDA. Devices:
+2019-11-23 14:20:21.980136: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): GeForce GTX 1070, Compute Capability 6.1
+2019-11-23 14:20:21.980759: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+2019-11-23 14:20:21.980811: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2019-11-23 14:20:21.980831: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+2019-11-23 14:20:21.980841: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10.0
+2019-11-23 14:20:21.980851: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10.0
+2019-11-23 14:20:21.980860: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10.0
+2019-11-23 14:20:21.980871: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10.0
+2019-11-23 14:20:21.980883: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2019-11-23 14:20:21.981843: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Adding visible gpu devices: 0
+2019-11-23 14:20:21.982305: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2019-11-23 14:20:21.984178: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1159] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-11-23 14:20:21.984198: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1165]      0 
+2019-11-23 14:20:21.984209: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1178] 0:   N 
+2019-11-23 14:20:21.986311: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1304] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7627 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+WARNING:tensorflow:Layer deep_q_network is casting an input tensor from dtype float64 to the layer's dtype of float32, which is new behavior in TensorFlow 2.  The layer has dtype float32 because it's dtype defaults to floatx.
+
+If you intended to run this layer in float32, you can safely ignore this warning. If in doubt, this warning is likely only an issue if you are porting a TensorFlow 1.X model to TensorFlow 2.
+
+To change all layers to have dtype float64 by default, call `tf.keras.backend.set_floatx('float64')`. To change just this layer, pass dtype='float64' to the layer constructor. If you are the author of this layer, you can disable autocasting by passing autocast=False to the base Layer constructor.
+
+2019-11-23 14:20:24.960874: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2019-11-23 14:20:27.676346: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+Episode : 1
+Episode : 2
+Episode : 3
+Episode : 4
+Episode : 5
+Episode : 6
+Episode : 7
+Episode : 8
+Episode : 9
+Episode : 10
+Episode : 11
+Episode : 12
+Episode : 13
+Episode : 14
+Episode : 15
+Episode : 16
+Episode : 17
+Episode : 18
+Episode : 19
+Episode : 20
+Episode : 21
+Episode : 22
+Episode : 23
+Episode : 24
+Episode : 25
+Episode : 26
+Episode : 27
+Episode : 28
+Episode : 29
+Episode : 30
+Episode : 31
+Episode : 32
+Episode : 33
+Episode : 34
+Episode : 35
+Episode : 36
+Episode : 37
+Episode : 38
+Episode : 39
+Episode : 40
+Episode : 41
+Episode : 42
+Episode : 43
+Episode : 44
+Episode : 45
+Episode : 46
+Episode : 47
+Episode : 48
+Episode : 49
+Episode : 50
+Episode : 51
+Episode : 52
+Episode : 53
+Episode : 54
+Episode : 55
+Episode : 56
+Episode : 57
+Episode : 58
+Episode : 59
+Episode : 60
+Episode : 61
+Episode : 62
+Episode : 63
+Episode : 64
+Episode : 65
+Episode : 66
+Episode : 67
+Episode : 68
+Episode : 69
+Episode : 70
+Episode : 71
+Episode : 72
+Episode : 73
+Episode : 74
+Episode : 75
+Episode : 76
+Episode : 77
+Episode : 78
+Episode : 79
+Episode : 80
+Episode : 81
+Episode : 82
+Episode : 83
+Episode : 84
+Episode : 85
+Episode : 86
+Episode : 87
+Episode : 88
+Episode : 89
+Episode : 90
+Episode : 91
+Episode : 92
+Episode : 93
+Episode : 94
+Episode : 95
+Episode : 96
+Episode : 97
+Episode : 98
+Episode : 99
+Episode : 100
+Episode : 101
+Episode : 102
+Episode : 103
+Episode : 104
+Episode : 105
+Episode : 106
+Episode : 107
+Episode : 108
+Episode : 109
+Episode : 110
+Episode : 111
+Episode : 112
+Episode : 113
+Episode : 114
+Episode : 115
+Episode : 116
+Episode : 117
+Episode : 118
+Episode : 119
+Episode : 120
+Episode : 121
+Episode : 122
+Episode : 123
+Episode : 124
+Episode : 125
+Episode : 126
+Episode : 127
+Episode : 128
+Episode : 129
+Episode : 130
+Episode : 131
+Episode : 132
+Episode : 133
+Episode : 134
+Episode : 135
+Episode : 136
+Episode : 137
+Episode : 138
+Episode : 139
+Episode : 140
+Episode : 141
+Episode : 142
+Episode : 143
+Episode : 144
+Episode : 145
+Episode : 146
+Episode : 147
+Episode : 148
+Episode : 149
+Episode : 150
+Episode : 151
+Episode : 152
+Episode : 153
+Episode : 154
+Episode : 155
+Episode : 156
+Episode : 157
+Episode : 158
+Episode : 159
+Episode : 160
+Episode : 161
+Episode : 162
+Episode : 163
+Episode : 164
+Episode : 165
+Episode : 166
+Episode : 167
+Episode : 168
+Episode : 169
+Episode : 170
+Episode : 171
+Episode : 172
+Episode : 173
+Episode : 174
+Episode : 175
+Episode : 176
+Episode : 177
+Episode : 178
+Episode : 179
+Episode : 180
+Episode : 181
+Episode : 182
+Episode : 183
+Episode : 184
+Episode : 185
+Episode : 186
+Episode : 187
+Episode : 188
+Episode : 189
+Episode : 190
+Episode : 191
+Episode : 192
+Episode : 193
+Episode : 194
+Episode : 195
+Episode : 196
+Episode : 197
+Episode : 198
+Episode : 199
+Episode : 200
+Episode : 201
+Episode : 202
+Episode : 203
+Episode : 204
+Episode : 205
+Episode : 206
+Episode : 207
+Episode : 208
+Episode : 209
+Episode : 210
+Episode : 211
+Episode : 212
+Episode : 213
+Episode : 214
+Episode : 215
+Episode : 216
+Episode : 217
+Episode : 218
+Episode : 219
+Episode : 220
+Episode : 221
+Episode : 222
+Episode : 223
+Episode : 224
+Episode : 225
+Episode : 226
+Episode : 227
+Episode : 228
+Episode : 229
+Episode : 230
+Episode : 231
+Episode : 232
+Episode : 233
+Episode : 234
+Episode : 235
+Episode : 236
+Episode : 237
+Episode : 238
+Episode : 239
+Episode : 240
+Episode : 241
+Episode : 242
+Episode : 243
+Episode : 244
+Episode : 245
+Episode : 246
+Episode : 247
+Episode : 248
+Episode : 249
+Episode : 250
+Episode : 251
+Episode : 252
+Episode : 253
+Episode : 254
+Episode : 255
+Episode : 256
+Episode : 257
+Episode : 258
+Episode : 259
+Episode : 260
+Episode : 261
+Episode : 262
+Episode : 263
+Episode : 264
+Episode : 265
+Episode : 266
+Episode : 267
+Episode : 268
+Episode : 269
+Episode : 270
+Episode : 271
+Episode : 272
+Episode : 273
+Episode : 274
+Episode : 275
+Episode : 276
+Episode : 277
+Episode : 278
+Episode : 279
+Episode : 280
+Episode : 281
+Episode : 282
+Episode : 283
+Episode : 284
+Episode : 285
+Episode : 286
+Episode : 287
+Episode : 288
+Episode : 289
+Episode : 290
+Episode : 291
+Episode : 292
+Episode : 293
+Episode : 294
+Episode : 295
+Episode : 296
+Episode : 297
+Episode : 298
+Episode : 299
+Episode : 300
+Episode : 301
+Episode : 302
+Episode : 303
+Episode : 304
+Episode : 305
+Episode : 306
+Episode : 307
+Episode : 308
+Episode : 309
+Episode : 310
+Episode : 311
+Episode : 312
+Episode : 313
+Episode : 314
+Episode : 315
+Episode : 316
+Episode : 317
+Episode : 318
+Episode : 319
+Episode : 320
+Episode : 321
+Episode : 322
+Episode : 323
+Episode : 324
+Episode : 325
+Episode : 326
+Episode : 327
+Episode : 328
+Episode : 329
+Episode : 330
+Episode : 331
+Episode : 332
+Episode : 333
+Episode : 334
+Episode : 335
+Episode : 336
+Episode : 337
+Episode : 338
+Episode : 339
+Episode : 340
+Episode : 341
+Episode : 342
+Episode : 343
+Episode : 344
+Episode : 345
+Episode : 346
+Episode : 347
+Episode : 348
+Episode : 349
+Episode : 350
+Episode : 351
+Episode : 352
+Episode : 353
+Episode : 354
+Episode : 355
+Episode : 356
+Episode : 357
+Episode : 358
+Episode : 359
+Episode : 360
+Episode : 361
+Episode : 362
+Episode : 363
+Episode : 364
+Episode : 365
+Episode : 366
+Episode : 367
+Episode : 368
+Episode : 369
+Episode : 370
+Episode : 371
+Episode : 372
+Episode : 373
+Episode : 374
+Episode : 375
+Episode : 376
+Episode : 377
+Episode : 378
+Episode : 379
+Episode : 380
+Episode : 381
+Episode : 382
+Episode : 383
+Episode : 384
+Episode : 385
+Episode : 386
+Episode : 387
+Episode : 388
+Episode : 389
+Episode : 390
+Episode : 391
+Episode : 392
+Episode : 393
+Episode : 394
+Episode : 395
+Episode : 396
+Episode : 397
+Episode : 398
+Episode : 399
+Episode : 400
+Episode : 401
+Episode : 402
+Episode : 403
+Episode : 404
+Episode : 405
+Episode : 406
+Episode : 407
+Episode : 408
+Episode : 409
+Episode : 410
+Episode : 411
+Episode : 412
+Episode : 413
+Episode : 414
+Episode : 415
+Episode : 416
+Episode : 417
+Episode : 418
+Episode : 419
+Episode : 420
+Episode : 421
+Episode : 422
+Episode : 423
+Episode : 424
+Episode : 425
+Episode : 426
+Episode : 427
+Episode : 428
+Episode : 429
+Episode : 430
+Episode : 431
+Episode : 432
+Episode : 433
+Episode : 434
+Episode : 435
+Episode : 436
+Episode : 437
+Episode : 438
+Episode : 439
+Episode : 440
+Episode : 441
+Episode : 442
+Episode : 443
+Episode : 444
+Episode : 445
+Episode : 446
+Episode : 447
+Episode : 448
+Episode : 449
+Episode : 450
+Episode : 451
+Episode : 452
+Episode : 453
+Episode : 454
+Episode : 455
+Episode : 456
+Episode : 457
+Episode : 458
+Episode : 459
+Episode : 460
+Episode : 461
+Episode : 462
+Episode : 463
+Episode : 464
+Episode : 465
+Episode : 466
+Episode : 467
+Episode : 468
+Episode : 469
+Episode : 470
+Episode : 471
+Episode : 472
+Episode : 473
+Episode : 474
+Episode : 475
+Episode : 476
+Episode : 477
+Episode : 478
+Episode : 479
+Episode : 480
+Episode : 481
+Episode : 482
+Episode : 483
+Episode : 484
+Episode : 485
+Episode : 486
+Episode : 487
+Episode : 488
+Episode : 489
+Episode : 490
+Episode : 491
+Episode : 492
+Episode : 493
+Episode : 494
+Episode : 495
+Episode : 496
+Episode : 497
+Episode : 498
+Episode : 499
+Episode : 500
+Episode : 501
+Episode : 502
+Episode : 503
+Episode : 504
+Episode : 505
+Episode : 506
+Episode : 507
+Episode : 508
+Episode : 509
+Episode : 510
+Episode : 511
+Episode : 512
+Episode : 513
+Episode : 514
+Episode : 515
+Episode : 516
+Episode : 517
+Episode : 518
+Episode : 519
+Episode : 520
+Episode : 521
+Episode : 522
+Episode : 523
+Episode : 524
+Episode : 525
+Episode : 526
+Episode : 527
+Episode : 528
+Episode : 529
+Episode : 530
+Episode : 531
+Episode : 532
+Episode : 533
+Episode : 534
+Episode : 535
+Episode : 536
+Episode : 537
+Episode : 538
+Episode : 539
+Episode : 540
+Episode : 541
+Episode : 542
+Episode : 543
+Episode : 544
+Episode : 545
+Episode : 546
+Episode : 547
+Episode : 548
+Episode : 549
+Episode : 550
+Episode : 551
+Episode : 552
+Episode : 553
+Episode : 554
+Episode : 555
+Episode : 556
+Episode : 557
+Episode : 558
+Episode : 559
+Episode : 560
+Episode : 561
+Episode : 562
+Episode : 563
+Episode : 564
+Episode : 565
+Episode : 566
+Episode : 567
+Episode : 568
+Episode : 569
+Episode : 570
+Episode : 571
+Episode : 572
+Episode : 573
+Episode : 574
+Episode : 575
+Episode : 576
+Episode : 577
+Episode : 578
+Episode : 579
+Episode : 580
+Episode : 581
+Episode : 582
+Episode : 583
+Episode : 584
+Episode : 585
+Episode : 586
+Episode : 587
+Episode : 588
+Episode : 589
+Episode : 590
+Episode : 591
+Episode : 592
+Episode : 593
+Episode : 594
+Episode : 595
+Episode : 596
+Episode : 597
+Episode : 598
+Episode : 599
+Episode : 600
+Episode : 601
+Episode : 602
+Episode : 603
+Episode : 604
+Episode : 605
+Episode : 606
+Episode : 607
+Episode : 608
+Episode : 609
+Episode : 610
+Episode : 611
+Episode : 612
+Episode : 613
+Episode : 614
+Episode : 615
+Episode : 616
+Episode : 617
+Episode : 618
+Episode : 619
+Episode : 620
+Episode : 621
+Episode : 622
+Episode : 623
+Episode : 624
+Episode : 625
+Episode : 626
+Episode : 627
+Episode : 628
+Episode : 629
+Episode : 630
+Episode : 631
+Episode : 632
+Episode : 633
+Episode : 634
+Episode : 635
+Episode : 636
+Episode : 637
+Episode : 638
+Episode : 639
+Episode : 640
+Episode : 641
+Episode : 642
+Episode : 643
+Episode : 644
+Episode : 645
+Episode : 646
+Episode : 647
+Episode : 648
+Episode : 649
+Episode : 650
+Episode : 651
+Episode : 652
+Episode : 653
+Episode : 654
+Episode : 655
+Episode : 656
+Episode : 657
+Episode : 658
+Episode : 659
+Episode : 660
+Episode : 661
+Episode : 662
+Episode : 663
+Episode : 664
+Episode : 665
+Episode : 666
+Episode : 667
+Episode : 668
+Episode : 669
+Episode : 670
+Episode : 671
+Episode : 672
+Episode : 673
+Episode : 674
+Episode : 675
+Episode : 676
+Episode : 677
+Episode : 678
+Episode : 679
+Episode : 680
+Episode : 681
+Episode : 682
+Episode : 683
+Episode : 684
+Episode : 685
+Episode : 686
+Episode : 687
+Episode : 688
+Episode : 689
+Episode : 690
+Episode : 691
+Episode : 692
+Episode : 693
+Episode : 694
+Episode : 695
+Episode : 696
+Episode : 697
+Episode : 698
+Episode : 699
+Episode : 700
+Episode : 701
+Episode : 702
+Episode : 703
+Episode : 704
+Episode : 705
+Episode : 706
+Episode : 707
+Episode : 708
+Episode : 709
+Episode : 710
+Episode : 711
+Episode : 712
+Episode : 713
+Episode : 714
+Episode : 715
+Episode : 716
+Episode : 717
+Episode : 718
+Episode : 719
+Episode : 720
+Episode : 721
+Episode : 722
+Episode : 723
+Episode : 724
+Episode : 725
+Episode : 726
+Episode : 727
+Episode : 728
+Episode : 729
+Episode : 730
+Episode : 731
+Episode : 732
+Episode : 733
+Episode : 734
+Episode : 735
+Episode : 736
+Episode : 737
+Episode : 738
+Episode : 739
+Episode : 740
+Episode : 741
+Episode : 742
+Episode : 743
+Episode : 744
+Episode : 745
+Episode : 746
+Episode : 747
+Episode : 748
+Episode : 749
+Episode : 750
+Episode : 751
+Episode : 752
+Episode : 753
+Episode : 754
+Episode : 755
+Episode : 756
+Episode : 757
+Episode : 758
+Episode : 759
+Episode : 760
+Episode : 761
+Episode : 762
+Episode : 763
+Episode : 764
+Episode : 765
+Episode : 766
+Episode : 767
+Episode : 768
+Episode : 769
+Episode : 770
+Episode : 771
+Episode : 772
+Episode : 773
+Episode : 774
+Episode : 775
+Episode : 776
+Episode : 777
+Episode : 778
+Episode : 779
+Episode : 780
+Episode : 781
+Episode : 782
+Episode : 783
+Episode : 784
+Episode : 785
+Episode : 786
+Episode : 787
+Episode : 788
+Episode : 789
+Episode : 790
+Episode : 791
+Episode : 792
+Episode : 793
+Episode : 794
+Episode : 795
+Episode : 796
+Episode : 797
+Episode : 798
+Episode : 799
+Episode : 800
+Episode : 801
+Episode : 802
+Episode : 803
+Episode : 804
+Episode : 805
+Episode : 806
+Episode : 807
+Episode : 808
+Episode : 809
+Episode : 810
+Episode : 811
+Episode : 812
+Episode : 813
+Episode : 814
+Episode : 815
+Episode : 816
+Episode : 817
+Episode : 818
+Episode : 819
+Episode : 820
+Episode : 821
+Episode : 822
+Episode : 823
+Episode : 824
+Episode : 825
+Episode : 826
+Episode : 827
+Episode : 828
+Episode : 829
+Episode : 830
+Episode : 831
+Episode : 832
+Episode : 833
+Episode : 834
+Episode : 835
+Episode : 836
+Episode : 837
+Episode : 838
+Episode : 839
+Episode : 840
+Episode : 841
+Episode : 842
+Episode : 843
+Episode : 844
+Episode : 845
+Episode : 846
+Episode : 847
+Episode : 848
+Episode : 849
+Episode : 850
+Episode : 851
+Episode : 852
+Episode : 853
+Episode : 854
+Episode : 855
+Episode : 856
+Episode : 857
+Episode : 858
+Episode : 859
+Episode : 860
+Episode : 861
+Episode : 862
+Episode : 863
+Episode : 864
+Episode : 865
+Episode : 866
+Episode : 867
+Episode : 868
+Episode : 869
+Episode : 870
+Episode : 871
+Episode : 872
+Episode : 873
+Episode : 874
+Episode : 875
+Episode : 876
+Episode : 877
+Episode : 878
+Episode : 879
+Episode : 880
+Episode : 881
+Episode : 882
+Episode : 883
+Episode : 884
+Episode : 885
+Episode : 886
+Episode : 887
+Episode : 888
+Episode : 889
+Episode : 890
+Episode : 891
+Episode : 892
+Episode : 893
+Episode : 894
+Episode : 895
+Episode : 896
+Episode : 897
+Episode : 898
+Episode : 899
+Episode : 900
+Episode : 901
+Episode : 902
+Episode : 903
+Episode : 904
+Episode : 905
+Episode : 906
+Episode : 907
+Episode : 908
+Episode : 909
+Episode : 910
+Episode : 911
+Episode : 912
+Episode : 913
+Episode : 914
+Episode : 915
+Episode : 916
+Episode : 917
+Episode : 918
+Episode : 919
+Episode : 920
+Episode : 921
+Episode : 922
+Episode : 923
+Episode : 924
+Episode : 925
+Episode : 926
+Episode : 927
+Episode : 928
+Episode : 929
+Episode : 930
+Episode : 931
+Episode : 932
+Episode : 933
+Episode : 934
+Episode : 935
+Episode : 936
+Episode : 937
+Episode : 938
+Episode : 939
+Episode : 940
+Episode : 941
+Episode : 942
+Episode : 943
+Episode : 944
+Episode : 945
+Episode : 946
+Episode : 947
+Episode : 948
+Episode : 949
+Episode : 950
+Episode : 951
+Episode : 952
+Episode : 953
+Episode : 954
+Episode : 955
+Episode : 956
+Episode : 957
+Episode : 958
+Episode : 959
+Episode : 960
+Episode : 961
+Episode : 962
+Episode : 963
+Episode : 964
+Episode : 965
+Episode : 966
+Episode : 967
+Episode : 968
+Episode : 969
+Episode : 970
+Episode : 971
+Episode : 972
+Episode : 973
+Episode : 974
+Episode : 975
+Episode : 976
+Episode : 977
+Episode : 978
+Episode : 979
+Episode : 980
+Episode : 981
+Episode : 982
+Episode : 983
+Episode : 984
+Episode : 985
+Episode : 986
+Episode : 987
+Episode : 988
+Episode : 989
+Episode : 990
+Episode : 991
+Episode : 992
+Episode : 993
+Episode : 994
+Episode : 995
+Episode : 996
+Episode : 997
+Episode : 998
+Episode : 999
+Episode : 1000
+Episode : 1001
+Episode : 1002
+Episode : 1003
+Episode : 1004
+Episode : 1005
+Episode : 1006
+Episode : 1007
+Episode : 1008
+Episode : 1009
+Episode : 1010
+Episode : 1011
+Episode : 1012
+Episode : 1013
+Episode : 1014
+Episode : 1015
+Episode : 1016
+Episode : 1017
+Episode : 1018
+Episode : 1019
+Episode : 1020
+Episode : 1021
+Episode : 1022
+Episode : 1023
+Episode : 1024
+Episode : 1025
+Episode : 1026
+Episode : 1027
+Episode : 1028
+Episode : 1029
+Episode : 1030
+Episode : 1031
+Episode : 1032
+Episode : 1033
+Episode : 1034
+Episode : 1035
+Episode : 1036
+Episode : 1037
+Episode : 1038
+Episode : 1039
+Episode : 1040
+Episode : 1041
+Episode : 1042
+Episode : 1043
+Episode : 1044
+Episode : 1045
+Episode : 1046
+Episode : 1047
+Episode : 1048
+Episode : 1049
+Episode : 1050
+Episode : 1051
+Episode : 1052
+Episode : 1053
+Episode : 1054
+Episode : 1055
+Episode : 1056
+Episode : 1057
+Episode : 1058
+Episode : 1059
+Episode : 1060
+Episode : 1061
+Episode : 1062
+Episode : 1063
+Episode : 1064
+Episode : 1065
+Episode : 1066
+Episode : 1067
+Episode : 1068
+Episode : 1069
+Episode : 1070
+Episode : 1071
+Episode : 1072
+Episode : 1073
+Episode : 1074
+Episode : 1075
+Episode : 1076
+Episode : 1077
+Episode : 1078
+Episode : 1079
+Episode : 1080
+Episode : 1081
+Episode : 1082
+Episode : 1083
+Episode : 1084
+Episode : 1085
+Episode : 1086
+Episode : 1087
+Episode : 1088
+Episode : 1089
+Episode : 1090
+Episode : 1091
+Episode : 1092
+Episode : 1093
+Episode : 1094
+Episode : 1095
+Episode : 1096
+Episode : 1097
+Episode : 1098
+Episode : 1099
+Episode : 1100
+Episode : 1101
+Episode : 1102
+Episode : 1103
+Episode : 1104
+Episode : 1105
+Episode : 1106
+Episode : 1107
+Episode : 1108
+Episode : 1109
+Episode : 1110
+Episode : 1111
+Episode : 1112
+Episode : 1113
+Episode : 1114
+Episode : 1115
+Episode : 1116
+Episode : 1117
+Episode : 1118
+Episode : 1119
+Episode : 1120
+Episode : 1121
+Episode : 1122
+Episode : 1123
+Episode : 1124
+Episode : 1125
+Episode : 1126
+Episode : 1127
+Episode : 1128
+Episode : 1129
+Episode : 1130
+Episode : 1131
+Episode : 1132
+Episode : 1133
+Episode : 1134
+Episode : 1135
+Episode : 1136
+Episode : 1137
+Episode : 1138
+Episode : 1139
+Episode : 1140
+Episode : 1141
+Episode : 1142
+Episode : 1143
+Episode : 1144
+Episode : 1145
+Episode : 1146
+Episode : 1147
+Episode : 1148
+Episode : 1149
+Episode : 1150
+Episode : 1151
+Episode : 1152
+Episode : 1153
+Episode : 1154
+Episode : 1155
+Episode : 1156
+Episode : 1157
+Episode : 1158
+Episode : 1159
+Episode : 1160
+Episode : 1161
+Episode : 1162
+Episode : 1163
+Episode : 1164
+Episode : 1165
+Episode : 1166
+Episode : 1167
+Episode : 1168
+Episode : 1169
+Episode : 1170
+Episode : 1171
+Episode : 1172
+Episode : 1173
+Episode : 1174
+Episode : 1175
+Episode : 1176
+Episode : 1177
+Episode : 1178
+Episode : 1179
+Episode : 1180
+Episode : 1181
+Episode : 1182
+Episode : 1183
+Episode : 1184
+Episode : 1185
+Episode : 1186
+Episode : 1187
+Episode : 1188
+Episode : 1189
+Episode : 1190
+Episode : 1191
+Episode : 1192
+Episode : 1193
+Episode : 1194
+Episode : 1195
+Episode : 1196
+Episode : 1197
+Episode : 1198
+Episode : 1199
+Episode : 1200
+Episode : 1201
+Episode : 1202
+Episode : 1203
+Episode : 1204
+Episode : 1205
+Episode : 1206
+Episode : 1207
+Episode : 1208
+Episode : 1209
+Episode : 1210
+Episode : 1211
+Episode : 1212
+Episode : 1213
+Episode : 1214
+Episode : 1215
+Episode : 1216
+Episode : 1217
+Episode : 1218
+Episode : 1219
+Episode : 1220
+Episode : 1221
+Episode : 1222
+Episode : 1223
+Episode : 1224
+Episode : 1225
+Episode : 1226
+Episode : 1227
+Episode : 1228
+Episode : 1229
+Episode : 1230
+Episode : 1231
+Episode : 1232
+Episode : 1233
+Episode : 1234
+Episode : 1235
+Episode : 1236
+Episode : 1237
+Episode : 1238
+Episode : 1239
+Episode : 1240
+Episode : 1241
+Episode : 1242
+Episode : 1243
+Episode : 1244
+Episode : 1245
+Episode : 1246
+Episode : 1247
+Episode : 1248
+Episode : 1249
+Episode : 1250
+Episode : 1251
+Episode : 1252
+Episode : 1253
+Episode : 1254
+Episode : 1255
+Episode : 1256
+Episode : 1257
+Episode : 1258
+Episode : 1259
+Episode : 1260
+Episode : 1261
+Episode : 1262
+Episode : 1263
+Episode : 1264
+Episode : 1265
+Episode : 1266
+Episode : 1267
+Episode : 1268
+Episode : 1269
+Episode : 1270
+Episode : 1271
+Episode : 1272
+Episode : 1273
+Episode : 1274
+Episode : 1275
+Episode : 1276
+Episode : 1277
+Episode : 1278
+Episode : 1279
+Episode : 1280
+Episode : 1281
+Episode : 1282
+Episode : 1283
+Episode : 1284
+Episode : 1285
+Episode : 1286
+Episode : 1287
+Episode : 1288
+Episode : 1289
+Episode : 1290
+Episode : 1291
+Episode : 1292
+Episode : 1293
+Episode : 1294
+Episode : 1295
+Episode : 1296
+Episode : 1297
+Episode : 1298
+Episode : 1299
+Episode : 1300
+Episode : 1301
+Episode : 1302
+Episode : 1303
+Episode : 1304
+Episode : 1305
+Episode : 1306
+Episode : 1307
+Episode : 1308
+Episode : 1309
+Episode : 1310
+Episode : 1311
+Episode : 1312
+Episode : 1313
+Episode : 1314
+Episode : 1315
+Episode : 1316
+Episode : 1317
+Episode : 1318
+Episode : 1319
+Episode : 1320
+Episode : 1321
+Episode : 1322
+Episode : 1323
+Episode : 1324
+Episode : 1325
+Episode : 1326
+Episode : 1327
+Episode : 1328
+Episode : 1329
+Episode : 1330
+Episode : 1331
+Episode : 1332
+Episode : 1333
+Episode : 1334
+Episode : 1335
+Episode : 1336
+Episode : 1337
+Episode : 1338
+Episode : 1339
+Episode : 1340
+Episode : 1341
+Episode : 1342
+Episode : 1343
+Episode : 1344
+Episode : 1345
+Episode : 1346
+Episode : 1347
+Episode : 1348
+Episode : 1349
+Episode : 1350
+Episode : 1351
+Episode : 1352
+Episode : 1353
+Episode : 1354
+Episode : 1355
+Episode : 1356
+Episode : 1357
+Episode : 1358
+Episode : 1359
+Episode : 1360
+Episode : 1361
+Episode : 1362
+Episode : 1363
+Episode : 1364
+Episode : 1365
+Episode : 1366
+Episode : 1367
+Episode : 1368
+Episode : 1369
+Episode : 1370
+Episode : 1371
+Episode : 1372
+Episode : 1373
+Episode : 1374
+Episode : 1375
+Episode : 1376
+Episode : 1377
+Episode : 1378
+Episode : 1379
+Episode : 1380
+Episode : 1381
+Episode : 1382
+Episode : 1383
+Episode : 1384
+Episode : 1385
+Episode : 1386
+Episode : 1387
+Episode : 1388
+Episode : 1389
+Episode : 1390
+Episode : 1391
+Episode : 1392
+Episode : 1393
+Episode : 1394
+Episode : 1395
+Episode : 1396
+Episode : 1397
+Episode : 1398
+Episode : 1399
+Episode : 1400
+Episode : 1401
+Episode : 1402
+Episode : 1403
+Episode : 1404
+Episode : 1405
+Episode : 1406
+Episode : 1407
+Episode : 1408
+Episode : 1409
+Episode : 1410
+Episode : 1411
+Episode : 1412
+Episode : 1413
+Episode : 1414
+Episode : 1415
+Episode : 1416
+Episode : 1417
+Episode : 1418
+Episode : 1419
+Episode : 1420
+Episode : 1421
+Episode : 1422
+Episode : 1423
+Episode : 1424
+Episode : 1425
+Episode : 1426
+Episode : 1427
+Episode : 1428
+Episode : 1429
+Episode : 1430
+Episode : 1431
+Episode : 1432
+Episode : 1433
+Episode : 1434
+Episode : 1435
+Episode : 1436
+Episode : 1437
+Episode : 1438
+Episode : 1439
+Episode : 1440
+Episode : 1441
+Episode : 1442
+Episode : 1443
+Episode : 1444
+Episode : 1445
+Episode : 1446
+Episode : 1447
+Episode : 1448
+Episode : 1449
+Episode : 1450
+Episode : 1451
+Episode : 1452
+Episode : 1453
+Episode : 1454
+Episode : 1455
+Episode : 1456
+Episode : 1457
+Episode : 1458
+Episode : 1459
+Episode : 1460
+Episode : 1461
+Episode : 1462
+Episode : 1463
+Episode : 1464
+Episode : 1465
+Episode : 1466
+Episode : 1467
+Episode : 1468
+Episode : 1469
+Episode : 1470
+Episode : 1471
+Episode : 1472
+Episode : 1473
+Episode : 1474
+Episode : 1475
+Episode : 1476
+Episode : 1477
+Episode : 1478
+Episode : 1479
+Episode : 1480
+Episode : 1481
+Episode : 1482
+Episode : 1483
+Episode : 1484
+Episode : 1485
+Episode : 1486
+Episode : 1487
+Episode : 1488
+Episode : 1489
+Episode : 1490
+Episode : 1491
+Episode : 1492
+Episode : 1493
+Episode : 1494
+Episode : 1495
+Episode : 1496
+Episode : 1497
+Episode : 1498
+Episode : 1499
+Episode : 1500
+Episode : 1501
+Episode : 1502
+Episode : 1503
+Episode : 1504
+Episode : 1505
+Episode : 1506
+Episode : 1507
+Episode : 1508
+Episode : 1509
+Episode : 1510
+Episode : 1511
+Episode : 1512
+Episode : 1513
+Episode : 1514
+Episode : 1515
+Episode : 1516
+Episode : 1517
+Episode : 1518
+Episode : 1519
+Episode : 1520
+Episode : 1521
+Episode : 1522
+Episode : 1523
+Episode : 1524
+Episode : 1525
+Episode : 1526
+Episode : 1527
+Episode : 1528
+Episode : 1529
+Episode : 1530
+Episode : 1531
+Episode : 1532
+Episode : 1533
+Episode : 1534
+Episode : 1535
+Episode : 1536
+Episode : 1537
+Episode : 1538
+Episode : 1539
+Episode : 1540
+Episode : 1541
+Episode : 1542
+Episode : 1543
+Episode : 1544
+Episode : 1545
+Episode : 1546
+Episode : 1547
+Episode : 1548
+Episode : 1549
+Episode : 1550
+Episode : 1551
+Episode : 1552
+Episode : 1553
+Episode : 1554
+Episode : 1555
+Episode : 1556
+Episode : 1557
+Episode : 1558
+Episode : 1559
+Episode : 1560
+Episode : 1561
+Episode : 1562
+Episode : 1563
+Episode : 1564
+Episode : 1565
+Episode : 1566
+Episode : 1567
+Episode : 1568
+Episode : 1569
+Episode : 1570
+Episode : 1571
+Episode : 1572
+Episode : 1573
+Episode : 1574
+Episode : 1575
+Episode : 1576
+Episode : 1577
+Episode : 1578
+Episode : 1579
+Episode : 1580
+Episode : 1581
+Episode : 1582
+Episode : 1583
+Episode : 1584
+Episode : 1585
+Episode : 1586
+Episode : 1587
+Episode : 1588
+Episode : 1589
+Episode : 1590
+Episode : 1591
+Episode : 1592
+Episode : 1593
+Episode : 1594
+Episode : 1595
+Episode : 1596
+Episode : 1597
+Episode : 1598
+Episode : 1599
+Episode : 1600
+Episode : 1601
+Episode : 1602
+Episode : 1603
+Episode : 1604
+Episode : 1605
+Episode : 1606
+Episode : 1607
+Episode : 1608
+Episode : 1609
+Episode : 1610
+Episode : 1611
+Episode : 1612
+Episode : 1613
+Episode : 1614
+Episode : 1615
+Episode : 1616
+Episode : 1617
+Episode : 1618
+Episode : 1619
+Episode : 1620
+Episode : 1621
+Episode : 1622
+Episode : 1623
+Episode : 1624
+Episode : 1625
+Episode : 1626
+Episode : 1627
+Episode : 1628
+Episode : 1629
+Episode : 1630
+Episode : 1631
+Episode : 1632
+Episode : 1633
+Episode : 1634
+Episode : 1635
+Episode : 1636
+Episode : 1637
+Episode : 1638
+Episode : 1639
+Episode : 1640
+Episode : 1641
+Episode : 1642
+Episode : 1643
+Episode : 1644
+Episode : 1645
+Episode : 1646
+Episode : 1647
+Episode : 1648
+Episode : 1649
+Episode : 1650
+Episode : 1651
+Episode : 1652
+Episode : 1653
+Episode : 1654
+Episode : 1655
+Episode : 1656
+Episode : 1657
+Episode : 1658
+Episode : 1659
+Episode : 1660
+Episode : 1661
+Episode : 1662
+Episode : 1663
+Episode : 1664
+Episode : 1665
+Episode : 1666
+Episode : 1667
+Episode : 1668
+Episode : 1669
+Episode : 1670
+Episode : 1671
+Episode : 1672
+Episode : 1673
+Episode : 1674
+Episode : 1675
+Episode : 1676
+Episode : 1677
+Episode : 1678
+Episode : 1679
+Episode : 1680
+Episode : 1681
+Episode : 1682
+Episode : 1683
+Episode : 1684
+Episode : 1685
+Episode : 1686
+Episode : 1687
+Episode : 1688
+Episode : 1689
+Episode : 1690
+Episode : 1691
+Episode : 1692
+Episode : 1693
+Episode : 1694
+Episode : 1695
+Episode : 1696
+Episode : 1697
+Episode : 1698
+Episode : 1699
+Episode : 1700
+Episode : 1701
+Episode : 1702
+Episode : 1703
+Episode : 1704
+Episode : 1705
+Episode : 1706
+Episode : 1707
+Episode : 1708
+Episode : 1709
+Episode : 1710
+Episode : 1711
+Episode : 1712
+Episode : 1713
+Episode : 1714
+Episode : 1715
+Episode : 1716
+Episode : 1717
+Episode : 1718
+Episode : 1719
+Episode : 1720
+Episode : 1721
+Episode : 1722
+Episode : 1723
+Episode : 1724
+Episode : 1725
+Episode : 1726
+Episode : 1727
+Episode : 1728
+Episode : 1729
+Episode : 1730
+Episode : 1731
+Episode : 1732
+Episode : 1733
+Episode : 1734
+Episode : 1735
+Episode : 1736
+Episode : 1737
+Episode : 1738
+Episode : 1739
+Episode : 1740
+Episode : 1741
+Episode : 1742
+Episode : 1743
+Episode : 1744
+Episode : 1745
+Episode : 1746
+Episode : 1747
+Episode : 1748
+Episode : 1749
+Episode : 1750
+Episode : 1751
+Episode : 1752
+Episode : 1753
+Episode : 1754
+Episode : 1755
+Episode : 1756
+Episode : 1757
+Episode : 1758
+Episode : 1759
+Episode : 1760
+Episode : 1761
+Episode : 1762
+Episode : 1763
+Episode : 1764
+Episode : 1765
+Episode : 1766
+Episode : 1767
+Episode : 1768
+Episode : 1769
+Episode : 1770
+Episode : 1771
+Episode : 1772
+Episode : 1773
+Episode : 1774
+Episode : 1775
+Episode : 1776
+Episode : 1777
+Episode : 1778
+Episode : 1779
+Episode : 1780
+Episode : 1781
+Episode : 1782
+Episode : 1783
+Episode : 1784
+Episode : 1785
+Episode : 1786
+Episode : 1787
+Episode : 1788
+Episode : 1789
+Episode : 1790
+Episode : 1791
+Episode : 1792
+Episode : 1793
+Episode : 1794
+Episode : 1795
+Episode : 1796
+Episode : 1797
+Episode : 1798
+Episode : 1799
+Episode : 1800
+Episode : 1801
+Episode : 1802
+Episode : 1803
+Episode : 1804
+Episode : 1805
+Episode : 1806
+Episode : 1807
+Episode : 1808
+Episode : 1809
+Episode : 1810
+Episode : 1811
+Episode : 1812
+Episode : 1813
+Episode : 1814
+Episode : 1815
+Episode : 1816
+Episode : 1817
+Episode : 1818
+Episode : 1819
+Episode : 1820
+Episode : 1821
+Episode : 1822
+Episode : 1823
+Episode : 1824
+Episode : 1825
+Episode : 1826
+Episode : 1827
+Episode : 1828
+Episode : 1829
+Episode : 1830
+Episode : 1831
+Episode : 1832
+Episode : 1833
+Episode : 1834
+Episode : 1835
+Episode : 1836
+Episode : 1837
+Episode : 1838
+Episode : 1839
+Episode : 1840
+Episode : 1841
+Episode : 1842
+Episode : 1843
+Episode : 1844
+Episode : 1845
+Episode : 1846
+Episode : 1847
+Episode : 1848
+Episode : 1849
+Episode : 1850
+Episode : 1851
+Episode : 1852
+Episode : 1853
+Episode : 1854
+Episode : 1855
+Episode : 1856
+Episode : 1857
+Episode : 1858
+Episode : 1859
+Episode : 1860
+Episode : 1861
+Episode : 1862
+Episode : 1863
+Episode : 1864
+Episode : 1865
+Episode : 1866
+Episode : 1867
+Episode : 1868
+Episode : 1869
+Episode : 1870
+Episode : 1871
+Episode : 1872
+Episode : 1873
+Episode : 1874
+Episode : 1875
+Episode : 1876
+Episode : 1877
+Episode : 1878
+Episode : 1879
+Episode : 1880
+Episode : 1881
+Episode : 1882
+Episode : 1883
+Episode : 1884
+Episode : 1885
+Episode : 1886
+Episode : 1887
+Episode : 1888
+Episode : 1889
+Episode : 1890
+Episode : 1891
+Episode : 1892
+Episode : 1893
+Episode : 1894
+Episode : 1895
+Episode : 1896
+Episode : 1897
+Episode : 1898
+Episode : 1899
+Episode : 1900
+Episode : 1901
+Episode : 1902
+Episode : 1903
+Episode : 1904
+Episode : 1905
+Episode : 1906
+Episode : 1907
+Episode : 1908
+Episode : 1909
+Episode : 1910
+Episode : 1911
+Episode : 1912
+Episode : 1913
+Episode : 1914
+Episode : 1915
+Episode : 1916
+Episode : 1917
+Episode : 1918
+Episode : 1919
+Episode : 1920
+Episode : 1921
+Episode : 1922
+Episode : 1923
+Episode : 1924
+Episode : 1925
+Episode : 1926
+Episode : 1927
+Episode : 1928
+Episode : 1929
+Episode : 1930
+Episode : 1931
+Episode : 1932
+Episode : 1933
+Episode : 1934
+Episode : 1935
+Episode : 1936
+Episode : 1937
+Episode : 1938
+Episode : 1939
+Episode : 1940
+Episode : 1941
+Episode : 1942
+Episode : 1943
+Episode : 1944
+Episode : 1945
+Episode : 1946
+Episode : 1947
+Episode : 1948
+Episode : 1949
+Episode : 1950
+Episode : 1951
+Episode : 1952
+Episode : 1953
+Episode : 1954
+Episode : 1955
+Episode : 1956
+Episode : 1957
+Episode : 1958
+Episode : 1959
+Episode : 1960
+Episode : 1961
+Episode : 1962
+Episode : 1963
+Episode : 1964
+Episode : 1965
+Episode : 1966
+Episode : 1967
+Episode : 1968
+Episode : 1969
+Episode : 1970
+Episode : 1971
+Episode : 1972
+Episode : 1973
+Episode : 1974
+Episode : 1975
+Episode : 1976
+Episode : 1977
+Episode : 1978
+Episode : 1979
+Episode : 1980
+Episode : 1981
+Episode : 1982
+Episode : 1983
+Episode : 1984
+Episode : 1985
+Episode : 1986
+Episode : 1987
+Episode : 1988
+Episode : 1989
+Episode : 1990
+Episode : 1991
+Episode : 1992
+Episode : 1993
+Episode : 1994
+Episode : 1995
+Episode : 1996
+Episode : 1997
+Episode : 1998
+Episode : 1999
+Episode : 2000
+Episode : 2001
+Episode : 2002
+Episode : 2003
+Episode : 2004
+Episode : 2005
+Episode : 2006
+Episode : 2007
+Episode : 2008
+Episode : 2009
+Episode : 2010
+Episode : 2011
+Episode : 2012
+Episode : 2013
+Episode : 2014
+Episode : 2015
+Episode : 2016
+Episode : 2017
+Episode : 2018
+Episode : 2019
+Episode : 2020
+Episode : 2021
+Episode : 2022
+Episode : 2023
+Episode : 2024
+Episode : 2025
+Episode : 2026
+Episode : 2027
+Episode : 2028
+Episode : 2029
+Episode : 2030
+Episode : 2031
+Episode : 2032
+Episode : 2033
+Episode : 2034
+Episode : 2035
+Episode : 2036
+Episode : 2037
+Episode : 2038
+Episode : 2039
+Episode : 2040
+Episode : 2041
+Episode : 2042
+Episode : 2043
+Episode : 2044
+Episode : 2045
+Episode : 2046
+Episode : 2047
+Episode : 2048
+Episode : 2049
+Episode : 2050
+Episode : 2051
+Episode : 2052
+Episode : 2053
+Episode : 2054
+Episode : 2055
+Episode : 2056
+Episode : 2057
+Episode : 2058
+Episode : 2059
+Episode : 2060
+Episode : 2061
+Episode : 2062
+Episode : 2063
+Episode : 2064
+Episode : 2065
+Episode : 2066
+Episode : 2067
+Episode : 2068
+Episode : 2069
+Episode : 2070
+Episode : 2071
+Episode : 2072
+Episode : 2073
+Episode : 2074
+Episode : 2075
+Episode : 2076
+Episode : 2077
+Episode : 2078
+Episode : 2079
+Episode : 2080
+Episode : 2081
+Episode : 2082
+Episode : 2083
+Episode : 2084
+Episode : 2085
+Episode : 2086
+Episode : 2087
+Episode : 2088
+Episode : 2089
+Episode : 2090
+Episode : 2091
+Episode : 2092
+Episode : 2093
+Episode : 2094
+Episode : 2095
+Episode : 2096
+Episode : 2097
+Episode : 2098
+Episode : 2099
+Episode : 2100
+Episode : 2101
+Episode : 2102
+Episode : 2103
+Episode : 2104
+Episode : 2105
+Episode : 2106
+Episode : 2107
+Episode : 2108
+Episode : 2109
+Episode : 2110
+Episode : 2111
+Episode : 2112
+Episode : 2113
+Episode : 2114
+Episode : 2115
+Episode : 2116
+Episode : 2117
+Episode : 2118
+Episode : 2119
+Episode : 2120
+Episode : 2121
+Episode : 2122
+Episode : 2123
+Episode : 2124
+Episode : 2125
+Episode : 2126
+Episode : 2127
+Episode : 2128
+Episode : 2129
+Episode : 2130
+Episode : 2131
+Episode : 2132
+Episode : 2133
+Episode : 2134
+Episode : 2135
+Episode : 2136
+Episode : 2137
+Episode : 2138
+Episode : 2139
+Episode : 2140
+Episode : 2141
+Episode : 2142
+Episode : 2143
+Episode : 2144
+Episode : 2145
+Episode : 2146
+Episode : 2147
+Episode : 2148
+Episode : 2149
+Episode : 2150
+Episode : 2151
+Episode : 2152
+Episode : 2153
+Episode : 2154
+Episode : 2155
+Episode : 2156
+Episode : 2157
+Episode : 2158
+Episode : 2159
+Episode : 2160
+Episode : 2161
+Episode : 2162
+Episode : 2163
+Episode : 2164
+Episode : 2165
+Episode : 2166
+Episode : 2167
+Episode : 2168
+Episode : 2169
+Episode : 2170
+Episode : 2171
+Episode : 2172
+Episode : 2173
+Episode : 2174
+Episode : 2175
+Episode : 2176
+Episode : 2177
+Episode : 2178
+Episode : 2179
+Episode : 2180
+Episode : 2181
+Episode : 2182
+Episode : 2183
+Episode : 2184
+Episode : 2185
+Episode : 2186
+Episode : 2187
+Episode : 2188
+Episode : 2189
+Episode : 2190
+Episode : 2191
+Episode : 2192
+Episode : 2193
+Episode : 2194
+Episode : 2195
+Episode : 2196
+Episode : 2197
+Episode : 2198
+Episode : 2199
+Episode : 2200
+Episode : 2201
+Episode : 2202
+Episode : 2203
+Episode : 2204
+Episode : 2205
+Episode : 2206
+Episode : 2207
+Episode : 2208
+Episode : 2209
+Episode : 2210
+Episode : 2211
+Episode : 2212
+Episode : 2213
+Episode : 2214
+Episode : 2215
+Episode : 2216
+Episode : 2217
+Episode : 2218
+Episode : 2219
+Episode : 2220
+Episode : 2221
+Episode : 2222
+Episode : 2223
+Episode : 2224
+Episode : 2225
+Episode : 2226
+Episode : 2227
+Episode : 2228
+Episode : 2229
+Episode : 2230
+Episode : 2231
+Episode : 2232
+Episode : 2233
+Episode : 2234
+Episode : 2235
+Episode : 2236
+Episode : 2237
+Episode : 2238
+Episode : 2239
+Episode : 2240
+Episode : 2241
+Episode : 2242
+Episode : 2243
+Episode : 2244
+Episode : 2245
+Episode : 2246
+Episode : 2247
+Episode : 2248
+Episode : 2249
+Episode : 2250
+Episode : 2251
+Episode : 2252
+Episode : 2253
+Episode : 2254
+Episode : 2255
+Episode : 2256
+Episode : 2257
+Episode : 2258
+Episode : 2259
+Episode : 2260
+Episode : 2261
+Episode : 2262
+Episode : 2263
+Episode : 2264
+Episode : 2265
+Episode : 2266
+Episode : 2267
+Episode : 2268
+Episode : 2269
+Episode : 2270
+Episode : 2271
+Episode : 2272
+Episode : 2273
+Episode : 2274
+Episode : 2275
+Episode : 2276
+Episode : 2277
+Episode : 2278
+Episode : 2279
+Episode : 2280
+Episode : 2281
+Episode : 2282
+Episode : 2283
+Episode : 2284
+Episode : 2285
+Episode : 2286
+Episode : 2287
+Episode : 2288
+Episode : 2289
+Episode : 2290
+Episode : 2291
+Episode : 2292
+Episode : 2293
+Episode : 2294
+Episode : 2295
+Episode : 2296
+Episode : 2297
+Episode : 2298
+Episode : 2299
+Episode : 2300
+Episode : 2301
+Episode : 2302
+Episode : 2303
+Episode : 2304
+Episode : 2305
+Episode : 2306
+Episode : 2307
+Episode : 2308
+Episode : 2309
+Episode : 2310
+Episode : 2311
+Episode : 2312
+Episode : 2313
+Episode : 2314
+Episode : 2315
+Episode : 2316
+Episode : 2317
+Episode : 2318
+Episode : 2319
+Episode : 2320
+Episode : 2321
+Episode : 2322
+Episode : 2323
+Episode : 2324
+Episode : 2325
+Episode : 2326
+Episode : 2327
+Episode : 2328
+Episode : 2329
+Episode : 2330
+Episode : 2331
+Episode : 2332
+Episode : 2333
+Episode : 2334
+Episode : 2335
+Episode : 2336
+Episode : 2337
+Episode : 2338
+Episode : 2339
+Episode : 2340
+Episode : 2341
+Episode : 2342
+Episode : 2343
+Episode : 2344
+Episode : 2345
+Episode : 2346
+Episode : 2347
+Episode : 2348
+Episode : 2349
+Episode : 2350
+Episode : 2351
+Episode : 2352
+Episode : 2353
+Episode : 2354
+Episode : 2355
+Episode : 2356
+Episode : 2357
+Episode : 2358
+Episode : 2359
+Episode : 2360
+Episode : 2361
+Episode : 2362
+Episode : 2363
+Episode : 2364
+Episode : 2365
+Episode : 2366
+Episode : 2367
+Episode : 2368
+Episode : 2369
+Episode : 2370
+Episode : 2371
+Episode : 2372
+Episode : 2373
+Episode : 2374
+Episode : 2375
+Episode : 2376
+Episode : 2377
+Episode : 2378
+Episode : 2379
+Episode : 2380
+Episode : 2381
+Episode : 2382
+Episode : 2383
+Episode : 2384
+Episode : 2385
+Episode : 2386
+Episode : 2387
+Episode : 2388
+Episode : 2389
+Episode : 2390
+Episode : 2391
+Episode : 2392
+Episode : 2393
+Episode : 2394
+Episode : 2395
+Episode : 2396
+Episode : 2397
+Episode : 2398
+Episode : 2399
+Episode : 2400
+Episode : 2401
+Episode : 2402
+Episode : 2403
+Episode : 2404
+Episode : 2405
+Episode : 2406
+Episode : 2407
+Episode : 2408
+Episode : 2409
+Episode : 2410
+Episode : 2411
+Episode : 2412
+Episode : 2413
+Episode : 2414
+Episode : 2415
+Episode : 2416
+Episode : 2417
+Episode : 2418
+Episode : 2419
+Episode : 2420
+Episode : 2421
+Episode : 2422
+Episode : 2423
+Episode : 2424
+Episode : 2425
+Episode : 2426
+Episode : 2427
+Episode : 2428
+Episode : 2429
+Episode : 2430
+Episode : 2431
+Episode : 2432
+Episode : 2433
+Episode : 2434
+Episode : 2435
+Episode : 2436
+Episode : 2437
+Episode : 2438
+Episode : 2439
+Episode : 2440
+Episode : 2441
+Episode : 2442
+Episode : 2443
+Episode : 2444
+Episode : 2445
+Episode : 2446
+Episode : 2447
+Episode : 2448
+Episode : 2449
+Episode : 2450
+Episode : 2451
+Episode : 2452
+Episode : 2453
+Episode : 2454
+Episode : 2455
+Episode : 2456
+Episode : 2457
+Episode : 2458
+Episode : 2459
+Episode : 2460
+Episode : 2461
+Episode : 2462
+Episode : 2463
+Episode : 2464
+Episode : 2465
+Episode : 2466
+Episode : 2467
+Episode : 2468
+Episode : 2469
+Episode : 2470
+Episode : 2471
+Episode : 2472
+Episode : 2473
+Episode : 2474
+Episode : 2475
+Episode : 2476
+Episode : 2477
+Episode : 2478
+Episode : 2479
+Episode : 2480
+Episode : 2481
+Episode : 2482
+Episode : 2483
+Episode : 2484
+Episode : 2485
+Episode : 2486
+Episode : 2487
+Episode : 2488
+Episode : 2489
+Episode : 2490
+Episode : 2491
+Episode : 2492
+Episode : 2493
+Episode : 2494
+Episode : 2495
+Episode : 2496
+Episode : 2497
+Episode : 2498
+Episode : 2499
+Episode : 2500
+Episode : 2501
+Episode : 2502
+Episode : 2503
+Episode : 2504
+Episode : 2505
+Episode : 2506
+Episode : 2507
+Episode : 2508
+Episode : 2509
+Episode : 2510
+Episode : 2511
+Episode : 2512
+Episode : 2513
+Episode : 2514
+Episode : 2515
+Episode : 2516
+Episode : 2517
+Episode : 2518
+Episode : 2519
+Episode : 2520
+Episode : 2521
+Episode : 2522
+Episode : 2523
+Episode : 2524
+Episode : 2525
+Episode : 2526
+Episode : 2527
+Episode : 2528
+Episode : 2529
+Episode : 2530
+Episode : 2531
+Episode : 2532
+Episode : 2533
+Episode : 2534
+Episode : 2535
+Episode : 2536
+Episode : 2537
+Episode : 2538
+Episode : 2539
+Episode : 2540
+Episode : 2541
+Episode : 2542
+Episode : 2543
+Episode : 2544
+Episode : 2545
+Episode : 2546
+Episode : 2547
+Episode : 2548
+Episode : 2549
+Episode : 2550
+Episode : 2551
+Episode : 2552
+Episode : 2553
+Episode : 2554
+Episode : 2555
+Episode : 2556
+Episode : 2557
+Episode : 2558
+Episode : 2559
+Episode : 2560
+Episode : 2561
+Episode : 2562
+Episode : 2563
+Episode : 2564
+Episode : 2565
+Episode : 2566
+Episode : 2567
+Episode : 2568
+Episode : 2569
+Episode : 2570
+Episode : 2571
+Episode : 2572
+Episode : 2573
+Episode : 2574
+Episode : 2575
+Episode : 2576
+Episode : 2577
+Episode : 2578
+Episode : 2579
+Episode : 2580
+Episode : 2581
+Episode : 2582
+Episode : 2583
+Episode : 2584
+Episode : 2585
+Episode : 2586
+Episode : 2587
+Episode : 2588
+Episode : 2589
+Episode : 2590
+Episode : 2591
+Episode : 2592
+Episode : 2593
+Episode : 2594
+Episode : 2595
+Episode : 2596
+Episode : 2597
+Episode : 2598
+Episode : 2599
+Episode : 2600
+Episode : 2601
+Episode : 2602
+Episode : 2603
+Episode : 2604
+Episode : 2605
+Episode : 2606
+Episode : 2607
+Episode : 2608
+Episode : 2609
+Episode : 2610
+Episode : 2611
+Episode : 2612
+Episode : 2613
+Episode : 2614
+Episode : 2615
+Episode : 2616
+Episode : 2617
+Episode : 2618
+Episode : 2619
+Episode : 2620
+Episode : 2621
+Episode : 2622
+Episode : 2623
+Episode : 2624
+Episode : 2625
+Episode : 2626
+Episode : 2627
+Episode : 2628
+Episode : 2629
+Episode : 2630
+Episode : 2631
+Episode : 2632
+Episode : 2633
+Episode : 2634
+Episode : 2635
+Episode : 2636
+Episode : 2637
+Episode : 2638
+Episode : 2639
+Episode : 2640
+Episode : 2641
+Episode : 2642
+Episode : 2643
+Episode : 2644
+Episode : 2645
+Episode : 2646
+Episode : 2647
+Episode : 2648
+Episode : 2649
+Episode : 2650
+Episode : 2651
+Episode : 2652
+Episode : 2653
+Episode : 2654
+Episode : 2655
+Episode : 2656
+Episode : 2657
+Episode : 2658
+Episode : 2659
+Episode : 2660
+Episode : 2661
+Episode : 2662
+Episode : 2663
+Episode : 2664
+Episode : 2665
+Episode : 2666
+Episode : 2667
+Episode : 2668
+Episode : 2669
+Episode : 2670
+Episode : 2671
+Episode : 2672
+Episode : 2673
+Episode : 2674
+Episode : 2675
+Episode : 2676
+Episode : 2677
+Episode : 2678
+Episode : 2679
+Episode : 2680
+Episode : 2681
+Episode : 2682
+Episode : 2683
+Episode : 2684
+Episode : 2685
+Episode : 2686
+Episode : 2687
+Episode : 2688
+Episode : 2689
+Episode : 2690
+Episode : 2691
+Episode : 2692
+Episode : 2693
+Episode : 2694
+Episode : 2695
+Episode : 2696
+Episode : 2697
+Episode : 2698
+Episode : 2699
+Episode : 2700
+Episode : 2701
+Episode : 2702
+Episode : 2703
+Episode : 2704
+Episode : 2705
+Episode : 2706
+Episode : 2707
+Episode : 2708
+Episode : 2709
+Episode : 2710
+Episode : 2711
+Episode : 2712
+Episode : 2713
+Episode : 2714
+Episode : 2715
+Episode : 2716
+Episode : 2717
+Episode : 2718
+Episode : 2719
+Episode : 2720
+Episode : 2721
+Episode : 2722
+Episode : 2723
+Episode : 2724
+Episode : 2725
+Episode : 2726
+Episode : 2727
+Episode : 2728
+Episode : 2729
+Episode : 2730
+Episode : 2731
+Episode : 2732
+Episode : 2733
+Episode : 2734
+Episode : 2735
+Episode : 2736
+Episode : 2737
+Episode : 2738
+Episode : 2739
+Episode : 2740
+Episode : 2741
+Episode : 2742
+Episode : 2743
+Episode : 2744
+Episode : 2745
+Episode : 2746
+Episode : 2747
+Episode : 2748
+Episode : 2749
+Episode : 2750
+Episode : 2751
+Episode : 2752
+Episode : 2753
+Episode : 2754
+Episode : 2755
+Episode : 2756
+Episode : 2757
+Episode : 2758
+Episode : 2759
+Episode : 2760
+Episode : 2761
+Episode : 2762
+Episode : 2763
+Episode : 2764
+Episode : 2765
+Episode : 2766
+Episode : 2767
+Episode : 2768
+Episode : 2769
+Episode : 2770
+Episode : 2771
+Episode : 2772
+Episode : 2773
+Episode : 2774
+Episode : 2775
+Episode : 2776
+Episode : 2777
+Episode : 2778
+Episode : 2779
+Episode : 2780
+Episode : 2781
+Episode : 2782
+Episode : 2783
+Episode : 2784
+Episode : 2785
+Episode : 2786
+Episode : 2787
+Episode : 2788
+Episode : 2789
+Episode : 2790
+Episode : 2791
+Episode : 2792
+Episode : 2793
+Episode : 2794
+Episode : 2795
+Episode : 2796
+Episode : 2797
+Episode : 2798
+Episode : 2799
+Episode : 2800
+Episode : 2801
+Episode : 2802
+Episode : 2803
+Episode : 2804
+Episode : 2805
+Episode : 2806
+Episode : 2807
+Episode : 2808WARNING:tensorflow:Layer deep_q_network_1 is casting an input tensor from dtype float64 to the layer's dtype of float32, which is new behavior in TensorFlow 2.  The layer has dtype float32 because it's dtype defaults to floatx.
+
+If you intended to run this layer in float32, you can safely ignore this warning. If in doubt, this warning is likely only an issue if you are porting a TensorFlow 1.X model to TensorFlow 2.
+
+To change all layers to have dtype float64 by default, call `tf.keras.backend.set_floatx('float64')`. To change just this layer, pass dtype='float64' to the layer constructor. If you are the author of this layer, you can disable autocasting by passing autocast=False to the base Layer constructor.
+
+2019-11-23 14:36:48.482585: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 206438400 exceeds 10% of system memory.
+2019-11-23 14:36:48.595122: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 206438400 exceeds 10% of system memory.
+2019-11-23 14:36:48.717876: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 206438400 exceeds 10% of system memory.
+2019-11-23 14:36:48.827727: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 206438400 exceeds 10% of system memory.
+2019-11-23 14:36:49.218592: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 206438400 exceeds 10% of system memory.
+
+Episode : 2809
+Episode : 2810
+Episode : 2811
+Episode : 2812
+Episode : 2813
+Episode : 2814
+Episode : 2815
+Episode : 2816
+Episode : 2817
+Episode : 2818
+Episode : 2819
+Episode : 2820
+Episode : 2821
+Episode : 2822
+Episode : 2823
+Episode : 2824
+Episode : 2825
+Episode : 2826
+Episode : 2827
+Episode : 2828
+Episode : 2829
+Episode : 2830
+Episode : 2831
+Episode : 2832
+Episode : 2833
+Episode : 2834
+Episode : 2835
+Episode : 2836
+Episode : 2837
+Episode : 2838
+Episode : 2839
+Episode : 2840
+Episode : 2841
+Episode : 2842
+Episode : 2843
+Episode : 2844
+Episode : 2845
+Episode : 2846
+Episode : 2847
+Episode : 2848
+Episode : 2849
+Episode : 2850
+Episode : 2851
+Episode : 2852
+Episode : 2853
+Episode : 2854
+Episode : 2855
+Episode : 2856
+Episode : 2857
+Episode : 2858
+Episode : 2859
+Episode : 2860
+Episode : 2861
+Episode : 2862
+Episode : 2863
+Episode : 2864
+Episode : 2865
+Episode : 2866
+Episode : 2867
+Episode : 2868
+Episode : 2869
+Episode : 2870
+Episode : 2871
+Episode : 2872
+Episode : 2873
+Episode : 2874
+Episode : 2875
+Episode : 2876
+Episode : 2877
+Episode : 2878
+Episode : 2879
+Episode : 2880
+Episode : 2881
+Episode : 2882
+Episode : 2883
+Episode : 2884
+Episode : 2885
+Episode : 2886
+Episode : 2887
+Episode : 2888
+Episode : 2889
+Episode : 2890
+Episode : 2891
+Episode : 2892
+Episode : 2893
+Episode : 2894
+Episode : 2895
+Episode : 2896
+Episode : 2897
+Episode : 2898
+Episode : 2899
+Episode : 2900
+Episode : 2901
+Episode : 2902
+Episode : 2903
+Episode : 2904
+Episode : 2905
+Episode : 2906
+Episode : 2907
+Episode : 2908
+Episode : 2909
+Episode : 2910
+Episode : 2911
+Episode : 2912
+Episode : 2913
+Episode : 2914
+Episode : 2915
+Episode : 2916
+Episode : 2917
+Episode : 2918
+Episode : 2919
+Episode : 2920
+Episode : 2921
+Episode : 2922
+Episode : 2923
+Episode : 2924
+Episode : 2925
+Episode : 2926
+Episode : 2927
+Episode : 2928
+Episode : 2929
+Episode : 2930
+Episode : 2931
+Episode : 2932
+Episode : 2933
+Episode : 2934
+Episode : 2935
+Episode : 2936
+Episode : 2937
+Episode : 2938
+Episode : 2939
+Episode : 2940
+Episode : 2941
+Episode : 2942
+Episode : 2943
+Episode : 2944
+Episode : 2945
+Episode : 2946
+Episode : 2947
+Episode : 2948
+Episode : 2949
+Episode : 2950
+Episode : 2951
+Episode : 2952
+Episode : 2953
+Episode : 2954
+Episode : 2955
+Episode : 2956
+Episode : 2957
+Episode : 2958
+Episode : 2959
+Episode : 2960
+Episode : 2961
+Episode : 2962
+Episode : 2963
+Episode : 2964
+Episode : 2965
+Episode : 2966
+Episode : 2967
+Episode : 2968
+Episode : 2969
+Episode : 2970
+Episode : 2971
+Episode : 2972
+Episode : 2973
+Episode : 2974
+Episode : 2975
+Episode : 2976
+Episode : 2977
+Episode : 2978
+Episode : 2979
+Episode : 2980
+Episode : 2981
+Episode : 2982
+Episode : 2983
+Episode : 2984
+Episode : 2985
+Episode : 2986
+Episode : 2987
+Episode : 2988
+Episode : 2989
+Episode : 2990
+Episode : 2991
+Episode : 2992
+Episode : 2993
+Episode : 2994
+Episode : 2995
+Episode : 2996
+Episode : 2997
+Episode : 2998
+Episode : 2999
+Episode : 3000
+Episode : 3001
+Episode : 3002
+Episode : 3003
+Episode : 3004
+Episode : 3005
+Episode : 3006
+Episode : 3007
+Episode : 3008
+Episode : 3009
+Episode : 3010
+Episode : 3011
+Episode : 3012
+Episode : 3013
+Episode : 3014
+Episode : 3015
+Episode : 3016
+Episode : 3017
+Episode : 3018
+Episode : 3019
+Episode : 3020
+Episode : 3021
+Episode : 3022
+Episode : 3023
+Episode : 3024
+Episode : 3025
+Episode : 3026
+Episode : 3027
+Episode : 3028
+Episode : 3029
+Episode : 3030
+Episode : 3031
+Episode : 3032
+Episode : 3033
+Episode : 3034
+Episode : 3035
+Episode : 3036
+Episode : 3037
+Episode : 3038
+Episode : 3039
+Episode : 3040
+Episode : 3041
+Episode : 3042
+Episode : 3043
+Episode : 3044
+Episode : 3045
+Episode : 3046
+Episode : 3047
+Episode : 3048
+Episode : 3049
+Episode : 3050
+Episode : 3051
+Episode : 3052
+Episode : 3053
+Episode : 3054
+Episode : 3055
+Episode : 3056
+Episode : 3057
+Episode : 3058
+Episode : 3059
+Episode : 3060
+Episode : 3061
+Episode : 3062
+Episode : 3063
+Episode : 3064
+Episode : 3065
+Episode : 3066
+Episode : 3067
+Episode : 3068
+Episode : 3069
+Episode : 3070
+Episode : 3071
+Episode : 3072
+Episode : 3073
+Episode : 3074
+Episode : 3075
+Episode : 3076
+Episode : 3077
+Episode : 3078
+Episode : 3079
+Episode : 3080
+Episode : 3081
+Episode : 3082
+Episode : 3083
+Episode : 3084
+Episode : 3085
+Episode : 3086
+Episode : 3087
+Episode : 3088
+Episode : 3089
+Episode : 3090
+Episode : 3091
+Episode : 3092
+Episode : 3093
+Episode : 3094
+Episode : 3095
+Episode : 3096
+Episode : 3097
+Episode : 3098
+Episode : 3099
+Episode : 3100
+Episode : 3101
+Episode : 3102
+Episode : 3103
+Episode : 3104
+Episode : 3105
+Episode : 3106
+Episode : 3107
+Episode : 3108
+Episode : 3109
+Episode : 3110
+Episode : 3111
+Episode : 3112
+Episode : 3113
+Episode : 3114
+Episode : 3115
+Episode : 3116
+Episode : 3117
+Episode : 3118
+Episode : 3119
+Episode : 3120
+Episode : 3121
+Episode : 3122
+Episode : 3123
+Episode : 3124
+Episode : 3125
+Episode : 3126
+Episode : 3127
+Episode : 3128
+Episode : 3129
+Episode : 3130
+Episode : 3131
+Episode : 3132
+Episode : 3133
+Episode : 3134
+Episode : 3135
+Episode : 3136
+Episode : 3137
+Episode : 3138
+Episode : 3139
+Episode : 3140
+Episode : 3141
+Episode : 3142
+Episode : 3143
+Episode : 3144
+Episode : 3145
+Episode : 3146
+Episode : 3147
+Episode : 3148
+Episode : 3149
+Episode : 3150
+Episode : 3151
+Episode : 3152
+Episode : 3153
+Episode : 3154
+Episode : 3155
+Episode : 3156
+Episode : 3157
+Episode : 3158
+Episode : 3159
+Episode : 3160
+Episode : 3161
+Episode : 3162
+Episode : 3163
+Episode : 3164
+Episode : 3165
+Episode : 3166
+Episode : 3167
+Episode : 3168
+Episode : 3169
+Episode : 3170
+Episode : 3171
+Episode : 3172
+Episode : 3173
+Episode : 3174
+Episode : 3175
+Episode : 3176
+Episode : 3177
+Episode : 3178
+Episode : 3179
+Episode : 3180
+Episode : 3181
+Episode : 3182
+Episode : 3183
+Episode : 3184
+Episode : 3185
+Episode : 3186
+Episode : 3187
+Episode : 3188
+Episode : 3189
+Episode : 3190
+Episode : 3191
+Episode : 3192
+Episode : 3193
+Episode : 3194
+Episode : 3195
+Episode : 3196
+Episode : 3197
+Episode : 3198
+Episode : 3199
+Episode : 3200
+Episode : 3201
+Episode : 3202
+Episode : 3203
+Episode : 3204
+Episode : 3205
+Episode : 3206
+Episode : 3207
+Episode : 3208
+Episode : 3209
+Episode : 3210
+Episode : 3211
+Episode : 3212
+Episode : 3213
+Episode : 3214
+Episode : 3215
+Episode : 3216
+Episode : 3217
+Episode : 3218
+Episode : 3219
+Episode : 3220
+Episode : 3221
+Episode : 3222
+Episode : 3223
+Episode : 3224
+Episode : 3225
+Episode : 3226
+Episode : 3227
+Episode : 3228
+Episode : 3229
+Episode : 3230
+Episode : 3231
+Episode : 3232
+Episode : 3233
+Episode : 3234
+Episode : 3235
+Episode : 3236
+Episode : 3237
+Episode : 3238
+Episode : 3239
+Episode : 3240
+Episode : 3241
+Episode : 3242
+Episode : 3243
+Episode : 3244
+Episode : 3245
+Episode : 3246
+Episode : 3247
+Episode : 3248
+Episode : 3249
+Episode : 3250
+Episode : 3251
+Episode : 3252
+Episode : 3253
+Episode : 3254
+Episode : 3255
+Episode : 3256
+Episode : 3257
+Episode : 3258
+Episode : 3259
+Episode : 3260
+Episode : 3261
+Episode : 3262
+Episode : 3263
+Episode : 3264
+Episode : 3265
+Episode : 3266
+Episode : 3267
+Episode : 3268
+Episode : 3269
+Episode : 3270
+Episode : 3271
+Episode : 3272
+Episode : 3273
+Episode : 3274
+Episode : 3275
+Episode : 3276
+Episode : 3277
+Episode : 3278
+Episode : 3279
+Episode : 3280
+Episode : 3281
+Episode : 3282
+Episode : 3283
+Episode : 3284
+Episode : 3285
+Episode : 3286
+Episode : 3287
+Episode : 3288
+Episode : 3289
+Episode : 3290
+Episode : 3291
+Episode : 3292
+Episode : 3293
+Episode : 3294
+Episode : 3295
+Episode : 3296
+Episode : 3297
+Episode : 3298
+Episode : 3299
+Episode : 3300
+Episode : 3301
+Episode : 3302
+Episode : 3303
+Episode : 3304
+Episode : 3305
+Episode : 3306
+Episode : 3307
+Episode : 3308
+Episode : 3309
+Episode : 3310
+Episode : 3311
+Episode : 3312
+Episode : 3313
+Episode : 3314
+Episode : 3315
+Episode : 3316
+Episode : 3317
+Episode : 3318
+Episode : 3319
+Episode : 3320
+Episode : 3321
+Episode : 3322
+Episode : 3323
+Episode : 3324
+Episode : 3325
+Episode : 3326
+Episode : 3327
+Episode : 3328
+Episode : 3329
+Episode : 3330
+Episode : 3331
+Episode : 3332
+Episode : 3333
+Episode : 3334
+Episode : 3335
+Episode : 3336
+Episode : 3337
+Episode : 3338
+Episode : 3339
+Episode : 3340
+Episode : 3341
+Episode : 3342
+Episode : 3343
+Episode : 3344
+Episode : 3345
+Episode : 3346
+Episode : 3347
+Episode : 3348
+Episode : 3349
+Episode : 3350
+Episode : 3351
+Episode : 3352
+Episode : 3353
+Episode : 3354
+Episode : 3355
+Episode : 3356
+Episode : 3357
+Episode : 3358
+Episode : 3359
+Episode : 3360
+Episode : 3361
+Episode : 3362
+Episode : 3363
+Episode : 3364
+Episode : 3365
+Episode : 3366
+Episode : 3367
+Episode : 3368
+Episode : 3369
+Episode : 3370
+Episode : 3371
+Episode : 3372
+Episode : 3373
+Episode : 3374
+Episode : 3375
+Episode : 3376
+Episode : 3377
+Episode : 3378
+Episode : 3379
+Episode : 3380
+Episode : 3381
+Episode : 3382
+Episode : 3383
+Episode : 3384
+Episode : 3385
+Episode : 3386
+Episode : 3387
+Episode : 3388
+Episode : 3389
+Episode : 3390
+Episode : 3391
+Episode : 3392
+Episode : 3393
+Episode : 3394
+Episode : 3395
+Episode : 3396
+Episode : 3397
+Episode : 3398
+Episode : 3399
+Episode : 3400
+Episode : 3401
+Episode : 3402
+Episode : 3403
+Episode : 3404
+Episode : 3405
+Episode : 3406
+Episode : 3407
+Episode : 3408
+Episode : 3409
+Episode : 3410
+Episode : 3411
+Episode : 3412
+Episode : 3413
+Episode : 3414
+Episode : 3415
+Episode : 3416
+Episode : 3417
+Episode : 3418
+Episode : 3419
+Episode : 3420
+Episode : 3421
+Episode : 3422
+Episode : 3423
+Episode : 3424
+Episode : 3425
+Episode : 3426
+Episode : 3427
+Episode : 3428
+Episode : 3429
+Episode : 3430
+Episode : 3431
+Episode : 3432
+Episode : 3433
+Episode : 3434
+Episode : 3435
+Episode : 3436
+Episode : 3437
+Episode : 3438
+Episode : 3439
+Episode : 3440
+Episode : 3441
+Episode : 3442
+Episode : 3443
+Episode : 3444
+Episode : 3445
+Episode : 3446
+Episode : 3447
+Episode : 3448
+Episode : 3449
+Episode : 3450
+Episode : 3451
+Episode : 3452
+Episode : 3453
+Episode : 3454
+Episode : 3455
+Episode : 3456
+Episode : 3457
+Episode : 3458
+Episode : 3459
+Episode : 3460
+Episode : 3461
+Episode : 3462
+Episode : 3463
+Episode : 3464
+Episode : 3465
+Episode : 3466
+Episode : 3467
+Episode : 3468
+Episode : 3469
+Episode : 3470
+Episode : 3471
+Episode : 3472
+Episode : 3473
+Episode : 3474
+Episode : 3475
+Episode : 3476
+Episode : 3477
+Episode : 3478
+Episode : 3479
+Episode : 3480
+Episode : 3481
+Episode : 3482
+Episode : 3483
+Episode : 3484
+Episode : 3485
+Episode : 3486
+Episode : 3487
+Episode : 3488
+Episode : 3489
+Episode : 3490
+Episode : 3491
+Episode : 3492
+Episode : 3493
+Episode : 3494
+Episode : 3495
+Episode : 3496
+Episode : 3497
+Episode : 3498
+Episode : 3499
+Episode : 3500
+Episode : 3501
+Episode : 3502
+Episode : 3503
+Episode : 3504
+Episode : 3505
+Episode : 3506
+Episode : 3507
+Episode : 3508
+Episode : 3509
+Episode : 3510
+Episode : 3511
+Episode : 3512
+Episode : 3513
+Episode : 3514
+Episode : 3515
+Episode : 3516
+Episode : 3517
+Episode : 3518
+Episode : 3519
+Episode : 3520
+Episode : 3521
+Episode : 3522
+Episode : 3523
+Episode : 3524
+Episode : 3525
+Episode : 3526
+Episode : 3527
+Episode : 3528
+Episode : 3529
+Episode : 3530
+Episode : 3531
+Episode : 3532
+Episode : 3533
+Episode : 3534
+Episode : 3535
+Episode : 3536
+Episode : 3537
+Episode : 3538
+Episode : 3539
+Episode : 3540
+Episode : 3541
+Episode : 3542
+Episode : 3543
+Episode : 3544
+Episode : 3545
+Episode : 3546
+Episode : 3547
+Episode : 3548
+Episode : 3549
+Episode : 3550
+Episode : 3551
+Episode : 3552
+Episode : 3553
+Episode : 3554
+Episode : 3555
+Episode : 3556
+Episode : 3557
+Episode : 3558
+Episode : 3559
+Episode : 3560
+Episode : 3561
+Episode : 3562
+Episode : 3563
+Episode : 3564
+Episode : 3565
+Episode : 3566
+Episode : 3567
+Episode : 3568
+Episode : 3569
+Episode : 3570
+Episode : 3571
+Episode : 3572
+Episode : 3573
+Episode : 3574
+Episode : 3575
+Episode : 3576
+Episode : 3577
+Episode : 3578
+Episode : 3579
+Episode : 3580
+Episode : 3581
+Episode : 3582
+Episode : 3583
+Episode : 3584
+Episode : 3585
+Episode : 3586
+Episode : 3587
+Episode : 3588
+Episode : 3589
+Episode : 3590
+Episode : 3591
+Episode : 3592
+Episode : 3593
+Episode : 3594
+Episode : 3595
+Episode : 3596
+Episode : 3597
+Episode : 3598
+Episode : 3599
+Episode : 3600
+Episode : 3601
+Episode : 3602
+Episode : 3603
+Episode : 3604
+Episode : 3605
+Episode : 3606
+Episode : 3607
+Episode : 3608
+Episode : 3609
+Episode : 3610
+Episode : 3611
+Episode : 3612
+Episode : 3613
+Episode : 3614
+Episode : 3615
+Episode : 3616
+Episode : 3617
+Episode : 3618
+Episode : 3619
+Episode : 3620
+Episode : 3621
+Episode : 3622
+Episode : 3623
+Episode : 3624
+Episode : 3625
+Episode : 3626
+Episode : 3627
+Episode : 3628
+Episode : 3629
+Episode : 3630
+Episode : 3631
+Episode : 3632
+Episode : 3633
+Episode : 3634
+Episode : 3635
+Episode : 3636
+Episode : 3637
+Episode : 3638
+Episode : 3639
+Episode : 3640
+Episode : 3641
+Episode : 3642
+Episode : 3643
+Episode : 3644
+Episode : 3645
+Episode : 3646
+Episode : 3647
+Episode : 3648
+Episode : 3649
+Episode : 3650
+Episode : 3651
+Episode : 3652
+Episode : 3653
+Episode : 3654
+Episode : 3655
+Episode : 3656
+Episode : 3657
+Episode : 3658
+Episode : 3659
+Episode : 3660
+Episode : 3661
+Episode : 3662
+Episode : 3663
+Episode : 3664
+Episode : 3665
+Episode : 3666
+Episode : 3667
+Episode : 3668
+Episode : 3669
+Episode : 3670
+Episode : 3671
+Episode : 3672
+Episode : 3673
+Episode : 3674
+Episode : 3675
+Episode : 3676
+Episode : 3677
+Episode : 3678
+Episode : 3679
+Episode : 3680
+Episode : 3681
+Episode : 3682
+Episode : 3683
+Episode : 3684
+Episode : 3685
+Episode : 3686
+Episode : 3687
+Episode : 3688
+Episode : 3689
+Episode : 3690
+Episode : 3691
+Episode : 3692
+Episode : 3693
+Episode : 3694
+Episode : 3695
+Episode : 3696
+Episode : 3697
+Episode : 3698
+Episode : 3699
+Episode : 3700
+Episode : 3701
+Episode : 3702
+Episode : 3703
+Episode : 3704
+Episode : 3705
+Episode : 3706
+Episode : 3707
+Episode : 3708
+Episode : 3709
+Episode : 3710
+Episode : 3711
+Episode : 3712
+Episode : 3713
+Episode : 3714
+Episode : 3715
+Episode : 3716
+Episode : 3717
+Episode : 3718
+Episode : 3719
+Episode : 3720
+Episode : 3721
+Episode : 3722
+Episode : 3723
+Episode : 3724
+Episode : 3725
+Episode : 3726
+Episode : 3727
+Episode : 3728
+Episode : 3729
+Episode : 3730
+Episode : 3731
+Episode : 3732
+Episode : 3733
+Episode : 3734
+Episode : 3735
+Episode : 3736
+Episode : 3737
+Episode : 3738
+Episode : 3739
+Episode : 3740
+Episode : 3741
+Episode : 3742
+Episode : 3743
+Episode : 3744
+Episode : 3745
+Episode : 3746
+Episode : 3747
+Episode : 3748
+Episode : 3749
+Episode : 3750
+Episode : 3751
+Episode : 3752
+Episode : 3753
+Episode : 3754
+Episode : 3755
+Episode : 3756
+Episode : 3757
+Episode : 3758
+Episode : 3759
+Episode : 3760
+Episode : 3761
+Episode : 3762
+Episode : 3763
+Episode : 3764
+Episode : 3765
+Episode : 3766
+Episode : 3767
+Episode : 3768
+Episode : 3769
+Episode : 3770
+Episode : 3771
+Episode : 3772
+Episode : 3773
+Episode : 3774
+Episode : 3775
+Episode : 3776
+Episode : 3777
+Episode : 3778
+Episode : 3779
+Episode : 3780
+Episode : 3781
+Episode : 3782
+Episode : 3783
+Episode : 3784
+Episode : 3785
+Episode : 3786
+Episode : 3787
+Episode : 3788
+Episode : 3789
+Episode : 3790
+Episode : 3791
+Episode : 3792
+Episode : 3793
+Episode : 3794
+Episode : 3795
+Episode : 3796
+Episode : 3797
+Episode : 3798
+Episode : 3799
+Episode : 3800
+Episode : 3801
+Episode : 3802
+Episode : 3803
+Episode : 3804
+Episode : 3805
+Episode : 3806
+Episode : 3807
+Episode : 3808
+Episode : 3809
+Episode : 3810
+Episode : 3811
+Episode : 3812
+Episode : 3813
+Episode : 3814
+Episode : 3815
+Episode : 3816
+Episode : 3817
+Episode : 3818
+Episode : 3819
+Episode : 3820
+Episode : 3821
+Episode : 3822
+Episode : 3823
+Episode : 3824
+Episode : 3825
+Episode : 3826
+Episode : 3827
+Episode : 3828
+Episode : 3829
+Episode : 3830
+Episode : 3831
+Episode : 3832
+Episode : 3833
+Episode : 3834
+Episode : 3835
+Episode : 3836
+Episode : 3837
+Episode : 3838
+Episode : 3839
+Episode : 3840
+Episode : 3841
+Episode : 3842
+Episode : 3843
+Episode : 3844
+Episode : 3845
+Episode : 3846
+Episode : 3847
+Episode : 3848
+Episode : 3849
+Episode : 3850
+Episode : 3851
+Episode : 3852
+Episode : 3853
+Episode : 3854
+Episode : 3855
+Episode : 3856
+Episode : 3857
+Episode : 3858
+Episode : 3859
+Episode : 3860
+Episode : 3861
+Episode : 3862
+Episode : 3863
+Episode : 3864
+Episode : 3865
+Episode : 3866
+Episode : 3867
+Episode : 3868
+Episode : 3869
+Episode : 3870
+Episode : 3871
+Episode : 3872
+Episode : 3873
+Episode : 3874
+Episode : 3875
+Episode : 3876
+Episode : 3877
+Episode : 3878
+Episode : 3879
+Episode : 3880
+Episode : 3881
+Episode : 3882
+Episode : 3883
+Episode : 3884
+Episode : 3885
+Episode : 3886
+Episode : 3887
+Episode : 3888
+Episode : 3889
+Episode : 3890
+Episode : 3891
+Episode : 3892
+Episode : 3893
+Episode : 3894
+Episode : 3895
+Episode : 3896
+Episode : 3897
+Episode : 3898
+Episode : 3899
+Episode : 3900
+Episode : 3901
+Episode : 3902
+Episode : 3903
+Episode : 3904
+Episode : 3905
+Episode : 3906
+Episode : 3907
+Episode : 3908
+Episode : 3909
+Episode : 3910
+Episode : 3911
+Episode : 3912
+Episode : 3913
+Episode : 3914
+Episode : 3915
+Episode : 3916
+Episode : 3917
+Episode : 3918
+Episode : 3919
+Episode : 3920
+Episode : 3921
+Episode : 3922
+Episode : 3923
+Episode : 3924
+Episode : 3925
+Episode : 3926
+Episode : 3927
+Episode : 3928
+Episode : 3929
+Episode : 3930
+Episode : 3931
+Episode : 3932
+Episode : 3933
+Episode : 3934
+Episode : 3935
+Episode : 3936
+Episode : 3937
+Episode : 3938
+Episode : 3939
+Episode : 3940
+Episode : 3941
+Episode : 3942
+Episode : 3943
+Episode : 3944
+Episode : 3945
+Episode : 3946
+Episode : 3947
+Episode : 3948
+Episode : 3949
+Episode : 3950
+Episode : 3951
+Episode : 3952
+Episode : 3953
+Episode : 3954
+Episode : 3955
+Episode : 3956
+Episode : 3957
+Episode : 3958
+Episode : 3959
+Episode : 3960
+Episode : 3961
+Episode : 3962
+Episode : 3963
+Episode : 3964
+Episode : 3965
+Episode : 3966
+Episode : 3967
+Episode : 3968
+Episode : 3969
+Episode : 3970
+Episode : 3971
+Episode : 3972
+Episode : 3973
+Episode : 3974
+Episode : 3975
+Episode : 3976
+Episode : 3977
+Episode : 3978
+Episode : 3979
+Episode : 3980
+Episode : 3981
+Episode : 3982
+Episode : 3983
+Episode : 3984
+Episode : 3985
+Episode : 3986
+Episode : 3987
+Episode : 3988
+Episode : 3989
+Episode : 3990
+Episode : 3991
+Episode : 3992
+Episode : 3993
+Episode : 3994
+Episode : 3995
+Episode : 3996
+Episode : 3997
+Episode : 3998
+Episode : 3999
+Episode : 4000
+Episode : 4001
+Episode : 4002
+Episode : 4003
+Episode : 4004
+Episode : 4005
+Episode : 4006
+Episode : 4007
+Episode : 4008
+Episode : 4009
+Episode : 4010
+Episode : 4011
+Episode : 4012
+Episode : 4013
+Episode : 4014
+Episode : 4015
+Episode : 4016
+Episode : 4017
+Episode : 4018
+Episode : 4019
+Episode : 4020
+Episode : 4021
+Episode : 4022
+Episode : 4023
+Episode : 4024
+Episode : 4025
+Episode : 4026
+Episode : 4027
+Episode : 4028
+Episode : 4029
+Episode : 4030
+Episode : 4031
+Episode : 4032
+Episode : 4033
+Episode : 4034
+Episode : 4035
+Episode : 4036
+Episode : 4037
+Episode : 4038
+Episode : 4039
+Episode : 4040
+Episode : 4041
+Episode : 4042
+Episode : 4043
+Episode : 4044
+Episode : 4045
+Episode : 4046
+Episode : 4047
+Episode : 4048
+Episode : 4049
+Episode : 4050
+Episode : 4051
+Episode : 4052
+Episode : 4053
+Episode : 4054
+Episode : 4055
+Episode : 4056
+Episode : 4057
+Episode : 4058
+Episode : 4059
+Episode : 4060
+Episode : 4061
+Episode : 4062
+Episode : 4063
+Episode : 4064
+Episode : 4065
+Episode : 4066
+Episode : 4067
+Episode : 4068
+Episode : 4069
+Episode : 4070
+Episode : 4071
+Episode : 4072
+Episode : 4073
+Episode : 4074
+Episode : 4075
+Episode : 4076
+Episode : 4077
+Episode : 4078
+Episode : 4079
+Episode : 4080
+Episode : 4081
+Episode : 4082
+Episode : 4083
+Episode : 4084
+Episode : 4085
+Episode : 4086
+Episode : 4087
+Episode : 4088
+Episode : 4089
+Episode : 4090
+Episode : 4091
+Episode : 4092
+Episode : 4093
+Episode : 4094
+Episode : 4095
+Episode : 4096
+Episode : 4097
+Episode : 4098
+Episode : 4099
+Episode : 4100
+Episode : 4101
+Episode : 4102
+Episode : 4103
+Episode : 4104
+Episode : 4105
+Episode : 4106
+Episode : 4107
+Episode : 4108
+Episode : 4109
+Episode : 4110
+Episode : 4111
+Episode : 4112
+Episode : 4113
+Episode : 4114
+Episode : 4115
+Episode : 4116
+Episode : 4117
+Episode : 4118
+Episode : 4119
+Episode : 4120
+Episode : 4121
+Episode : 4122
+Episode : 4123
+Episode : 4124
+Episode : 4125
+Episode : 4126
+Episode : 4127
+Episode : 4128
+Episode : 4129
+Episode : 4130
+Episode : 4131
+Episode : 4132
+Episode : 4133
+Episode : 4134
+Episode : 4135
+Episode : 4136
+Episode : 4137
+Episode : 4138
+Episode : 4139
+Episode : 4140
+Episode : 4141
+Episode : 4142
+Episode : 4143
+Episode : 4144
+Episode : 4145
+Episode : 4146
+Episode : 4147
+Episode : 4148
+Episode : 4149
+Episode : 4150
+Episode : 4151
+Episode : 4152
+Episode : 4153
+Episode : 4154
+Episode : 4155
+Episode : 4156
+Episode : 4157
+Episode : 4158
+Episode : 4159
+Episode : 4160
+Episode : 4161
+Episode : 4162
+Episode : 4163
+Episode : 4164
+Episode : 4165
+Episode : 4166
+Episode : 4167
+Episode : 4168
+Episode : 4169
+Episode : 4170
+Episode : 4171
+Episode : 4172
+Episode : 4173
+Episode : 4174
+Episode : 4175
+Episode : 4176
+Episode : 4177
+Episode : 4178
+Episode : 4179
+Episode : 4180
+Episode : 4181
+Episode : 4182
+Episode : 4183
+Episode : 4184
+Episode : 4185
+Episode : 4186
+Episode : 4187
+Episode : 4188
+Episode : 4189
+Episode : 4190
+Episode : 4191
+Episode : 4192
+Episode : 4193
+Episode : 4194
+Episode : 4195
+Episode : 4196
+Episode : 4197
+Episode : 4198
+Episode : 4199
+Episode : 4200
+Episode : 4201
+Episode : 4202
+Episode : 4203
+Episode : 4204
+Episode : 4205
+Episode : 4206
+Episode : 4207
+Episode : 4208
+Episode : 4209
+Episode : 4210
+Episode : 4211
+Episode : 4212
+Episode : 4213
+Episode : 4214
+Episode : 4215
+Episode : 4216
+Episode : 4217
+Episode : 4218
+Episode : 4219
+Episode : 4220
+Episode : 4221
+Episode : 4222
+Episode : 4223
+Episode : 4224
+Episode : 4225
+Episode : 4226
+Episode : 4227
+Episode : 4228
+Episode : 4229
+Episode : 4230
+Episode : 4231
+Episode : 4232
+Episode : 4233
+Episode : 4234
+Episode : 4235
+Episode : 4236
+Episode : 4237
+Episode : 4238
+Episode : 4239
+Episode : 4240
+Episode : 4241
+Episode : 4242
+Episode : 4243
+Episode : 4244
+Episode : 4245
+Episode : 4246
+Episode : 4247
+Episode : 4248
+Episode : 4249
+Episode : 4250
+Episode : 4251
+Episode : 4252
+Episode : 4253
+Episode : 4254
+Episode : 4255
+Episode : 4256
+Episode : 4257
+Episode : 4258
+Episode : 4259
+Episode : 4260
+Episode : 4261
+Episode : 4262
+Episode : 4263
+Episode : 4264
+Episode : 4265
+Episode : 4266
+Episode : 4267
+Episode : 4268
+Episode : 4269
+Episode : 4270
+Episode : 4271
+Episode : 4272
+Episode : 4273
+Episode : 4274
+Episode : 4275
+Episode : 4276
+Episode : 4277
+Episode : 4278
+Episode : 4279
+Episode : 4280
+Episode : 4281
+Episode : 4282
+Episode : 4283
+Episode : 4284
+Episode : 4285
+Episode : 4286
+Episode : 4287
+Episode : 4288
+Episode : 4289
+Episode : 4290
+Episode : 4291
+Episode : 4292
+Episode : 4293
+Episode : 4294
+Episode : 4295
+Episode : 4296
+Episode : 4297
+Episode : 4298
+Episode : 4299
+Episode : 4300
+Episode : 4301
+Episode : 4302
+Episode : 4303
+Episode : 4304
+Episode : 4305
+Episode : 4306
+Episode : 4307
+Episode : 4308
+Episode : 4309
+Episode : 4310
+Episode : 4311
+Episode : 4312
+Episode : 4313
+Episode : 4314
+Episode : 4315
+Episode : 4316
+Episode : 4317
+Episode : 4318
+Episode : 4319
+Episode : 4320
+Episode : 4321
+Episode : 4322
+Episode : 4323
+Episode : 4324
+Episode : 4325
+Episode : 4326
+Episode : 4327
+Episode : 4328
+Episode : 4329
+Episode : 4330
+Episode : 4331
+Episode : 4332
+Episode : 4333
+Episode : 4334
+Episode : 4335
+Episode : 4336
+Episode : 4337
+Episode : 4338
+Episode : 4339
+Episode : 4340
+Episode : 4341
+Episode : 4342
+Episode : 4343
+Episode : 4344
+Episode : 4345
+Episode : 4346
+Episode : 4347
+Episode : 4348
+Episode : 4349
+Episode : 4350
+Episode : 4351
+Episode : 4352
+Episode : 4353
+Episode : 4354
+Episode : 4355
+Episode : 4356
+Episode : 4357
+Episode : 4358
+Episode : 4359
+Episode : 4360
+Episode : 4361
+Episode : 4362
+Episode : 4363
+Episode : 4364
+Episode : 4365
+Episode : 4366
+Episode : 4367
+Episode : 4368
+Episode : 4369
+Episode : 4370
+Episode : 4371
+Episode : 4372
+Episode : 4373
+Episode : 4374
+Episode : 4375
+Episode : 4376
+Episode : 4377
+Episode : 4378
+Episode : 4379
+Episode : 4380
+Episode : 4381
+Episode : 4382
+Episode : 4383
+Episode : 4384
+Episode : 4385
+Episode : 4386
+Episode : 4387
+Episode : 4388
+Episode : 4389
+Episode : 4390
+Episode : 4391
+Episode : 4392
+Episode : 4393
+Episode : 4394
+Episode : 4395
+Episode : 4396
+Episode : 4397
+Episode : 4398
+Episode : 4399
+Episode : 4400
+Episode : 4401
+Episode : 4402
+Episode : 4403
+Episode : 4404
+Episode : 4405
+Episode : 4406
+Episode : 4407
+Episode : 4408
+Episode : 4409
+Episode : 4410
+Episode : 4411
+Episode : 4412
+Episode : 4413
+Episode : 4414
+Episode : 4415
+Episode : 4416
+Episode : 4417
+Episode : 4418
+Episode : 4419
+Episode : 4420
+Episode : 4421
+Episode : 4422
+Episode : 4423
+Episode : 4424
+Episode : 4425
+Episode : 4426
+Episode : 4427
+Episode : 4428
+Episode : 4429
+Episode : 4430
+Episode : 4431
+Episode : 4432
+Episode : 4433
+Episode : 4434
+Episode : 4435
+Episode : 4436
+Episode : 4437
+Episode : 4438
+Episode : 4439
+Episode : 4440
+Episode : 4441
+Episode : 4442
+Episode : 4443
+Episode : 4444
+Episode : 4445
+Episode : 4446
+Episode : 4447
+Episode : 4448
+Episode : 4449
+Episode : 4450
+Episode : 4451
+Episode : 4452
+Episode : 4453
+Episode : 4454
+Episode : 4455
+Episode : 4456
+Episode : 4457
+Episode : 4458
+Episode : 4459
+Episode : 4460
+Episode : 4461
+Episode : 4462
+Episode : 4463
+Episode : 4464
+Episode : 4465
+Episode : 4466
+Episode : 4467
+Episode : 4468
+Episode : 4469
+Episode : 4470
+Episode : 4471
+Episode : 4472
+Episode : 4473
+Episode : 4474
+Episode : 4475
+Episode : 4476
+Episode : 4477
+Episode : 4478
+Episode : 4479
+Episode : 4480
+Episode : 4481
+Episode : 4482
+Episode : 4483
+Episode : 4484
+Episode : 4485
+Episode : 4486
+Episode : 4487
+Episode : 4488
+Episode : 4489
+Episode : 4490
+Episode : 4491
+Episode : 4492
+Episode : 4493
+Episode : 4494
+Episode : 4495
+Episode : 4496
+Episode : 4497
+Episode : 4498
+Episode : 4499
+Episode : 4500
+Episode : 4501
+Episode : 4502
+Episode : 4503
+Episode : 4504
+Episode : 4505
+Episode : 4506
+Episode : 4507
+Episode : 4508
+Episode : 4509
+Episode : 4510
+Episode : 4511
+Episode : 4512
+Episode : 4513
+Episode : 4514
+Episode : 4515
+Episode : 4516
+Episode : 4517
+Episode : 4518
+Episode : 4519
+Episode : 4520
+Episode : 4521
+Episode : 4522
+Episode : 4523
+Episode : 4524
+Episode : 4525
+Episode : 4526
+Episode : 4527
+Episode : 4528
+Episode : 4529
+Episode : 4530
+Episode : 4531
+Episode : 4532
+Episode : 4533
+Episode : 4534
+Episode : 4535
+Episode : 4536
+Episode : 4537
+Episode : 4538
+Episode : 4539
+Episode : 4540
+Episode : 4541
+Episode : 4542
+Episode : 4543
+Episode : 4544
+Episode : 4545
+Episode : 4546
+Episode : 4547
+Episode : 4548
+Episode : 4549
+Episode : 4550
+Episode : 4551
+Episode : 4552
+Episode : 4553
+Episode : 4554
+Episode : 4555
+Episode : 4556
+Episode : 4557
+Episode : 4558
+Episode : 4559
+Episode : 4560
+Episode : 4561
+Episode : 4562
+Episode : 4563
+Episode : 4564
+Episode : 4565
+Episode : 4566
+Episode : 4567
+Episode : 4568
+Episode : 4569
+Episode : 4570
+Episode : 4571
+Episode : 4572
+Episode : 4573
+Episode : 4574
+Episode : 4575
+Episode : 4576
+Episode : 4577
+Episode : 4578
+Episode : 4579
+Episode : 4580
+Episode : 4581
+Episode : 4582
+Episode : 4583
+Episode : 4584
+Episode : 4585
+Episode : 4586
+Episode : 4587
+Episode : 4588
+Episode : 4589
+Episode : 4590
+Episode : 4591
+Episode : 4592
+Episode : 4593
+Episode : 4594
+Episode : 4595
+Episode : 4596
+Episode : 4597
+Episode : 4598
+Episode : 4599
+Episode : 4600
+Episode : 4601
+Episode : 4602
+Episode : 4603
+Episode : 4604
+Episode : 4605
+Episode : 4606
+Episode : 4607
+Episode : 4608
+Episode : 4609
+Episode : 4610
+Episode : 4611
+Episode : 4612
+Episode : 4613
+Episode : 4614
+Episode : 4615
+Episode : 4616
+Episode : 4617
+Episode : 4618
+Episode : 4619
+Episode : 4620
+Episode : 4621
+Episode : 4622
+Episode : 4623
+Episode : 4624
+Episode : 4625
+Episode : 4626
+Episode : 4627
+Episode : 4628
+Episode : 4629
+Episode : 4630
+Episode : 4631
+Episode : 4632
+Episode : 4633
+Episode : 4634
+Episode : 4635
+Episode : 4636
+Episode : 4637
+Episode : 4638
+Episode : 4639
+Episode : 4640
+Episode : 4641
+Episode : 4642
+Episode : 4643
+Episode : 4644
+Episode : 4645
+Episode : 4646
+Episode : 4647
+Episode : 4648
+Episode : 4649
+Episode : 4650
+Episode : 4651
+Episode : 4652
+Episode : 4653
+Episode : 4654
+Episode : 4655
+Episode : 4656
+Episode : 4657
+Episode : 4658
+Episode : 4659
+Episode : 4660
+Episode : 4661
+Episode : 4662
+Episode : 4663
+Episode : 4664
+Episode : 4665
+Episode : 4666
+Episode : 4667
+Episode : 4668
+Episode : 4669
+Episode : 4670
+Episode : 4671
+Episode : 4672
+Episode : 4673
+Episode : 4674
+Episode : 4675
+Episode : 4676
+Episode : 4677
+Episode : 4678
+Episode : 4679
+Episode : 4680
+Episode : 4681
+Episode : 4682
+Episode : 4683
+Episode : 4684
+Episode : 4685
+Episode : 4686
+Episode : 4687
+Episode : 4688
+Episode : 4689
+Episode : 4690
+Episode : 4691
+Episode : 4692
+Episode : 4693
+Episode : 4694
+Episode : 4695
+Episode : 4696
+Episode : 4697
+Episode : 4698
+Episode : 4699
+Episode : 4700
+Episode : 4701
+Episode : 4702
+Episode : 4703
+Episode : 4704
+Episode : 4705
+Episode : 4706
+Episode : 4707
+Episode : 4708
+Episode : 4709
+Episode : 4710
+Episode : 4711
+Episode : 4712
+Episode : 4713
+Episode : 4714
+Episode : 4715
+Episode : 4716
+Episode : 4717
+Episode : 4718
+Episode : 4719
+Episode : 4720
+Episode : 4721
+Episode : 4722
+Episode : 4723
+Episode : 4724
+Episode : 4725
+Episode : 4726
+Episode : 4727
+Episode : 4728
+Episode : 4729
+Episode : 4730
+Episode : 4731
+Episode : 4732
+Episode : 4733
+Episode : 4734
+Episode : 4735
+Episode : 4736
+Episode : 4737
+Episode : 4738
+Episode : 4739
+Episode : 4740
+Episode : 4741
+Episode : 4742
+Episode : 4743
+Episode : 4744
+Episode : 4745
+Episode : 4746
+Episode : 4747
+Episode : 4748
+Episode : 4749
+Episode : 4750
+Episode : 4751
+Episode : 4752
+Episode : 4753
+Episode : 4754
+Episode : 4755
+Episode : 4756
+Episode : 4757
+Episode : 4758
+Episode : 4759
+Episode : 4760
+Episode : 4761
+Episode : 4762
+Episode : 4763
+Episode : 4764
+Episode : 4765
+Episode : 4766
+Episode : 4767
+Episode : 4768
+Episode : 4769
+Episode : 4770
+Episode : 4771
+Episode : 4772
+Episode : 4773
+Episode : 4774
+Episode : 4775
+Episode : 4776
+Episode : 4777
+Episode : 4778
+Episode : 4779
+Episode : 4780
+Episode : 4781
+Episode : 4782
+Episode : 4783
+Episode : 4784
+Episode : 4785
+Episode : 4786
+Episode : 4787
+Episode : 4788
+Episode : 4789
+Episode : 4790
+Episode : 4791
+Episode : 4792
+Episode : 4793
+Episode : 4794
+Episode : 4795
+Episode : 4796
+Episode : 4797
+Episode : 4798
+Episode : 4799
+Episode : 4800
+Episode : 4801
+Episode : 4802
+Episode : 4803
+Episode : 4804
+Episode : 4805
+Episode : 4806
+Episode : 4807
+Episode : 4808
+Episode : 4809
+Episode : 4810
+Episode : 4811
+Episode : 4812
+Episode : 4813
+Episode : 4814
+Episode : 4815
+Episode : 4816
+Episode : 4817
+Episode : 4818
+Episode : 4819
+Episode : 4820
+Episode : 4821
+Episode : 4822
+Episode : 4823
+Episode : 4824
+Episode : 4825
+Episode : 4826
+Episode : 4827
+Episode : 4828
+Episode : 4829
+Episode : 4830
+Episode : 4831
+Episode : 4832
+Episode : 4833
+Episode : 4834
+Episode : 4835
+Episode : 4836
+Episode : 4837
+Episode : 4838
+Episode : 4839
+Episode : 4840
+Episode : 4841
+Episode : 4842
+Episode : 4843
+Episode : 4844
+Episode : 4845
+Episode : 4846
+Episode : 4847
+Episode : 4848
+Episode : 4849
+Episode : 4850
+Episode : 4851
+Episode : 4852
+Episode : 4853
+Episode : 4854
+Episode : 4855
+Episode : 4856
+Episode : 4857
+Episode : 4858
+Episode : 4859
+Episode : 4860
+Episode : 4861
+Episode : 4862
+Episode : 4863
+Episode : 4864
+Episode : 4865
+Episode : 4866
+Episode : 4867
+Episode : 4868
+Episode : 4869
+Episode : 4870
+Episode : 4871
+Episode : 4872
+Episode : 4873
+Episode : 4874
+Episode : 4875
+Episode : 4876
+Episode : 4877
+Episode : 4878
+Episode : 4879
+Episode : 4880
+Episode : 4881
+Episode : 4882
+Episode : 4883
+Episode : 4884
+Episode : 4885
+Episode : 4886
+Episode : 4887
+Episode : 4888
+Episode : 4889
+Episode : 4890
+Episode : 4891
+Episode : 4892
+Episode : 4893
+Episode : 4894
+Episode : 4895
+Episode : 4896
+Episode : 4897
+Episode : 4898
+Episode : 4899
+Episode : 4900
+Episode : 4901
+Episode : 4902
+Episode : 4903
+Episode : 4904
+Episode : 4905
+Episode : 4906
+Episode : 4907
+Episode : 4908
+Episode : 4909
+Episode : 4910
+Episode : 4911
+Episode : 4912
+Episode : 4913
+Episode : 4914
+Episode : 4915
+Episode : 4916
+Episode : 4917
+Episode : 4918
+Episode : 4919
+Episode : 4920
+Episode : 4921
+Episode : 4922
+Episode : 4923
+Episode : 4924
+Episode : 4925
+Episode : 4926
+Episode : 4927
+Episode : 4928
+Episode : 4929
+Episode : 4930
+Episode : 4931
+Episode : 4932
+Episode : 4933
+Episode : 4934
+Episode : 4935
+Episode : 4936
+Episode : 4937
+Episode : 4938
+Episode : 4939
+Episode : 4940
+Episode : 4941
+Episode : 4942
+Episode : 4943
+Episode : 4944
+Episode : 4945
+Episode : 4946
+Episode : 4947
+Episode : 4948
+Episode : 4949
+Episode : 4950
+Episode : 4951
+Episode : 4952
+Episode : 4953
+Episode : 4954
+Episode : 4955
+Episode : 4956
+Episode : 4957
+Episode : 4958
+Episode : 4959
+Episode : 4960
+Episode : 4961
+Episode : 4962
+Episode : 4963
+Episode : 4964
+Episode : 4965
+Episode : 4966
+Episode : 4967
+Episode : 4968
+Episode : 4969
+Episode : 4970
+Episode : 4971
+Episode : 4972
+Episode : 4973
+Episode : 4974
+Episode : 4975
+Episode : 4976
+Episode : 4977
+Episode : 4978
+Episode : 4979
+Episode : 4980
+Episode : 4981
+Episode : 4982
+Episode : 4983
+Episode : 4984
+Episode : 4985
+Episode : 4986
+Episode : 4987
+Episode : 4988
+Episode : 4989
+Episode : 4990
+Episode : 4991
+Episode : 4992
+Episode : 4993
+Episode : 4994
+Episode : 4995
+Episode : 4996
+Episode : 4997
+Episode : 4998
+Episode : 4999
+Episode : 5000
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 0 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 1 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+(210, 160, 3) 2 1.0 (210, 160, 3)
+(210, 160, 3) 3 1.0 (210, 160, 3)
+Traceback (most recent call last):
+  File "train.py", line 105, in <module>
+    obs, act, r, _obs = memory.experiences[ind]
+TypeError: 'NoneType' object is not iterable
