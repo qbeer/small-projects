@@ -43,7 +43,8 @@ for i_episode in range(12):
 
     print('Episode : {}'.format(i_episode + 1))
 
-    observation = env.reset()
+    env.reset()
+    observation, reward, done, info = env.step(1)  # fire one ball at the start
     for t in range(100):
         experience = [None] * 4
         experience[0] = observation  # previous observation
