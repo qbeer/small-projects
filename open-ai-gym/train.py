@@ -99,23 +99,31 @@ for i_episode in range(5000):
         update_target_counter = 0
 
     observation = env.reset()
+
+    quad_obs = []
+    observation1 = None
+    observation2 = None
     for t in range(100):
-        action = select_a_with_epsilon_greedy(observation, eps)
+        if t % 4 == 0:
+            action = select_a_with_epsilon_greedy(observation, eps)
 
-        observation1, _, _, _ = env.step(action)
-        observation2, _, _, _ = env.step(action)
-        observation3, _, _, _ = env.step(action)
-        observation4, reward, done, info = env.step(action)
+        observation, reward, done, info = env.step(action)
+        quad_obs.append(observation)
+        if len(quad_obs) == 4:
+            inp = preprocess_input(quad_obs)
+            if observation1 == None:
+                observation1 = inp
+            else:
+                observation2 = inp
 
-
-        experience = [None] * 5
-        experience[0] = observation  # previous observation
-        #env.render()
-        experience[1] = action
-        experience[2] = reward
-        experience[3] = observation  # next observation
-        experience[4] = done  # store done to add negative reward on death
-        memory.add_experience(experience)
+        if observation1 != None and observation2 != None:
+            experience = [None] * 5
+            experience[0] = observation1  # previous observation
+            experience[1] = action
+            experience[2] = reward
+            experience[3] = observation2  # next observation
+            experience[4] = done  # store done to add negative reward on death
+            memory.add_experience(experience)
         if memory.counter > 25000:
             loss = train_decision_network()
             update_target_counter += 1
