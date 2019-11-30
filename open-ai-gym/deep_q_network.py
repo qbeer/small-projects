@@ -6,7 +6,8 @@ class DeepQNetwork(tf.keras.Model):
         super(DeepQNetwork, self).__init__()
         self.conv1 = tf.keras.layers.Conv2D(16, (3, 3),
                                             strides=(2, 2),
-                                            activation='relu')
+                                            activation='relu',
+                                            input_shape=(32, 84, 60, 4))
         self.conv2 = tf.keras.layers.Conv2D(32, (3, 3),
                                             strides=(2, 2),
                                             activation='relu')

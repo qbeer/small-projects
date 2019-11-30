@@ -22,9 +22,9 @@ EPS_MIN = 0.1
 
 eps = EPS_MAX
 
-EPS_ANNEALING_INTERVAL = 100000
+EPS_ANNEALING_INTERVAL = 1000000
 
-sample_size = 128
+sample_size = 32
 
 HEIGHT = 84
 WIDTH = 60
@@ -44,14 +44,18 @@ optimizer = tf.keras.optimizers.RMSprop()
 def preprocess_input(observations):
     observed = []
     for obs in observations:
-        observed.append(cv2.resize(obs, (84, 60)))
+        obs = cv2.cvtColor(obs, cv2.COLOR_RGB2GRAY)
+        observed.append(cv2.resize(obs, (HEIGHT, WIDTH)))
     observed = np.array(observed)
-    return observed.reshape((HEIGHT, WIDTH, len(observations)))
+    return observed.reshape((HEIGHT, WIDTH, 4))
 
 
 # epsilon - greedy algorithm
 def select_a_with_epsilon_greedy(state, epsilon=eps):
-    q_value = q(np.expand_dims(state / 255., axis=0)).numpy()
+    state = preprocess_input(state)
+    state = [state] * sample_size
+    state = np.array(state).reshape(sample_size, HEIGHT, WIDTH, 4) / 255.
+    q_value = q(state).numpy()
     action = np.argmax(q_value)
     if np.random.rand() < epsilon:
         action = np.random.randint(n_actions)
@@ -72,8 +76,12 @@ def train_decision_network():
 
     done = np.array([sample[4] for sample in experience_samples])
 
+    print(updated_observations.shape)
+    print(previous_observations.shape)
+
     with tf.GradientTape() as tape:
         _q = tf.reduce_max(q_hat(updated_observations / 255.), axis=1)
+        print(_q)
         q_target = rewards + discount_factor * _q
         for ind, _done in enumerate(done):
             if _done:
@@ -92,7 +100,8 @@ steps = 0
 
 for i_episode in range(5000):
 
-    print('Episode : {}'.format(i_episode + 1))
+    print('Episode : {}, current replay memory size {}'.format(
+        i_episode + 1, memory.counter))
 
     if update_target_counter > 0 and update_target_counter == update_interval:
         q_hat.set_weights(q.get_weights())
@@ -101,22 +110,26 @@ for i_episode in range(5000):
     observation = env.reset()
 
     quad_obs = []
-    observation1 = None
-    observation2 = None
-    for t in range(100):
+    observation1 = np.array([])
+    observation2 = np.array([])
+
+    action = 0
+    for t in range(1, 501):
+        quad_obs.append(observation)
+
         if t % 4 == 0:
-            action = select_a_with_epsilon_greedy(observation, eps)
+            action = select_a_with_epsilon_greedy(quad_obs, eps)
 
         observation, reward, done, info = env.step(action)
-        quad_obs.append(observation)
         if len(quad_obs) == 4:
             inp = preprocess_input(quad_obs)
-            if observation1 == None:
+            if observation1.size == 0:
                 observation1 = inp
             else:
                 observation2 = inp
+            quad_obs = []
 
-        if observation1 != None and observation2 != None:
+        if observation1.size != 0 and observation2.size != 0:
             experience = [None] * 5
             experience[0] = observation1  # previous observation
             experience[1] = action
@@ -124,7 +137,9 @@ for i_episode in range(5000):
             experience[3] = observation2  # next observation
             experience[4] = done  # store done to add negative reward on death
             memory.add_experience(experience)
-        if memory.counter > 25000:
+            observation1 = np.array([])
+            observation2 = np.array([])
+        if memory.counter > 5000:
             loss = train_decision_network()
             update_target_counter += 1
             with train_writer.as_default():
