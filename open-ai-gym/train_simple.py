@@ -2,13 +2,12 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 import tensorflow as tf
-tf.enable_eager_execution()
-
 import gym
 import numpy as np
 import cv2
 from replay_memory import ReplayMemory
 from deep_q_network import DeepQNetwork
+import collections
 
 train_writer = tf.summary.create_file_writer("./logs")
 
@@ -16,7 +15,7 @@ env = gym.make('Breakout-v0')
 
 n_actions = env.action_space.n
 discount_factor = 0.99
-update_interval = 2500
+update_interval = 5000
 EPS_MAX = 1
 EPS_MIN = 0.1
 
@@ -24,10 +23,13 @@ eps = EPS_MAX
 
 EPS_ANNEALING_INTERVAL = 100000
 
-sample_size = 32
+sample_size = 64
 
-HEIGHT = 84
-WIDTH = 60
+HEIGHT = 60
+WIDTH = 48
+N_STACK = 4
+
+MIN_OBSERVATIONS = 2500
 
 # actions are : NOPE, FIRE (new ball), RIGHT, LEFT
 q = DeepQNetwork(n_actions)
@@ -36,7 +38,7 @@ q_hat = DeepQNetwork(n_actions)
 # Initialize both networks with the same weights
 q_hat.set_weights(q.get_weights())
 
-memory = ReplayMemory(2000)
+memory = ReplayMemory(5000)
 
 optimizer = tf.keras.optimizers.RMSprop()
 
@@ -44,14 +46,18 @@ optimizer = tf.keras.optimizers.RMSprop()
 def preprocess_input(observations):
     observed = []
     for obs in observations:
+        # to gray and to 0-1
         obs = cv2.cvtColor(obs, cv2.COLOR_RGB2GRAY)
-        observed.append(cv2.resize(obs, (84, 60)))
+        obs = cv2.resize(obs, (WIDTH, HEIGHT))
+        observed.append(obs / 255.)
     observed = np.array(observed)
-    return observed.reshape((HEIGHT, WIDTH, len(observations)))
+    observed = np.transpose(observed, (1, 2, 0))
+    return observed
 
 
 # epsilon - greedy algorithm
 def select_a_with_epsilon_greedy(state, epsilon=eps):
+    state = preprocess_input([state] * N_STACK)
     q_value = q(np.expand_dims(state, axis=0)).numpy()
     action = np.argmax(q_value)
     if np.random.rand() < epsilon:
@@ -74,15 +80,11 @@ def train_decision_network():
     done = np.array([sample[4] for sample in experience_samples])
 
     with tf.GradientTape() as tape:
-        _q = tf.reduce_max(q_hat(updated_observations / 255.), axis=1)
+        _q = tf.reduce_max(q_hat(updated_observations), axis=1)
         q_target = rewards + discount_factor * _q
-        for ind, _done in enumerate(done):
-            if _done:
-                q_target[ind] = -1
-
         loss = tf.reduce_sum(
             tf.square(q_target -
-                      tf.reduce_max(q(previous_observations / 255.), axis=1)))
+                      tf.reduce_max(q(previous_observations), axis=1)))
     grads = tape.gradient(loss, q.trainable_variables)
     optimizer.apply_gradients(zip(grads, q.trainable_variables))
 
@@ -93,7 +95,8 @@ steps = 0
 
 for i_episode in range(5000):
 
-    print('Episode : {}'.format(i_episode + 1))
+    print('Episode : {}, memory counter : {}'.format(i_episode + 1,
+                                                     memory.counter))
 
     if update_target_counter > 0 and update_target_counter == update_interval:
         q_hat.set_weights(q.get_weights())
@@ -101,31 +104,30 @@ for i_episode in range(5000):
 
     observation = env.reset()
 
-    quad_obs = []
-    observation1 = None
-    observation2 = None
-    for t in range(100):
-        if t % 4 == 0:
-            action = select_a_with_epsilon_greedy(observation, eps)
+    observation1 = collections.deque(maxlen=N_STACK)
+    observation2 = collections.deque(maxlen=N_STACK)
+
+    observation1.append(observation)
+
+    for t in range(500):
+        action = select_a_with_epsilon_greedy(observation, eps)
+
+        env.render()
 
         observation, reward, done, info = env.step(action)
-        quad_obs.append(observation)
-        if len(quad_obs) == 4:
-            inp = preprocess_input(quad_obs)
-            if observation1 == None:
-                observation1 = inp
-            else:
-                observation2 = inp
+        observation1.append(observation)
+        observation2.append(observation)
 
-        if observation1 != None and observation2 != None:
+        if len(observation1) == 4 and len(observation2) == 4:
             experience = [None] * 5
-            experience[0] = observation1  # previous observation
+            experience[0] = preprocess_input(
+                observation1)  # previous observation
             experience[1] = action
             experience[2] = reward
-            experience[3] = observation2  # next observation
+            experience[3] = preprocess_input(observation2)  # next observation
             experience[4] = done  # store done to add negative reward on death
             memory.add_experience(experience)
-        if memory.counter > 25000:
+        if memory.counter > MIN_OBSERVATIONS:
             loss = train_decision_network()
             update_target_counter += 1
             with train_writer.as_default():
