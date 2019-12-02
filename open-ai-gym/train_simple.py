@@ -11,11 +11,11 @@ import collections
 
 train_writer = tf.summary.create_file_writer("./logs")
 
-env = gym.make('Breakout-v0')
+env = gym.make('Pong-v0')
 
 n_actions = env.action_space.n
 discount_factor = 0.99
-update_interval = 5000
+update_interval = 8000
 EPS_MAX = 1
 EPS_MIN = 0.1
 
@@ -23,13 +23,13 @@ eps = EPS_MAX
 
 EPS_ANNEALING_INTERVAL = 100000
 
-sample_size = 64
+sample_size = 128
 
-HEIGHT = 60
-WIDTH = 48
+HEIGHT = 96
+WIDTH = 64
 N_STACK = 4
 
-MIN_OBSERVATIONS = 2500
+MIN_OBSERVATIONS = 5000
 
 # actions are : NOPE, FIRE (new ball), RIGHT, LEFT
 q = DeepQNetwork(n_actions)
@@ -38,7 +38,7 @@ q_hat = DeepQNetwork(n_actions)
 # Initialize both networks with the same weights
 q_hat.set_weights(q.get_weights())
 
-memory = ReplayMemory(5000)
+memory = ReplayMemory(50000)
 
 optimizer = tf.keras.optimizers.RMSprop()
 
@@ -109,12 +109,18 @@ for i_episode in range(5000):
 
     observation1.append(observation)
 
-    for t in range(500):
-        action = select_a_with_epsilon_greedy(observation, eps)
+    total_reward = 0
 
-        env.render()
+    for t in range(500):
+
+        if t % N_STACK == 0:
+            action = select_a_with_epsilon_greedy(observation, eps)
+
+        #env.render()
 
         observation, reward, done, info = env.step(action)
+        total_reward += reward
+
         observation1.append(observation)
         observation2.append(observation)
 
@@ -132,7 +138,7 @@ for i_episode in range(5000):
             update_target_counter += 1
             with train_writer.as_default():
                 tf.summary.scalar('loss', loss, step=steps)
-                tf.summary.scalar('reward', reward, step=steps)
+                tf.summary.scalar('reward', total_reward, step=steps)
                 tf.summary.scalar('eps', eps, step=steps)
                 steps += 1
 
