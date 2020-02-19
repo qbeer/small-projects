@@ -1,2 +1,4 @@
 gan-basics/*/*.png
 gan-basics/*/*.gif
+*/*.h5
+*/logs
