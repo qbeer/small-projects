@@ -9,6 +9,8 @@ verify_ssl = true
 selectivesearch = "*"
 tensorflow-gpu = "*"
 tensorflow-datasets = "*"
+matplotlib = "*"
+numpy = "*"
 
 [requires]
 python_version = "3.6"
