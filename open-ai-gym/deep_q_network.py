@@ -14,7 +14,7 @@ class DeepQNetwork(tf.keras.Model):
                                             activation='relu')
         self.flatten = tf.keras.layers.Flatten()
         self.dense1 = tf.keras.layers.Dense(16, activation='relu')
-        self.dense2 = tf.keras.layers.Dense(n_actions)
+        self.dense2 = tf.keras.layers.Dense(n_actions, activation='softmax')
 
     def call(self, inputs):
         x = self.conv1(inputs)

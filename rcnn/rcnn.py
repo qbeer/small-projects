@@ -3,11 +3,11 @@ import tensorflow as tf
 import tensorflow_datasets as tfds
 import numpy as np
 
-N = 10
+N = 2
 MIN_IOU = .5
 
 class RoiPooling(tf.keras.layers.Layer):
-    def __init__(self, size=(7, 7)):
+    def __init__(self, size=(3, 3)):
         super(RoiPooling, self).__init__()
 
         self.height = size[0]
@@ -96,7 +96,7 @@ def build_model():
     bbox_preds = tf.keras.layers.Conv2D(1024, (3, 3), strides=(2, 2), activation='relu')(pooled_rois)
     bbox_preds = tf.keras.layers.Flatten()(bbox_preds)
     bbox_preds = tf.keras.layers.Dense(256, activation='relu')(bbox_preds)
-    bbox_preds = tf.keras.layers.Dense(4)(bbox_preds)
+    bbox_preds = tf.keras.layers.Dense(4, activation='sigmoid')(bbox_preds) / 2. + .5
     #print('bbox_preds.shape : ', bbox_preds.shape)
 
     logits = tf.keras.layers.Conv2D(1024, (3, 3), strides=(2, 2), activation='relu')(pooled_rois)
@@ -104,7 +104,7 @@ def build_model():
     logits = tf.keras.layers.Dense(21)(logits)
     #print('logits.shape : ', logits.shape)
 
-    model = tf.keras.Model(inputs=[input_image, rois], outputs=[logits, bbox_preds])
+    model = tf.keras.Model(inputs=[input_image, rois], outputs=[logits, bbox_preds, pooled_rois])
 
     return model
 
@@ -194,27 +194,17 @@ def label_regions(objects, rois):
 
 def fast_rcnn_loss(logits, labels, bbox_preds, bbox):
     classification_loss = tf.nn.softmax_cross_entropy_with_logits(labels, logits)
-    smooth_l1 = 0.0
+    #print(tf.expand_dims(tf.argmax(labels, axis=1), axis=1).shape, tf.abs(bbox_preds - bbox).shape)
+    labels = tf.broadcast_to(tf.cast(tf.expand_dims(tf.argmax(labels, axis=1), axis=1), tf.float32), [N, 4])
+    labels /= (labels + 1e-12)
+    #print(labels)
+    #print(bbox_preds)
+    #print(bbox)
+    L = tf.reduce_sum(tf.expand_dims(labels, axis=0) * tf.abs(bbox_preds - bbox), axis=[1, 2])
+    #print(L)
+    return tf.reduce_mean(classification_loss + L)
 
-    
-
-    for ind, (bb, lab) in enumerate(zip(bbox.numpy()[0], labels)):
-        lab = np.argmax(lab)
-        if lab > 0:
-            x, y, x_, y_ = bb
-            g_w, g_h = x_ - x, y_ - y
-            p_x, p_y, p_w, p_h = bbox_preds[ind] + 1e-12
-            t_x, t_y, t_w, t_h = (x - p_x) / (p_w + 1e-12), (y - p_y) / (p_h + 1e-12),\
-                                tf.math.log(g_w / (p_w + 1e-12)), tf.math.log(g_h / (p_h + 1e-12))
-            t = tf.stack([t_x, t_y, t_w, t_h])
-            p = tf.stack([p_x, p_y, p_w, p_h])
-            L = tf.reduce_sum(tf.abs(t - p))
-            smooth_l1 += tf.cond(L < 1, lambda : 0.5 * tf.square(L), lambda : L - 0.5)
-        else:
-            smooth_l1 += 0.0
-    return tf.reduce_mean(classification_loss + smooth_l1)
-
-optimizer = tf.keras.optimizers.Adam()
+optimizer = tf.keras.optimizers.Adam(lr=1e-7)
 
 roi_pooling = RoiPooling()
 
@@ -238,29 +228,34 @@ for example in voc.batch(1).take(1):
     #print(image.shape, rois.shape)
 
     pooled_rois = roi_pooling((image, rois))
-    #print(pooled_rois.shape)
-    #print(pooled_rois.shape)
+    #print(pooled_rois)
 
 model = build_model()
 
-for voc_example in voc.shuffle(buffer_size=1000).batch(1).take(100):
-    # relative bboxes are given (!)
-    image, objects = voc_example['image'], voc_example['objects']
-    image = tf.image.resize(image, (224, 224))
-    image = tf.keras.applications.vgg16.preprocess_input(image)
-    _, regions = ss.selective_search(image[0], scale=224, sigma=0.9, min_size=1000)
-    rois = convert_regions_to_relative_rois(regions)
-    rois, roi_labels = label_regions(objects, rois)
+for epoch in range(100):
+    rolling_loss = 0.0
+    for voc_example in voc.take(10).batch(1):
+        # relative bboxes are given (!)
+        image, objects = voc_example['image'], voc_example['objects']
+        image = tf.image.resize(image, (224, 224))
+        image = tf.keras.applications.vgg16.preprocess_input(image)
+        _, regions = ss.selective_search(image[0], scale=224, sigma=0.9, min_size=2500)
+        rois = convert_regions_to_relative_rois(regions)
+        rois, roi_labels = label_regions(objects, rois)
 
-    rois = tf.expand_dims(rois, axis=0)
+        rois = tf.expand_dims(rois, axis=0)
 
-    with tf.GradientTape() as tape:
-        logits, bbox_preds = model([image, rois])
-        #print('logits : ', logits.shape)
-        #print('bbox_preds : ', bbox_preds.shape)
-        loss = fast_rcnn_loss(logits, roi_labels, bbox_preds, rois)
+        with tf.GradientTape() as tape:
+            logits, bbox_preds, pr = model([image, rois])
+            #print('logits : ', logits)
+            #print('bbox_preds : ', bbox_preds)
+            #print('pr : ', pr)
+            loss = fast_rcnn_loss(logits, roi_labels, bbox_preds, rois)
+        
+        grads = tape.gradient(loss, model.trainable_weights)
+        optimizer.apply_gradients(zip(grads, model.trainable_weights))
+        
+        #print(loss)
+        rolling_loss += loss
     
-    grads = tape.gradient(loss, model.trainable_weights)
-    optimizer.apply_gradients(zip(grads, model.trainable_weights))
-
-    print(loss)
+    print(rolling_loss.numpy())

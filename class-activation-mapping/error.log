@@ -1,0 +1,566 @@
+2020-02-20 22:42:09.424011: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
+2020-02-20 22:42:09.428601: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+2020-02-20 22:42:09.429119: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 1 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:02:00.0
+2020-02-20 22:42:09.429250: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2020-02-20 22:42:09.430233: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+2020-02-20 22:42:09.431135: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10.0
+2020-02-20 22:42:09.431331: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10.0
+2020-02-20 22:42:09.432522: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10.0
+2020-02-20 22:42:09.433418: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10.0
+2020-02-20 22:42:09.436201: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2020-02-20 22:42:09.438180: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Adding visible gpu devices: 0, 1
+2020-02-20 22:42:09.438465: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2020-02-20 22:42:09.450126: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3599070000 Hz
+2020-02-20 22:42:09.450685: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5563e28e5f80 executing computations on platform Host. Devices:
+2020-02-20 22:42:09.450722: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): Host, Default Version
+2020-02-20 22:42:09.686751: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 0 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:01:00.0
+2020-02-20 22:42:09.687264: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 1 with properties: 
+name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
+pciBusID: 0000:02:00.0
+2020-02-20 22:42:09.687309: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2020-02-20 22:42:09.687323: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+2020-02-20 22:42:09.687334: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10.0
+2020-02-20 22:42:09.687345: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10.0
+2020-02-20 22:42:09.687356: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10.0
+2020-02-20 22:42:09.687367: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10.0
+2020-02-20 22:42:09.687378: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2020-02-20 22:42:09.689240: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Adding visible gpu devices: 0, 1
+2020-02-20 22:42:09.689288: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
+2020-02-20 22:42:09.690560: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1159] Device interconnect StreamExecutor with strength 1 edge matrix:
+2020-02-20 22:42:09.690593: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1165]      0 1 
+2020-02-20 22:42:09.690608: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1178] 0:   N Y 
+2020-02-20 22:42:09.690612: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1178] 1:   Y N 
+2020-02-20 22:42:09.692609: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1304] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7627 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:01:00.0, compute capability: 6.1)
+2020-02-20 22:42:09.693717: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1304] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:1 with 6418 MB memory) -> physical GPU (device: 1, name: GeForce GTX 1070, pci bus id: 0000:02:00.0, compute capability: 6.1)
+2020-02-20 22:42:09.696209: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5563e34d2f30 executing computations on platform CUDA. Devices:
+2020-02-20 22:42:09.696243: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): GeForce GTX 1070, Compute Capability 6.1
+2020-02-20 22:42:09.696253: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (1): GeForce GTX 1070, Compute Capability 6.1
+2020-02-20 22:42:11.258829: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2020-02-20 22:42:12.652101: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
+VALIDATION ACCURACY : 81.20%
+Training loss (for one batch) at step 50.0: 3.242093801498413
+Seen so far: 1632.0 samples
+Accuracy : 0.856
+Training loss (for one batch) at step 100.0: 3.711398124694824
+Seen so far: 3232.0 samples
+Accuracy : 0.843
+Training loss (for one batch) at step 150.0: 4.029544353485107
+Seen so far: 4832.0 samples
+Accuracy : 0.842
+Training loss (for one batch) at step 200.0: 1.0797364711761475
+Seen so far: 6432.0 samples
+Accuracy : 0.838
+Training loss (for one batch) at step 250.0: 1.1143920421600342
+Seen so far: 8032.0 samples
+Accuracy : 0.842
+Training loss (for one batch) at step 300.0: 2.2209136486053467
+Seen so far: 9632.0 samples
+Accuracy : 0.839
+Training loss (for one batch) at step 350.0: 2.130540609359741
+Seen so far: 11232.0 samples
+Accuracy : 0.840
+Training loss (for one batch) at step 400.0: 1.0078240633010864
+Seen so far: 12832.0 samples
+Accuracy : 0.844
+Training loss (for one batch) at step 450.0: 3.022223472595215
+Seen so far: 14432.0 samples
+Accuracy : 0.846
+Training loss (for one batch) at step 500.0: 3.056093215942383
+Seen so far: 16032.0 samples
+Accuracy : 0.849
+Training loss (for one batch) at step 550.0: 2.037778377532959
+Seen so far: 17632.0 samples
+Accuracy : 0.851
+Training loss (for one batch) at step 600.0: 1.3868870735168457
+Seen so far: 19232.0 samples
+Accuracy : 0.853
+Training loss (for one batch) at step 650.0: 3.0233240127563477
+Seen so far: 20832.0 samples
+Accuracy : 0.853
+Training loss (for one batch) at step 700.0: 0.3688066601753235
+Seen so far: 22432.0 samples
+Accuracy : 0.853
+Training loss (for one batch) at step 750.0: 1.0074564218521118
+Seen so far: 24032.0 samples
+Accuracy : 0.854
+Training loss (for one batch) at step 800.0: 3.1885764598846436
+Seen so far: 25632.0 samples
+Accuracy : 0.853
+
+EPOCH 1 | Loss : 1941.187
+Accuracy : 0.853
+
+Training loss (for one batch) at step 50.0: 0.9910272359848022
+Seen so far: 1632.0 samples
+Accuracy : 0.854
+Training loss (for one batch) at step 100.0: 2.265021324157715
+Seen so far: 3232.0 samples
+Accuracy : 0.855
+Training loss (for one batch) at step 150.0: 1.021208643913269
+Seen so far: 4832.0 samples
+Accuracy : 0.857
+Training loss (for one batch) at step 200.0: 2.0147705078125
+Seen so far: 6432.0 samples
+Accuracy : 0.857
+Training loss (for one batch) at step 250.0: 2.014212131500244
+Seen so far: 8032.0 samples
+Accuracy : 0.858
+Training loss (for one batch) at step 300.0: 3.036895751953125
+Seen so far: 9632.0 samples
+Accuracy : 0.858
+Training loss (for one batch) at step 350.0: 1.0113803148269653
+Seen so far: 11232.0 samples
+Accuracy : 0.859
+Training loss (for one batch) at step 400.0: 1.670430064201355
+Seen so far: 12832.0 samples
+Accuracy : 0.859
+Training loss (for one batch) at step 450.0: 2.6874842643737793
+Seen so far: 14432.0 samples
+Accuracy : 0.859
+Training loss (for one batch) at step 500.0: 3.0221455097198486
+Seen so far: 16032.0 samples
+Accuracy : 0.858
+Training loss (for one batch) at step 550.0: 1.0337011814117432
+Seen so far: 17632.0 samples
+Accuracy : 0.859
+Training loss (for one batch) at step 600.0: 4.203295707702637
+Seen so far: 19232.0 samples
+Accuracy : 0.859
+Training loss (for one batch) at step 650.0: 5.103549957275391
+Seen so far: 20832.0 samples
+Accuracy : 0.859
+Training loss (for one batch) at step 700.0: 4.604461193084717
+Seen so far: 22432.0 samples
+Accuracy : 0.859
+Training loss (for one batch) at step 750.0: 2.015220880508423
+Seen so far: 24032.0 samples
+Accuracy : 0.858
+Training loss (for one batch) at step 800.0: 2.014761447906494
+Seen so far: 25632.0 samples
+Accuracy : 0.858
+
+EPOCH 2 | Loss : 1791.879
+Accuracy : 0.858
+
+Training loss (for one batch) at step 50.0: 1.009289026260376
+Seen so far: 1632.0 samples
+Accuracy : 0.858
+Training loss (for one batch) at step 100.0: 1.0194735527038574
+Seen so far: 3232.0 samples
+Accuracy : 0.859
+Training loss (for one batch) at step 150.0: 3.039337158203125
+Seen so far: 4832.0 samples
+Accuracy : 0.859
+Training loss (for one batch) at step 200.0: 0.39149442315101624
+Seen so far: 6432.0 samples
+Accuracy : 0.860
+Training loss (for one batch) at step 250.0: 4.0295562744140625
+Seen so far: 8032.0 samples
+Accuracy : 0.859
+Training loss (for one batch) at step 300.0: 4.034239292144775
+Seen so far: 9632.0 samples
+Accuracy : 0.859
+Training loss (for one batch) at step 350.0: 2.0163424015045166
+Seen so far: 11232.0 samples
+Accuracy : 0.860
+Training loss (for one batch) at step 400.0: 3.5583138465881348
+Seen so far: 12832.0 samples
+Accuracy : 0.860
+Training loss (for one batch) at step 450.0: 1.2649023532867432
+Seen so far: 14432.0 samples
+Accuracy : 0.861
+Training loss (for one batch) at step 500.0: 1.007381796836853
+Seen so far: 16032.0 samples
+Accuracy : 0.861
+Training loss (for one batch) at step 550.0: 1.0090073347091675
+Seen so far: 17632.0 samples
+Accuracy : 0.862
+Training loss (for one batch) at step 600.0: 2.014573097229004
+Seen so far: 19232.0 samples
+Accuracy : 0.862
+Training loss (for one batch) at step 650.0: 2.8837122917175293
+Seen so far: 20832.0 samples
+Accuracy : 0.862
+Training loss (for one batch) at step 700.0: 2.173217296600342
+Seen so far: 22432.0 samples
+Accuracy : 0.863
+Training loss (for one batch) at step 750.0: 1.1480973958969116
+Seen so far: 24032.0 samples
+Accuracy : 0.863
+Training loss (for one batch) at step 800.0: 1.1197796993656084e-05
+Seen so far: 25632.0 samples
+Accuracy : 0.863
+
+EPOCH 3 | Loss : 1675.664
+Accuracy : 0.863
+
+Training loss (for one batch) at step 50.0: 1.0081204175949097
+Seen so far: 1632.0 samples
+Accuracy : 0.864
+Training loss (for one batch) at step 100.0: 1.0111933946609497
+Seen so far: 3232.0 samples
+Accuracy : 0.864
+Training loss (for one batch) at step 150.0: 1.0073827505111694
+Seen so far: 4832.0 samples
+Accuracy : 0.864
+Training loss (for one batch) at step 200.0: 2.0470495223999023
+Seen so far: 6432.0 samples
+Accuracy : 0.864
+Training loss (for one batch) at step 250.0: 1.0935063362121582
+Seen so far: 8032.0 samples
+Accuracy : 0.864
+Training loss (for one batch) at step 300.0: 3.9722695350646973
+Seen so far: 9632.0 samples
+Accuracy : 0.865
+Training loss (for one batch) at step 350.0: 1.0091774463653564
+Seen so far: 11232.0 samples
+Accuracy : 0.865
+Training loss (for one batch) at step 400.0: 0.29640576243400574
+Seen so far: 12832.0 samples
+Accuracy : 0.865
+Training loss (for one batch) at step 450.0: 3.0235795974731445
+Seen so far: 14432.0 samples
+Accuracy : 0.866
+Training loss (for one batch) at step 500.0: 2.0147743225097656
+Seen so far: 16032.0 samples
+Accuracy : 0.866
+Training loss (for one batch) at step 550.0: 1.0242594480514526
+Seen so far: 17632.0 samples
+Accuracy : 0.866
+Training loss (for one batch) at step 600.0: 3.0221428871154785
+Seen so far: 19232.0 samples
+Accuracy : 0.866
+Training loss (for one batch) at step 650.0: 2.0179102420806885
+Seen so far: 20832.0 samples
+Accuracy : 0.866
+Training loss (for one batch) at step 700.0: 3.012389659881592
+Seen so far: 22432.0 samples
+Accuracy : 0.866
+Training loss (for one batch) at step 750.0: 0.009190578013658524
+Seen so far: 24032.0 samples
+Accuracy : 0.866
+Training loss (for one batch) at step 800.0: 0.9622842669487
+Seen so far: 25632.0 samples
+Accuracy : 0.867
+
+EPOCH 4 | Loss : 1616.157
+Accuracy : 0.867
+
+Training loss (for one batch) at step 50.0: 3.9215846061706543
+Seen so far: 1632.0 samples
+Accuracy : 0.867
+Training loss (for one batch) at step 100.0: 2.0172295570373535
+Seen so far: 3232.0 samples
+Accuracy : 0.867
+Training loss (for one batch) at step 150.0: 0.5586404204368591
+Seen so far: 4832.0 samples
+Accuracy : 0.867
+Training loss (for one batch) at step 200.0: 3.0220606327056885
+Seen so far: 6432.0 samples
+Accuracy : 0.868
+Training loss (for one batch) at step 250.0: 1.1809680461883545
+Seen so far: 8032.0 samples
+Accuracy : 0.868
+Training loss (for one batch) at step 300.0: 2.0167107582092285
+Seen so far: 9632.0 samples
+Accuracy : 0.868
+Training loss (for one batch) at step 350.0: 1.0087230205535889
+Seen so far: 11232.0 samples
+Accuracy : 0.868
+Training loss (for one batch) at step 400.0: 3.022287607192993
+Seen so far: 12832.0 samples
+Accuracy : 0.868
+Training loss (for one batch) at step 450.0: 1.008018970489502
+Seen so far: 14432.0 samples
+Accuracy : 0.868
+Training loss (for one batch) at step 500.0: 2.0383334159851074
+Seen so far: 16032.0 samples
+Accuracy : 0.868
+Training loss (for one batch) at step 550.0: 2.991830348968506
+Seen so far: 17632.0 samples
+Accuracy : 0.868
+Training loss (for one batch) at step 600.0: 3.0259194374084473
+Seen so far: 19232.0 samples
+Accuracy : 0.869
+Training loss (for one batch) at step 650.0: 2.0695528984069824
+Seen so far: 20832.0 samples
+Accuracy : 0.869
+Training loss (for one batch) at step 700.0: 3.1751608848571777
+Seen so far: 22432.0 samples
+Accuracy : 0.869
+Training loss (for one batch) at step 750.0: 1.240800380706787
+Seen so far: 24032.0 samples
+Accuracy : 0.869
+Training loss (for one batch) at step 800.0: 1.0073810815811157
+Seen so far: 25632.0 samples
+Accuracy : 0.869
+
+EPOCH 5 | Loss : 1575.399
+Accuracy : 0.869
+
+Training loss (for one batch) at step 50.0: 2.1053333282470703
+Seen so far: 1632.0 samples
+Accuracy : 0.869
+Training loss (for one batch) at step 100.0: 2.0147621631622314
+Seen so far: 3232.0 samples
+Accuracy : 0.869
+Training loss (for one batch) at step 150.0: 1.7877883911132812
+Seen so far: 4832.0 samples
+Accuracy : 0.870
+Training loss (for one batch) at step 200.0: 1.0077496767044067
+Seen so far: 6432.0 samples
+Accuracy : 0.870
+Training loss (for one batch) at step 250.0: 1.1160199642181396
+Seen so far: 8032.0 samples
+Accuracy : 0.870
+Training loss (for one batch) at step 300.0: 6.04454231262207
+Seen so far: 9632.0 samples
+Accuracy : 0.870
+Training loss (for one batch) at step 350.0: 3.0223917961120605
+Seen so far: 11232.0 samples
+Accuracy : 0.871
+Training loss (for one batch) at step 400.0: 2.0250117778778076
+Seen so far: 12832.0 samples
+Accuracy : 0.871
+Training loss (for one batch) at step 450.0: 2.0150375366210938
+Seen so far: 14432.0 samples
+Accuracy : 0.871
+Training loss (for one batch) at step 500.0: 1.0217480659484863
+Seen so far: 16032.0 samples
+Accuracy : 0.871
+Training loss (for one batch) at step 550.0: 0.25429362058639526
+Seen so far: 17632.0 samples
+Accuracy : 0.871
+Training loss (for one batch) at step 600.0: 2.0147640705108643
+Seen so far: 19232.0 samples
+Accuracy : 0.871
+Training loss (for one batch) at step 650.0: 1.0073918104171753
+Seen so far: 20832.0 samples
+Accuracy : 0.871
+Training loss (for one batch) at step 700.0: 2.399477958679199
+Seen so far: 22432.0 samples
+Accuracy : 0.871
+Training loss (for one batch) at step 750.0: 4.8691816329956055
+Seen so far: 24032.0 samples
+Accuracy : 0.872
+Training loss (for one batch) at step 800.0: 2.01383638381958
+Seen so far: 25632.0 samples
+Accuracy : 0.872
+
+EPOCH 6 | Loss : 1505.168
+Accuracy : 0.872
+
+Training loss (for one batch) at step 50.0: 3.9937028884887695
+Seen so far: 1632.0 samples
+Accuracy : 0.872
+Training loss (for one batch) at step 100.0: 1.0608047246932983
+Seen so far: 3232.0 samples
+Accuracy : 0.872
+Training loss (for one batch) at step 150.0: 0.08745793998241425
+Seen so far: 4832.0 samples
+Accuracy : 0.873
+Training loss (for one batch) at step 200.0: 0.6043386459350586
+Seen so far: 6432.0 samples
+Accuracy : 0.874
+Training loss (for one batch) at step 250.0: 1.0125126838684082
+Seen so far: 8032.0 samples
+Accuracy : 0.875
+Training loss (for one batch) at step 300.0: 1.6918131113052368
+Seen so far: 9632.0 samples
+Accuracy : 0.875
+Training loss (for one batch) at step 350.0: 0.10198974609375
+Seen so far: 11232.0 samples
+Accuracy : 0.876
+Training loss (for one batch) at step 400.0: 1.4139041900634766
+Seen so far: 12832.0 samples
+Accuracy : 0.877
+Training loss (for one batch) at step 450.0: 0.3303147256374359
+Seen so far: 14432.0 samples
+Accuracy : 0.878
+Training loss (for one batch) at step 500.0: 0.03474024683237076
+Seen so far: 16032.0 samples
+Accuracy : 0.879
+Training loss (for one batch) at step 550.0: 0.0023410930298268795
+Seen so far: 17632.0 samples
+Accuracy : 0.880
+Training loss (for one batch) at step 600.0: 0.6413655877113342
+Seen so far: 19232.0 samples
+Accuracy : 0.881
+Training loss (for one batch) at step 650.0: 1.6026972105009918e-07
+Seen so far: 20832.0 samples
+Accuracy : 0.882
+Training loss (for one batch) at step 700.0: 0.0003117913147434592
+Seen so far: 22432.0 samples
+Accuracy : 0.883
+Training loss (for one batch) at step 750.0: 2.043459289780003e-06
+Seen so far: 24032.0 samples
+Accuracy : 0.883
+Training loss (for one batch) at step 800.0: 1.3350370409170864e-07
+Seen so far: 25632.0 samples
+Accuracy : 0.884
+
+EPOCH 7 | Loss : 581.720
+Accuracy : 0.884
+
+Training loss (for one batch) at step 50.0: 0.009684395976364613
+Seen so far: 1632.0 samples
+Accuracy : 0.885
+Training loss (for one batch) at step 100.0: 0.00015200504276435822
+Seen so far: 3232.0 samples
+Accuracy : 0.886
+Training loss (for one batch) at step 150.0: 1.0106189250946045
+Seen so far: 4832.0 samples
+Accuracy : 0.887
+Training loss (for one batch) at step 200.0: 1.0080955028533936
+Seen so far: 6432.0 samples
+Accuracy : 0.888
+Training loss (for one batch) at step 250.0: 0.038842927664518356
+Seen so far: 8032.0 samples
+Accuracy : 0.889
+Training loss (for one batch) at step 300.0: 0.0014641929883509874
+Seen so far: 9632.0 samples
+Accuracy : 0.889
+Training loss (for one batch) at step 350.0: 0.004288302734494209
+Seen so far: 11232.0 samples
+Accuracy : 0.890
+Training loss (for one batch) at step 400.0: 1.0092625617980957
+Seen so far: 12832.0 samples
+Accuracy : 0.891
+Training loss (for one batch) at step 450.0: 3.518483936204575e-05
+Seen so far: 14432.0 samples
+Accuracy : 0.892
+Training loss (for one batch) at step 500.0: 0.05748557299375534
+Seen so far: 16032.0 samples
+Accuracy : 0.893
+Training loss (for one batch) at step 550.0: 0.8581144213676453
+Seen so far: 17632.0 samples
+Accuracy : 0.893
+Training loss (for one batch) at step 600.0: 0.07297924906015396
+Seen so far: 19232.0 samples
+Accuracy : 0.894
+Training loss (for one batch) at step 650.0: 0.00041881491779349744
+Seen so far: 20832.0 samples
+Accuracy : 0.895
+Training loss (for one batch) at step 700.0: 0.0032688837964087725
+Seen so far: 22432.0 samples
+Accuracy : 0.896
+Training loss (for one batch) at step 750.0: 0.0008294910076074302
+Seen so far: 24032.0 samples
+Accuracy : 0.896
+Training loss (for one batch) at step 800.0: 0.2983101010322571
+Seen so far: 25632.0 samples
+Accuracy : 0.897
+
+EPOCH 8 | Loss : 191.359
+Accuracy : 0.897
+
+Training loss (for one batch) at step 50.0: 0.01661178097128868
+Seen so far: 1632.0 samples
+Accuracy : 0.898
+Training loss (for one batch) at step 100.0: 1.0072542428970337
+Seen so far: 3232.0 samples
+Accuracy : 0.899
+Training loss (for one batch) at step 150.0: 0.0008530067279934883
+Seen so far: 4832.0 samples
+Accuracy : 0.899
+Training loss (for one batch) at step 200.0: 0.0024614932481199503
+Seen so far: 6432.0 samples
+Accuracy : 0.900
+Training loss (for one batch) at step 250.0: 1.0073397159576416
+Seen so far: 8032.0 samples
+Accuracy : 0.901
+Training loss (for one batch) at step 300.0: 0.002188814105466008
+Seen so far: 9632.0 samples
+Accuracy : 0.901
+Training loss (for one batch) at step 350.0: 1.3291010856628418
+Seen so far: 11232.0 samples
+Accuracy : 0.902
+Training loss (for one batch) at step 400.0: 0.8488436937332153
+Seen so far: 12832.0 samples
+Accuracy : 0.903
+Training loss (for one batch) at step 450.0: 0.018519632518291473
+Seen so far: 14432.0 samples
+Accuracy : 0.903
+Training loss (for one batch) at step 500.0: 0.0014116900274530053
+Seen so far: 16032.0 samples
+Accuracy : 0.904
+Training loss (for one batch) at step 550.0: 0.003924135584384203
+Seen so far: 17632.0 samples
+Accuracy : 0.904
+Training loss (for one batch) at step 600.0: 2.2453355086327065e-06
+Seen so far: 19232.0 samples
+Accuracy : 0.905
+Training loss (for one batch) at step 650.0: 0.11118318140506744
+Seen so far: 20832.0 samples
+Accuracy : 0.905
+Training loss (for one batch) at step 700.0: 1.520003115729196e-05
+Seen so far: 22432.0 samples
+Accuracy : 0.906
+Training loss (for one batch) at step 750.0: 1.002589464187622
+Seen so far: 24032.0 samples
+Accuracy : 0.906
+Training loss (for one batch) at step 800.0: 9.14437769097276e-05
+Seen so far: 25632.0 samples
+Accuracy : 0.907
+
+EPOCH 9 | Loss : 200.722
+Accuracy : 0.907
+
+Training loss (for one batch) at step 50.0: 1.0765626430511475
+Seen so far: 1632.0 samples
+Accuracy : 0.907
+Training loss (for one batch) at step 100.0: 1.2405472993850708
+Seen so far: 3232.0 samples
+Accuracy : 0.908
+Training loss (for one batch) at step 150.0: 0.0469122976064682
+Seen so far: 4832.0 samples
+Accuracy : 0.908
+Training loss (for one batch) at step 200.0: 1.7224052498931997e-05
+Seen so far: 6432.0 samples
+Accuracy : 0.909
+Training loss (for one batch) at step 250.0: 1.0352812296332559e-06
+Seen so far: 8032.0 samples
+Accuracy : 0.910
+Training loss (for one batch) at step 300.0: 7.333080429816619e-05
+Seen so far: 9632.0 samples
+Accuracy : 0.910
+Training loss (for one batch) at step 350.0: 0.02853243798017502
+Seen so far: 11232.0 samples
+Accuracy : 0.911
+Training loss (for one batch) at step 400.0: 0.7196773290634155
+Seen so far: 12832.0 samples
+Accuracy : 0.911
+Training loss (for one batch) at step 450.0: 1.233800475120006e-07
+Seen so far: 14432.0 samples
+Accuracy : 0.912
+Training loss (for one batch) at step 500.0: 0.00012629291450139135
+Seen so far: 16032.0 samples
+Accuracy : 0.912
+Training loss (for one batch) at step 550.0: 1.1934415056202852e-07
+Seen so far: 17632.0 samples
+Accuracy : 0.913
+Training loss (for one batch) at step 600.0: 0.08771766722202301
+Seen so far: 19232.0 samples
+Accuracy : 0.913
+Training loss (for one batch) at step 650.0: 0.08218717575073242
+Seen so far: 20832.0 samples
+Accuracy : 0.914
+Training loss (for one batch) at step 700.0: 6.319256158349162e-07
+Seen so far: 22432.0 samples
+Accuracy : 0.914
+Training loss (for one batch) at step 750.0: 0.5762633085250854
+Seen so far: 24032.0 samples
+Accuracy : 0.914
+Training loss (for one batch) at step 800.0: 0.00015216322208289057
+Seen so far: 25632.0 samples
+Accuracy : 0.915
+
+EPOCH 10 | Loss : 177.369
+Accuracy : 0.915
+

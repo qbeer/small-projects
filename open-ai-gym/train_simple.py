@@ -1,5 +1,5 @@
-import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+#import os
+#os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 import tensorflow as tf
 import gym
@@ -11,7 +11,7 @@ import collections
 
 train_writer = tf.summary.create_file_writer("./logs")
 
-env = gym.make('Pong-v0')
+env = gym.make('Breakout-v0')
 
 n_actions = env.action_space.n
 discount_factor = 0.99
@@ -21,7 +21,7 @@ EPS_MIN = 0.1
 
 eps = EPS_MAX
 
-EPS_ANNEALING_INTERVAL = 100000
+EPS_ANNEALING_INTERVAL = 500000
 
 sample_size = 128
 
@@ -29,7 +29,7 @@ HEIGHT = 96
 WIDTH = 64
 N_STACK = 4
 
-MIN_OBSERVATIONS = 5000
+MIN_OBSERVATIONS = 1000
 
 # actions are : NOPE, FIRE (new ball), RIGHT, LEFT
 q = DeepQNetwork(n_actions)
@@ -75,16 +75,18 @@ def train_decision_network():
         [sample[0] for sample in experience_samples])
     updated_observations = np.array(
         [sample[3] for sample in experience_samples])
-    rewards = np.array([sample[2] for sample in experience_samples])
+    rewards = np.array([sample[2] for sample in experience_samples],
+                       dtype=np.float32)
 
     done = np.array([sample[4] for sample in experience_samples])
 
     with tf.GradientTape() as tape:
-        _q = tf.reduce_max(q_hat(updated_observations), axis=1)
+        _q = tf.one_hot(tf.argmax(q_hat(updated_observations), axis=1),
+                        depth=n_actions,
+                        dtype=tf.float32)
+        rewards = tf.expand_dims(rewards, 1)
         q_target = rewards + discount_factor * _q
-        loss = tf.reduce_sum(
-            tf.square(q_target -
-                      tf.reduce_max(q(previous_observations), axis=1)))
+        loss = tf.reduce_sum(tf.square(q_target - q(previous_observations)))
     grads = tape.gradient(loss, q.trainable_variables)
     optimizer.apply_gradients(zip(grads, q.trainable_variables))
 
@@ -148,11 +150,6 @@ for i_episode in range(5000):
 
         eps -= (EPS_MAX - EPS_MIN) / EPS_ANNEALING_INTERVAL
 
+    q.save_weights('q_weights.h5')
+
 env.close()
-
-q.save_weights('q_weights.h5')
-
-for ind in range(len(memory.experiences)):
-    obs, act, r, _obs = memory.experiences[ind]
-    if r > 0:
-        print(obs.shape, act, r, _obs.shape)
