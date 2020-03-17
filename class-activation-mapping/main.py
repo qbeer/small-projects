@@ -4,6 +4,7 @@ os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 import tensorflow as tf
 import tensorflow_datasets as tfds
 import matplotlib.pyplot as plt
+from matplotlib.colors import PowerNorm, LogNorm
 import numpy as np
 
 imagenette = tfds.load('imagenette/320px', split=tfds.Split.TRAIN)
@@ -82,45 +83,41 @@ if acc.result().numpy() < .9:
 # Get weights from Dense layer
 weights = model.layers[-1].get_weights()[0]
 
-imagenette_validation = tfds.load('imagenette/320px', split=tfds.Split.VALIDATION)
-
-@tf.function
-def apply_preproc(example):
-    image, label = example['image'], example['label']
-    image = tf.image.resize(image, [320, 320])
-    label = tf.one_hot(label, depth=10)
-    return image, label
-
-imagenette_validation = imagenette_validation.shuffle(buffer_size=1500).map(apply_preproc).batch(16)
-
 classes = ["tench", "English springer", "cassette player",
            "chain saw", "church", "French horn", "garbage truck", "gas pump",
            "golf ball", "parachute"]
 
+vgg_means = [123.68, 116.78, 103.94]
+
 # Class activation maps
 for images, labels in imagenette_validation.take(1):
     pred_labels, avg_pooled, feature_maps = model(images, training=False)
-    fig, axes = plt.subplots(16, 10, sharex=True, sharey=True, figsize=(25, 30))
-    for img_ind in range(16):
+    fig, axes = plt.subplots(5, 3, sharex=True, sharey=True, figsize=(7, 12))
+    for img_ind in range(5):
         best_class = np.argmax(pred_labels[img_ind])
         BEST_MAP = feature_maps[img_ind] @ weights[:, best_class].reshape(feature_maps.shape[-1], 1)
-        for class_ind in range(10):
-            axes[img_ind, class_ind].imshow(images[img_ind].numpy().astype(int))
+        for ind, class_ind in enumerate(np.argsort(pred_labels[img_ind])[::-1][:3]):
+            deprocessed_image = images[img_ind].numpy()
+            deprocessed_image = deprocessed_image[..., ::-1] # BGR -> RGB
+            for channel in range(len(vgg_means)):
+                deprocessed_image[..., channel] += vgg_means[channel]
+            deprocessed_image = deprocessed_image.astype(int)
+            
+            axes[img_ind, ind].imshow(deprocessed_image)
             class_weight = weights[:, class_ind].reshape(feature_maps.shape[-1], 1)
             
             CAM = (feature_maps[img_ind] @ class_weight)
             upsampled_cam = tf.image.resize(CAM, [320, 320]).numpy().reshape(320, 320)
             
             upsampled_cam /= np.max(BEST_MAP)
-            upsampled_cam[upsampled_cam < .5] = 0.
-            print(np.max(upsampled_cam), end=' ')
+            upsampled_cam[upsampled_cam < .3] = .0
             
-            axes[img_ind, class_ind].imshow(upsampled_cam, alpha=0.3, cmap="magma_r", vmin=0, vmax=1, interpolation=None)
+            axes[img_ind, ind].imshow(upsampled_cam, alpha=0.3, cmap="magma_r", vmin=.0, vmax=1., interpolation='bilinear')
             
-            axes[img_ind, class_ind].set_title("%s - %.1f%%" % (classes[class_ind], 100. * pred_labels[img_ind, class_ind].numpy()))
+            axes[img_ind, ind].set_title("%s - %.1f%%" % (classes[class_ind], 100. * pred_labels[img_ind, class_ind].numpy()))
             
-            axes[img_ind, class_ind].set_xticks([])
-            axes[img_ind, class_ind].set_yticks([])
+            axes[img_ind, ind].set_xticks([])
+            axes[img_ind, ind].set_yticks([])
         
         print('\n\n')
     fig.tight_layout()
