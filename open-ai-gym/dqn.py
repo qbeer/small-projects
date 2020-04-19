@@ -19,7 +19,7 @@ N_ACTIONS = env.action_space.n
 GAMMA = 0.999
 MAX_EPISODE_LENGTH = 300
 N_EPOSIDES = 5_000
-UPDATE_INTERVAL = 5_000
+UPDATE_INTERVAL = 2_500
 REPLAY_MEMORY_SIZE = 50_000
 STACK_SIZE = 4
 IMG_HEIGHT = 84
@@ -43,8 +43,7 @@ q = DeepQNetwork(N_ACTIONS)
 q_target = DeepQNetwork(N_ACTIONS)
 
 # Initialize both networks with the same weights
-q.save_weights('chkpt/q_weights')
-q_target.load_weights('chkpt/q_weights')
+q_target.set_weights(q.get_weights())
 
 memory = ReplayMemory(REPLAY_MEMORY_SIZE)
 
@@ -145,14 +144,13 @@ for ep in range(N_EPOSIDES):
             
             if n_th_iteration % UPDATE_INTERVAL == 0:
                 logging.info('Iteration : %d | Updating target weights...' % n_th_iteration)
-                q.save_weights('chkpt/q_weights')
-                q_target.load_weights('chkpt/q_weights')
+                q.save_weights('chkpt/q.h5')
+                q_target.set_weights(q.get_weights())
             
         if terminal:
             total_reward -= 1
+            break
             
-            logging.info(f'Iteration : {n_th_iteration} | Episode : {ep + 1} | Total reward : {total_reward}, episode length : {timestep}, current eps : {current_eps}')
-            
-            break        
+    logging.info(f'Iteration : {n_th_iteration} | Episode : {ep + 1} | Total reward : {total_reward}, episode length : {timestep}, current eps : {current_eps}')      
 
 env.close()
