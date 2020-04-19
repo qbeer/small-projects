@@ -1,156 +1,1208 @@
-2020-04-19 19:57:07.341501: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
-2020-04-19 19:57:07.356005: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 0 with properties: 
-name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
-pciBusID: 0000:02:00.0
-2020-04-19 19:57:07.358443: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
-2020-04-19 19:57:07.390432: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
-2020-04-19 19:57:07.405997: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10.0
-2020-04-19 19:57:07.411665: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10.0
-2020-04-19 19:57:07.449416: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10.0
-2020-04-19 19:57:07.472788: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10.0
-2020-04-19 19:57:07.540464: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
-2020-04-19 19:57:07.542586: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Adding visible gpu devices: 0
-2020-04-19 19:57:07.543338: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
-2020-04-19 19:57:07.563857: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3599135000 Hz
-2020-04-19 19:57:07.565389: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x49461e0 executing computations on platform Host. Devices:
-2020-04-19 19:57:07.565434: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): Host, Default Version
-2020-04-19 19:57:07.741985: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x4979530 executing computations on platform CUDA. Devices:
-2020-04-19 19:57:07.742045: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): GeForce GTX 1070, Compute Capability 6.1
-2020-04-19 19:57:07.743449: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1618] Found device 0 with properties: 
-name: GeForce GTX 1070 major: 6 minor: 1 memoryClockRate(GHz): 1.7465
-pciBusID: 0000:02:00.0
-2020-04-19 19:57:07.743528: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
-2020-04-19 19:57:07.743558: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
-2020-04-19 19:57:07.743589: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10.0
-2020-04-19 19:57:07.743612: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10.0
-2020-04-19 19:57:07.743655: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10.0
-2020-04-19 19:57:07.743681: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10.0
-2020-04-19 19:57:07.743703: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
-2020-04-19 19:57:07.745942: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1746] Adding visible gpu devices: 0
-2020-04-19 19:57:07.746427: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.0
-2020-04-19 19:57:07.747757: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1159] Device interconnect StreamExecutor with strength 1 edge matrix:
-2020-04-19 19:57:07.747780: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1165]      0 
-2020-04-19 19:57:07.747788: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1178] 0:   N 
-2020-04-19 19:57:07.749464: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1304] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7625 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1070, pci bus id: 0000:02:00.0, compute capability: 6.1)
-Iteration : 249 | Episode : 1 | Total reward : 0.0, episode length : 248, current eps : 0.9995518
-2020-04-19 19:57:10.062116: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
-2020-04-19 19:57:11.601822: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10.0
-Iteration : 725 | Episode : 3 | Total reward : -1.0, episode length : 175, current eps : 0.998695
-Iteration : 1303 | Episode : 5 | Total reward : 1.0, episode length : 277, current eps : 0.9976546
-Iteration : 1562 | Episode : 6 | Total reward : 1.0, episode length : 258, current eps : 0.9971884
-Iteration : 1741 | Episode : 7 | Total reward : -1.0, episode length : 178, current eps : 0.9968662
-Iteration : 1929 | Episode : 8 | Total reward : -1.0, episode length : 187, current eps : 0.9965278
-Iteration : 2146 | Episode : 9 | Total reward : 0.0, episode length : 216, current eps : 0.9961372
-Iteration : 2421 | Episode : 10 | Total reward : 1.0, episode length : 274, current eps : 0.9956422
-Iteration : 2636 | Episode : 11 | Total reward : 0.0, episode length : 214, current eps : 0.9952552
-Iteration : 2804 | Episode : 12 | Total reward : -1.0, episode length : 167, current eps : 0.9949528
-Iteration : 3072 | Episode : 13 | Total reward : 1.0, episode length : 267, current eps : 0.9944704
-Iteration : 3622 | Episode : 15 | Total reward : 0.0, episode length : 249, current eps : 0.9934804
-Iteration : 4082 | Episode : 17 | Total reward : -1.0, episode length : 159, current eps : 0.9926524
-Iteration : 4360 | Episode : 18 | Total reward : 1.0, episode length : 277, current eps : 0.992152
-Iteration : 4611 | Episode : 19 | Total reward : 0.0, episode length : 250, current eps : 0.9917002
-Iteration : 4802 | Episode : 20 | Total reward : -1.0, episode length : 190, current eps : 0.9913564
-Iteration : 5031 | Episode : 21 | Total reward : 0.0, episode length : 228, current eps : 0.9909442
-Iteration : 5212 | Episode : 22 | Total reward : -1.0, episode length : 180, current eps : 0.9906184
-Iteration : 5683 | Episode : 24 | Total reward : -1.0, episode length : 170, current eps : 0.9897706
-Iteration : 5863 | Episode : 25 | Total reward : -1.0, episode length : 179, current eps : 0.9894466
-Iteration : 6637 | Episode : 28 | Total reward : -1.0, episode length : 173, current eps : 0.9880534
-Iteration : 6847 | Episode : 29 | Total reward : 0.0, episode length : 209, current eps : 0.9876754
-Iteration : 7091 | Episode : 30 | Total reward : 0.0, episode length : 243, current eps : 0.9872362
-Iteration : 7320 | Episode : 31 | Total reward : 0.0, episode length : 228, current eps : 0.986824
-Iteration : 7593 | Episode : 32 | Total reward : 1.0, episode length : 272, current eps : 0.9863326
-Iteration : 8405 | Episode : 35 | Total reward : 0.0, episode length : 211, current eps : 0.984871
-Iteration : 8586 | Episode : 36 | Total reward : -1.0, episode length : 180, current eps : 0.9845452
-Iteration : 8766 | Episode : 37 | Total reward : -1.0, episode length : 179, current eps : 0.9842212
-Iteration : 8984 | Episode : 38 | Total reward : 0.0, episode length : 217, current eps : 0.9838288
-Iteration : 9218 | Episode : 39 | Total reward : 0.0, episode length : 233, current eps : 0.9834076
-Iteration : 9400 | Episode : 40 | Total reward : -1.0, episode length : 181, current eps : 0.98308
-Iteration : 9584 | Episode : 41 | Total reward : -1.0, episode length : 183, current eps : 0.9827488
-Iteration : 9759 | Episode : 42 | Total reward : -1.0, episode length : 174, current eps : 0.9824338
-Iteration : 9927 | Episode : 43 | Total reward : -1.0, episode length : 167, current eps : 0.9821314
-Iteration : 10196 | Episode : 44 | Total reward : 1.0, episode length : 268, current eps : 0.9816472
-Iteration : 10427 | Episode : 45 | Total reward : 0.0, episode length : 230, current eps : 0.9812314
-Iteration : 10615 | Episode : 46 | Total reward : -1.0, episode length : 187, current eps : 0.980893
-Iteration : 10858 | Episode : 47 | Total reward : 1.0, episode length : 242, current eps : 0.9804556
-Iteration : 11333 | Episode : 49 | Total reward : -1.0, episode length : 174, current eps : 0.9796006
-Iteration : 11509 | Episode : 50 | Total reward : -1.0, episode length : 175, current eps : 0.9792838
-Iteration : 12018 | Episode : 52 | Total reward : 0.0, episode length : 208, current eps : 0.9783676
-Iteration : 12197 | Episode : 53 | Total reward : -1.0, episode length : 178, current eps : 0.9780454
-Iteration : 12456 | Episode : 54 | Total reward : 0.0, episode length : 258, current eps : 0.9775792
-Iteration : 12752 | Episode : 55 | Total reward : 1.0, episode length : 295, current eps : 0.9770464
-Iteration : 12929 | Episode : 56 | Total reward : -1.0, episode length : 176, current eps : 0.9767278
-Iteration : 13206 | Episode : 57 | Total reward : 1.0, episode length : 276, current eps : 0.9762292
-Iteration : 13381 | Episode : 58 | Total reward : -1.0, episode length : 174, current eps : 0.9759142
-Iteration : 13843 | Episode : 60 | Total reward : -1.0, episode length : 161, current eps : 0.9750826
-Iteration : 14126 | Episode : 61 | Total reward : 1.0, episode length : 282, current eps : 0.9745732
-Iteration : 14340 | Episode : 62 | Total reward : 0.0, episode length : 213, current eps : 0.974188
-Iteration : 14515 | Episode : 63 | Total reward : -1.0, episode length : 174, current eps : 0.973873
-Iteration : 14717 | Episode : 64 | Total reward : 0.0, episode length : 201, current eps : 0.9735094
-Iteration : 14998 | Episode : 65 | Total reward : 1.0, episode length : 280, current eps : 0.9730036
-Iteration : 15169 | Episode : 66 | Total reward : -1.0, episode length : 170, current eps : 0.9726958
-Iteration : 16068 | Episode : 69 | Total reward : 1.0, episode length : 298, current eps : 0.9710776
-Iteration : 16250 | Episode : 70 | Total reward : -1.0, episode length : 181, current eps : 0.97075
-Iteration : 16495 | Episode : 71 | Total reward : 1.0, episode length : 244, current eps : 0.970309
-Iteration : 16667 | Episode : 72 | Total reward : -1.0, episode length : 171, current eps : 0.9699994
-Iteration : 16883 | Episode : 73 | Total reward : 0.0, episode length : 215, current eps : 0.9696106
-Iteration : 17378 | Episode : 75 | Total reward : -1.0, episode length : 194, current eps : 0.9687196
-Iteration : 17591 | Episode : 76 | Total reward : 0.0, episode length : 212, current eps : 0.9683362
-Iteration : 17848 | Episode : 77 | Total reward : 1.0, episode length : 256, current eps : 0.9678736
-Iteration : 18040 | Episode : 78 | Total reward : -1.0, episode length : 191, current eps : 0.9675279999999999
-Iteration : 18618 | Episode : 80 | Total reward : 1.0, episode length : 277, current eps : 0.9664876
-Iteration : 18811 | Episode : 81 | Total reward : -1.0, episode length : 192, current eps : 0.9661402
-Iteration : 19016 | Episode : 82 | Total reward : 0.0, episode length : 204, current eps : 0.9657712
-Iteration : 19589 | Episode : 84 | Total reward : 1.0, episode length : 272, current eps : 0.9647398
-Iteration : 19853 | Episode : 85 | Total reward : 0.0, episode length : 263, current eps : 0.9642646
-Iteration : 20031 | Episode : 86 | Total reward : -1.0, episode length : 177, current eps : 0.9639442
-Iteration : 20227 | Episode : 87 | Total reward : -1.0, episode length : 195, current eps : 0.9635914
-Iteration : 20504 | Episode : 88 | Total reward : 1.0, episode length : 276, current eps : 0.9630928
-Iteration : 21387 | Episode : 91 | Total reward : 1.0, episode length : 282, current eps : 0.9615034
-Iteration : 21866 | Episode : 93 | Total reward : -1.0, episode length : 178, current eps : 0.9606412
-Iteration : 22041 | Episode : 94 | Total reward : -1.0, episode length : 174, current eps : 0.9603262
-Iteration : 22275 | Episode : 95 | Total reward : 0.0, episode length : 233, current eps : 0.959905
-Iteration : 22812 | Episode : 97 | Total reward : 0.0, episode length : 236, current eps : 0.9589384
-Iteration : 23037 | Episode : 98 | Total reward : 0.0, episode length : 224, current eps : 0.9585334
-Iteration : 23269 | Episode : 99 | Total reward : 0.0, episode length : 231, current eps : 0.9581158
-Iteration : 23525 | Episode : 100 | Total reward : 0.0, episode length : 255, current eps : 0.957655
-Iteration : 23729 | Episode : 101 | Total reward : 0.0, episode length : 203, current eps : 0.9572878
-Iteration : 23958 | Episode : 102 | Total reward : 0.0, episode length : 228, current eps : 0.9568756
-Iteration : 24129 | Episode : 103 | Total reward : -1.0, episode length : 170, current eps : 0.9565678
-Iteration : 24703 | Episode : 105 | Total reward : 1.0, episode length : 273, current eps : 0.9555346
-Iteration : 24910 | Episode : 106 | Total reward : 0.0, episode length : 206, current eps : 0.955162
+Iteration : 214 | Episode : 1 | Total reward : 0.0, episode length : 213, current eps : 0.9996148
+Iteration : 387 | Episode : 2 | Total reward : -1.0, episode length : 172, current eps : 0.9993034
+Iteration : 618 | Episode : 3 | Total reward : 0.0, episode length : 230, current eps : 0.9988876
+Iteration : 851 | Episode : 4 | Total reward : 0.0, episode length : 232, current eps : 0.9984682
+Iteration : 1032 | Episode : 5 | Total reward : -1.0, episode length : 180, current eps : 0.9981424
+Iteration : 1527 | Episode : 7 | Total reward : -1.0, episode length : 194, current eps : 0.9972514
+Iteration : 1717 | Episode : 8 | Total reward : -1.0, episode length : 189, current eps : 0.9969094
+Iteration : 1890 | Episode : 9 | Total reward : -1.0, episode length : 172, current eps : 0.996598
+Iteration : 2463 | Episode : 11 | Total reward : 1.0, episode length : 272, current eps : 0.9955666
+Iteration : 2640 | Episode : 12 | Total reward : -1.0, episode length : 176, current eps : 0.995248
+Iteration : 3173 | Episode : 14 | Total reward : 0.0, episode length : 232, current eps : 0.9942886
+Iteration : 3457 | Episode : 15 | Total reward : 1.0, episode length : 283, current eps : 0.9937774
+Iteration : 3626 | Episode : 16 | Total reward : -1.0, episode length : 168, current eps : 0.9934732
+Iteration : 3859 | Episode : 17 | Total reward : 0.0, episode length : 232, current eps : 0.9930538
+Iteration : 4132 | Episode : 18 | Total reward : 1.0, episode length : 272, current eps : 0.9925624
+Iteration : 4309 | Episode : 19 | Total reward : -1.0, episode length : 176, current eps : 0.9922438
+Iteration : 4476 | Episode : 20 | Total reward : -1.0, episode length : 166, current eps : 0.9919432
+Iteration : 4714 | Episode : 21 | Total reward : 0.0, episode length : 237, current eps : 0.9915148
+Iteration : 5288 | Episode : 23 | Total reward : 0.0, episode length : 273, current eps : 0.9904816
+Iteration : 5829 | Episode : 25 | Total reward : 0.0, episode length : 240, current eps : 0.9895078
+Iteration : 6068 | Episode : 26 | Total reward : 0.0, episode length : 238, current eps : 0.9890776
+Iteration : 6542 | Episode : 28 | Total reward : -1.0, episode length : 173, current eps : 0.9882244
+Iteration : 6714 | Episode : 29 | Total reward : -1.0, episode length : 171, current eps : 0.9879148
+Iteration : 6931 | Episode : 30 | Total reward : 0.0, episode length : 216, current eps : 0.9875242
+Iteration : 7407 | Episode : 32 | Total reward : -1.0, episode length : 175, current eps : 0.9866674
+Iteration : 7642 | Episode : 33 | Total reward : 0.0, episode length : 234, current eps : 0.9862444
+Iteration : 7839 | Episode : 34 | Total reward : -1.0, episode length : 196, current eps : 0.9858898
+Iteration : 8076 | Episode : 35 | Total reward : 0.0, episode length : 236, current eps : 0.9854632
+Iteration : 8569 | Episode : 37 | Total reward : -1.0, episode length : 192, current eps : 0.9845758
+Iteration : 8732 | Episode : 38 | Total reward : -1.0, episode length : 162, current eps : 0.9842824
+Iteration : 9216 | Episode : 40 | Total reward : -1.0, episode length : 183, current eps : 0.9834112
+Iteration : 9410 | Episode : 41 | Total reward : -1.0, episode length : 193, current eps : 0.983062
+Iteration : 9571 | Episode : 42 | Total reward : -1.0, episode length : 160, current eps : 0.9827722
+Iteration : 9828 | Episode : 43 | Total reward : 0.0, episode length : 256, current eps : 0.9823096
+Iteration : 10373 | Episode : 45 | Total reward : 0.0, episode length : 244, current eps : 0.9813286
+Iteration : 10659 | Episode : 46 | Total reward : 1.0, episode length : 285, current eps : 0.9808138
+Iteration : 10862 | Episode : 47 | Total reward : 0.0, episode length : 202, current eps : 0.9804484
+Iteration : 11111 | Episode : 48 | Total reward : 0.0, episode length : 248, current eps : 0.9800002
+Iteration : 11947 | Episode : 51 | Total reward : 0.0, episode length : 235, current eps : 0.9784954
+Iteration : 12233 | Episode : 52 | Total reward : 1.0, episode length : 285, current eps : 0.9779806
+Iteration : 12462 | Episode : 53 | Total reward : 0.0, episode length : 228, current eps : 0.9775684
+Iteration : 12677 | Episode : 54 | Total reward : 0.0, episode length : 214, current eps : 0.9771814
+Iteration : 13873 | Episode : 58 | Total reward : 1.0, episode length : 295, current eps : 0.9750286
+Iteration : 14059 | Episode : 59 | Total reward : -1.0, episode length : 185, current eps : 0.9746938
+Iteration : 14330 | Episode : 60 | Total reward : 1.0, episode length : 270, current eps : 0.974206
+Iteration : 14501 | Episode : 61 | Total reward : -1.0, episode length : 170, current eps : 0.9738982
+Iteration : 14678 | Episode : 62 | Total reward : -1.0, episode length : 176, current eps : 0.9735796
+Iteration : 15548 | Episode : 65 | Total reward : 1.0, episode length : 269, current eps : 0.9720136
+Iteration : 15815 | Episode : 66 | Total reward : 1.0, episode length : 266, current eps : 0.971533
+Iteration : 15990 | Episode : 67 | Total reward : -1.0, episode length : 174, current eps : 0.971218
+Iteration : 16259 | Episode : 68 | Total reward : 1.0, episode length : 268, current eps : 0.9707338
+Iteration : 16480 | Episode : 69 | Total reward : 0.0, episode length : 220, current eps : 0.970336
+Iteration : 16651 | Episode : 70 | Total reward : -1.0, episode length : 170, current eps : 0.9700282
+Iteration : 16818 | Episode : 71 | Total reward : -1.0, episode length : 166, current eps : 0.9697276
+Iteration : 17298 | Episode : 73 | Total reward : -1.0, episode length : 179, current eps : 0.9688636
+Iteration : 17892 | Episode : 75 | Total reward : 1.0, episode length : 293, current eps : 0.9677944
+Iteration : 18073 | Episode : 76 | Total reward : -1.0, episode length : 180, current eps : 0.9674686
+Iteration : 18580 | Episode : 78 | Total reward : 0.0, episode length : 206, current eps : 0.966556
+Iteration : 18749 | Episode : 79 | Total reward : -1.0, episode length : 168, current eps : 0.9662518
+Iteration : 18923 | Episode : 80 | Total reward : -1.0, episode length : 173, current eps : 0.9659386
+Iteration : 19215 | Episode : 81 | Total reward : 1.0, episode length : 291, current eps : 0.965413
+Iteration : 19499 | Episode : 82 | Total reward : 1.0, episode length : 283, current eps : 0.9649018
+Iteration : 19985 | Episode : 84 | Total reward : -1.0, episode length : 185, current eps : 0.964027
+Iteration : 20163 | Episode : 85 | Total reward : -1.0, episode length : 177, current eps : 0.9637066
+Iteration : 20943 | Episode : 88 | Total reward : -1.0, episode length : 179, current eps : 0.9623026
+Iteration : 180 | Episode : 1 | Total reward : -1.0, episode length : 179, current eps : 0.999676
+Iteration : 350 | Episode : 2 | Total reward : -1.0, episode length : 169, current eps : 0.99937
+Iteration : 615 | Episode : 3 | Total reward : 1.0, episode length : 264, current eps : 0.998893
+Iteration : 850 | Episode : 4 | Total reward : 0.0, episode length : 234, current eps : 0.99847
+Iteration : 1142 | Episode : 5 | Total reward : 1.0, episode length : 291, current eps : 0.9979444
+Iteration : 1905 | Episode : 8 | Total reward : -1.0, episode length : 162, current eps : 0.996571
+Iteration : 2071 | Episode : 9 | Total reward : -1.0, episode length : 165, current eps : 0.9962722
+Iteration : 2314 | Episode : 10 | Total reward : 0.0, episode length : 242, current eps : 0.9958348
+Iteration : 2606 | Episode : 11 | Total reward : 1.0, episode length : 291, current eps : 0.9953092
+Iteration : 3441 | Episode : 14 | Total reward : 0.0, episode length : 234, current eps : 0.9938062
+Iteration : 4037 | Episode : 16 | Total reward : 1.0, episode length : 295, current eps : 0.9927334
+Iteration : 4248 | Episode : 17 | Total reward : 0.0, episode length : 210, current eps : 0.9923536
+Iteration : 4482 | Episode : 18 | Total reward : 0.0, episode length : 233, current eps : 0.9919324
+Iteration : 4717 | Episode : 19 | Total reward : 0.0, episode length : 234, current eps : 0.9915094
+Iteration : 4920 | Episode : 20 | Total reward : 0.0, episode length : 202, current eps : 0.991144
+Iteration : 5151 | Episode : 21 | Total reward : 0.0, episode length : 230, current eps : 0.9907282
+Iteration : 5334 | Episode : 22 | Total reward : -1.0, episode length : 182, current eps : 0.9903988
+Iteration : 5577 | Episode : 23 | Total reward : 0.0, episode length : 242, current eps : 0.9899614
+Iteration : 5862 | Episode : 24 | Total reward : 1.0, episode length : 284, current eps : 0.9894484
+Iteration : 6368 | Episode : 26 | Total reward : 0.0, episode length : 205, current eps : 0.9885376
+Iteration : 6536 | Episode : 27 | Total reward : -1.0, episode length : 167, current eps : 0.9882352
+Iteration : 6757 | Episode : 28 | Total reward : 0.0, episode length : 220, current eps : 0.9878374
+Iteration : 6994 | Episode : 29 | Total reward : 0.0, episode length : 236, current eps : 0.9874108
+Iteration : 7245 | Episode : 30 | Total reward : 0.0, episode length : 250, current eps : 0.986959
+Iteration : 7769 | Episode : 32 | Total reward : 0.0, episode length : 223, current eps : 0.9860158
+Iteration : 7949 | Episode : 33 | Total reward : -1.0, episode length : 179, current eps : 0.9856918
+Iteration : 8731 | Episode : 36 | Total reward : -1.0, episode length : 181, current eps : 0.9842842
+Iteration : 9013 | Episode : 37 | Total reward : 1.0, episode length : 281, current eps : 0.9837766
+Iteration : 9180 | Episode : 38 | Total reward : -1.0, episode length : 166, current eps : 0.983476
+Iteration : 9355 | Episode : 39 | Total reward : -1.0, episode length : 174, current eps : 0.983161
+Iteration : 9524 | Episode : 40 | Total reward : -1.0, episode length : 168, current eps : 0.9828568
+Iteration : 9698 | Episode : 41 | Total reward : -1.0, episode length : 173, current eps : 0.9825436
+Iteration : 10222 | Episode : 43 | Total reward : 0.0, episode length : 223, current eps : 0.9816004
+Iteration : 10506 | Episode : 44 | Total reward : 1.0, episode length : 283, current eps : 0.9810892
+Iteration : 10981 | Episode : 46 | Total reward : -1.0, episode length : 174, current eps : 0.9802341999999999
+Iteration : 11518 | Episode : 48 | Total reward : 0.0, episode length : 236, current eps : 0.9792676
+Iteration : 11736 | Episode : 49 | Total reward : 0.0, episode length : 217, current eps : 0.9788752000000001
+Iteration : 12316 | Episode : 51 | Total reward : 1.0, episode length : 279, current eps : 0.9778312
+Iteration : 12484 | Episode : 52 | Total reward : -1.0, episode length : 167, current eps : 0.9775288
+Iteration : 12674 | Episode : 53 | Total reward : -1.0, episode length : 189, current eps : 0.9771868
+Iteration : 12921 | Episode : 54 | Total reward : 0.0, episode length : 246, current eps : 0.9767422
+Iteration : 13154 | Episode : 55 | Total reward : 0.0, episode length : 232, current eps : 0.9763228
+Iteration : 13651 | Episode : 57 | Total reward : -1.0, episode length : 196, current eps : 0.9754282
+Iteration : 13822 | Episode : 58 | Total reward : -1.0, episode length : 170, current eps : 0.9751204
+Iteration : 14106 | Episode : 59 | Total reward : 1.0, episode length : 283, current eps : 0.9746092
+Iteration : 14317 | Episode : 60 | Total reward : 0.0, episode length : 210, current eps : 0.9742294
+Iteration : 14493 | Episode : 61 | Total reward : -1.0, episode length : 175, current eps : 0.9739126
+Iteration : 14773 | Episode : 62 | Total reward : 1.0, episode length : 279, current eps : 0.9734086
+Iteration : 15000 | Episode : 63 | Total reward : 0.0, episode length : 226, current eps : 0.973
+Iteration : 15233 | Episode : 64 | Total reward : 0.0, episode length : 232, current eps : 0.9725806
+Iteration : 15503 | Episode : 65 | Total reward : 1.0, episode length : 269, current eps : 0.9720946
+Iteration : 15745 | Episode : 66 | Total reward : 0.0, episode length : 241, current eps : 0.971659
+Iteration : 16330 | Episode : 68 | Total reward : 1.0, episode length : 284, current eps : 0.970606
+Iteration : 16560 | Episode : 69 | Total reward : 0.0, episode length : 229, current eps : 0.9701919999999999
+Iteration : 16786 | Episode : 70 | Total reward : 0.0, episode length : 225, current eps : 0.9697852
+Iteration : 17021 | Episode : 71 | Total reward : 0.0, episode length : 234, current eps : 0.9693622
+Iteration : 17263 | Episode : 72 | Total reward : 0.0, episode length : 241, current eps : 0.9689266
+Iteration : 17532 | Episode : 73 | Total reward : 1.0, episode length : 268, current eps : 0.9684424
+Iteration : 17759 | Episode : 74 | Total reward : 0.0, episode length : 226, current eps : 0.9680337999999999
+Iteration : 18025 | Episode : 75 | Total reward : 1.0, episode length : 265, current eps : 0.9675549999999999
+Iteration : 18196 | Episode : 76 | Total reward : -1.0, episode length : 170, current eps : 0.9672472
+Iteration : 18407 | Episode : 77 | Total reward : 0.0, episode length : 210, current eps : 0.9668674
+Iteration : 18990 | Episode : 79 | Total reward : 1.0, episode length : 282, current eps : 0.965818
+Iteration : 19285 | Episode : 80 | Total reward : 1.0, episode length : 294, current eps : 0.965287
+Iteration : 19485 | Episode : 81 | Total reward : -1.0, episode length : 199, current eps : 0.964927
+Iteration : 20023 | Episode : 83 | Total reward : 0.0, episode length : 237, current eps : 0.9639586
+Iteration : 20100 | Updating target weights...
+Iteration : 20200 | Updating target weights...
+Iteration : 20203 | Episode : 84 | Total reward : -1.0, episode length : 179, current eps : 0.9636346
+Iteration : 20300 | Updating target weights...
+Iteration : 20369 | Episode : 85 | Total reward : -1.0, episode length : 165, current eps : 0.9633358
+Iteration : 20400 | Updating target weights...
+Iteration : 20500 | Updating target weights...
+Iteration : 20600 | Updating target weights...
+Iteration : 20669 | Episode : 86 | Total reward : 1.0, episode length : 299, current eps : 0.9627958
+Iteration : 20700 | Updating target weights...
+Iteration : 20800 | Updating target weights...
+Iteration : 20900 | Updating target weights...
+Iteration : 21000 | Updating target weights...
+Iteration : 21100 | Updating target weights...
+Iteration : 21173 | Episode : 88 | Total reward : 0.0, episode length : 203, current eps : 0.9618886
+Iteration : 21200 | Updating target weights...
+Iteration : 21300 | Updating target weights...
+Iteration : 21400 | Updating target weights...
+Iteration : 21500 | Updating target weights...
+Iteration : 21600 | Updating target weights...
+Iteration : 21700 | Updating target weights...
+Iteration : 21714 | Episode : 90 | Total reward : 0.0, episode length : 240, current eps : 0.9609148
+Iteration : 21800 | Updating target weights...
+Iteration : 21896 | Episode : 91 | Total reward : -1.0, episode length : 181, current eps : 0.9605872
+Iteration : 21900 | Updating target weights...
+Iteration : 22000 | Updating target weights...
+Iteration : 22100 | Updating target weights...
+Iteration : 22200 | Updating target weights...
+Iteration : 22300 | Updating target weights...
+Iteration : 22400 | Updating target weights...
+Iteration : 22466 | Episode : 93 | Total reward : 1.0, episode length : 269, current eps : 0.9595612
+Iteration : 22500 | Updating target weights...
+Iteration : 22600 | Updating target weights...
+Iteration : 22700 | Updating target weights...
+Iteration : 22707 | Episode : 94 | Total reward : 0.0, episode length : 240, current eps : 0.9591274
+Iteration : 22800 | Updating target weights...
+Iteration : 22900 | Updating target weights...
+Iteration : 23000 | Updating target weights...
+Iteration : 23100 | Updating target weights...
+Iteration : 177 | Episode : 1 | Total reward : -1.0, episode length : 176, current eps : 0.9996814
+Iteration : 406 | Episode : 2 | Total reward : 0.0, episode length : 228, current eps : 0.9992692
+Iteration : 647 | Episode : 3 | Total reward : 0.0, episode length : 240, current eps : 0.9988354
+Iteration : 944 | Episode : 4 | Total reward : 1.0, episode length : 296, current eps : 0.9983008
+Iteration : 1110 | Episode : 5 | Total reward : -1.0, episode length : 165, current eps : 0.998002
+Iteration : 1332 | Episode : 6 | Total reward : 0.0, episode length : 221, current eps : 0.9976024
+Iteration : 1521 | Episode : 7 | Total reward : -1.0, episode length : 188, current eps : 0.9972622
+Iteration : 1695 | Episode : 8 | Total reward : -1.0, episode length : 173, current eps : 0.996949
+Iteration : 1995 | Episode : 9 | Total reward : 3.0, episode length : 299, current eps : 0.996409
+Iteration : 2182 | Episode : 10 | Total reward : -1.0, episode length : 186, current eps : 0.9960724
+Iteration : 2482 | Episode : 11 | Total reward : 2.0, episode length : 299, current eps : 0.9955324
+Iteration : 2756 | Episode : 12 | Total reward : 1.0, episode length : 273, current eps : 0.9950392
+Iteration : 2936 | Episode : 13 | Total reward : -1.0, episode length : 179, current eps : 0.9947152
+Iteration : 3099 | Episode : 14 | Total reward : -1.0, episode length : 162, current eps : 0.9944218
+Iteration : 3339 | Episode : 15 | Total reward : 0.0, episode length : 239, current eps : 0.9939898
+Iteration : 3577 | Episode : 16 | Total reward : 0.0, episode length : 237, current eps : 0.9935614
+Iteration : 3866 | Episode : 17 | Total reward : 1.0, episode length : 288, current eps : 0.9930412
+Iteration : 4166 | Episode : 18 | Total reward : 3.0, episode length : 299, current eps : 0.9925012
+Iteration : 4353 | Episode : 19 | Total reward : -1.0, episode length : 186, current eps : 0.9921646
+Iteration : 4518 | Episode : 20 | Total reward : -1.0, episode length : 164, current eps : 0.9918676
+Iteration : 4818 | Episode : 21 | Total reward : 4.0, episode length : 299, current eps : 0.9913276
+Iteration : 4990 | Episode : 22 | Total reward : -1.0, episode length : 171, current eps : 0.991018
+Iteration : 5290 | Episode : 23 | Total reward : 2.0, episode length : 299, current eps : 0.990478
+Iteration : 5471 | Episode : 24 | Total reward : -1.0, episode length : 180, current eps : 0.9901522
+Iteration : 5656 | Episode : 25 | Total reward : -1.0, episode length : 184, current eps : 0.9898192
+Iteration : 5831 | Episode : 26 | Total reward : -1.0, episode length : 174, current eps : 0.9895042
+Iteration : 6004 | Episode : 27 | Total reward : -1.0, episode length : 172, current eps : 0.9891928
+Iteration : 6241 | Episode : 28 | Total reward : 0.0, episode length : 236, current eps : 0.9887662
+Iteration : 6445 | Episode : 29 | Total reward : 0.0, episode length : 203, current eps : 0.988399
+Iteration : 6743 | Episode : 30 | Total reward : 1.0, episode length : 297, current eps : 0.9878626
+Iteration : 6947 | Episode : 31 | Total reward : -1.0, episode length : 203, current eps : 0.9874954
+Iteration : 7133 | Episode : 32 | Total reward : -1.0, episode length : 185, current eps : 0.9871606
+Iteration : 7300 | Episode : 33 | Total reward : -1.0, episode length : 166, current eps : 0.98686
+Iteration : 7585 | Episode : 34 | Total reward : 1.0, episode length : 284, current eps : 0.986347
+Iteration : 7885 | Episode : 35 | Total reward : 2.0, episode length : 299, current eps : 0.985807
+Iteration : 8053 | Episode : 36 | Total reward : -1.0, episode length : 167, current eps : 0.9855046
+Iteration : 8237 | Episode : 37 | Total reward : -1.0, episode length : 183, current eps : 0.9851734
+Iteration : 8528 | Episode : 38 | Total reward : 1.0, episode length : 290, current eps : 0.9846496
+Iteration : 8800 | Episode : 39 | Total reward : 1.0, episode length : 271, current eps : 0.98416
+Iteration : 9047 | Episode : 40 | Total reward : 0.0, episode length : 246, current eps : 0.9837154
+Iteration : 9281 | Episode : 41 | Total reward : 0.0, episode length : 233, current eps : 0.9832942
+Iteration : 9485 | Episode : 42 | Total reward : 0.0, episode length : 203, current eps : 0.982927
+Iteration : 9659 | Episode : 43 | Total reward : -1.0, episode length : 173, current eps : 0.9826138
+Iteration : 9839 | Episode : 44 | Total reward : -1.0, episode length : 179, current eps : 0.9822898
+Iteration : 10068 | Episode : 45 | Total reward : 0.0, episode length : 228, current eps : 0.9818776
+Iteration : 10248 | Episode : 46 | Total reward : -1.0, episode length : 179, current eps : 0.9815536
+Iteration : 10424 | Episode : 47 | Total reward : -1.0, episode length : 175, current eps : 0.9812368
+Iteration : 10724 | Episode : 48 | Total reward : 3.0, episode length : 299, current eps : 0.9806968
+Iteration : 10954 | Episode : 49 | Total reward : 0.0, episode length : 229, current eps : 0.9802828
+Iteration : 11141 | Episode : 50 | Total reward : -1.0, episode length : 186, current eps : 0.9799462
+Iteration : 11441 | Episode : 51 | Total reward : 2.0, episode length : 299, current eps : 0.9794062
+Iteration : 11705 | Episode : 52 | Total reward : 1.0, episode length : 263, current eps : 0.978931
+Iteration : 11877 | Episode : 53 | Total reward : -1.0, episode length : 171, current eps : 0.9786214
+Iteration : 12082 | Episode : 54 | Total reward : 0.0, episode length : 204, current eps : 0.9782524
+Iteration : 12324 | Episode : 55 | Total reward : 0.0, episode length : 241, current eps : 0.9778168
+Iteration : 12590 | Episode : 56 | Total reward : 1.0, episode length : 265, current eps : 0.977338
+Iteration : 12888 | Episode : 57 | Total reward : 1.0, episode length : 297, current eps : 0.9768016
+Iteration : 13182 | Episode : 58 | Total reward : 1.0, episode length : 293, current eps : 0.9762724
+Iteration : 13356 | Episode : 59 | Total reward : -1.0, episode length : 173, current eps : 0.9759592
+Iteration : 13537 | Episode : 60 | Total reward : -1.0, episode length : 180, current eps : 0.9756334
+Iteration : 13703 | Episode : 61 | Total reward : -1.0, episode length : 165, current eps : 0.9753346
+Iteration : 13901 | Episode : 62 | Total reward : 0.0, episode length : 197, current eps : 0.9749782
+Iteration : 14201 | Episode : 63 | Total reward : 2.0, episode length : 299, current eps : 0.9744382
+Iteration : 14414 | Episode : 64 | Total reward : 0.0, episode length : 212, current eps : 0.9740548
+Iteration : 14714 | Episode : 65 | Total reward : 3.0, episode length : 299, current eps : 0.9735148
+Iteration : 15012 | Episode : 66 | Total reward : 2.0, episode length : 297, current eps : 0.9729784
+Iteration : 15312 | Episode : 67 | Total reward : 2.0, episode length : 299, current eps : 0.9724384
+Iteration : 15612 | Episode : 68 | Total reward : 3.0, episode length : 299, current eps : 0.9718984
+Iteration : 15819 | Episode : 69 | Total reward : 0.0, episode length : 206, current eps : 0.9715258
+Iteration : 16004 | Episode : 70 | Total reward : -1.0, episode length : 184, current eps : 0.9711928
+Iteration : 16304 | Episode : 71 | Total reward : 2.0, episode length : 299, current eps : 0.9706528
+Iteration : 16552 | Episode : 72 | Total reward : 0.0, episode length : 247, current eps : 0.9702064
+Iteration : 16723 | Episode : 73 | Total reward : -1.0, episode length : 170, current eps : 0.9698986
+Iteration : 16900 | Episode : 74 | Total reward : -1.0, episode length : 176, current eps : 0.96958
+Iteration : 17152 | Episode : 75 | Total reward : 1.0, episode length : 251, current eps : 0.9691263999999999
+Iteration : 17323 | Episode : 76 | Total reward : -1.0, episode length : 170, current eps : 0.9688186
+Iteration : 17609 | Episode : 77 | Total reward : 1.0, episode length : 285, current eps : 0.9683038
+Iteration : 17828 | Episode : 78 | Total reward : 0.0, episode length : 218, current eps : 0.9679096
+Iteration : 18012 | Episode : 79 | Total reward : -1.0, episode length : 183, current eps : 0.9675784
+Iteration : 18249 | Episode : 80 | Total reward : 0.0, episode length : 236, current eps : 0.9671518
+Iteration : 18485 | Episode : 81 | Total reward : 0.0, episode length : 235, current eps : 0.966727
+Iteration : 18785 | Episode : 82 | Total reward : 2.0, episode length : 299, current eps : 0.966187
+Iteration : 19057 | Episode : 83 | Total reward : 1.0, episode length : 271, current eps : 0.9656974
+Iteration : 19243 | Episode : 84 | Total reward : -1.0, episode length : 185, current eps : 0.9653626
+Iteration : 19427 | Episode : 85 | Total reward : -1.0, episode length : 183, current eps : 0.9650314
+Iteration : 19639 | Episode : 86 | Total reward : 0.0, episode length : 211, current eps : 0.9646498
+Iteration : 19859 | Episode : 87 | Total reward : 0.0, episode length : 219, current eps : 0.9642538
+Iteration : 20029 | Episode : 88 | Total reward : -1.0, episode length : 169, current eps : 0.9639478
+Iteration : 20246 | Episode : 89 | Total reward : 0.0, episode length : 216, current eps : 0.9635572
+Iteration : 20456 | Episode : 90 | Total reward : 0.0, episode length : 209, current eps : 0.9631792
+Iteration : 20691 | Episode : 91 | Total reward : 0.0, episode length : 234, current eps : 0.9627562
+Iteration : 20866 | Episode : 92 | Total reward : -1.0, episode length : 174, current eps : 0.9624412
+Iteration : 21097 | Episode : 93 | Total reward : 0.0, episode length : 230, current eps : 0.9620254
+Iteration : 21269 | Episode : 94 | Total reward : -1.0, episode length : 171, current eps : 0.9617158
+Iteration : 21450 | Episode : 95 | Total reward : -1.0, episode length : 180, current eps : 0.96139
+Iteration : 21635 | Episode : 96 | Total reward : -1.0, episode length : 184, current eps : 0.961057
+Iteration : 21935 | Episode : 97 | Total reward : 3.0, episode length : 299, current eps : 0.960517
+Iteration : 22112 | Episode : 98 | Total reward : -1.0, episode length : 176, current eps : 0.9601984
+Iteration : 22371 | Episode : 99 | Total reward : 0.0, episode length : 258, current eps : 0.9597322
+Iteration : 22500 | Updating target weights...
+Iteration : 22580 | Episode : 100 | Total reward : 0.0, episode length : 208, current eps : 0.959356
+Iteration : 22748 | Episode : 101 | Total reward : -1.0, episode length : 167, current eps : 0.9590536
+Iteration : 22933 | Episode : 102 | Total reward : -1.0, episode length : 184, current eps : 0.9587206
+Iteration : 23233 | Episode : 103 | Total reward : 3.0, episode length : 299, current eps : 0.9581806
+Iteration : 23457 | Episode : 104 | Total reward : 0.0, episode length : 223, current eps : 0.9577774
+Iteration : 23641 | Episode : 105 | Total reward : -1.0, episode length : 183, current eps : 0.9574462
+Iteration : 23938 | Episode : 106 | Total reward : 1.0, episode length : 296, current eps : 0.9569116
+Iteration : 24175 | Episode : 107 | Total reward : 0.0, episode length : 236, current eps : 0.956485
+Iteration : 24475 | Episode : 108 | Total reward : 3.0, episode length : 299, current eps : 0.955945
+Iteration : 24656 | Episode : 109 | Total reward : -1.0, episode length : 180, current eps : 0.9556192
+Iteration : 24956 | Episode : 110 | Total reward : 3.0, episode length : 299, current eps : 0.9550792
 Iteration : 25000 | Updating target weights...
-Iteration : 25492 | Episode : 108 | Total reward : 1.0, episode length : 281, current eps : 0.9541144
-Iteration : 25759 | Episode : 109 | Total reward : 0.0, episode length : 266, current eps : 0.9536338
-Iteration : 25946 | Episode : 110 | Total reward : -1.0, episode length : 186, current eps : 0.9532972
-Iteration : 26786 | Episode : 113 | Total reward : 0.0, episode length : 239, current eps : 0.9517852
-Iteration : 27013 | Episode : 114 | Total reward : 0.0, episode length : 226, current eps : 0.9513766
-Iteration : 27258 | Episode : 115 | Total reward : 0.0, episode length : 244, current eps : 0.9509356
-Iteration : 27499 | Episode : 116 | Total reward : 0.0, episode length : 240, current eps : 0.9505018
-Iteration : 27680 | Episode : 117 | Total reward : -1.0, episode length : 180, current eps : 0.950176
-Iteration : 27864 | Episode : 118 | Total reward : -1.0, episode length : 183, current eps : 0.9498448
-Iteration : 28160 | Episode : 119 | Total reward : 2.0, episode length : 295, current eps : 0.949312
-Iteration : 28441 | Episode : 120 | Total reward : 1.0, episode length : 280, current eps : 0.9488062
-Iteration : 28669 | Episode : 121 | Total reward : 0.0, episode length : 227, current eps : 0.9483958
-Iteration : 28835 | Episode : 122 | Total reward : -1.0, episode length : 165, current eps : 0.948097
-Iteration : 29416 | Episode : 124 | Total reward : 1.0, episode length : 280, current eps : 0.9470512
-Iteration : 29595 | Episode : 125 | Total reward : -1.0, episode length : 178, current eps : 0.946729
+Iteration : 25219 | Episode : 111 | Total reward : 1.0, episode length : 262, current eps : 0.9546058
+Iteration : 25490 | Episode : 112 | Total reward : 1.0, episode length : 270, current eps : 0.954118
+Iteration : 25696 | Episode : 113 | Total reward : 0.0, episode length : 205, current eps : 0.9537472
+Iteration : 25974 | Episode : 114 | Total reward : 1.0, episode length : 277, current eps : 0.9532468
+Iteration : 26151 | Episode : 115 | Total reward : -1.0, episode length : 176, current eps : 0.9529282
+Iteration : 26433 | Episode : 116 | Total reward : 1.0, episode length : 281, current eps : 0.9524206
+Iteration : 26623 | Episode : 117 | Total reward : -1.0, episode length : 189, current eps : 0.9520786
+Iteration : 26923 | Episode : 118 | Total reward : 3.0, episode length : 299, current eps : 0.9515386
+Iteration : 27123 | Episode : 119 | Total reward : -1.0, episode length : 199, current eps : 0.9511786
+Iteration : 27340 | Episode : 120 | Total reward : 0.0, episode length : 216, current eps : 0.950788
+Iteration : 27500 | Updating target weights...
+Iteration : 27604 | Episode : 121 | Total reward : 1.0, episode length : 263, current eps : 0.9503128
+Iteration : 27768 | Episode : 122 | Total reward : -1.0, episode length : 163, current eps : 0.9500176
+Iteration : 28068 | Episode : 123 | Total reward : 2.0, episode length : 299, current eps : 0.9494776
+Iteration : 28243 | Episode : 124 | Total reward : -1.0, episode length : 174, current eps : 0.9491626
+Iteration : 28436 | Episode : 125 | Total reward : -1.0, episode length : 192, current eps : 0.9488152
+Iteration : 28618 | Episode : 126 | Total reward : -1.0, episode length : 181, current eps : 0.9484876
+Iteration : 28918 | Episode : 127 | Total reward : 2.0, episode length : 299, current eps : 0.9479476
+Iteration : 29218 | Episode : 128 | Total reward : 4.0, episode length : 299, current eps : 0.9474076
+Iteration : 29504 | Episode : 129 | Total reward : 1.0, episode length : 285, current eps : 0.9468928
+Iteration : 29803 | Episode : 130 | Total reward : 1.0, episode length : 298, current eps : 0.9463546
 Iteration : 30000 | Updating target weights...
-Iteration : 30067 | Episode : 127 | Total reward : -1.0, episode length : 171, current eps : 0.9458794
-Iteration : 30938 | Episode : 130 | Total reward : 1.0, episode length : 270, current eps : 0.9443116
-Iteration : 31221 | Episode : 131 | Total reward : 1.0, episode length : 282, current eps : 0.9438022
-Iteration : 31505 | Episode : 132 | Total reward : 1.0, episode length : 283, current eps : 0.943291
-Iteration : 31710 | Episode : 133 | Total reward : 0.0, episode length : 204, current eps : 0.942922
-Iteration : 32290 | Episode : 135 | Total reward : 1.0, episode length : 279, current eps : 0.941878
-Iteration : 32478 | Episode : 136 | Total reward : -1.0, episode length : 187, current eps : 0.9415396
-Iteration : 32978 | Episode : 138 | Total reward : -1.0, episode length : 199, current eps : 0.9406396
-Iteration : 33241 | Episode : 139 | Total reward : 0.0, episode length : 262, current eps : 0.9401662
-Iteration : 33831 | Episode : 141 | Total reward : 1.0, episode length : 289, current eps : 0.9391042000000001
-Iteration : 34033 | Episode : 142 | Total reward : -1.0, episode length : 201, current eps : 0.9387406
-Iteration : 34208 | Episode : 143 | Total reward : -1.0, episode length : 174, current eps : 0.9384256
-Iteration : 34417 | Episode : 144 | Total reward : 0.0, episode length : 208, current eps : 0.9380494
-Iteration : 34888 | Episode : 146 | Total reward : -1.0, episode length : 170, current eps : 0.9372016
+Iteration : 30103 | Episode : 131 | Total reward : 3.0, episode length : 299, current eps : 0.9458146
+Iteration : 30287 | Episode : 132 | Total reward : -1.0, episode length : 183, current eps : 0.9454834
+Iteration : 30587 | Episode : 133 | Total reward : 3.0, episode length : 299, current eps : 0.9449434
+Iteration : 30860 | Episode : 134 | Total reward : 1.0, episode length : 272, current eps : 0.944452
+Iteration : 31137 | Episode : 135 | Total reward : 1.0, episode length : 276, current eps : 0.9439534
+Iteration : 31383 | Episode : 136 | Total reward : 0.0, episode length : 245, current eps : 0.9435106
+Iteration : 31558 | Episode : 137 | Total reward : -1.0, episode length : 174, current eps : 0.9431956
+Iteration : 31729 | Episode : 138 | Total reward : -1.0, episode length : 170, current eps : 0.9428878
+Iteration : 32029 | Episode : 139 | Total reward : 2.0, episode length : 299, current eps : 0.9423478
+Iteration : 32305 | Episode : 140 | Total reward : 1.0, episode length : 275, current eps : 0.941851
+Iteration : 32500 | Updating target weights...
+Iteration : 32519 | Episode : 141 | Total reward : 0.0, episode length : 213, current eps : 0.9414658
+Iteration : 32768 | Episode : 142 | Total reward : 0.0, episode length : 248, current eps : 0.9410176
+Iteration : 33068 | Episode : 143 | Total reward : 2.0, episode length : 299, current eps : 0.9404776
+Iteration : 33278 | Episode : 144 | Total reward : 0.0, episode length : 209, current eps : 0.9400996
+Iteration : 33526 | Episode : 145 | Total reward : 0.0, episode length : 247, current eps : 0.9396532
+Iteration : 33826 | Episode : 146 | Total reward : 2.0, episode length : 299, current eps : 0.9391132
+Iteration : 34065 | Episode : 147 | Total reward : 0.0, episode length : 238, current eps : 0.938683
+Iteration : 34352 | Episode : 148 | Total reward : 1.0, episode length : 286, current eps : 0.9381664
+Iteration : 34568 | Episode : 149 | Total reward : 0.0, episode length : 215, current eps : 0.9377776
+Iteration : 34752 | Episode : 150 | Total reward : -1.0, episode length : 183, current eps : 0.9374464
+Iteration : 34997 | Episode : 151 | Total reward : 0.0, episode length : 244, current eps : 0.9370054
 Iteration : 35000 | Updating target weights...
-Iteration : 35173 | Episode : 147 | Total reward : 1.0, episode length : 284, current eps : 0.9366886
-Iteration : 35644 | Episode : 149 | Total reward : -1.0, episode length : 170, current eps : 0.9358408
-Iteration : 36214 | Episode : 151 | Total reward : 1.0, episode length : 269, current eps : 0.9348148000000001
-Iteration : 36480 | Episode : 152 | Total reward : 1.0, episode length : 265, current eps : 0.934336
+Iteration : 35219 | Episode : 152 | Total reward : 0.0, episode length : 221, current eps : 0.9366058
+Iteration : 35453 | Episode : 153 | Total reward : 0.0, episode length : 233, current eps : 0.9361846
+Iteration : 35680 | Episode : 154 | Total reward : 0.0, episode length : 226, current eps : 0.9357759999999999
+Iteration : 35855 | Episode : 155 | Total reward : -1.0, episode length : 174, current eps : 0.935461
+Iteration : 36064 | Episode : 156 | Total reward : 0.0, episode length : 208, current eps : 0.9350848
+Iteration : 36364 | Episode : 157 | Total reward : 3.0, episode length : 299, current eps : 0.9345448
+Iteration : 36539 | Episode : 158 | Total reward : -1.0, episode length : 174, current eps : 0.9342298
+Iteration : 36777 | Episode : 159 | Total reward : 0.0, episode length : 237, current eps : 0.9338014
+Iteration : 37077 | Episode : 160 | Total reward : 3.0, episode length : 299, current eps : 0.9332614
+Iteration : 37377 | Episode : 161 | Total reward : 2.0, episode length : 299, current eps : 0.9327214
+Iteration : 37500 | Updating target weights...
+Iteration : 37555 | Episode : 162 | Total reward : -1.0, episode length : 177, current eps : 0.932401
+Iteration : 37833 | Episode : 163 | Total reward : 1.0, episode length : 277, current eps : 0.9319006
+Iteration : 38133 | Episode : 164 | Total reward : 2.0, episode length : 299, current eps : 0.9313606
+Iteration : 38308 | Episode : 165 | Total reward : -1.0, episode length : 174, current eps : 0.9310456
+Iteration : 38533 | Episode : 166 | Total reward : 0.0, episode length : 224, current eps : 0.9306406
+Iteration : 38758 | Episode : 167 | Total reward : 0.0, episode length : 224, current eps : 0.9302356
+Iteration : 38935 | Episode : 168 | Total reward : -1.0, episode length : 176, current eps : 0.929917
+Iteration : 39167 | Episode : 169 | Total reward : 0.0, episode length : 231, current eps : 0.9294994
+Iteration : 39401 | Episode : 170 | Total reward : 0.0, episode length : 233, current eps : 0.9290782
+Iteration : 39568 | Episode : 171 | Total reward : -1.0, episode length : 166, current eps : 0.9287776
+Iteration : 39805 | Episode : 172 | Total reward : 0.0, episode length : 236, current eps : 0.928351
+Iteration : 40000 | Updating target weights...
+Iteration : 40075 | Episode : 173 | Total reward : 1.0, episode length : 269, current eps : 0.9278649999999999
+Iteration : 40254 | Episode : 174 | Total reward : -1.0, episode length : 178, current eps : 0.9275428
+Iteration : 40554 | Episode : 175 | Total reward : 3.0, episode length : 299, current eps : 0.9270028
+Iteration : 40854 | Episode : 176 | Total reward : 2.0, episode length : 299, current eps : 0.9264628
+Iteration : 41034 | Episode : 177 | Total reward : -1.0, episode length : 179, current eps : 0.9261388
+Iteration : 41208 | Episode : 178 | Total reward : -1.0, episode length : 173, current eps : 0.9258256
+Iteration : 41442 | Episode : 179 | Total reward : 0.0, episode length : 233, current eps : 0.9254044
+Iteration : 41651 | Episode : 180 | Total reward : 0.0, episode length : 208, current eps : 0.9250282
+Iteration : 41951 | Episode : 181 | Total reward : 3.0, episode length : 299, current eps : 0.9244882
+Iteration : 42160 | Episode : 182 | Total reward : 0.0, episode length : 208, current eps : 0.924112
+Iteration : 42435 | Episode : 183 | Total reward : 1.0, episode length : 274, current eps : 0.923617
+Iteration : 42500 | Updating target weights...
+Iteration : 42599 | Episode : 184 | Total reward : -1.0, episode length : 163, current eps : 0.9233218
+Iteration : 42772 | Episode : 185 | Total reward : -1.0, episode length : 172, current eps : 0.9230104
+Iteration : 42976 | Episode : 186 | Total reward : 0.0, episode length : 203, current eps : 0.9226432
+Iteration : 43258 | Episode : 187 | Total reward : 1.0, episode length : 281, current eps : 0.9221355999999999
+Iteration : 43538 | Episode : 188 | Total reward : 1.0, episode length : 279, current eps : 0.9216316
+Iteration : 43712 | Episode : 189 | Total reward : -1.0, episode length : 173, current eps : 0.9213184
+Iteration : 43984 | Episode : 190 | Total reward : 1.0, episode length : 271, current eps : 0.9208288
+Iteration : 44216 | Episode : 191 | Total reward : 0.0, episode length : 231, current eps : 0.9204112
+Iteration : 44469 | Episode : 192 | Total reward : 0.0, episode length : 252, current eps : 0.9199558
+Iteration : 44769 | Episode : 193 | Total reward : 3.0, episode length : 299, current eps : 0.9194158
+Iteration : 44952 | Episode : 194 | Total reward : -1.0, episode length : 182, current eps : 0.9190864
+Iteration : 45000 | Updating target weights...
+Iteration : 45232 | Episode : 195 | Total reward : 1.0, episode length : 279, current eps : 0.9185824
+Iteration : 45532 | Episode : 196 | Total reward : 4.0, episode length : 299, current eps : 0.9180424
+Iteration : 45832 | Episode : 197 | Total reward : 3.0, episode length : 299, current eps : 0.9175024
+Iteration : 46101 | Episode : 198 | Total reward : 1.0, episode length : 268, current eps : 0.9170182
+Iteration : 46278 | Episode : 199 | Total reward : -1.0, episode length : 176, current eps : 0.9166996
+Iteration : 46481 | Episode : 200 | Total reward : 0.0, episode length : 202, current eps : 0.9163342
+Iteration : 46749 | Episode : 201 | Total reward : 1.0, episode length : 267, current eps : 0.9158518
+Iteration : 46923 | Episode : 202 | Total reward : -1.0, episode length : 173, current eps : 0.9155386
+Iteration : 47217 | Episode : 203 | Total reward : 1.0, episode length : 293, current eps : 0.9150094
+Iteration : 47377 | Episode : 204 | Total reward : -1.0, episode length : 159, current eps : 0.9147214
+Iteration : 47500 | Updating target weights...
+Iteration : 47545 | Episode : 205 | Total reward : -1.0, episode length : 167, current eps : 0.914419
+Iteration : 47845 | Episode : 206 | Total reward : 3.0, episode length : 299, current eps : 0.913879
+Iteration : 48114 | Episode : 207 | Total reward : 1.0, episode length : 268, current eps : 0.9133948000000001
+Iteration : 48414 | Episode : 208 | Total reward : 2.0, episode length : 299, current eps : 0.9128548
+Iteration : 48714 | Episode : 209 | Total reward : 3.0, episode length : 299, current eps : 0.9123148
+Iteration : 48939 | Episode : 210 | Total reward : 0.0, episode length : 224, current eps : 0.9119098
+Iteration : 49110 | Episode : 211 | Total reward : -1.0, episode length : 170, current eps : 0.911602
+Iteration : 49348 | Episode : 212 | Total reward : 0.0, episode length : 237, current eps : 0.9111736
+Iteration : 49598 | Episode : 213 | Total reward : 0.0, episode length : 249, current eps : 0.9107236
+Iteration : 49872 | Episode : 214 | Total reward : 1.0, episode length : 273, current eps : 0.9102304
+Iteration : 50000 | Updating target weights...
+Iteration : 50172 | Episode : 215 | Total reward : 3.0, episode length : 299, current eps : 0.9096904
+Iteration : 50379 | Episode : 216 | Total reward : 0.0, episode length : 206, current eps : 0.9093178
+Iteration : 50597 | Episode : 217 | Total reward : 0.0, episode length : 217, current eps : 0.9089254
+Iteration : 50885 | Episode : 218 | Total reward : 1.0, episode length : 287, current eps : 0.908407
+Iteration : 51185 | Episode : 219 | Total reward : 2.0, episode length : 299, current eps : 0.907867
+Iteration : 51485 | Episode : 220 | Total reward : 3.0, episode length : 299, current eps : 0.907327
+Iteration : 51718 | Episode : 221 | Total reward : 0.0, episode length : 232, current eps : 0.9069076
+Iteration : 52018 | Episode : 222 | Total reward : 3.0, episode length : 299, current eps : 0.9063676
+Iteration : 52318 | Episode : 223 | Total reward : 2.0, episode length : 299, current eps : 0.9058276
+Iteration : 52500 | Updating target weights...
+Iteration : 52565 | Episode : 224 | Total reward : 0.0, episode length : 246, current eps : 0.905383
+Iteration : 52739 | Episode : 225 | Total reward : -1.0, episode length : 173, current eps : 0.9050698
+Iteration : 53039 | Episode : 226 | Total reward : 3.0, episode length : 299, current eps : 0.9045298
+Iteration : 53339 | Episode : 227 | Total reward : 2.0, episode length : 299, current eps : 0.9039898
+Iteration : 53601 | Episode : 228 | Total reward : 1.0, episode length : 261, current eps : 0.9035181999999999
+Iteration : 53771 | Episode : 229 | Total reward : -1.0, episode length : 169, current eps : 0.9032122
+Iteration : 54071 | Episode : 230 | Total reward : 3.0, episode length : 299, current eps : 0.9026722
+Iteration : 54346 | Episode : 231 | Total reward : 1.0, episode length : 274, current eps : 0.9021772
+Iteration : 54518 | Episode : 232 | Total reward : -1.0, episode length : 171, current eps : 0.9018676
+Iteration : 54818 | Episode : 233 | Total reward : 2.0, episode length : 299, current eps : 0.9013276
+Iteration : 54996 | Episode : 234 | Total reward : -1.0, episode length : 177, current eps : 0.9010072
+Iteration : 55000 | Updating target weights...
+Iteration : 55169 | Episode : 235 | Total reward : -1.0, episode length : 172, current eps : 0.9006958
+Iteration : 55384 | Episode : 236 | Total reward : 0.0, episode length : 214, current eps : 0.9003088
+Iteration : 55684 | Episode : 237 | Total reward : 3.0, episode length : 299, current eps : 0.8997688
+Iteration : 55855 | Episode : 238 | Total reward : -1.0, episode length : 170, current eps : 0.899461
+Iteration : 56099 | Episode : 239 | Total reward : 0.0, episode length : 243, current eps : 0.8990218
+Iteration : 56273 | Episode : 240 | Total reward : -1.0, episode length : 173, current eps : 0.8987086
+Iteration : 56573 | Episode : 241 | Total reward : 3.0, episode length : 299, current eps : 0.8981686
+Iteration : 56761 | Episode : 242 | Total reward : -1.0, episode length : 187, current eps : 0.8978302
+Iteration : 56997 | Episode : 243 | Total reward : 0.0, episode length : 235, current eps : 0.8974054
+Iteration : 57227 | Episode : 244 | Total reward : 0.0, episode length : 229, current eps : 0.8969914
+Iteration : 57448 | Episode : 245 | Total reward : 0.0, episode length : 220, current eps : 0.8965936
+Iteration : 57500 | Updating target weights...
+Iteration : 57627 | Episode : 246 | Total reward : -1.0, episode length : 178, current eps : 0.8962714
+Iteration : 57885 | Episode : 247 | Total reward : 0.0, episode length : 257, current eps : 0.895807
+Iteration : 58185 | Episode : 248 | Total reward : 3.0, episode length : 299, current eps : 0.895267
+Iteration : 58393 | Episode : 249 | Total reward : 0.0, episode length : 207, current eps : 0.8948926
+Iteration : 58638 | Episode : 250 | Total reward : 0.0, episode length : 244, current eps : 0.8944516
+Iteration : 58844 | Episode : 251 | Total reward : 0.0, episode length : 205, current eps : 0.8940808
+Iteration : 59025 | Episode : 252 | Total reward : -1.0, episode length : 180, current eps : 0.893755
+Iteration : 59195 | Episode : 253 | Total reward : -1.0, episode length : 169, current eps : 0.8934489999999999
+Iteration : 59372 | Episode : 254 | Total reward : -1.0, episode length : 176, current eps : 0.8931304
+Iteration : 59546 | Episode : 255 | Total reward : -1.0, episode length : 173, current eps : 0.8928172
+Iteration : 59789 | Episode : 256 | Total reward : 1.0, episode length : 242, current eps : 0.8923798000000001
+Iteration : 60000 | Updating target weights...
+Iteration : 60089 | Episode : 257 | Total reward : 2.0, episode length : 299, current eps : 0.8918398
+Iteration : 60389 | Episode : 258 | Total reward : 1.0, episode length : 299, current eps : 0.8912998
+Iteration : 60657 | Episode : 259 | Total reward : 1.0, episode length : 267, current eps : 0.8908174
+Iteration : 60957 | Episode : 260 | Total reward : 3.0, episode length : 299, current eps : 0.8902774
+Iteration : 61232 | Episode : 261 | Total reward : 1.0, episode length : 274, current eps : 0.8897824
+Iteration : 61447 | Episode : 262 | Total reward : 0.0, episode length : 214, current eps : 0.8893954
+Iteration : 61680 | Episode : 263 | Total reward : 0.0, episode length : 232, current eps : 0.888976
+Iteration : 61955 | Episode : 264 | Total reward : 1.0, episode length : 274, current eps : 0.888481
+Iteration : 62158 | Episode : 265 | Total reward : 0.0, episode length : 202, current eps : 0.8881156
+Iteration : 62418 | Episode : 266 | Total reward : 1.0, episode length : 259, current eps : 0.8876476
+Iteration : 62500 | Updating target weights...
+Iteration : 62701 | Episode : 267 | Total reward : 1.0, episode length : 282, current eps : 0.8871382
+Iteration : 62878 | Episode : 268 | Total reward : -1.0, episode length : 176, current eps : 0.8868195999999999
+Iteration : 63150 | Episode : 269 | Total reward : 1.0, episode length : 271, current eps : 0.8863300000000001
+Iteration : 63428 | Episode : 270 | Total reward : 1.0, episode length : 277, current eps : 0.8858296
+Iteration : 63594 | Episode : 271 | Total reward : -1.0, episode length : 165, current eps : 0.8855308
+Iteration : 63894 | Episode : 272 | Total reward : 2.0, episode length : 299, current eps : 0.8849908
+Iteration : 64180 | Episode : 273 | Total reward : 1.0, episode length : 285, current eps : 0.884476
+Iteration : 64480 | Episode : 274 | Total reward : 2.0, episode length : 299, current eps : 0.883936
+Iteration : 64765 | Episode : 275 | Total reward : 1.0, episode length : 284, current eps : 0.883423
+Iteration : 65000 | Updating target weights...
+Iteration : 65045 | Episode : 276 | Total reward : 1.0, episode length : 279, current eps : 0.882919
+Iteration : 65345 | Episode : 277 | Total reward : 2.0, episode length : 299, current eps : 0.882379
+Iteration : 65516 | Episode : 278 | Total reward : -1.0, episode length : 170, current eps : 0.8820711999999999
+Iteration : 65752 | Episode : 279 | Total reward : 0.0, episode length : 235, current eps : 0.8816463999999999
+Iteration : 66052 | Episode : 280 | Total reward : 3.0, episode length : 299, current eps : 0.8811064
+Iteration : 66352 | Episode : 281 | Total reward : 2.0, episode length : 299, current eps : 0.8805664
+Iteration : 66652 | Episode : 282 | Total reward : 3.0, episode length : 299, current eps : 0.8800264
+Iteration : 66880 | Episode : 283 | Total reward : 0.0, episode length : 227, current eps : 0.879616
+Iteration : 67048 | Episode : 284 | Total reward : -1.0, episode length : 167, current eps : 0.8793136
+Iteration : 67348 | Episode : 285 | Total reward : 3.0, episode length : 299, current eps : 0.8787735999999999
+Iteration : 67500 | Updating target weights...
+Iteration : 67632 | Episode : 286 | Total reward : 1.0, episode length : 283, current eps : 0.8782624
+Iteration : 67932 | Episode : 287 | Total reward : 2.0, episode length : 299, current eps : 0.8777224
+Iteration : 68102 | Episode : 288 | Total reward : -1.0, episode length : 169, current eps : 0.8774164
+Iteration : 68367 | Episode : 289 | Total reward : 1.0, episode length : 264, current eps : 0.8769394
+Iteration : 68614 | Episode : 290 | Total reward : 0.0, episode length : 246, current eps : 0.8764948
+Iteration : 68786 | Episode : 291 | Total reward : -1.0, episode length : 171, current eps : 0.8761852
+Iteration : 68959 | Episode : 292 | Total reward : -1.0, episode length : 172, current eps : 0.8758738
+Iteration : 69250 | Episode : 293 | Total reward : 1.0, episode length : 290, current eps : 0.87535
+Iteration : 69460 | Episode : 294 | Total reward : 0.0, episode length : 209, current eps : 0.874972
+Iteration : 69729 | Episode : 295 | Total reward : 1.0, episode length : 268, current eps : 0.8744878
+Iteration : 70000 | Updating target weights...
+Iteration : 70029 | Episode : 296 | Total reward : 3.0, episode length : 299, current eps : 0.8739478
+Iteration : 70268 | Episode : 297 | Total reward : 0.0, episode length : 238, current eps : 0.8735176
+Iteration : 70474 | Episode : 298 | Total reward : 0.0, episode length : 205, current eps : 0.8731468
+Iteration : 70676 | Episode : 299 | Total reward : 0.0, episode length : 201, current eps : 0.8727832
+Iteration : 70851 | Episode : 300 | Total reward : -1.0, episode length : 174, current eps : 0.8724682
+Iteration : 71151 | Episode : 301 | Total reward : 3.0, episode length : 299, current eps : 0.8719281999999999
+Iteration : 71319 | Episode : 302 | Total reward : -1.0, episode length : 167, current eps : 0.8716258
+Iteration : 71488 | Episode : 303 | Total reward : -1.0, episode length : 168, current eps : 0.8713216
+Iteration : 71702 | Episode : 304 | Total reward : 0.0, episode length : 213, current eps : 0.8709363999999999
+Iteration : 71874 | Episode : 305 | Total reward : -1.0, episode length : 171, current eps : 0.8706268
+Iteration : 72093 | Episode : 306 | Total reward : 0.0, episode length : 218, current eps : 0.8702326
+Iteration : 72266 | Episode : 307 | Total reward : -1.0, episode length : 172, current eps : 0.8699212000000001
+Iteration : 72500 | Updating target weights...
+Iteration : 72561 | Episode : 308 | Total reward : 1.0, episode length : 294, current eps : 0.8693902
+Iteration : 72738 | Episode : 309 | Total reward : -1.0, episode length : 176, current eps : 0.8690716
+Iteration : 73038 | Episode : 310 | Total reward : 3.0, episode length : 299, current eps : 0.8685316000000001
+Iteration : 73223 | Episode : 311 | Total reward : -1.0, episode length : 184, current eps : 0.8681986
+Iteration : 73393 | Episode : 312 | Total reward : -1.0, episode length : 169, current eps : 0.8678926
+Iteration : 73628 | Episode : 313 | Total reward : 0.0, episode length : 234, current eps : 0.8674696
+Iteration : 73799 | Episode : 314 | Total reward : -1.0, episode length : 170, current eps : 0.8671618
+Iteration : 74061 | Episode : 315 | Total reward : 1.0, episode length : 261, current eps : 0.8666902
+Iteration : 74224 | Episode : 316 | Total reward : -1.0, episode length : 162, current eps : 0.8663968
+Iteration : 74395 | Episode : 317 | Total reward : -1.0, episode length : 170, current eps : 0.866089
+Iteration : 74631 | Episode : 318 | Total reward : 0.0, episode length : 235, current eps : 0.8656642
+Iteration : 74811 | Episode : 319 | Total reward : -1.0, episode length : 179, current eps : 0.8653402
+Iteration : 75000 | Updating target weights...
+Iteration : 75091 | Episode : 320 | Total reward : 1.0, episode length : 279, current eps : 0.8648361999999999
+Iteration : 75319 | Episode : 321 | Total reward : 0.0, episode length : 227, current eps : 0.8644258
+Iteration : 75486 | Episode : 322 | Total reward : -1.0, episode length : 166, current eps : 0.8641251999999999
+Iteration : 75786 | Episode : 323 | Total reward : 3.0, episode length : 299, current eps : 0.8635851999999999
+Iteration : 75961 | Episode : 324 | Total reward : -1.0, episode length : 174, current eps : 0.8632702
+Iteration : 76205 | Episode : 325 | Total reward : 0.0, episode length : 243, current eps : 0.862831
+Iteration : 76449 | Episode : 326 | Total reward : 0.0, episode length : 243, current eps : 0.8623917999999999
+Iteration : 76709 | Episode : 327 | Total reward : 1.0, episode length : 259, current eps : 0.8619238
+Iteration : 76916 | Episode : 328 | Total reward : -1.0, episode length : 206, current eps : 0.8615512
+Iteration : 77139 | Episode : 329 | Total reward : 0.0, episode length : 222, current eps : 0.8611498
+Iteration : 77368 | Episode : 330 | Total reward : 0.0, episode length : 228, current eps : 0.8607376
+Iteration : 77500 | Updating target weights...
+Iteration : 77539 | Episode : 331 | Total reward : -1.0, episode length : 170, current eps : 0.8604298
+Iteration : 77748 | Episode : 332 | Total reward : 0.0, episode length : 208, current eps : 0.8600536
+Iteration : 78048 | Episode : 333 | Total reward : 3.0, episode length : 299, current eps : 0.8595136
+Iteration : 78257 | Episode : 334 | Total reward : 0.0, episode length : 208, current eps : 0.8591374
+Iteration : 78432 | Episode : 335 | Total reward : -1.0, episode length : 174, current eps : 0.8588224
+Iteration : 78604 | Episode : 336 | Total reward : -1.0, episode length : 171, current eps : 0.8585128
+Iteration : 78899 | Episode : 337 | Total reward : 1.0, episode length : 294, current eps : 0.8579818
+Iteration : 79077 | Episode : 338 | Total reward : -1.0, episode length : 177, current eps : 0.8576614
+Iteration : 79254 | Episode : 339 | Total reward : -1.0, episode length : 176, current eps : 0.8573428
+Iteration : 79554 | Episode : 340 | Total reward : 2.0, episode length : 299, current eps : 0.8568028
+Iteration : 79730 | Episode : 341 | Total reward : -1.0, episode length : 175, current eps : 0.856486
+Iteration : 79900 | Episode : 342 | Total reward : -1.0, episode length : 169, current eps : 0.8561799999999999
+Iteration : 80000 | Updating target weights...
+Iteration : 80146 | Episode : 343 | Total reward : 0.0, episode length : 245, current eps : 0.8557372
+Iteration : 80314 | Episode : 344 | Total reward : -1.0, episode length : 167, current eps : 0.8554348
+Iteration : 80540 | Episode : 345 | Total reward : 0.0, episode length : 225, current eps : 0.855028
+Iteration : 80840 | Episode : 346 | Total reward : 3.0, episode length : 299, current eps : 0.854488
+Iteration : 81010 | Episode : 347 | Total reward : -1.0, episode length : 169, current eps : 0.854182
+Iteration : 81180 | Episode : 348 | Total reward : -1.0, episode length : 169, current eps : 0.853876
+Iteration : 81363 | Episode : 349 | Total reward : -1.0, episode length : 182, current eps : 0.8535466
+Iteration : 81637 | Episode : 350 | Total reward : 1.0, episode length : 273, current eps : 0.8530534
+Iteration : 81804 | Episode : 351 | Total reward : -1.0, episode length : 166, current eps : 0.8527528
+Iteration : 82038 | Episode : 352 | Total reward : 1.0, episode length : 233, current eps : 0.8523316
+Iteration : 82217 | Episode : 353 | Total reward : -1.0, episode length : 178, current eps : 0.8520094
+Iteration : 82389 | Episode : 354 | Total reward : -1.0, episode length : 171, current eps : 0.8516998
+Iteration : 82500 | Updating target weights...
+Iteration : 82689 | Episode : 355 | Total reward : 3.0, episode length : 299, current eps : 0.8511598
+Iteration : 82890 | Episode : 356 | Total reward : 0.0, episode length : 200, current eps : 0.8507979999999999
+Iteration : 83133 | Episode : 357 | Total reward : 0.0, episode length : 242, current eps : 0.8503606
+Iteration : 83299 | Episode : 358 | Total reward : -1.0, episode length : 165, current eps : 0.8500618
+Iteration : 83477 | Episode : 359 | Total reward : -1.0, episode length : 177, current eps : 0.8497414
+Iteration : 83768 | Episode : 360 | Total reward : 1.0, episode length : 290, current eps : 0.8492176
+Iteration : 83947 | Episode : 361 | Total reward : -1.0, episode length : 178, current eps : 0.8488954
+Iteration : 84123 | Episode : 362 | Total reward : -1.0, episode length : 175, current eps : 0.8485786
+Iteration : 84395 | Episode : 363 | Total reward : 1.0, episode length : 271, current eps : 0.848089
+Iteration : 84695 | Episode : 364 | Total reward : 2.0, episode length : 299, current eps : 0.847549
+Iteration : 84859 | Episode : 365 | Total reward : -1.0, episode length : 163, current eps : 0.8472538000000001
+Iteration : 85000 | Updating target weights...
+Iteration : 85147 | Episode : 366 | Total reward : 1.0, episode length : 287, current eps : 0.8467354
+Iteration : 85447 | Episode : 367 | Total reward : 1.0, episode length : 299, current eps : 0.8461954
+Iteration : 85626 | Episode : 368 | Total reward : -1.0, episode length : 178, current eps : 0.8458732
+Iteration : 85862 | Episode : 369 | Total reward : 0.0, episode length : 235, current eps : 0.8454484
+Iteration : 86123 | Episode : 370 | Total reward : 1.0, episode length : 260, current eps : 0.8449786
+Iteration : 86411 | Episode : 371 | Total reward : 1.0, episode length : 287, current eps : 0.8444602
+Iteration : 86585 | Episode : 372 | Total reward : -1.0, episode length : 173, current eps : 0.844147
+Iteration : 86759 | Episode : 373 | Total reward : -1.0, episode length : 173, current eps : 0.8438338
+Iteration : 86927 | Episode : 374 | Total reward : -1.0, episode length : 167, current eps : 0.8435314
+Iteration : 87091 | Episode : 375 | Total reward : -1.0, episode length : 163, current eps : 0.8432362
+Iteration : 87258 | Episode : 376 | Total reward : -1.0, episode length : 166, current eps : 0.8429356
+Iteration : 87427 | Episode : 377 | Total reward : -1.0, episode length : 168, current eps : 0.8426314
+Iteration : 87500 | Updating target weights...
+Iteration : 87699 | Episode : 378 | Total reward : 1.0, episode length : 271, current eps : 0.8421418
+Iteration : 87974 | Episode : 379 | Total reward : 1.0, episode length : 274, current eps : 0.8416468
+Iteration : 88172 | Episode : 380 | Total reward : -1.0, episode length : 197, current eps : 0.8412904
+Iteration : 88472 | Episode : 381 | Total reward : 1.0, episode length : 299, current eps : 0.8407504
+Iteration : 88639 | Episode : 382 | Total reward : -1.0, episode length : 166, current eps : 0.8404498
+Iteration : 88939 | Episode : 383 | Total reward : 2.0, episode length : 299, current eps : 0.8399098
+Iteration : 89147 | Episode : 384 | Total reward : 0.0, episode length : 207, current eps : 0.8395353999999999
+Iteration : 89381 | Episode : 385 | Total reward : 0.0, episode length : 233, current eps : 0.8391142
+Iteration : 89681 | Episode : 386 | Total reward : 2.0, episode length : 299, current eps : 0.8385742
+Iteration : 89854 | Episode : 387 | Total reward : -1.0, episode length : 172, current eps : 0.8382628
+Iteration : 90000 | Updating target weights...
+Iteration : 90124 | Episode : 388 | Total reward : 1.0, episode length : 269, current eps : 0.8377768
+Iteration : 90298 | Episode : 389 | Total reward : -1.0, episode length : 173, current eps : 0.8374636
+Iteration : 90533 | Episode : 390 | Total reward : 0.0, episode length : 234, current eps : 0.8370406
+Iteration : 90707 | Episode : 391 | Total reward : -1.0, episode length : 173, current eps : 0.8367274
+Iteration : 90942 | Episode : 392 | Total reward : 0.0, episode length : 234, current eps : 0.8363044
+Iteration : 91242 | Episode : 393 | Total reward : 3.0, episode length : 299, current eps : 0.8357644
+Iteration : 91524 | Episode : 394 | Total reward : 1.0, episode length : 281, current eps : 0.8352568
+Iteration : 91707 | Episode : 395 | Total reward : -1.0, episode length : 182, current eps : 0.8349274
+Iteration : 92007 | Episode : 396 | Total reward : 2.0, episode length : 299, current eps : 0.8343874
+Iteration : 92294 | Episode : 397 | Total reward : 1.0, episode length : 286, current eps : 0.8338708
+Iteration : 92499 | Episode : 398 | Total reward : 0.0, episode length : 204, current eps : 0.8335018
+Iteration : 92500 | Updating target weights...
+Iteration : 92737 | Episode : 399 | Total reward : 0.0, episode length : 237, current eps : 0.8330734
+Iteration : 92949 | Episode : 400 | Total reward : 0.0, episode length : 211, current eps : 0.8326918
+Iteration : 93204 | Episode : 401 | Total reward : 0.0, episode length : 254, current eps : 0.8322328
+Iteration : 93374 | Episode : 402 | Total reward : -1.0, episode length : 169, current eps : 0.8319268
+Iteration : 93624 | Episode : 403 | Total reward : 0.0, episode length : 249, current eps : 0.8314768
+Iteration : 93924 | Episode : 404 | Total reward : 3.0, episode length : 299, current eps : 0.8309367999999999
+Iteration : 94191 | Episode : 405 | Total reward : 1.0, episode length : 266, current eps : 0.8304562
+Iteration : 94357 | Episode : 406 | Total reward : -1.0, episode length : 165, current eps : 0.8301574
+Iteration : 94528 | Episode : 407 | Total reward : -1.0, episode length : 170, current eps : 0.8298496
+Iteration : 94715 | Episode : 408 | Total reward : -1.0, episode length : 186, current eps : 0.829513
+Iteration : 94877 | Episode : 409 | Total reward : -1.0, episode length : 161, current eps : 0.8292214
+Iteration : 95000 | Updating target weights...
+Iteration : 95047 | Episode : 410 | Total reward : -1.0, episode length : 169, current eps : 0.8289154
+Iteration : 95285 | Episode : 411 | Total reward : 0.0, episode length : 237, current eps : 0.828487
+Iteration : 95508 | Episode : 412 | Total reward : 0.0, episode length : 222, current eps : 0.8280856
+Iteration : 95751 | Episode : 413 | Total reward : 1.0, episode length : 242, current eps : 0.8276482
+Iteration : 95966 | Episode : 414 | Total reward : 0.0, episode length : 214, current eps : 0.8272611999999999
+Iteration : 96136 | Episode : 415 | Total reward : -1.0, episode length : 169, current eps : 0.8269552
+Iteration : 96399 | Episode : 416 | Total reward : 1.0, episode length : 262, current eps : 0.8264818
+Iteration : 96699 | Episode : 417 | Total reward : 3.0, episode length : 299, current eps : 0.8259418
+Iteration : 96957 | Episode : 418 | Total reward : 0.0, episode length : 257, current eps : 0.8254774
+Iteration : 97131 | Episode : 419 | Total reward : -1.0, episode length : 173, current eps : 0.8251642
+Iteration : 97356 | Episode : 420 | Total reward : 0.0, episode length : 224, current eps : 0.8247591999999999
+Iteration : 97500 | Updating target weights...
+Iteration : 97519 | Episode : 421 | Total reward : -1.0, episode length : 162, current eps : 0.8244658
+Iteration : 97684 | Episode : 422 | Total reward : -1.0, episode length : 164, current eps : 0.8241688
+Iteration : 97905 | Episode : 423 | Total reward : 0.0, episode length : 220, current eps : 0.823771
+Iteration : 98177 | Episode : 424 | Total reward : 1.0, episode length : 271, current eps : 0.8232813999999999
+Iteration : 98391 | Episode : 425 | Total reward : 0.0, episode length : 213, current eps : 0.8228962
+Iteration : 98571 | Episode : 426 | Total reward : -1.0, episode length : 179, current eps : 0.8225722
+Iteration : 98743 | Episode : 427 | Total reward : -1.0, episode length : 171, current eps : 0.8222626
+Iteration : 98995 | Episode : 428 | Total reward : 0.0, episode length : 251, current eps : 0.821809
+Iteration : 99168 | Episode : 429 | Total reward : -1.0, episode length : 172, current eps : 0.8214976
+Iteration : 99378 | Episode : 430 | Total reward : 0.0, episode length : 209, current eps : 0.8211196000000001
+Iteration : 99625 | Episode : 431 | Total reward : 0.0, episode length : 246, current eps : 0.820675
+Iteration : 99795 | Episode : 432 | Total reward : -1.0, episode length : 169, current eps : 0.820369
+Iteration : 100000 | Updating target weights...
+Iteration : 100016 | Episode : 433 | Total reward : 0.0, episode length : 220, current eps : 0.8199712
+Iteration : 100186 | Episode : 434 | Total reward : -1.0, episode length : 169, current eps : 0.8196652
+Iteration : 100435 | Episode : 435 | Total reward : 1.0, episode length : 248, current eps : 0.819217
+Iteration : 100713 | Episode : 436 | Total reward : 1.0, episode length : 277, current eps : 0.8187166
+Iteration : 100920 | Episode : 437 | Total reward : 0.0, episode length : 206, current eps : 0.818344
+Iteration : 101220 | Episode : 438 | Total reward : 3.0, episode length : 299, current eps : 0.817804
+Iteration : 101397 | Episode : 439 | Total reward : -1.0, episode length : 176, current eps : 0.8174854
+Iteration : 101562 | Episode : 440 | Total reward : -1.0, episode length : 164, current eps : 0.8171884
+Iteration : 101732 | Episode : 441 | Total reward : -1.0, episode length : 169, current eps : 0.8168824
+Iteration : 101961 | Episode : 442 | Total reward : 0.0, episode length : 228, current eps : 0.8164701999999999
+Iteration : 102131 | Episode : 443 | Total reward : -1.0, episode length : 169, current eps : 0.8161642
+Iteration : 102315 | Episode : 444 | Total reward : -1.0, episode length : 183, current eps : 0.815833
+Iteration : 102483 | Episode : 445 | Total reward : -1.0, episode length : 167, current eps : 0.8155306
+Iteration : 102500 | Updating target weights...
+Iteration : 102783 | Episode : 446 | Total reward : 3.0, episode length : 299, current eps : 0.8149906
+Iteration : 102996 | Episode : 447 | Total reward : 0.0, episode length : 212, current eps : 0.8146072
+Iteration : 103296 | Episode : 448 | Total reward : 2.0, episode length : 299, current eps : 0.8140672
+Iteration : 103468 | Episode : 449 | Total reward : -1.0, episode length : 171, current eps : 0.8137576
+Iteration : 103768 | Episode : 450 | Total reward : 3.0, episode length : 299, current eps : 0.8132176
+Iteration : 104068 | Episode : 451 | Total reward : 3.0, episode length : 299, current eps : 0.8126776
+Iteration : 104368 | Episode : 452 | Total reward : 2.0, episode length : 299, current eps : 0.8121376
+Iteration : 104668 | Episode : 453 | Total reward : 3.0, episode length : 299, current eps : 0.8115976
+Iteration : 104835 | Episode : 454 | Total reward : -1.0, episode length : 166, current eps : 0.8112969999999999
+Iteration : 105000 | Updating target weights...
+Iteration : 105068 | Episode : 455 | Total reward : 0.0, episode length : 232, current eps : 0.8108776
+Iteration : 105291 | Episode : 456 | Total reward : 0.0, episode length : 222, current eps : 0.8104762
+Iteration : 105564 | Episode : 457 | Total reward : 1.0, episode length : 272, current eps : 0.8099848
+Iteration : 105734 | Episode : 458 | Total reward : -1.0, episode length : 169, current eps : 0.8096787999999999
+Iteration : 105965 | Episode : 459 | Total reward : 0.0, episode length : 230, current eps : 0.8092630000000001
+Iteration : 106147 | Episode : 460 | Total reward : -1.0, episode length : 181, current eps : 0.8089354
+Iteration : 106418 | Episode : 461 | Total reward : 1.0, episode length : 270, current eps : 0.8084476
+Iteration : 106696 | Episode : 462 | Total reward : 1.0, episode length : 277, current eps : 0.8079472
+Iteration : 106860 | Episode : 463 | Total reward : -1.0, episode length : 163, current eps : 0.807652
+Iteration : 107024 | Episode : 464 | Total reward : -1.0, episode length : 163, current eps : 0.8073568
+Iteration : 107300 | Episode : 465 | Total reward : 1.0, episode length : 275, current eps : 0.80686
+Iteration : 107500 | Updating target weights...
+Iteration : 107530 | Episode : 466 | Total reward : 0.0, episode length : 229, current eps : 0.806446
+Iteration : 107772 | Episode : 467 | Total reward : 0.0, episode length : 241, current eps : 0.8060104
+Iteration : 107954 | Episode : 468 | Total reward : -1.0, episode length : 181, current eps : 0.8056828
+Iteration : 108128 | Episode : 469 | Total reward : -1.0, episode length : 173, current eps : 0.8053696
+Iteration : 108390 | Episode : 470 | Total reward : 1.0, episode length : 261, current eps : 0.804898
+Iteration : 108665 | Episode : 471 | Total reward : 1.0, episode length : 274, current eps : 0.804403
+Iteration : 108896 | Episode : 472 | Total reward : 0.0, episode length : 230, current eps : 0.8039872
+Iteration : 109063 | Episode : 473 | Total reward : -1.0, episode length : 166, current eps : 0.8036866
+Iteration : 109266 | Episode : 474 | Total reward : 0.0, episode length : 202, current eps : 0.8033212
+Iteration : 109534 | Episode : 475 | Total reward : 1.0, episode length : 267, current eps : 0.8028388
+Iteration : 109766 | Episode : 476 | Total reward : 0.0, episode length : 231, current eps : 0.8024212
+Iteration : 109986 | Episode : 477 | Total reward : 0.0, episode length : 219, current eps : 0.8020252
+Iteration : 110000 | Updating target weights...
+Iteration : 110286 | Episode : 478 | Total reward : 2.0, episode length : 299, current eps : 0.8014852
+Iteration : 110461 | Episode : 479 | Total reward : -1.0, episode length : 174, current eps : 0.8011701999999999
+Iteration : 110759 | Episode : 480 | Total reward : 2.0, episode length : 297, current eps : 0.8006338
+Iteration : 110942 | Episode : 481 | Total reward : -1.0, episode length : 182, current eps : 0.8003044
+Iteration : 111182 | Episode : 482 | Total reward : 0.0, episode length : 239, current eps : 0.7998723999999999
+Iteration : 111412 | Episode : 483 | Total reward : 0.0, episode length : 229, current eps : 0.7994584
+Iteration : 111586 | Episode : 484 | Total reward : -1.0, episode length : 173, current eps : 0.7991452
+Iteration : 111886 | Episode : 485 | Total reward : 4.0, episode length : 299, current eps : 0.7986052
+Iteration : 112158 | Episode : 486 | Total reward : 1.0, episode length : 271, current eps : 0.7981156
+Iteration : 112321 | Episode : 487 | Total reward : -1.0, episode length : 162, current eps : 0.7978221999999999
+Iteration : 112489 | Episode : 488 | Total reward : -1.0, episode length : 167, current eps : 0.7975198
+Iteration : 112500 | Updating target weights...
+Iteration : 112789 | Episode : 489 | Total reward : 3.0, episode length : 299, current eps : 0.7969798
+Iteration : 112972 | Episode : 490 | Total reward : -1.0, episode length : 182, current eps : 0.7966504
+Iteration : 113142 | Episode : 491 | Total reward : -1.0, episode length : 169, current eps : 0.7963444
+Iteration : 113414 | Episode : 492 | Total reward : 1.0, episode length : 271, current eps : 0.7958548
+Iteration : 113693 | Episode : 493 | Total reward : 1.0, episode length : 278, current eps : 0.7953526
+Iteration : 113933 | Episode : 494 | Total reward : 0.0, episode length : 239, current eps : 0.7949206
+Iteration : 114187 | Episode : 495 | Total reward : 1.0, episode length : 253, current eps : 0.7944633999999999
+Iteration : 114415 | Episode : 496 | Total reward : 0.0, episode length : 227, current eps : 0.794053
+Iteration : 114710 | Episode : 497 | Total reward : 1.0, episode length : 294, current eps : 0.7935220000000001
+Iteration : 115000 | Updating target weights...
+Iteration : 115010 | Episode : 498 | Total reward : 3.0, episode length : 299, current eps : 0.792982
+Iteration : 115310 | Episode : 499 | Total reward : 2.0, episode length : 299, current eps : 0.792442
+Iteration : 115592 | Episode : 500 | Total reward : 1.0, episode length : 281, current eps : 0.7919343999999999
+Iteration : 115876 | Episode : 501 | Total reward : 1.0, episode length : 283, current eps : 0.7914232
+Iteration : 116081 | Episode : 502 | Total reward : 0.0, episode length : 204, current eps : 0.7910542
+Iteration : 116381 | Episode : 503 | Total reward : 3.0, episode length : 299, current eps : 0.7905142
+Iteration : 116651 | Episode : 504 | Total reward : 1.0, episode length : 269, current eps : 0.7900282
+Iteration : 116861 | Episode : 505 | Total reward : 0.0, episode length : 209, current eps : 0.7896502
+Iteration : 117029 | Episode : 506 | Total reward : -1.0, episode length : 167, current eps : 0.7893478
+Iteration : 117207 | Episode : 507 | Total reward : -1.0, episode length : 177, current eps : 0.7890273999999999
+Iteration : 117441 | Episode : 508 | Total reward : 0.0, episode length : 233, current eps : 0.7886062
+Iteration : 117500 | Updating target weights...
+Iteration : 117678 | Episode : 509 | Total reward : 0.0, episode length : 236, current eps : 0.7881796
+Iteration : 117978 | Episode : 510 | Total reward : 3.0, episode length : 299, current eps : 0.7876396
+Iteration : 118188 | Episode : 511 | Total reward : 0.0, episode length : 209, current eps : 0.7872616
+Iteration : 118433 | Episode : 512 | Total reward : 0.0, episode length : 244, current eps : 0.7868206
+Iteration : 118655 | Episode : 513 | Total reward : 0.0, episode length : 221, current eps : 0.786421
+Iteration : 118827 | Episode : 514 | Total reward : -1.0, episode length : 171, current eps : 0.7861114
+Iteration : 118999 | Episode : 515 | Total reward : -1.0, episode length : 171, current eps : 0.7858018
+Iteration : 119299 | Episode : 516 | Total reward : 3.0, episode length : 299, current eps : 0.7852618
+Iteration : 119467 | Episode : 517 | Total reward : -1.0, episode length : 167, current eps : 0.7849594
+Iteration : 119647 | Episode : 518 | Total reward : -1.0, episode length : 179, current eps : 0.7846354
+Iteration : 119826 | Episode : 519 | Total reward : -1.0, episode length : 178, current eps : 0.7843131999999999
+Iteration : 120000 | Updating target weights...
+Iteration : 120102 | Episode : 520 | Total reward : 1.0, episode length : 275, current eps : 0.7838164
+Iteration : 120341 | Episode : 521 | Total reward : 0.0, episode length : 238, current eps : 0.7833862
+Iteration : 120502 | Episode : 522 | Total reward : -1.0, episode length : 160, current eps : 0.7830964
+Iteration : 120724 | Episode : 523 | Total reward : 0.0, episode length : 221, current eps : 0.7826968
+Iteration : 120970 | Episode : 524 | Total reward : 1.0, episode length : 245, current eps : 0.782254
+Iteration : 121150 | Episode : 525 | Total reward : -1.0, episode length : 179, current eps : 0.78193
+Iteration : 121450 | Episode : 526 | Total reward : 3.0, episode length : 299, current eps : 0.78139
+Iteration : 121680 | Episode : 527 | Total reward : 0.0, episode length : 229, current eps : 0.780976
+Iteration : 121855 | Episode : 528 | Total reward : -1.0, episode length : 174, current eps : 0.780661
+Iteration : 122034 | Episode : 529 | Total reward : -1.0, episode length : 178, current eps : 0.7803388
+Iteration : 122261 | Episode : 530 | Total reward : 0.0, episode length : 226, current eps : 0.7799302
+Iteration : 122435 | Episode : 531 | Total reward : -1.0, episode length : 173, current eps : 0.779617
+Iteration : 122500 | Updating target weights...
+Iteration : 122671 | Episode : 532 | Total reward : 0.0, episode length : 235, current eps : 0.7791922
+Iteration : 122908 | Episode : 533 | Total reward : 0.0, episode length : 236, current eps : 0.7787656000000001
+Iteration : 123097 | Episode : 534 | Total reward : -1.0, episode length : 188, current eps : 0.7784253999999999
+Iteration : 123268 | Episode : 535 | Total reward : -1.0, episode length : 170, current eps : 0.7781176
+Iteration : 123568 | Episode : 536 | Total reward : 3.0, episode length : 299, current eps : 0.7775776
+Iteration : 123842 | Episode : 537 | Total reward : 1.0, episode length : 273, current eps : 0.7770844
+Iteration : 124058 | Episode : 538 | Total reward : 0.0, episode length : 215, current eps : 0.7766956
+Iteration : 124294 | Episode : 539 | Total reward : 0.0, episode length : 235, current eps : 0.7762708
+Iteration : 124575 | Episode : 540 | Total reward : 1.0, episode length : 280, current eps : 0.775765
+Iteration : 124746 | Episode : 541 | Total reward : -1.0, episode length : 170, current eps : 0.7754572
+Iteration : 124919 | Episode : 542 | Total reward : -1.0, episode length : 172, current eps : 0.7751458
+Iteration : 125000 | Updating target weights...
+Iteration : 125095 | Episode : 543 | Total reward : -1.0, episode length : 175, current eps : 0.774829
+Iteration : 125296 | Episode : 544 | Total reward : 0.0, episode length : 200, current eps : 0.7744672
+Iteration : 125472 | Episode : 545 | Total reward : -1.0, episode length : 175, current eps : 0.7741504
+Iteration : 125643 | Episode : 546 | Total reward : -1.0, episode length : 170, current eps : 0.7738426
+Iteration : 125817 | Episode : 547 | Total reward : -1.0, episode length : 173, current eps : 0.7735294
+Iteration : 126117 | Episode : 548 | Total reward : 2.0, episode length : 299, current eps : 0.7729893999999999
+Iteration : 126324 | Episode : 549 | Total reward : 0.0, episode length : 206, current eps : 0.7726168
+Iteration : 126499 | Episode : 550 | Total reward : -1.0, episode length : 174, current eps : 0.7723017999999999
+Iteration : 126668 | Episode : 551 | Total reward : -1.0, episode length : 168, current eps : 0.7719976
+Iteration : 126963 | Episode : 552 | Total reward : 1.0, episode length : 294, current eps : 0.7714666
+Iteration : 127234 | Episode : 553 | Total reward : 1.0, episode length : 270, current eps : 0.7709788
+Iteration : 127410 | Episode : 554 | Total reward : -1.0, episode length : 175, current eps : 0.770662
+Iteration : 127500 | Updating target weights...
+Iteration : 127710 | Episode : 555 | Total reward : 2.0, episode length : 299, current eps : 0.770122
+Iteration : 128010 | Episode : 556 | Total reward : 3.0, episode length : 299, current eps : 0.769582
+Iteration : 128178 | Episode : 557 | Total reward : -1.0, episode length : 167, current eps : 0.7692796
+Iteration : 128349 | Episode : 558 | Total reward : -1.0, episode length : 170, current eps : 0.7689718
+Iteration : 128527 | Episode : 559 | Total reward : -1.0, episode length : 177, current eps : 0.7686514
+Iteration : 128693 | Episode : 560 | Total reward : -1.0, episode length : 165, current eps : 0.7683526
+Iteration : 128918 | Episode : 561 | Total reward : 0.0, episode length : 224, current eps : 0.7679476000000001
+Iteration : 129089 | Episode : 562 | Total reward : -1.0, episode length : 170, current eps : 0.7676398
+Iteration : 129256 | Episode : 563 | Total reward : -1.0, episode length : 166, current eps : 0.7673392
+Iteration : 129550 | Episode : 564 | Total reward : 1.0, episode length : 293, current eps : 0.76681
+Iteration : 129850 | Episode : 565 | Total reward : 2.0, episode length : 299, current eps : 0.76627
+Iteration : 130000 | Updating target weights...
+Iteration : 130033 | Episode : 566 | Total reward : -1.0, episode length : 182, current eps : 0.7659406
+Iteration : 130267 | Episode : 567 | Total reward : 0.0, episode length : 233, current eps : 0.7655194
+Iteration : 130561 | Episode : 568 | Total reward : 1.0, episode length : 293, current eps : 0.7649902
+Iteration : 130776 | Episode : 569 | Total reward : 0.0, episode length : 214, current eps : 0.7646032
+Iteration : 131006 | Episode : 570 | Total reward : 0.0, episode length : 229, current eps : 0.7641892
+Iteration : 131245 | Episode : 571 | Total reward : 0.0, episode length : 238, current eps : 0.763759
+Iteration : 131466 | Episode : 572 | Total reward : 0.0, episode length : 220, current eps : 0.7633612
+Iteration : 131766 | Episode : 573 | Total reward : 3.0, episode length : 299, current eps : 0.7628212
+Iteration : 132056 | Episode : 574 | Total reward : 1.0, episode length : 289, current eps : 0.7622992
+Iteration : 132227 | Episode : 575 | Total reward : -1.0, episode length : 170, current eps : 0.7619914
+Iteration : 132396 | Episode : 576 | Total reward : -1.0, episode length : 168, current eps : 0.7616872
+Iteration : 132500 | Updating target weights...
+Iteration : 132574 | Episode : 577 | Total reward : -1.0, episode length : 177, current eps : 0.7613668
+Iteration : 132737 | Episode : 578 | Total reward : -1.0, episode length : 162, current eps : 0.7610734
+Iteration : 133026 | Episode : 579 | Total reward : 1.0, episode length : 288, current eps : 0.7605531999999999
+Iteration : 133195 | Episode : 580 | Total reward : -1.0, episode length : 168, current eps : 0.760249
+Iteration : 133366 | Episode : 581 | Total reward : -1.0, episode length : 170, current eps : 0.7599412
+Iteration : 133600 | Episode : 582 | Total reward : 0.0, episode length : 233, current eps : 0.75952
+Iteration : 133765 | Episode : 583 | Total reward : -1.0, episode length : 164, current eps : 0.759223
+Iteration : 134002 | Episode : 584 | Total reward : 0.0, episode length : 236, current eps : 0.7587964
+Iteration : 134270 | Episode : 585 | Total reward : 1.0, episode length : 267, current eps : 0.7583139999999999
+Iteration : 134481 | Episode : 586 | Total reward : 0.0, episode length : 210, current eps : 0.7579342
+Iteration : 134749 | Episode : 587 | Total reward : 1.0, episode length : 267, current eps : 0.7574518
+Iteration : 134976 | Episode : 588 | Total reward : 0.0, episode length : 226, current eps : 0.7570432
+Iteration : 135000 | Updating target weights...
+Iteration : 135213 | Episode : 589 | Total reward : 0.0, episode length : 236, current eps : 0.7566166
+Iteration : 135499 | Episode : 590 | Total reward : 1.0, episode length : 285, current eps : 0.7561017999999999
+Iteration : 135779 | Episode : 591 | Total reward : 1.0, episode length : 279, current eps : 0.7555978
+Iteration : 136019 | Episode : 592 | Total reward : 0.0, episode length : 239, current eps : 0.7551658
+Iteration : 136206 | Episode : 593 | Total reward : -1.0, episode length : 186, current eps : 0.7548292
+Iteration : 136439 | Episode : 594 | Total reward : 0.0, episode length : 232, current eps : 0.7544098
+Iteration : 136612 | Episode : 595 | Total reward : -1.0, episode length : 172, current eps : 0.7540984
+Iteration : 136855 | Episode : 596 | Total reward : 0.0, episode length : 242, current eps : 0.753661
+Iteration : 137155 | Episode : 597 | Total reward : 3.0, episode length : 299, current eps : 0.753121
+Iteration : 137455 | Episode : 598 | Total reward : 3.0, episode length : 299, current eps : 0.7525809999999999
+Iteration : 137500 | Updating target weights...
+Iteration : 137674 | Episode : 599 | Total reward : 0.0, episode length : 218, current eps : 0.7521868
+Iteration : 137974 | Episode : 600 | Total reward : 3.0, episode length : 299, current eps : 0.7516468
+Iteration : 138274 | Episode : 601 | Total reward : 4.0, episode length : 299, current eps : 0.7511068
+Iteration : 138503 | Episode : 602 | Total reward : 0.0, episode length : 228, current eps : 0.7506946
+Iteration : 138669 | Episode : 603 | Total reward : -1.0, episode length : 165, current eps : 0.7503958
+Iteration : 138838 | Episode : 604 | Total reward : -1.0, episode length : 168, current eps : 0.7500916
+Iteration : 139098 | Episode : 605 | Total reward : 1.0, episode length : 259, current eps : 0.7496236000000001
+Iteration : 139270 | Episode : 606 | Total reward : -1.0, episode length : 171, current eps : 0.749314
+Iteration : 139482 | Episode : 607 | Total reward : 0.0, episode length : 211, current eps : 0.7489323999999999
+Iteration : 139757 | Episode : 608 | Total reward : 1.0, episode length : 274, current eps : 0.7484374
+Iteration : 140000 | Updating target weights...
+Iteration : 140025 | Episode : 609 | Total reward : 1.0, episode length : 267, current eps : 0.7479549999999999
+Iteration : 140260 | Episode : 610 | Total reward : 0.0, episode length : 234, current eps : 0.747532
+Iteration : 140560 | Episode : 611 | Total reward : 3.0, episode length : 299, current eps : 0.746992
+Iteration : 140860 | Episode : 612 | Total reward : 3.0, episode length : 299, current eps : 0.746452
+Iteration : 141160 | Episode : 613 | Total reward : 1.0, episode length : 299, current eps : 0.745912
+Iteration : 141460 | Episode : 614 | Total reward : 2.0, episode length : 299, current eps : 0.7453719999999999
+Iteration : 141699 | Episode : 615 | Total reward : 0.0, episode length : 238, current eps : 0.7449418
+Iteration : 141910 | Episode : 616 | Total reward : 0.0, episode length : 210, current eps : 0.744562
+Iteration : 142082 | Episode : 617 | Total reward : -1.0, episode length : 171, current eps : 0.7442523999999999
+Iteration : 142367 | Episode : 618 | Total reward : 1.0, episode length : 284, current eps : 0.7437393999999999
+Iteration : 142500 | Updating target weights...
+Iteration : 142544 | Episode : 619 | Total reward : -1.0, episode length : 176, current eps : 0.7434208
+Iteration : 142844 | Episode : 620 | Total reward : 3.0, episode length : 299, current eps : 0.7428808
+Iteration : 143013 | Episode : 621 | Total reward : -1.0, episode length : 168, current eps : 0.7425766
+Iteration : 143190 | Episode : 622 | Total reward : -1.0, episode length : 176, current eps : 0.742258
+Iteration : 143396 | Episode : 623 | Total reward : 0.0, episode length : 205, current eps : 0.7418872
+Iteration : 143609 | Episode : 624 | Total reward : 0.0, episode length : 212, current eps : 0.7415038
+Iteration : 143781 | Episode : 625 | Total reward : -1.0, episode length : 171, current eps : 0.7411942
+Iteration : 144081 | Episode : 626 | Total reward : 3.0, episode length : 299, current eps : 0.7406542
+Iteration : 144251 | Episode : 627 | Total reward : -1.0, episode length : 169, current eps : 0.7403481999999999
+Iteration : 144437 | Episode : 628 | Total reward : -1.0, episode length : 185, current eps : 0.7400134
+Iteration : 144737 | Episode : 629 | Total reward : 3.0, episode length : 299, current eps : 0.7394734000000001
+Iteration : 144958 | Episode : 630 | Total reward : 0.0, episode length : 220, current eps : 0.7390756
+Iteration : 145000 | Updating target weights...
+Iteration : 145115 | Episode : 631 | Total reward : -1.0, episode length : 156, current eps : 0.738793
+Iteration : 145317 | Episode : 632 | Total reward : 0.0, episode length : 201, current eps : 0.7384294
+Iteration : 145615 | Episode : 633 | Total reward : 1.0, episode length : 297, current eps : 0.737893
+Iteration : 145826 | Episode : 634 | Total reward : 0.0, episode length : 210, current eps : 0.7375132
+Iteration : 146043 | Episode : 635 | Total reward : 0.0, episode length : 216, current eps : 0.7371226
+Iteration : 146219 | Episode : 636 | Total reward : -1.0, episode length : 175, current eps : 0.7368058
+Iteration : 146386 | Episode : 637 | Total reward : -1.0, episode length : 166, current eps : 0.7365052000000001
+Iteration : 146678 | Episode : 638 | Total reward : 1.0, episode length : 291, current eps : 0.7359796
+Iteration : 146978 | Episode : 639 | Total reward : 2.0, episode length : 299, current eps : 0.7354396
+Iteration : 147246 | Episode : 640 | Total reward : 1.0, episode length : 267, current eps : 0.7349572
+Iteration : 147424 | Episode : 641 | Total reward : -1.0, episode length : 177, current eps : 0.7346368
+Iteration : 147500 | Updating target weights...
+Iteration : 147693 | Episode : 642 | Total reward : 1.0, episode length : 268, current eps : 0.7341526
+Iteration : 147953 | Episode : 643 | Total reward : 1.0, episode length : 259, current eps : 0.7336845999999999
+Iteration : 148198 | Episode : 644 | Total reward : 1.0, episode length : 244, current eps : 0.7332436
+Iteration : 148412 | Episode : 645 | Total reward : 0.0, episode length : 213, current eps : 0.7328584
+Iteration : 148579 | Episode : 646 | Total reward : -1.0, episode length : 166, current eps : 0.7325577999999999
+Iteration : 148758 | Episode : 647 | Total reward : -1.0, episode length : 178, current eps : 0.7322356
+Iteration : 148923 | Episode : 648 | Total reward : -1.0, episode length : 164, current eps : 0.7319386
+Iteration : 149105 | Episode : 649 | Total reward : -1.0, episode length : 181, current eps : 0.731611
+Iteration : 149287 | Episode : 650 | Total reward : -1.0, episode length : 181, current eps : 0.7312833999999999
+Iteration : 149519 | Episode : 651 | Total reward : 0.0, episode length : 231, current eps : 0.7308658
+Iteration : 149680 | Episode : 652 | Total reward : -1.0, episode length : 160, current eps : 0.730576
+Iteration : 149925 | Episode : 653 | Total reward : 0.0, episode length : 244, current eps : 0.730135
+Iteration : 150000 | Updating target weights...
+Iteration : 150157 | Episode : 654 | Total reward : 0.0, episode length : 231, current eps : 0.7297174
+Iteration : 150457 | Episode : 655 | Total reward : 3.0, episode length : 299, current eps : 0.7291774
+Iteration : 150682 | Episode : 656 | Total reward : 0.0, episode length : 224, current eps : 0.7287724
+Iteration : 150851 | Episode : 657 | Total reward : -1.0, episode length : 168, current eps : 0.7284682
+Iteration : 151024 | Episode : 658 | Total reward : -1.0, episode length : 172, current eps : 0.7281568
+Iteration : 151251 | Episode : 659 | Total reward : 0.0, episode length : 226, current eps : 0.7277482
+Iteration : 151551 | Episode : 660 | Total reward : 3.0, episode length : 299, current eps : 0.7272082
+Iteration : 151732 | Episode : 661 | Total reward : -1.0, episode length : 180, current eps : 0.7268824
+Iteration : 152012 | Episode : 662 | Total reward : 1.0, episode length : 279, current eps : 0.7263784
+Iteration : 152187 | Episode : 663 | Total reward : -1.0, episode length : 174, current eps : 0.7260633999999999
+Iteration : 152368 | Episode : 664 | Total reward : -1.0, episode length : 180, current eps : 0.7257376
+Iteration : 152500 | Updating target weights...
+Iteration : 152668 | Episode : 665 | Total reward : 2.0, episode length : 299, current eps : 0.7251976
+Iteration : 152835 | Episode : 666 | Total reward : -1.0, episode length : 166, current eps : 0.724897
+Iteration : 153135 | Episode : 667 | Total reward : 2.0, episode length : 299, current eps : 0.7243569999999999
+Iteration : 153396 | Episode : 668 | Total reward : 1.0, episode length : 260, current eps : 0.7238872000000001
+Iteration : 153696 | Episode : 669 | Total reward : 4.0, episode length : 299, current eps : 0.7233472000000001
+Iteration : 153901 | Episode : 670 | Total reward : 0.0, episode length : 204, current eps : 0.7229782
+Iteration : 154174 | Episode : 671 | Total reward : 1.0, episode length : 272, current eps : 0.7224868
+Iteration : 154346 | Episode : 672 | Total reward : -1.0, episode length : 171, current eps : 0.7221772
+Iteration : 154516 | Episode : 673 | Total reward : -1.0, episode length : 169, current eps : 0.7218712
+Iteration : 154803 | Episode : 674 | Total reward : 1.0, episode length : 286, current eps : 0.7213546
+Iteration : 155000 | Updating target weights...
+Iteration : 155051 | Episode : 675 | Total reward : 0.0, episode length : 247, current eps : 0.7209082
+Iteration : 155351 | Episode : 676 | Total reward : 2.0, episode length : 299, current eps : 0.7203682
+Iteration : 155581 | Episode : 677 | Total reward : 0.0, episode length : 229, current eps : 0.7199542
+Iteration : 155881 | Episode : 678 | Total reward : 3.0, episode length : 299, current eps : 0.7194142
+Iteration : 156048 | Episode : 679 | Total reward : -1.0, episode length : 166, current eps : 0.7191136
+Iteration : 156224 | Episode : 680 | Total reward : -1.0, episode length : 175, current eps : 0.7187968
+Iteration : 156524 | Episode : 681 | Total reward : 3.0, episode length : 299, current eps : 0.7182568
+Iteration : 156824 | Episode : 682 | Total reward : 3.0, episode length : 299, current eps : 0.7177168
+Iteration : 156996 | Episode : 683 | Total reward : -1.0, episode length : 171, current eps : 0.7174072
+Iteration : 157172 | Episode : 684 | Total reward : -1.0, episode length : 175, current eps : 0.7170904
+Iteration : 157380 | Episode : 685 | Total reward : 0.0, episode length : 207, current eps : 0.716716
+Iteration : 157500 | Updating target weights...
+Iteration : 157646 | Episode : 686 | Total reward : 1.0, episode length : 265, current eps : 0.7162372
+Iteration : 157849 | Episode : 687 | Total reward : 0.0, episode length : 202, current eps : 0.7158718
+Iteration : 158149 | Episode : 688 | Total reward : 3.0, episode length : 299, current eps : 0.7153318
+Iteration : 158388 | Episode : 689 | Total reward : 0.0, episode length : 238, current eps : 0.7149015999999999
+Iteration : 158687 | Episode : 690 | Total reward : 1.0, episode length : 298, current eps : 0.7143634
+Iteration : 158968 | Episode : 691 | Total reward : 1.0, episode length : 280, current eps : 0.7138576
+Iteration : 159148 | Episode : 692 | Total reward : -1.0, episode length : 179, current eps : 0.7135336
+Iteration : 159448 | Episode : 693 | Total reward : 3.0, episode length : 299, current eps : 0.7129935999999999
+Iteration : 159748 | Episode : 694 | Total reward : 3.0, episode length : 299, current eps : 0.7124535999999999
+Iteration : 160000 | Updating target weights...
+Iteration : 160012 | Episode : 695 | Total reward : 1.0, episode length : 263, current eps : 0.7119784
+Iteration : 160179 | Episode : 696 | Total reward : -1.0, episode length : 166, current eps : 0.7116777999999999
+Iteration : 160353 | Episode : 697 | Total reward : -1.0, episode length : 173, current eps : 0.7113646
+Iteration : 160616 | Episode : 698 | Total reward : 1.0, episode length : 262, current eps : 0.7108912000000001
+Iteration : 160824 | Episode : 699 | Total reward : 0.0, episode length : 207, current eps : 0.7105168
+Iteration : 161124 | Episode : 700 | Total reward : 2.0, episode length : 299, current eps : 0.7099768
+Iteration : 161416 | Episode : 701 | Total reward : 1.0, episode length : 291, current eps : 0.7094512
+Iteration : 161592 | Episode : 702 | Total reward : -1.0, episode length : 175, current eps : 0.7091343999999999
+Iteration : 161772 | Episode : 703 | Total reward : -1.0, episode length : 179, current eps : 0.7088104
+Iteration : 161942 | Episode : 704 | Total reward : -1.0, episode length : 169, current eps : 0.7085044
+Iteration : 162110 | Episode : 705 | Total reward : -1.0, episode length : 167, current eps : 0.708202
+Iteration : 162410 | Episode : 706 | Total reward : 4.0, episode length : 299, current eps : 0.707662
+Iteration : 162500 | Updating target weights...
+Iteration : 162620 | Episode : 707 | Total reward : 0.0, episode length : 209, current eps : 0.707284
+Iteration : 162871 | Episode : 708 | Total reward : 0.0, episode length : 250, current eps : 0.7068322
+Iteration : 163171 | Episode : 709 | Total reward : 4.0, episode length : 299, current eps : 0.7062922
+Iteration : 163471 | Episode : 710 | Total reward : 3.0, episode length : 299, current eps : 0.7057522
+Iteration : 163699 | Episode : 711 | Total reward : 0.0, episode length : 227, current eps : 0.7053418
+Iteration : 163924 | Episode : 712 | Total reward : 0.0, episode length : 224, current eps : 0.7049368
+Iteration : 164224 | Episode : 713 | Total reward : 3.0, episode length : 299, current eps : 0.7043968
+Iteration : 164524 | Episode : 714 | Total reward : 3.0, episode length : 299, current eps : 0.7038568000000001
+Iteration : 164728 | Episode : 715 | Total reward : 0.0, episode length : 203, current eps : 0.7034895999999999
+Iteration : 165000 | Updating target weights...
+Iteration : 165028 | Episode : 716 | Total reward : 3.0, episode length : 299, current eps : 0.7029496
+Iteration : 165302 | Episode : 717 | Total reward : 1.0, episode length : 273, current eps : 0.7024564
+Iteration : 165534 | Episode : 718 | Total reward : 0.0, episode length : 231, current eps : 0.7020388
+Iteration : 165773 | Episode : 719 | Total reward : 0.0, episode length : 238, current eps : 0.7016085999999999
+Iteration : 166073 | Episode : 720 | Total reward : 3.0, episode length : 299, current eps : 0.7010685999999999
+Iteration : 166235 | Episode : 721 | Total reward : -1.0, episode length : 161, current eps : 0.700777
+Iteration : 166474 | Episode : 722 | Total reward : 0.0, episode length : 238, current eps : 0.7003467999999999
+Iteration : 166769 | Episode : 723 | Total reward : 1.0, episode length : 294, current eps : 0.6998158
+Iteration : 167007 | Episode : 724 | Total reward : 0.0, episode length : 237, current eps : 0.6993874
+Iteration : 167235 | Episode : 725 | Total reward : 0.0, episode length : 227, current eps : 0.698977
+Iteration : 167470 | Episode : 726 | Total reward : 0.0, episode length : 234, current eps : 0.698554
+Iteration : 167500 | Updating target weights...
+Iteration : 167702 | Episode : 727 | Total reward : 0.0, episode length : 231, current eps : 0.6981364
+Iteration : 167875 | Episode : 728 | Total reward : -1.0, episode length : 172, current eps : 0.6978249999999999
+Iteration : 168175 | Episode : 729 | Total reward : 2.0, episode length : 299, current eps : 0.6972849999999999
+Iteration : 168358 | Episode : 730 | Total reward : -1.0, episode length : 182, current eps : 0.6969555999999999
+Iteration : 168536 | Episode : 731 | Total reward : -1.0, episode length : 177, current eps : 0.6966352
+Iteration : 168748 | Episode : 732 | Total reward : 0.0, episode length : 211, current eps : 0.6962535999999999
+Iteration : 168961 | Episode : 733 | Total reward : 0.0, episode length : 212, current eps : 0.6958702
+Iteration : 169172 | Episode : 734 | Total reward : 0.0, episode length : 210, current eps : 0.6954904
+Iteration : 169367 | Episode : 735 | Total reward : 0.0, episode length : 194, current eps : 0.6951394
+Iteration : 169599 | Episode : 736 | Total reward : 0.0, episode length : 231, current eps : 0.6947218
+Iteration : 169865 | Episode : 737 | Total reward : 1.0, episode length : 265, current eps : 0.6942429999999999
+Iteration : 170000 | Updating target weights...
+Iteration : 170165 | Episode : 738 | Total reward : 3.0, episode length : 299, current eps : 0.693703
+Iteration : 170332 | Episode : 739 | Total reward : -1.0, episode length : 166, current eps : 0.6934024
+Iteration : 170632 | Episode : 740 | Total reward : 3.0, episode length : 299, current eps : 0.6928624
+Iteration : 170910 | Episode : 741 | Total reward : 1.0, episode length : 277, current eps : 0.6923619999999999
+Iteration : 171118 | Episode : 742 | Total reward : 0.0, episode length : 207, current eps : 0.6919876
+Iteration : 171382 | Episode : 743 | Total reward : 1.0, episode length : 263, current eps : 0.6915123999999999
+Iteration : 171682 | Episode : 744 | Total reward : 3.0, episode length : 299, current eps : 0.6909723999999999
+Iteration : 171982 | Episode : 745 | Total reward : 3.0, episode length : 299, current eps : 0.6904324
+Iteration : 172219 | Episode : 746 | Total reward : 0.0, episode length : 236, current eps : 0.6900058
+Iteration : 172500 | Updating target weights...
+Iteration : 172519 | Episode : 747 | Total reward : 4.0, episode length : 299, current eps : 0.6894658
+Iteration : 172790 | Episode : 748 | Total reward : 1.0, episode length : 270, current eps : 0.688978
+Iteration : 173090 | Episode : 749 | Total reward : 3.0, episode length : 299, current eps : 0.688438
+Iteration : 173390 | Episode : 750 | Total reward : 3.0, episode length : 299, current eps : 0.687898
+Iteration : 173564 | Episode : 751 | Total reward : -1.0, episode length : 173, current eps : 0.6875848
+Iteration : 173734 | Episode : 752 | Total reward : -1.0, episode length : 169, current eps : 0.6872788
+Iteration : 173909 | Episode : 753 | Total reward : -1.0, episode length : 174, current eps : 0.6869638
+Iteration : 174181 | Episode : 754 | Total reward : 1.0, episode length : 271, current eps : 0.6864742
+Iteration : 174481 | Episode : 755 | Total reward : 2.0, episode length : 299, current eps : 0.6859341999999999
+Iteration : 174654 | Episode : 756 | Total reward : -1.0, episode length : 172, current eps : 0.6856228
+Iteration : 174954 | Episode : 757 | Total reward : 3.0, episode length : 299, current eps : 0.6850828
+Iteration : 175000 | Updating target weights...
+Iteration : 175126 | Episode : 758 | Total reward : -1.0, episode length : 171, current eps : 0.6847732
+Iteration : 175356 | Episode : 759 | Total reward : 0.0, episode length : 229, current eps : 0.6843592000000001
+Iteration : 175581 | Episode : 760 | Total reward : 0.0, episode length : 224, current eps : 0.6839542000000001
+Iteration : 175751 | Episode : 761 | Total reward : -1.0, episode length : 169, current eps : 0.6836482
+Iteration : 176027 | Episode : 762 | Total reward : 1.0, episode length : 275, current eps : 0.6831514
+Iteration : 176262 | Episode : 763 | Total reward : 0.0, episode length : 234, current eps : 0.6827284
+Iteration : 176553 | Episode : 764 | Total reward : 1.0, episode length : 290, current eps : 0.6822045999999999
+Iteration : 176718 | Episode : 765 | Total reward : -1.0, episode length : 164, current eps : 0.6819076
+Iteration : 176989 | Episode : 766 | Total reward : 1.0, episode length : 270, current eps : 0.6814198
+Iteration : 177163 | Episode : 767 | Total reward : -1.0, episode length : 173, current eps : 0.6811065999999999
+Iteration : 177345 | Episode : 768 | Total reward : -1.0, episode length : 181, current eps : 0.680779
+Iteration : 177500 | Updating target weights...
+Iteration : 177645 | Episode : 769 | Total reward : 3.0, episode length : 299, current eps : 0.680239
+Iteration : 177854 | Episode : 770 | Total reward : 0.0, episode length : 208, current eps : 0.6798628
+Iteration : 178084 | Episode : 771 | Total reward : 0.0, episode length : 229, current eps : 0.6794488
+Iteration : 178299 | Episode : 772 | Total reward : 0.0, episode length : 214, current eps : 0.6790617999999999
+Iteration : 178598 | Episode : 773 | Total reward : 1.0, episode length : 298, current eps : 0.6785235999999999
+Iteration : 178859 | Episode : 774 | Total reward : 1.0, episode length : 260, current eps : 0.6780538
+Iteration : 179138 | Episode : 775 | Total reward : 1.0, episode length : 278, current eps : 0.6775515999999999
+Iteration : 179309 | Episode : 776 | Total reward : -1.0, episode length : 170, current eps : 0.6772438000000001
+Iteration : 179609 | Episode : 777 | Total reward : 3.0, episode length : 299, current eps : 0.6767038
+Iteration : 179844 | Episode : 778 | Total reward : 1.0, episode length : 234, current eps : 0.6762808
+Iteration : 180000 | Updating target weights...
+Iteration : 180114 | Episode : 779 | Total reward : 1.0, episode length : 269, current eps : 0.6757948
+Iteration : 180353 | Episode : 780 | Total reward : 0.0, episode length : 238, current eps : 0.6753646
+Iteration : 180588 | Episode : 781 | Total reward : 0.0, episode length : 234, current eps : 0.6749415999999999
+Iteration : 180874 | Episode : 782 | Total reward : 2.0, episode length : 285, current eps : 0.6744268
+Iteration : 181148 | Episode : 783 | Total reward : 1.0, episode length : 273, current eps : 0.6739336
+Iteration : 181321 | Episode : 784 | Total reward : -1.0, episode length : 172, current eps : 0.6736222000000001
+Iteration : 181621 | Episode : 785 | Total reward : 3.0, episode length : 299, current eps : 0.6730822000000001
+Iteration : 181900 | Episode : 786 | Total reward : 1.0, episode length : 278, current eps : 0.67258
+Iteration : 182126 | Episode : 787 | Total reward : 0.0, episode length : 225, current eps : 0.6721732
+Iteration : 182342 | Episode : 788 | Total reward : 0.0, episode length : 215, current eps : 0.6717844
+Iteration : 182500 | Updating target weights...
+Iteration : 182548 | Episode : 789 | Total reward : 0.0, episode length : 205, current eps : 0.6714135999999999
+Iteration : 182848 | Episode : 790 | Total reward : 3.0, episode length : 299, current eps : 0.6708736
+Iteration : 183148 | Episode : 791 | Total reward : 1.0, episode length : 299, current eps : 0.6703336
+Iteration : 183420 | Episode : 792 | Total reward : 1.0, episode length : 271, current eps : 0.669844
+Iteration : 183622 | Episode : 793 | Total reward : 0.0, episode length : 201, current eps : 0.6694804
+Iteration : 183795 | Episode : 794 | Total reward : -1.0, episode length : 172, current eps : 0.669169
+Iteration : 183961 | Episode : 795 | Total reward : -1.0, episode length : 165, current eps : 0.6688702
+Iteration : 184139 | Episode : 796 | Total reward : -1.0, episode length : 177, current eps : 0.6685498
+Iteration : 184363 | Episode : 797 | Total reward : 0.0, episode length : 223, current eps : 0.6681466
+Iteration : 184663 | Episode : 798 | Total reward : 3.0, episode length : 299, current eps : 0.6676066
+Iteration : 184925 | Episode : 799 | Total reward : 1.0, episode length : 261, current eps : 0.667135
+Iteration : 185000 | Updating target weights...
+Iteration : 185225 | Episode : 800 | Total reward : 3.0, episode length : 299, current eps : 0.666595
+Iteration : 185490 | Episode : 801 | Total reward : 1.0, episode length : 264, current eps : 0.666118
+Iteration : 185663 | Episode : 802 | Total reward : -1.0, episode length : 172, current eps : 0.6658066
+Iteration : 185836 | Episode : 803 | Total reward : -1.0, episode length : 172, current eps : 0.6654952000000001
+Iteration : 186136 | Episode : 804 | Total reward : 3.0, episode length : 299, current eps : 0.6649552000000001
+Iteration : 186374 | Episode : 805 | Total reward : 0.0, episode length : 237, current eps : 0.6645268
+Iteration : 186674 | Episode : 806 | Total reward : 3.0, episode length : 299, current eps : 0.6639868
+Iteration : 186974 | Episode : 807 | Total reward : 2.0, episode length : 299, current eps : 0.6634468
+Iteration : 187177 | Episode : 808 | Total reward : 0.0, episode length : 202, current eps : 0.6630814
+Iteration : 187353 | Episode : 809 | Total reward : -1.0, episode length : 175, current eps : 0.6627646
+Iteration : 187500 | Updating target weights...
+Iteration : 187633 | Episode : 810 | Total reward : 1.0, episode length : 279, current eps : 0.6622606
+Iteration : 187807 | Episode : 811 | Total reward : -1.0, episode length : 173, current eps : 0.6619474
+Iteration : 188040 | Episode : 812 | Total reward : 0.0, episode length : 232, current eps : 0.661528
+Iteration : 188333 | Episode : 813 | Total reward : 1.0, episode length : 292, current eps : 0.6610005999999999
+Iteration : 188612 | Episode : 814 | Total reward : 1.0, episode length : 278, current eps : 0.6604984
+Iteration : 188786 | Episode : 815 | Total reward : -1.0, episode length : 173, current eps : 0.6601852
+Iteration : 188993 | Episode : 816 | Total reward : 0.0, episode length : 206, current eps : 0.6598126
+Iteration : 189260 | Episode : 817 | Total reward : 1.0, episode length : 266, current eps : 0.659332
+Iteration : 189560 | Episode : 818 | Total reward : 4.0, episode length : 299, current eps : 0.658792
+Iteration : 189733 | Episode : 819 | Total reward : -1.0, episode length : 172, current eps : 0.6584806
+Iteration : 189995 | Episode : 820 | Total reward : 1.0, episode length : 261, current eps : 0.6580090000000001
+Iteration : 190000 | Updating target weights...
+Iteration : 190161 | Episode : 821 | Total reward : -1.0, episode length : 165, current eps : 0.6577102
+Iteration : 190461 | Episode : 822 | Total reward : 3.0, episode length : 299, current eps : 0.6571702
+Iteration : 190698 | Episode : 823 | Total reward : 0.0, episode length : 236, current eps : 0.6567436
+Iteration : 190904 | Episode : 824 | Total reward : 0.0, episode length : 205, current eps : 0.6563728
+Iteration : 191177 | Episode : 825 | Total reward : 1.0, episode length : 272, current eps : 0.6558814
+Iteration : 191404 | Episode : 826 | Total reward : 0.0, episode length : 226, current eps : 0.6554728
+Iteration : 191573 | Episode : 827 | Total reward : -1.0, episode length : 168, current eps : 0.6551686
+Iteration : 191845 | Episode : 828 | Total reward : 1.0, episode length : 271, current eps : 0.654679
+Iteration : 192080 | Episode : 829 | Total reward : 0.0, episode length : 234, current eps : 0.654256
+Iteration : 192380 | Episode : 830 | Total reward : 3.0, episode length : 299, current eps : 0.653716
+Iteration : 192500 | Updating target weights...
+Iteration : 192658 | Episode : 831 | Total reward : 1.0, episode length : 277, current eps : 0.6532156
+Iteration : 192928 | Episode : 832 | Total reward : 1.0, episode length : 269, current eps : 0.6527296
+Iteration : 193177 | Episode : 833 | Total reward : 1.0, episode length : 248, current eps : 0.6522813999999999
+Iteration : 193444 | Episode : 834 | Total reward : 1.0, episode length : 266, current eps : 0.6518008
+Iteration : 193742 | Episode : 835 | Total reward : 1.0, episode length : 297, current eps : 0.6512644
+Iteration : 194032 | Episode : 836 | Total reward : 1.0, episode length : 289, current eps : 0.6507423999999999
+Iteration : 194196 | Episode : 837 | Total reward : -1.0, episode length : 163, current eps : 0.6504472
+Iteration : 194425 | Episode : 838 | Total reward : 0.0, episode length : 228, current eps : 0.6500349999999999
+Iteration : 194722 | Episode : 839 | Total reward : 1.0, episode length : 296, current eps : 0.6495004
+Iteration : 194896 | Episode : 840 | Total reward : -1.0, episode length : 173, current eps : 0.6491872000000001
+Iteration : 195000 | Updating target weights...
+Iteration : 195196 | Episode : 841 | Total reward : 3.0, episode length : 299, current eps : 0.6486472000000001
+Iteration : 195487 | Episode : 842 | Total reward : 1.0, episode length : 290, current eps : 0.6481234
+Iteration : 195787 | Episode : 843 | Total reward : 3.0, episode length : 299, current eps : 0.6475834
+Iteration : 196020 | Episode : 844 | Total reward : 0.0, episode length : 232, current eps : 0.6471640000000001
+Iteration : 196200 | Episode : 845 | Total reward : -1.0, episode length : 179, current eps : 0.6468400000000001
+Iteration : 196365 | Episode : 846 | Total reward : -1.0, episode length : 164, current eps : 0.646543
+Iteration : 196640 | Episode : 847 | Total reward : 1.0, episode length : 274, current eps : 0.646048
+Iteration : 196804 | Episode : 848 | Total reward : -1.0, episode length : 163, current eps : 0.6457528
+Iteration : 197022 | Episode : 849 | Total reward : 0.0, episode length : 217, current eps : 0.6453604
+Iteration : 197322 | Episode : 850 | Total reward : 3.0, episode length : 299, current eps : 0.6448204
+Iteration : 197500 | Updating target weights...
+Iteration : 197593 | Episode : 851 | Total reward : 1.0, episode length : 270, current eps : 0.6443326
+Iteration : 197765 | Episode : 852 | Total reward : -1.0, episode length : 171, current eps : 0.644023
+Iteration : 197939 | Episode : 853 | Total reward : -1.0, episode length : 173, current eps : 0.6437098
+Iteration : 198236 | Episode : 854 | Total reward : 1.0, episode length : 296, current eps : 0.6431752
+Iteration : 198401 | Episode : 855 | Total reward : -1.0, episode length : 164, current eps : 0.6428782
+Iteration : 198572 | Episode : 856 | Total reward : -1.0, episode length : 170, current eps : 0.6425704
+Iteration : 198866 | Episode : 857 | Total reward : 1.0, episode length : 293, current eps : 0.6420412
+Iteration : 199099 | Episode : 858 | Total reward : 0.0, episode length : 232, current eps : 0.6416218
+Iteration : 199373 | Episode : 859 | Total reward : 1.0, episode length : 273, current eps : 0.6411286
+Iteration : 199598 | Episode : 860 | Total reward : 0.0, episode length : 224, current eps : 0.6407236000000001
+Iteration : 199898 | Episode : 861 | Total reward : 3.0, episode length : 299, current eps : 0.6401836
+Iteration : 200000 | Updating target weights...
+Iteration : 200198 | Episode : 862 | Total reward : 2.0, episode length : 299, current eps : 0.6396436
+Iteration : 200384 | Episode : 863 | Total reward : -1.0, episode length : 185, current eps : 0.6393088
+Iteration : 200610 | Episode : 864 | Total reward : 0.0, episode length : 225, current eps : 0.6389020000000001
+Iteration : 200827 | Episode : 865 | Total reward : 0.0, episode length : 216, current eps : 0.6385114
+Iteration : 201042 | Episode : 866 | Total reward : 0.0, episode length : 214, current eps : 0.6381243999999999
+Iteration : 201264 | Episode : 867 | Total reward : 0.0, episode length : 221, current eps : 0.6377248
+Iteration : 201497 | Episode : 868 | Total reward : 0.0, episode length : 232, current eps : 0.6373054
+Iteration : 201797 | Episode : 869 | Total reward : 3.0, episode length : 299, current eps : 0.6367654
+Iteration : 202086 | Episode : 870 | Total reward : 1.0, episode length : 288, current eps : 0.6362452000000001
+Iteration : 202259 | Episode : 871 | Total reward : -1.0, episode length : 172, current eps : 0.6359338
+Iteration : 202500 | Updating target weights...
+Iteration : 202522 | Episode : 872 | Total reward : 1.0, episode length : 262, current eps : 0.6354603999999999
+Iteration : 202822 | Episode : 873 | Total reward : 2.0, episode length : 299, current eps : 0.6349203999999999
+Iteration : 203055 | Episode : 874 | Total reward : 0.0, episode length : 232, current eps : 0.634501
+Iteration : 203264 | Episode : 875 | Total reward : 0.0, episode length : 208, current eps : 0.6341247999999999
+Iteration : 203564 | Episode : 876 | Total reward : 3.0, episode length : 299, current eps : 0.6335848
+Iteration : 203864 | Episode : 877 | Total reward : 3.0, episode length : 299, current eps : 0.6330448
+Iteration : 204164 | Episode : 878 | Total reward : 3.0, episode length : 299, current eps : 0.6325048
+Iteration : 204464 | Episode : 879 | Total reward : 2.0, episode length : 299, current eps : 0.6319648
+Iteration : 204634 | Episode : 880 | Total reward : -1.0, episode length : 169, current eps : 0.6316588
+Iteration : 204880 | Episode : 881 | Total reward : 1.0, episode length : 245, current eps : 0.631216
+Iteration : 205000 | Updating target weights...
+Iteration : 205053 | Episode : 882 | Total reward : -1.0, episode length : 172, current eps : 0.6309046
+Iteration : 205277 | Episode : 883 | Total reward : 0.0, episode length : 223, current eps : 0.6305014
+Iteration : 205513 | Episode : 884 | Total reward : 0.0, episode length : 235, current eps : 0.6300766
+Iteration : 205683 | Episode : 885 | Total reward : -1.0, episode length : 169, current eps : 0.6297706
+Iteration : 205921 | Episode : 886 | Total reward : 0.0, episode length : 237, current eps : 0.6293422
+Iteration : 206159 | Episode : 887 | Total reward : 0.0, episode length : 237, current eps : 0.6289138
+Iteration : 206459 | Episode : 888 | Total reward : 3.0, episode length : 299, current eps : 0.6283738
+Iteration : 206626 | Episode : 889 | Total reward : -1.0, episode length : 166, current eps : 0.6280732
+Iteration : 206796 | Episode : 890 | Total reward : -1.0, episode length : 169, current eps : 0.6277672000000001
+Iteration : 207087 | Episode : 891 | Total reward : 1.0, episode length : 290, current eps : 0.6272434
+Iteration : 207262 | Episode : 892 | Total reward : -1.0, episode length : 174, current eps : 0.6269283999999999
+Iteration : 207498 | Episode : 893 | Total reward : 0.0, episode length : 235, current eps : 0.6265035999999999
+Iteration : 207500 | Updating target weights...
+Iteration : 207678 | Episode : 894 | Total reward : -1.0, episode length : 179, current eps : 0.6261796
+Iteration : 207851 | Episode : 895 | Total reward : -1.0, episode length : 172, current eps : 0.6258682
+Iteration : 208033 | Episode : 896 | Total reward : -1.0, episode length : 181, current eps : 0.6255406
+Iteration : 208333 | Episode : 897 | Total reward : 2.0, episode length : 299, current eps : 0.6250005999999999
+Iteration : 208537 | Episode : 898 | Total reward : 0.0, episode length : 203, current eps : 0.6246334
+Iteration : 208837 | Episode : 899 | Total reward : 2.0, episode length : 299, current eps : 0.6240934
+Iteration : 209048 | Episode : 900 | Total reward : 0.0, episode length : 210, current eps : 0.6237136
+Iteration : 209348 | Episode : 901 | Total reward : 2.0, episode length : 299, current eps : 0.6231736
+Iteration : 209648 | Episode : 902 | Total reward : 2.0, episode length : 299, current eps : 0.6226335999999999
+Iteration : 209838 | Episode : 903 | Total reward : -1.0, episode length : 189, current eps : 0.6222916000000001
+Iteration : 210000 | Updating target weights...
+Iteration : 210001 | Episode : 904 | Total reward : -1.0, episode length : 162, current eps : 0.6219982
+Iteration : 210211 | Episode : 905 | Total reward : 0.0, episode length : 209, current eps : 0.6216202
+Iteration : 210461 | Episode : 906 | Total reward : 0.0, episode length : 249, current eps : 0.6211702
+Iteration : 210651 | Episode : 907 | Total reward : -1.0, episode length : 189, current eps : 0.6208282
+Iteration : 210933 | Episode : 908 | Total reward : 0.0, episode length : 281, current eps : 0.6203206
+Iteration : 211233 | Episode : 909 | Total reward : 3.0, episode length : 299, current eps : 0.6197805999999999
+Iteration : 211449 | Episode : 910 | Total reward : 0.0, episode length : 215, current eps : 0.6193918
+Iteration : 211700 | Episode : 911 | Total reward : 0.0, episode length : 250, current eps : 0.61894
+Iteration : 211928 | Episode : 912 | Total reward : 0.0, episode length : 227, current eps : 0.6185296
+Iteration : 212120 | Episode : 913 | Total reward : -1.0, episode length : 191, current eps : 0.6181840000000001
+Iteration : 212420 | Episode : 914 | Total reward : 2.0, episode length : 299, current eps : 0.6176440000000001
+Iteration : 212500 | Updating target weights...
+Iteration : 212720 | Episode : 915 | Total reward : 3.0, episode length : 299, current eps : 0.617104
+Iteration : 212914 | Episode : 916 | Total reward : -1.0, episode length : 193, current eps : 0.6167548
+Iteration : 213118 | Episode : 917 | Total reward : -1.0, episode length : 203, current eps : 0.6163875999999999
+Iteration : 213312 | Episode : 918 | Total reward : -1.0, episode length : 193, current eps : 0.6160384
+Iteration : 213597 | Episode : 919 | Total reward : 0.0, episode length : 284, current eps : 0.6155253999999999
+Iteration : 213897 | Episode : 920 | Total reward : 4.0, episode length : 299, current eps : 0.6149853999999999
+Iteration : 214115 | Episode : 921 | Total reward : -1.0, episode length : 217, current eps : 0.614593
+Iteration : 214349 | Episode : 922 | Total reward : 0.0, episode length : 233, current eps : 0.6141718
+Iteration : 214649 | Episode : 923 | Total reward : 3.0, episode length : 299, current eps : 0.6136318000000001
+Iteration : 214850 | Episode : 924 | Total reward : -1.0, episode length : 200, current eps : 0.61327
+Iteration : 215000 | Updating target weights...
+Iteration : 215086 | Episode : 925 | Total reward : 0.0, episode length : 235, current eps : 0.6128452
+Iteration : 215263 | Episode : 926 | Total reward : -1.0, episode length : 176, current eps : 0.6125266
+Iteration : 215563 | Episode : 927 | Total reward : 3.0, episode length : 299, current eps : 0.6119866
+Iteration : 215742 | Episode : 928 | Total reward : -1.0, episode length : 178, current eps : 0.6116644
+Iteration : 215987 | Episode : 929 | Total reward : 0.0, episode length : 244, current eps : 0.6112234
+Iteration : 216212 | Episode : 930 | Total reward : 0.0, episode length : 224, current eps : 0.6108184
+Iteration : 216497 | Episode : 931 | Total reward : 1.0, episode length : 284, current eps : 0.6103053999999999
+Iteration : 216708 | Episode : 932 | Total reward : -1.0, episode length : 210, current eps : 0.6099256
+Iteration : 216896 | Episode : 933 | Total reward : -1.0, episode length : 187, current eps : 0.6095872
+Iteration : 217076 | Episode : 934 | Total reward : -1.0, episode length : 179, current eps : 0.6092632
+Iteration : 217264 | Episode : 935 | Total reward : -1.0, episode length : 187, current eps : 0.6089248
+Iteration : 217439 | Episode : 936 | Total reward : -1.0, episode length : 174, current eps : 0.6086098
+Iteration : 217500 | Updating target weights...
+Iteration : 217671 | Episode : 937 | Total reward : 0.0, episode length : 231, current eps : 0.6081922
+Iteration : 217867 | Episode : 938 | Total reward : -1.0, episode length : 195, current eps : 0.6078394
+Iteration : 218167 | Episode : 939 | Total reward : 3.0, episode length : 299, current eps : 0.6072994
+Iteration : 218452 | Episode : 940 | Total reward : 1.0, episode length : 284, current eps : 0.6067864
+Iteration : 218629 | Episode : 941 | Total reward : -1.0, episode length : 176, current eps : 0.6064678
+Iteration : 218929 | Episode : 942 | Total reward : 2.0, episode length : 299, current eps : 0.6059277999999999
+Iteration : 219157 | Episode : 943 | Total reward : -1.0, episode length : 227, current eps : 0.6055174
+Iteration : 219351 | Episode : 944 | Total reward : -1.0, episode length : 193, current eps : 0.6051682
+Iteration : 219552 | Episode : 945 | Total reward : -1.0, episode length : 200, current eps : 0.6048064
+Iteration : 219736 | Episode : 946 | Total reward : -1.0, episode length : 183, current eps : 0.6044752
+Iteration : 219943 | Episode : 947 | Total reward : -1.0, episode length : 206, current eps : 0.6041026
+Iteration : 220000 | Updating target weights...
+Iteration : 220136 | Episode : 948 | Total reward : -1.0, episode length : 192, current eps : 0.6037551999999999
+Iteration : 220370 | Episode : 949 | Total reward : 0.0, episode length : 233, current eps : 0.603334
+Iteration : 220661 | Episode : 950 | Total reward : 1.0, episode length : 290, current eps : 0.6028102
+Iteration : 220933 | Episode : 951 | Total reward : 1.0, episode length : 271, current eps : 0.6023206
+Iteration : 221122 | Episode : 952 | Total reward : -1.0, episode length : 188, current eps : 0.6019804
+Iteration : 221344 | Episode : 953 | Total reward : 0.0, episode length : 221, current eps : 0.6015808
+Iteration : 221597 | Episode : 954 | Total reward : 0.0, episode length : 252, current eps : 0.6011253999999999
+Iteration : 221776 | Episode : 955 | Total reward : -1.0, episode length : 178, current eps : 0.6008032000000001
+Iteration : 221969 | Episode : 956 | Total reward : -1.0, episode length : 192, current eps : 0.6004558
+Iteration : 222148 | Episode : 957 | Total reward : -1.0, episode length : 178, current eps : 0.6001335999999999
+Iteration : 222390 | Episode : 958 | Total reward : 0.0, episode length : 241, current eps : 0.5996980000000001

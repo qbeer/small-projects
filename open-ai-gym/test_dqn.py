@@ -19,7 +19,7 @@ IMG_HEIGHT = 84
 IMG_WIDTH = 84
 
 q = DeepQNetwork(N_ACTIONS)
-q.load_weights('chkpt/q_weights')
+q.load_weights('chkpt/q.h5')
 
 def select_action_e_greedy(state, current_eps=0.05):
     eps = np.random.uniform()
@@ -67,7 +67,8 @@ for ep in range(10):
         total_reward += reward
             
         if terminal:
-            print(f'Total reward : {total_reward}')
             break
+    
+    print(f'Total reward : {total_reward}')
 
 env.close()
