@@ -1,8 +1,8 @@
 import numpy as np
 import cv2
 
-HEIGHT = 60
-WIDTH = 48
+HEIGHT = 84
+WIDTH = 84
 
 N_STACK = 4
 
@@ -31,7 +31,7 @@ obs = env.reset()
 all_obs = [obs]
 
 for action in np.random.randint(0, 4, size=3):
-    obs, _, _, _ = env.step(action)
+    obs, _, _, _ = env.step(1) # fire a ball
     all_obs.append(obs)
 
 preprocessed = preprocess_input(all_obs)

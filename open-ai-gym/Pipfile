@@ -7,12 +7,9 @@ verify_ssl = true
 
 [packages]
 gym = {extras = ["atari"],version = "*"}
-tensorflow-gpu = {file = "https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-2.0.0-cp36-cp36m-manylinux2010_x86_64.whl"}
 numpy = "*"
 opencv-python = "*"
+tensorflow-gpu = {file = "https://files.pythonhosted.org/packages/9c/ce/701867b176b085574e63682a2774bf4851e2ce95343be7d8f1d8fbf0331b/tensorflow_gpu-2.0.1-cp36-cp36m-manylinux2010_x86_64.whl"}
 
 [requires]
 python_version = "3.6"
-
-[pipenv]
-allow_prereleases = true
