@@ -42,8 +42,6 @@ def get_current_epsilon(n_th_step):
 q = DeepQNetwork(N_ACTIONS)
 q_target = DeepQNetwork(N_ACTIONS)
 
-q.load_weights('chkpt/q.h5')
-
 # Initialize both networks with the same weights
 q_target.set_weights(q.get_weights())
 

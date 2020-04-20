@@ -23,7 +23,7 @@ q = tf.keras.models.Sequential(layers=[
     Dense(N_ACTIONS),
 ])
 
-q.load_weights('chkpt_cartpole/q_weights_cartpole')
+q.load_weights('chkpt_cartpole/q.h5')
 
 def select_action_e_greedy(state, current_eps):
     eps = np.random.uniform()
@@ -44,14 +44,15 @@ for ep in range(10):
     state = preprocess_input(obs)
     
     for timestep in range(MAX_EPISODE_LENGTH):
-        env.render()   
+        #env.render()   
         action = select_action_e_greedy(state, 0.05)
         #action = env.action_space.sample()
         obs, reward, terminal, info = env.step(action)
         state = preprocess_input(obs)
         total_reward += reward
         if terminal:
-            print(f'Total reward : {total_reward}')
-            break        
+            break
+    
+    print(f'Total reward : {total_reward}')        
 
 env.close()
