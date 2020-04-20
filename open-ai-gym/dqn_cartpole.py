@@ -1,5 +1,5 @@
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
 from replay_memory import ReplayMemory
 from deep_q_network import DeepQNetwork
@@ -18,14 +18,14 @@ env = gym.make('CartPole-v0')
 
 N_ACTIONS = env.action_space.n
 GAMMA = 0.99
-MAX_EPISODE_LENGTH = 250
+MAX_EPISODE_LENGTH = 300
 N_EPOSIDES = 50_000
-UPDATE_INTERVAL = 1000
-REPLAY_MEMORY_SIZE = 100_000
+UPDATE_INTERVAL = 2000
+REPLAY_MEMORY_SIZE = 500_000
 EPS_MAX = 1.0
-EPS_MIN = 0.1
+EPS_MIN = 0.05
 ANNEALATION_STEPS = 1_000_000
-MIN_EXPERIENCE_STEPS = 50_000
+MIN_EXPERIENCE_STEPS = 75_000
 MINI_BATCH_SIZE = 128
 OBSERVATION_SIZE = 4
 
@@ -37,7 +37,6 @@ def get_current_epsilon(n_th_step):
     else:
         return EPS_MAX - (EPS_MAX - EPS_MIN) * n_th_step / ANNEALATION_STEPS
 
-# actions are : NOPE, FIRE (new ball), RIGHT, LEFT
 q = tf.keras.models.Sequential(layers=[
     Dense(32, activation='tanh', input_shape=(None, OBSERVATION_SIZE)),
     Dense(64, activation='tanh'),
@@ -50,8 +49,7 @@ q_target = tf.keras.models.Sequential(layers=[
 ])
 
 # Initialize both networks with the same weights
-q.save_weights('chkpt_cartpole/q_weights_cartpole')
-q_target.load_weights('chkpt_cartpole/q_weights_cartpole')
+q_target.set_weights(q.get_weights())
 
 memory = ReplayMemory(REPLAY_MEMORY_SIZE)
 
@@ -140,16 +138,15 @@ for ep in range(N_EPOSIDES):
             
             if n_th_iteration % UPDATE_INTERVAL == 0:
                 logging.info('Iteration : %d | Updating target weights...' % n_th_iteration)
-                q.save_weights('chkpt_cartpole/q_weights_cartpole')
-                q_target.load_weights('chkpt_cartpole/q_weights_cartpole')
+                q.save_weights('chkpt_cartpole/q.h5')
+                q_target.set_weights(q.get_weights())
                 
                 logging.info(np.mean((targets - selected_states)**2))
             
         if terminal:
             total_reward -= 1
+            break
             
-            logging.info(f'Iteration : {n_th_iteration} | Episode : {ep + 1} | Total reward : {total_reward}, episode length : {timestep}, current eps : {current_eps}')
-            
-            break        
+    logging.info(f'Iteration : {n_th_iteration} | Episode : {ep + 1} | Total reward : {total_reward}, episode length : {timestep}, current eps : {current_eps}')        
 
 env.close()
