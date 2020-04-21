@@ -70,5 +70,39 @@ for ep in range(10):
             break
     
     print(f'Total reward : {total_reward}')
+    
+print('\nCompletely random agent : ')    
+
+for ep in range(10):
+    
+    initial_frame = env.reset() # initial observation
+    frames = collections.deque(maxlen=STACK_SIZE)
+    for _ in range(STACK_SIZE):
+        frames.append(initial_frame)
+
+    state = preprocess_input(frames)
+    
+    total_reward = 0
+    
+    for timestep in range(MAX_EPISODE_LENGTH):
+
+        env.render()
+        
+        action = env.action_space.sample()
+        
+        frame, reward, terminal, info = env.step(action)
+        
+        old_state = state.copy()
+        
+        frames.append(frame)
+        
+        state = preprocess_input(frames)
+        
+        total_reward += reward
+            
+        if terminal:
+            break
+    
+    print(f'Total reward : {total_reward}')
 
 env.close()

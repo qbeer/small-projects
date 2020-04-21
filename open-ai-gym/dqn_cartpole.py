@@ -15,25 +15,27 @@ logging.basicConfig(format='%(message)s',
                     filename='dqn_cartpole.log', level=logging.DEBUG)
 
 env = gym.make('CartPole-v0')
+test_env = gym.make('CartPole-v0')
 
 N_ACTIONS = env.action_space.n
 GAMMA = 0.99
 MAX_EPISODE_LENGTH = 300
-N_EPOSIDES = 50_000
-UPDATE_INTERVAL = 2000
-REPLAY_MEMORY_SIZE = 500_000
+N_EPOSIDES = 15_000
+UPDATE_INTERVAL = 2_500
+REPLAY_MEMORY_SIZE = 100_000
 EPS_MAX = 1.0
-EPS_MIN = 0.05
-ANNEALATION_STEPS = 1_000_000
-MIN_EXPERIENCE_STEPS = 75_000
+EPS_MIN = 0.01
+ANNEALATION_STEPS = 500_000
+MIN_EXPERIENCE_STEPS = 20_000
 MINI_BATCH_SIZE = 128
 OBSERVATION_SIZE = 4
+NUMBER_OF_TEST_EPISODES = 25
 
-OPTMIZER = tf.keras.optimizers.RMSprop(lr=1e-3)
+OPTMIZER = tf.keras.optimizers.RMSprop(lr=5e-4)
 
 def get_current_epsilon(n_th_step):
     if n_th_step > ANNEALATION_STEPS:
-        return 0.1
+        return EPS_MIN
     else:
         return EPS_MAX - (EPS_MAX - EPS_MIN) * n_th_step / ANNEALATION_STEPS
 
@@ -42,6 +44,7 @@ q = tf.keras.models.Sequential(layers=[
     Dense(64, activation='tanh'),
     Dense(N_ACTIONS),
 ])
+
 q_target = tf.keras.models.Sequential(layers=[
     Dense(32, activation='tanh', input_shape=(None, OBSERVATION_SIZE)),
     Dense(64, activation='tanh'),
@@ -104,6 +107,28 @@ def perform_gradient_step_on_q_net():
     
     return targets, selected_states, actions    
 
+def test_agent():
+    test_rewards = []
+    
+    for ep in range(NUMBER_OF_TEST_EPISODES):            
+        test_obs = test_env.reset()
+        test_state = preprocess_input(test_obs)
+        
+        total_test_reward = 0
+
+        for timestep in range(MAX_EPISODE_LENGTH):
+            test_action = select_action_e_greedy(test_state, 0.05)
+            test_obs, test_reward, test_terminal, _ = test_env.step(test_action)
+            test_state = preprocess_input(test_obs)
+            total_test_reward += test_reward
+        
+            if test_terminal:
+                break
+
+        test_rewards.append(total_test_reward)
+    
+    logging.info(f'Mean total test reward over {NUMBER_OF_TEST_EPISODES} episodes : {np.mean(test_rewards)}')
+
 n_th_iteration = 0
 
 for ep in range(N_EPOSIDES):
@@ -140,9 +165,9 @@ for ep in range(N_EPOSIDES):
                 logging.info('Iteration : %d | Updating target weights...' % n_th_iteration)
                 q.save_weights('chkpt_cartpole/q.h5')
                 q_target.set_weights(q.get_weights())
-                
-                logging.info(np.mean((targets - selected_states)**2))
-            
+
+                test_agent()
+                    
         if terminal:
             total_reward -= 1
             break

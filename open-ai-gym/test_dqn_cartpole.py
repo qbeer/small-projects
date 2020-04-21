@@ -36,17 +36,37 @@ def select_action_e_greedy(state, current_eps):
     
 def preprocess_input(observation):
     return observation.reshape(OBSERVATION_SIZE).astype(np.float32)
-    
-total_reward = 0
 
 for ep in range(10):
     obs = env.reset() # initial observation
     state = preprocess_input(obs)
     
+    total_reward = 0
+    
     for timestep in range(MAX_EPISODE_LENGTH):
-        #env.render()   
+        env.render()   
         action = select_action_e_greedy(state, 0.05)
         #action = env.action_space.sample()
+        obs, reward, terminal, info = env.step(action)
+        state = preprocess_input(obs)
+        total_reward += reward
+        if terminal:
+            break
+    
+    print(f'Total reward : {total_reward}') 
+   
+print('Completely random agent:')
+    
+for ep in range(10):
+    obs = env.reset() # initial observation
+    state = preprocess_input(obs)
+    
+    total_reward = 0
+    
+    for timestep in range(MAX_EPISODE_LENGTH):
+        env.render()   
+        #action = select_action_e_greedy(state, 0.05)
+        action = env.action_space.sample()
         obs, reward, terminal, info = env.step(action)
         state = preprocess_input(obs)
         total_reward += reward
