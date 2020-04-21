@@ -14,27 +14,28 @@ logging.basicConfig(format='%(message)s',
                     filename='dqn.log', level=logging.DEBUG)
 
 env = gym.make('Breakout-v0')
+test_env = gym.make('Breakout-v0')
 
 N_ACTIONS = env.action_space.n
 GAMMA = 0.999
 MAX_EPISODE_LENGTH = 300
 N_EPOSIDES = 5_000
-UPDATE_INTERVAL = 2_500
+UPDATE_INTERVAL = 4_000
 REPLAY_MEMORY_SIZE = 50_000
 STACK_SIZE = 4
 IMG_HEIGHT = 84
 IMG_WIDTH = 84
 EPS_MAX = 1.0
 EPS_MIN = 0.1
-ANNEALATION_STEPS = 500_000
-MIN_EXPERIENCE_STEPS = 20_000
+ANNEALATION_STEPS = 1_000_000
+MIN_EXPERIENCE_STEPS = 45_000
 MINI_BATCH_SIZE = 32
 
-OPTMIZER = tf.keras.optimizers.RMSprop(lr=1e-3)
+OPTMIZER = tf.keras.optimizers.RMSprop(lr=5e-4)
 
 def get_current_epsilon(n_th_step):
     if n_th_step > ANNEALATION_STEPS:
-        return 0.1
+        return EPS_MIN
     else:
         return EPS_MAX - (EPS_MAX - EPS_MIN) * n_th_step / ANNEALATION_STEPS
 
@@ -103,7 +104,40 @@ def perform_gradient_step_on_q_net():
     OPTMIZER.apply_gradients(zip(grads, q.trainable_weights))
     
     return targets, selected_states, actions    
+        
+def test_agent():
+    
+    rewards = []
+    
+    for ep in range(10):
+    
+        initial_frame = test_env.reset() # initial observation
+        frames = collections.deque(maxlen=STACK_SIZE)
+        for _ in range(STACK_SIZE):
+            frames.append(initial_frame)
+
+        state = preprocess_input(frames)
+
+        total_reward = 0
+
+        for timestep in range(MAX_EPISODE_LENGTH):
+            action = select_action_e_greedy(state, 0.05)
             
+            frame, reward, terminal, info = test_env.step(action)
+            
+            frames.append(frame)
+            
+            state = preprocess_input(frames)
+            
+            total_reward += reward
+                
+            if terminal:
+                total_reward -= 1
+                break 
+            
+        rewards.append(total_reward)
+            
+    logging.info('Average total reward of 10 episodes : %.2f' % np.mean(rewards))
 
 n_th_iteration = 0
 
@@ -146,6 +180,8 @@ for ep in range(N_EPOSIDES):
                 logging.info('Iteration : %d | Updating target weights...' % n_th_iteration)
                 q.save_weights('chkpt/q.h5')
                 q_target.set_weights(q.get_weights())
+                
+                test_agent()
             
         if terminal:
             total_reward -= 1
