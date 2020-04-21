@@ -20,13 +20,13 @@ test_env = gym.make('CartPole-v0')
 N_ACTIONS = env.action_space.n
 GAMMA = 0.99
 MAX_EPISODE_LENGTH = 300
-N_EPOSIDES = 15_000
-UPDATE_INTERVAL = 2_500
+N_EPOSIDES = 20_000
+UPDATE_INTERVAL = 5_000
 REPLAY_MEMORY_SIZE = 100_000
 EPS_MAX = 1.0
-EPS_MIN = 0.01
+EPS_MIN = 0.1
 ANNEALATION_STEPS = 500_000
-MIN_EXPERIENCE_STEPS = 20_000
+MIN_EXPERIENCE_STEPS = 35_000
 MINI_BATCH_SIZE = 128
 OBSERVATION_SIZE = 4
 NUMBER_OF_TEST_EPISODES = 25
@@ -74,13 +74,15 @@ def perform_gradient_step_on_q_net():
     states = []
     actions = []
     
+    loss_fn = tf.keras.losses.Huber()
+    
     samples = memory.sample_experiences(MINI_BATCH_SIZE)
     
     for ind, experience_sample in enumerate(samples):
         state, action, reward, next_state, is_terminal = experience_sample
         
         if is_terminal:
-            targets.append(-1.)
+            targets.append(reward)
         else:
             bootstrapped_reward = reward
             bootstrap = GAMMA * tf.reduce_max(q_target(tf.expand_dims(next_state, axis=0)))
@@ -99,7 +101,7 @@ def perform_gradient_step_on_q_net():
     with tf.GradientTape() as tape:
         selected_states = tf.multiply(q(states), actions)
         selected_states = tf.reduce_max(selected_states, axis=1)
-        objective = tf.reduce_mean((targets -  selected_states)**2)
+        objective = loss_fn(targets, selected_states)
         
     grads = tape.gradient(objective, q.trainable_weights)
     
@@ -152,6 +154,9 @@ for ep in range(N_EPOSIDES):
         
         state = preprocess_input(obs)
         
+        if terminal:
+            reward = -1
+        
         experience = [old_state, action, reward, state, terminal]
  
         memory.add_experience(experience)
@@ -169,7 +174,6 @@ for ep in range(N_EPOSIDES):
                 test_agent()
                     
         if terminal:
-            total_reward -= 1
             break
             
     logging.info(f'Iteration : {n_th_iteration} | Episode : {ep + 1} | Total reward : {total_reward}, episode length : {timestep}, current eps : {current_eps}')        

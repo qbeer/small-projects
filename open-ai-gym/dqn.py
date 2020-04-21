@@ -13,23 +13,23 @@ import logging
 logging.basicConfig(format='%(message)s', 
                     filename='dqn.log', level=logging.DEBUG)
 
-env = gym.make('Breakout-v0')
-test_env = gym.make('Breakout-v0')
+env = gym.make('Breakout-v4')
+test_env = gym.make('Breakout-v4')
 
 N_ACTIONS = env.action_space.n
 GAMMA = 0.999
 MAX_EPISODE_LENGTH = 300
 N_EPOSIDES = 5_000
-UPDATE_INTERVAL = 4_000
-REPLAY_MEMORY_SIZE = 50_000
+UPDATE_INTERVAL = 10_000
+REPLAY_MEMORY_SIZE = 100_000
 STACK_SIZE = 4
-IMG_HEIGHT = 84
-IMG_WIDTH = 84
+IMG_HEIGHT = 64
+IMG_WIDTH = 48
 EPS_MAX = 1.0
 EPS_MIN = 0.1
 ANNEALATION_STEPS = 1_000_000
-MIN_EXPERIENCE_STEPS = 45_000
-MINI_BATCH_SIZE = 32
+MIN_EXPERIENCE_STEPS = 75_000
+MINI_BATCH_SIZE = 64
 
 OPTMIZER = tf.keras.optimizers.RMSprop(lr=5e-4)
 
@@ -72,13 +72,16 @@ def perform_gradient_step_on_q_net():
     states = []
     actions = []
     
+    # Huber-loss instead of MSE
+    loss_fn = tf.keras.losses.Huber()
+    
     samples = memory.sample_experiences(MINI_BATCH_SIZE)
     
     for ind, experience_sample in enumerate(samples):
         state, action, reward, next_state, is_terminal = experience_sample
         
         if is_terminal:
-            targets.append(-1)
+            targets.append(reward)
         else:
             bootstrapped_reward = reward
             bootstrap = GAMMA * tf.reduce_max(q_target(tf.expand_dims(next_state, axis=0)))
@@ -97,7 +100,7 @@ def perform_gradient_step_on_q_net():
     with tf.GradientTape() as tape:
         selected_states = tf.multiply(q(states), actions)
         selected_states = tf.reduce_max(selected_states, axis=1)
-        objective = tf.reduce_mean((targets -  selected_states)**2)
+        objective = loss_fn(targets, selected_states)
         
     grads = tape.gradient(objective, q.trainable_weights)
     
@@ -119,6 +122,7 @@ def test_agent():
         state = preprocess_input(frames)
 
         total_reward = 0
+        current_lives = 5
 
         for timestep in range(MAX_EPISODE_LENGTH):
             action = select_action_e_greedy(state, 0.05)
@@ -129,10 +133,14 @@ def test_agent():
             
             state = preprocess_input(frames)
             
+            # add negative reward on life loss
+            if current_lives > info['ale.lives']:
+                reward = -1
+                current_lives = info['ale.lives']
+            
             total_reward += reward
                 
             if terminal:
-                total_reward -= 1
                 break 
             
         rewards.append(total_reward)
@@ -151,6 +159,7 @@ for ep in range(N_EPOSIDES):
     state = preprocess_input(frames)
     
     total_reward = 0
+    current_lives = 5
     
     for timestep in range(MAX_EPISODE_LENGTH):
         
@@ -160,6 +169,11 @@ for ep in range(N_EPOSIDES):
         action = select_action_e_greedy(state, current_eps)
         
         frame, reward, terminal, info = env.step(action)
+        
+        # add negative reward on life loss
+        if current_lives > info['ale.lives']:
+            reward = -1
+            current_lives = info['ale.lives']
         
         old_state = state.copy()
         
