@@ -13,8 +13,8 @@ import logging
 logging.basicConfig(format='%(message)s', 
                     filename='dqn.log', level=logging.DEBUG)
 
-env = gym.make('Breakout-v4')
-test_env = gym.make('Breakout-v4')
+env = gym.make('BreakoutDeterministic-v4')
+test_env = gym.make('BreakoutDeterministic-v4')
 
 N_ACTIONS = env.action_space.n
 GAMMA = 0.999
@@ -28,7 +28,7 @@ IMG_WIDTH = 48
 EPS_MAX = 1.0
 EPS_MIN = 0.1
 ANNEALATION_STEPS = 1_000_000
-MIN_EXPERIENCE_STEPS = 75_000
+MIN_EXPERIENCE_STEPS = 70_000
 MINI_BATCH_SIZE = 64
 
 OPTMIZER = tf.keras.optimizers.RMSprop(lr=5e-4)
@@ -66,7 +66,7 @@ def preprocess_input(frames):
         observed[..., ind] += obs
     return observed.astype(np.float32)
 
-@tf.function(experimental_relax_shapes=True)
+#@tf.function(experimental_relax_shapes=True)
 def perform_gradient_step_on_q_net():
     targets = []
     states = []
