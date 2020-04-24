@@ -9,7 +9,7 @@ class ReplayMemory:
 
     def add_experience(self, experience):
         self.experiences[self.counter % self.max_size] = experience
-        self.counter += 1
+        self.counter += (1 if self.counter < self.max_size else 0)
 
     def sample_experiences(self, sample_size):
         # random choice from counter makes it possible

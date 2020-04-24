@@ -17,21 +17,21 @@ env = gym.make('BreakoutDeterministic-v4')
 test_env = gym.make('BreakoutDeterministic-v4')
 
 N_ACTIONS = env.action_space.n
-GAMMA = 0.999
+GAMMA = 0.99
 MAX_EPISODE_LENGTH = 300
 N_EPOSIDES = 7_500
 UPDATE_INTERVAL = 10_000
-REPLAY_MEMORY_SIZE = 125_000
+REPLAY_MEMORY_SIZE = 150_000
 STACK_SIZE = 4
 IMG_HEIGHT = 64
 IMG_WIDTH = 48
-EPS_MAX = 1.0
+EPS_MAX = 0.847
 EPS_MIN = 0.1
-ANNEALATION_STEPS = 1_000_000
-MIN_EXPERIENCE_STEPS = 70_000
+ANNEALATION_STEPS = 900_000
+MIN_EXPERIENCE_STEPS = 0
 MINI_BATCH_SIZE = 64
 
-OPTMIZER = tf.keras.optimizers.RMSprop(lr=5e-4)
+OPTMIZER = tf.keras.optimizers.Adam(lr=1e-3)
 
 def get_current_epsilon(n_th_step):
     if n_th_step > ANNEALATION_STEPS:
@@ -41,6 +41,9 @@ def get_current_epsilon(n_th_step):
 
 # actions are : NOPE, FIRE (new ball), RIGHT, LEFT
 q = DeepQNetwork(N_ACTIONS)
+
+q.load_weights('chkpt/q.h5')
+
 q_target = DeepQNetwork(N_ACTIONS)
 
 # Initialize both networks with the same weights
@@ -66,7 +69,7 @@ def preprocess_input(frames):
         observed[..., ind] += obs
     return observed.astype(np.float32)
 
-#@tf.function(experimental_relax_shapes=True)
+@tf.function(experimental_relax_shapes=True)
 def perform_gradient_step_on_q_net():
     targets = []
     states = []
@@ -172,7 +175,7 @@ for ep in range(N_EPOSIDES):
         
         # add negative reward on life loss
         if current_lives > info['ale.lives']:
-            reward = -1
+            reward = -1.
             current_lives = info['ale.lives']
         
         old_state = state.copy()
@@ -190,12 +193,20 @@ for ep in range(N_EPOSIDES):
         if n_th_iteration > MIN_EXPERIENCE_STEPS:
             targets, selected_states, actions = perform_gradient_step_on_q_net()
             
-            if n_th_iteration % UPDATE_INTERVAL == 0:
+            if (n_th_iteration - MIN_EXPERIENCE_STEPS) % UPDATE_INTERVAL == 0:
                 logging.info('Iteration : %d | Updating target weights...' % n_th_iteration)
                 q.save_weights('chkpt/q.h5')
+                
+                logging.info(np.mean((targets - selected_states)**2))
+                
                 q_target.set_weights(q.get_weights())
                 
                 test_agent()
+                
+                samples = memory.sample_experiences(16)
+                
+                for samp in samples:
+                    logging.info(f'action : {samp[1]}, reward : {samp[2]}, terminal : {samp[-1]}')
             
         if terminal:
             total_reward -= 1
