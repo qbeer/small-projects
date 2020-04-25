@@ -19,16 +19,16 @@ test_env = gym.make('BreakoutDeterministic-v4')
 N_ACTIONS = env.action_space.n
 GAMMA = 0.99
 MAX_EPISODE_LENGTH = 300
-N_EPOSIDES = 7_500
+N_EPOSIDES = 10_000
 UPDATE_INTERVAL = 10_000
 REPLAY_MEMORY_SIZE = 150_000
 STACK_SIZE = 4
 IMG_HEIGHT = 64
 IMG_WIDTH = 48
-EPS_MAX = 0.847
-EPS_MIN = 0.1
-ANNEALATION_STEPS = 900_000
-MIN_EXPERIENCE_STEPS = 0
+EPS_MAX = 1
+EPS_MIN = 0.05
+ANNEALATION_STEPS = 1_500_000
+MIN_EXPERIENCE_STEPS = 75_000
 MINI_BATCH_SIZE = 64
 
 OPTMIZER = tf.keras.optimizers.Adam(lr=1e-3)
@@ -41,9 +41,6 @@ def get_current_epsilon(n_th_step):
 
 # actions are : NOPE, FIRE (new ball), RIGHT, LEFT
 q = DeepQNetwork(N_ACTIONS)
-
-q.load_weights('chkpt/q.h5')
-
 q_target = DeepQNetwork(N_ACTIONS)
 
 # Initialize both networks with the same weights
