@@ -52,7 +52,7 @@ for ep in range(10):
     
     for timestep in range(MAX_EPISODE_LENGTH):
 
-        #env.render()
+        env.render()
         
         action = select_action_e_greedy(state)
         
@@ -86,7 +86,7 @@ for ep in range(10):
     
     for timestep in range(MAX_EPISODE_LENGTH):
 
-        #env.render()
+        env.render()
         
         action = env.action_space.sample()
         
