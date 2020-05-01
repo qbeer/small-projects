@@ -10,7 +10,7 @@ import collections
 import tensorflow as tf
 import logging
 
-env = gym.make('BreakoutDeterministic-v4')
+env = gym.make('Breakout-v4')
 
 N_ACTIONS = env.action_space.n
 MAX_EPISODE_LENGTH = 300

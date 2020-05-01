@@ -13,8 +13,8 @@ import logging
 logging.basicConfig(format='%(message)s', 
                     filename='dqn.log', level=logging.DEBUG)
 
-env = gym.make('BreakoutDeterministic-v4')
-test_env = gym.make('BreakoutDeterministic-v4')
+env = gym.make('Breakout-v4')
+test_env = gym.make('Breakout-v4')
 
 N_ACTIONS = env.action_space.n
 GAMMA = 0.99
@@ -25,9 +25,9 @@ REPLAY_MEMORY_SIZE = 150_000
 STACK_SIZE = 4
 IMG_HEIGHT = 64
 IMG_WIDTH = 48
-EPS_MAX = 0.5
-EPS_MIN = 0.05
-ANNEALATION_STEPS = 500_000
+EPS_MAX = 1.0
+EPS_MIN = 0.1
+ANNEALATION_STEPS = 1_500_000
 MIN_EXPERIENCE_STEPS = 50_000
 MINI_BATCH_SIZE = 64
 
@@ -41,9 +41,6 @@ def get_current_epsilon(n_th_step):
 
 # actions are : NOPE, FIRE (new ball), RIGHT, LEFT
 q = DeepQNetwork(N_ACTIONS)
-
-q.load_weights('chkpt/q.h5')
-
 q_target = DeepQNetwork(N_ACTIONS)
 
 # Initialize both networks with the same weights
