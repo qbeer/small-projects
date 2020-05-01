@@ -1,5 +1,19 @@
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+#os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+
+import tensorflow as tf
+
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+  try:
+    # Currently, memory growth needs to be the same across GPUs
+    for gpu in gpus:
+      tf.config.experimental.set_memory_growth(gpu, True)
+    logical_gpus = tf.config.experimental.list_logical_devices('GPU')
+    print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
+  except RuntimeError as e:
+    # Memory growth must be set before GPUs have been initialized
+    print(e)
 
 from replay_memory import ReplayMemory
 from deep_q_network import DeepQNetwork
@@ -7,7 +21,6 @@ import gym
 import numpy as np
 import cv2
 import collections
-import tensorflow as tf
 import logging
 
 logging.basicConfig(format='%(message)s', 
@@ -18,7 +31,7 @@ test_env = gym.make('Breakout-v4')
 
 N_ACTIONS = env.action_space.n
 GAMMA = 0.99
-MAX_EPISODE_LENGTH = 300
+MAX_EPISODE_LENGTH = 500
 N_EPOSIDES = 10_000
 UPDATE_INTERVAL = 10_000
 REPLAY_MEMORY_SIZE = 150_000
