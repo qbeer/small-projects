@@ -281,3 +281,518 @@ action : 1, reward : 0.0, terminal : False
 action : 3, reward : 0.0, terminal : False
 action : 3, reward : 0.0, terminal : False
 Iteration : 120000 | Episode : 240 | Total reward : -3.0, episode length : 499, current eps : 0.928
+Iteration : 120500 | Episode : 241 | Total reward : -8.0, episode length : 499, current eps : 0.9277
+Iteration : 121000 | Episode : 242 | Total reward : -8.0, episode length : 499, current eps : 0.9274
+Iteration : 121500 | Episode : 243 | Total reward : -9.0, episode length : 499, current eps : 0.9271
+Iteration : 122000 | Episode : 244 | Total reward : -6.0, episode length : 499, current eps : 0.9268
+Iteration : 122500 | Episode : 245 | Total reward : -8.0, episode length : 499, current eps : 0.9265
+Iteration : 123000 | Episode : 246 | Total reward : -6.0, episode length : 499, current eps : 0.9262
+Iteration : 123500 | Episode : 247 | Total reward : -10.0, episode length : 499, current eps : 0.9259
+Iteration : 124000 | Episode : 248 | Total reward : -4.0, episode length : 499, current eps : 0.9256
+Iteration : 124500 | Episode : 249 | Total reward : -7.0, episode length : 499, current eps : 0.9253
+Iteration : 125000 | Episode : 250 | Total reward : -7.0, episode length : 499, current eps : 0.925
+Iteration : 125500 | Episode : 251 | Total reward : -8.0, episode length : 499, current eps : 0.9247
+Iteration : 126000 | Episode : 252 | Total reward : -9.0, episode length : 499, current eps : 0.9244
+Iteration : 126500 | Episode : 253 | Total reward : -8.0, episode length : 499, current eps : 0.9241
+Iteration : 127000 | Episode : 254 | Total reward : -8.0, episode length : 499, current eps : 0.9238
+Iteration : 127500 | Episode : 255 | Total reward : -10.0, episode length : 499, current eps : 0.9235
+Iteration : 128000 | Episode : 256 | Total reward : -3.0, episode length : 499, current eps : 0.9232
+Iteration : 128500 | Episode : 257 | Total reward : -8.0, episode length : 499, current eps : 0.9229
+Iteration : 129000 | Episode : 258 | Total reward : -7.0, episode length : 499, current eps : 0.9226
+Iteration : 129500 | Episode : 259 | Total reward : -5.0, episode length : 499, current eps : 0.9223
+Iteration : 130000 | Updating target weights...
+0.016553186
+Average total reward of 10 episodes : -10.00
+action : 0, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+Iteration : 130000 | Episode : 260 | Total reward : -8.0, episode length : 499, current eps : 0.922
+Iteration : 130500 | Episode : 261 | Total reward : -7.0, episode length : 499, current eps : 0.9217
+Iteration : 131000 | Episode : 262 | Total reward : -6.0, episode length : 499, current eps : 0.9214
+Iteration : 131500 | Episode : 263 | Total reward : -6.0, episode length : 499, current eps : 0.9211
+Iteration : 132000 | Episode : 264 | Total reward : -5.0, episode length : 499, current eps : 0.9208
+Iteration : 132500 | Episode : 265 | Total reward : -5.0, episode length : 499, current eps : 0.9205
+Iteration : 133000 | Episode : 266 | Total reward : -7.0, episode length : 499, current eps : 0.9202
+Iteration : 133500 | Episode : 267 | Total reward : -6.0, episode length : 499, current eps : 0.9198999999999999
+Iteration : 134000 | Episode : 268 | Total reward : -8.0, episode length : 499, current eps : 0.9196
+Iteration : 134500 | Episode : 269 | Total reward : -8.0, episode length : 499, current eps : 0.9193
+Iteration : 135000 | Episode : 270 | Total reward : -6.0, episode length : 499, current eps : 0.919
+Iteration : 135500 | Episode : 271 | Total reward : -5.0, episode length : 499, current eps : 0.9187
+Iteration : 136000 | Episode : 272 | Total reward : -2.0, episode length : 499, current eps : 0.9184
+Iteration : 136500 | Episode : 273 | Total reward : -8.0, episode length : 499, current eps : 0.9181
+Iteration : 137000 | Episode : 274 | Total reward : -9.0, episode length : 499, current eps : 0.9178
+Iteration : 137500 | Episode : 275 | Total reward : -5.0, episode length : 499, current eps : 0.9175
+Iteration : 138000 | Episode : 276 | Total reward : -5.0, episode length : 499, current eps : 0.9172
+Iteration : 138500 | Episode : 277 | Total reward : -8.0, episode length : 499, current eps : 0.9169
+Iteration : 139000 | Episode : 278 | Total reward : -6.0, episode length : 499, current eps : 0.9166
+Iteration : 139500 | Episode : 279 | Total reward : -9.0, episode length : 499, current eps : 0.9163
+Iteration : 140000 | Updating target weights...
+0.016553186
+Average total reward of 10 episodes : -10.20
+action : 3, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+Iteration : 140000 | Episode : 280 | Total reward : -9.0, episode length : 499, current eps : 0.916
+Iteration : 140500 | Episode : 281 | Total reward : -6.0, episode length : 499, current eps : 0.9157
+Iteration : 141000 | Episode : 282 | Total reward : -7.0, episode length : 499, current eps : 0.9154
+Iteration : 141500 | Episode : 283 | Total reward : -6.0, episode length : 499, current eps : 0.9151
+Iteration : 142000 | Episode : 284 | Total reward : -7.0, episode length : 499, current eps : 0.9148000000000001
+Iteration : 142500 | Episode : 285 | Total reward : -6.0, episode length : 499, current eps : 0.9145
+Iteration : 143000 | Episode : 286 | Total reward : -6.0, episode length : 499, current eps : 0.9142
+Iteration : 143500 | Episode : 287 | Total reward : -5.0, episode length : 499, current eps : 0.9139
+Iteration : 144000 | Episode : 288 | Total reward : -9.0, episode length : 499, current eps : 0.9136
+Iteration : 144500 | Episode : 289 | Total reward : -5.0, episode length : 499, current eps : 0.9133
+Iteration : 145000 | Episode : 290 | Total reward : -7.0, episode length : 499, current eps : 0.913
+Iteration : 145500 | Episode : 291 | Total reward : -7.0, episode length : 499, current eps : 0.9127
+Iteration : 146000 | Episode : 292 | Total reward : -2.0, episode length : 499, current eps : 0.9124
+Iteration : 146500 | Episode : 293 | Total reward : -6.0, episode length : 499, current eps : 0.9121
+Iteration : 147000 | Episode : 294 | Total reward : -5.0, episode length : 499, current eps : 0.9117999999999999
+Iteration : 147500 | Episode : 295 | Total reward : -7.0, episode length : 499, current eps : 0.9115
+Iteration : 148000 | Episode : 296 | Total reward : -9.0, episode length : 499, current eps : 0.9112
+Iteration : 148500 | Episode : 297 | Total reward : -8.0, episode length : 499, current eps : 0.9109
+Iteration : 149000 | Episode : 298 | Total reward : -7.0, episode length : 499, current eps : 0.9106
+Iteration : 149500 | Episode : 299 | Total reward : -4.0, episode length : 499, current eps : 0.9103
+Iteration : 150000 | Updating target weights...
+0.016553186
+Average total reward of 10 episodes : -9.80
+action : 3, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 0, reward : -1.0, terminal : False
+Iteration : 150000 | Episode : 300 | Total reward : -9.0, episode length : 499, current eps : 0.91
+Iteration : 150500 | Episode : 301 | Total reward : -7.0, episode length : 499, current eps : 0.9097
+Iteration : 151000 | Episode : 302 | Total reward : -6.0, episode length : 499, current eps : 0.9094
+Iteration : 151500 | Episode : 303 | Total reward : -4.0, episode length : 499, current eps : 0.9091
+Iteration : 152000 | Episode : 304 | Total reward : -6.0, episode length : 499, current eps : 0.9088
+Iteration : 152500 | Episode : 305 | Total reward : -5.0, episode length : 499, current eps : 0.9085
+Iteration : 153000 | Episode : 306 | Total reward : -10.0, episode length : 499, current eps : 0.9082
+Iteration : 153500 | Episode : 307 | Total reward : -8.0, episode length : 499, current eps : 0.9079
+Iteration : 154000 | Episode : 308 | Total reward : -8.0, episode length : 499, current eps : 0.9076
+Iteration : 154500 | Episode : 309 | Total reward : -6.0, episode length : 499, current eps : 0.9073
+Iteration : 155000 | Episode : 310 | Total reward : -5.0, episode length : 499, current eps : 0.907
+Iteration : 155500 | Episode : 311 | Total reward : -8.0, episode length : 499, current eps : 0.9067000000000001
+Iteration : 156000 | Episode : 312 | Total reward : -7.0, episode length : 499, current eps : 0.9064
+Iteration : 156500 | Episode : 313 | Total reward : -9.0, episode length : 499, current eps : 0.9061
+Iteration : 157000 | Episode : 314 | Total reward : -5.0, episode length : 499, current eps : 0.9057999999999999
+Iteration : 157500 | Episode : 315 | Total reward : -8.0, episode length : 499, current eps : 0.9055
+Iteration : 158000 | Episode : 316 | Total reward : -8.0, episode length : 499, current eps : 0.9052
+Iteration : 158500 | Episode : 317 | Total reward : -9.0, episode length : 499, current eps : 0.9049
+Iteration : 159000 | Episode : 318 | Total reward : -4.0, episode length : 499, current eps : 0.9046
+Iteration : 159500 | Episode : 319 | Total reward : -8.0, episode length : 499, current eps : 0.9043
+Iteration : 160000 | Updating target weights...
+0.016553186
+Average total reward of 10 episodes : -9.90
+action : 1, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+Iteration : 160000 | Episode : 320 | Total reward : -6.0, episode length : 499, current eps : 0.904
+Iteration : 160500 | Episode : 321 | Total reward : -7.0, episode length : 499, current eps : 0.9037
+Iteration : 161000 | Episode : 322 | Total reward : -7.0, episode length : 499, current eps : 0.9034
+Iteration : 161500 | Episode : 323 | Total reward : -5.0, episode length : 499, current eps : 0.9031
+Iteration : 162000 | Episode : 324 | Total reward : -5.0, episode length : 499, current eps : 0.9028
+Iteration : 162500 | Episode : 325 | Total reward : -8.0, episode length : 499, current eps : 0.9025
+Iteration : 163000 | Episode : 326 | Total reward : -9.0, episode length : 499, current eps : 0.9022
+Iteration : 163500 | Episode : 327 | Total reward : -6.0, episode length : 499, current eps : 0.9019
+Iteration : 164000 | Episode : 328 | Total reward : -8.0, episode length : 499, current eps : 0.9016
+Iteration : 164500 | Episode : 329 | Total reward : -6.0, episode length : 499, current eps : 0.9013
+Iteration : 165000 | Episode : 330 | Total reward : -10.0, episode length : 499, current eps : 0.901
+Iteration : 165500 | Episode : 331 | Total reward : -8.0, episode length : 499, current eps : 0.9007000000000001
+Iteration : 166000 | Episode : 332 | Total reward : -7.0, episode length : 499, current eps : 0.9004
+Iteration : 166500 | Episode : 333 | Total reward : -7.0, episode length : 499, current eps : 0.9001
+Iteration : 167000 | Episode : 334 | Total reward : -7.0, episode length : 499, current eps : 0.8998
+Iteration : 167500 | Episode : 335 | Total reward : -4.0, episode length : 499, current eps : 0.8995
+Iteration : 168000 | Episode : 336 | Total reward : -7.0, episode length : 499, current eps : 0.8992
+Iteration : 168500 | Episode : 337 | Total reward : -6.0, episode length : 499, current eps : 0.8989
+Iteration : 169000 | Episode : 338 | Total reward : -9.0, episode length : 499, current eps : 0.8986
+Iteration : 169500 | Episode : 339 | Total reward : -7.0, episode length : 499, current eps : 0.8983
+Iteration : 170000 | Updating target weights...
+0.016553186
+Average total reward of 10 episodes : -10.00
+action : 1, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+Iteration : 170000 | Episode : 340 | Total reward : -9.0, episode length : 499, current eps : 0.898
+Iteration : 170500 | Episode : 341 | Total reward : -5.0, episode length : 499, current eps : 0.8976999999999999
+Iteration : 171000 | Episode : 342 | Total reward : -7.0, episode length : 499, current eps : 0.8974
+Iteration : 171500 | Episode : 343 | Total reward : -4.0, episode length : 499, current eps : 0.8971
+Iteration : 172000 | Episode : 344 | Total reward : -9.0, episode length : 499, current eps : 0.8968
+Iteration : 172500 | Episode : 345 | Total reward : -8.0, episode length : 499, current eps : 0.8965
+Iteration : 173000 | Episode : 346 | Total reward : -4.0, episode length : 499, current eps : 0.8962
+Iteration : 173500 | Episode : 347 | Total reward : -9.0, episode length : 499, current eps : 0.8959
+Iteration : 174000 | Episode : 348 | Total reward : -5.0, episode length : 499, current eps : 0.8956
+Iteration : 174500 | Episode : 349 | Total reward : -9.0, episode length : 499, current eps : 0.8953
+Iteration : 175000 | Episode : 350 | Total reward : -9.0, episode length : 499, current eps : 0.895
+Iteration : 175500 | Episode : 351 | Total reward : -7.0, episode length : 499, current eps : 0.8947
+Iteration : 176000 | Episode : 352 | Total reward : -4.0, episode length : 499, current eps : 0.8944
+Iteration : 176500 | Episode : 353 | Total reward : -9.0, episode length : 499, current eps : 0.8941
+Iteration : 177000 | Episode : 354 | Total reward : -6.0, episode length : 499, current eps : 0.8938
+Iteration : 177500 | Episode : 355 | Total reward : -4.0, episode length : 499, current eps : 0.8935
+Iteration : 178000 | Episode : 356 | Total reward : -9.0, episode length : 499, current eps : 0.8932
+Iteration : 178500 | Episode : 357 | Total reward : -6.0, episode length : 499, current eps : 0.8929
+Iteration : 179000 | Episode : 358 | Total reward : -6.0, episode length : 499, current eps : 0.8926000000000001
+Iteration : 179500 | Episode : 359 | Total reward : -7.0, episode length : 499, current eps : 0.8923
+Iteration : 180000 | Updating target weights...
+0.016553186
+Average total reward of 10 episodes : -10.00
+action : 1, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+Iteration : 180000 | Episode : 360 | Total reward : -7.0, episode length : 499, current eps : 0.892
+Iteration : 180500 | Episode : 361 | Total reward : -7.0, episode length : 499, current eps : 0.8917
+Iteration : 181000 | Episode : 362 | Total reward : -6.0, episode length : 499, current eps : 0.8914
+Iteration : 181500 | Episode : 363 | Total reward : -9.0, episode length : 499, current eps : 0.8911
+Iteration : 182000 | Episode : 364 | Total reward : -4.0, episode length : 499, current eps : 0.8908
+Iteration : 182500 | Episode : 365 | Total reward : -3.0, episode length : 499, current eps : 0.8905
+Iteration : 183000 | Episode : 366 | Total reward : -8.0, episode length : 499, current eps : 0.8902
+Iteration : 183500 | Episode : 367 | Total reward : -7.0, episode length : 499, current eps : 0.8899
+Iteration : 184000 | Episode : 368 | Total reward : -6.0, episode length : 499, current eps : 0.8896
+Iteration : 184500 | Episode : 369 | Total reward : -7.0, episode length : 499, current eps : 0.8893
+Iteration : 185000 | Episode : 370 | Total reward : -6.0, episode length : 499, current eps : 0.889
+Iteration : 185500 | Episode : 371 | Total reward : -9.0, episode length : 499, current eps : 0.8887
+Iteration : 186000 | Episode : 372 | Total reward : -8.0, episode length : 499, current eps : 0.8884
+Iteration : 186500 | Episode : 373 | Total reward : -9.0, episode length : 499, current eps : 0.8881
+Iteration : 187000 | Episode : 374 | Total reward : -9.0, episode length : 499, current eps : 0.8878
+Iteration : 187500 | Episode : 375 | Total reward : -5.0, episode length : 499, current eps : 0.8875
+Iteration : 188000 | Episode : 376 | Total reward : -9.0, episode length : 499, current eps : 0.8872
+Iteration : 188500 | Episode : 377 | Total reward : -9.0, episode length : 499, current eps : 0.8869
+Iteration : 189000 | Episode : 378 | Total reward : -4.0, episode length : 499, current eps : 0.8866
+Iteration : 189500 | Episode : 379 | Total reward : -6.0, episode length : 499, current eps : 0.8863
+Iteration : 190000 | Updating target weights...
+0.016553186
+Average total reward of 10 episodes : -9.80
+action : 1, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+Iteration : 190000 | Episode : 380 | Total reward : -8.0, episode length : 499, current eps : 0.886
+Iteration : 190500 | Episode : 381 | Total reward : -8.0, episode length : 499, current eps : 0.8857
+Iteration : 191000 | Episode : 382 | Total reward : -9.0, episode length : 499, current eps : 0.8854
+Iteration : 191500 | Episode : 383 | Total reward : -4.0, episode length : 499, current eps : 0.8851
+Iteration : 192000 | Episode : 384 | Total reward : -7.0, episode length : 499, current eps : 0.8848
+Iteration : 192500 | Episode : 385 | Total reward : -7.0, episode length : 499, current eps : 0.8845
+Iteration : 193000 | Episode : 386 | Total reward : -9.0, episode length : 499, current eps : 0.8842
+Iteration : 193500 | Episode : 387 | Total reward : -8.0, episode length : 499, current eps : 0.8839
+Iteration : 194000 | Episode : 388 | Total reward : -8.0, episode length : 499, current eps : 0.8835999999999999
+Iteration : 194500 | Episode : 389 | Total reward : -8.0, episode length : 499, current eps : 0.8833
+Iteration : 195000 | Episode : 390 | Total reward : -6.0, episode length : 499, current eps : 0.883
+Iteration : 195500 | Episode : 391 | Total reward : -6.0, episode length : 499, current eps : 0.8827
+Iteration : 196000 | Episode : 392 | Total reward : -8.0, episode length : 499, current eps : 0.8824
+Iteration : 196500 | Episode : 393 | Total reward : -6.0, episode length : 499, current eps : 0.8821
+Iteration : 197000 | Episode : 394 | Total reward : -8.0, episode length : 499, current eps : 0.8818
+Iteration : 197500 | Episode : 395 | Total reward : -6.0, episode length : 499, current eps : 0.8815
+Iteration : 198000 | Episode : 396 | Total reward : -9.0, episode length : 499, current eps : 0.8812
+Iteration : 198500 | Episode : 397 | Total reward : -8.0, episode length : 499, current eps : 0.8809
+Iteration : 199000 | Episode : 398 | Total reward : -4.0, episode length : 499, current eps : 0.8806
+Iteration : 199500 | Episode : 399 | Total reward : -7.0, episode length : 499, current eps : 0.8803
+Iteration : 200000 | Updating target weights...
+0.016553186
+Average total reward of 10 episodes : -9.90
+action : 2, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+Iteration : 200000 | Episode : 400 | Total reward : -6.0, episode length : 499, current eps : 0.88
+Iteration : 200500 | Episode : 401 | Total reward : -8.0, episode length : 499, current eps : 0.8797
+Iteration : 201000 | Episode : 402 | Total reward : -8.0, episode length : 499, current eps : 0.8794
+Iteration : 201500 | Episode : 403 | Total reward : -6.0, episode length : 499, current eps : 0.8791
+Iteration : 202000 | Episode : 404 | Total reward : -8.0, episode length : 499, current eps : 0.8788
+Iteration : 202500 | Episode : 405 | Total reward : -7.0, episode length : 499, current eps : 0.8785000000000001
+Iteration : 203000 | Episode : 406 | Total reward : -7.0, episode length : 499, current eps : 0.8782
+Iteration : 203500 | Episode : 407 | Total reward : -6.0, episode length : 499, current eps : 0.8779
+Iteration : 204000 | Episode : 408 | Total reward : -9.0, episode length : 499, current eps : 0.8776
+Iteration : 204500 | Episode : 409 | Total reward : -5.0, episode length : 499, current eps : 0.8773
+Iteration : 205000 | Episode : 410 | Total reward : -8.0, episode length : 499, current eps : 0.877
+Iteration : 205500 | Episode : 411 | Total reward : -7.0, episode length : 499, current eps : 0.8767
+Iteration : 206000 | Episode : 412 | Total reward : -3.0, episode length : 499, current eps : 0.8764
+Iteration : 206500 | Episode : 413 | Total reward : -8.0, episode length : 499, current eps : 0.8761
+Iteration : 207000 | Episode : 414 | Total reward : -4.0, episode length : 499, current eps : 0.8758
+Iteration : 207500 | Episode : 415 | Total reward : -6.0, episode length : 499, current eps : 0.8755
+Iteration : 208000 | Episode : 416 | Total reward : -6.0, episode length : 499, current eps : 0.8752
+Iteration : 208500 | Episode : 417 | Total reward : -8.0, episode length : 499, current eps : 0.8749
+Iteration : 209000 | Episode : 418 | Total reward : -9.0, episode length : 499, current eps : 0.8746
+Iteration : 209500 | Episode : 419 | Total reward : -9.0, episode length : 499, current eps : 0.8743
+Iteration : 210000 | Updating target weights...
+0.016553186
+Average total reward of 10 episodes : -10.20
+action : 5, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+Iteration : 210000 | Episode : 420 | Total reward : -8.0, episode length : 499, current eps : 0.874
+Iteration : 210500 | Episode : 421 | Total reward : -8.0, episode length : 499, current eps : 0.8737
+Iteration : 211000 | Episode : 422 | Total reward : -7.0, episode length : 499, current eps : 0.8734
+Iteration : 211500 | Episode : 423 | Total reward : 0.0, episode length : 499, current eps : 0.8731
+Iteration : 212000 | Episode : 424 | Total reward : -8.0, episode length : 499, current eps : 0.8728
+Iteration : 212500 | Episode : 425 | Total reward : -6.0, episode length : 499, current eps : 0.8725
+Iteration : 213000 | Episode : 426 | Total reward : -4.0, episode length : 499, current eps : 0.8722
+Iteration : 213500 | Episode : 427 | Total reward : -7.0, episode length : 499, current eps : 0.8719
+Iteration : 214000 | Episode : 428 | Total reward : -7.0, episode length : 499, current eps : 0.8716
+Iteration : 214500 | Episode : 429 | Total reward : -8.0, episode length : 499, current eps : 0.8713
+Iteration : 215000 | Episode : 430 | Total reward : -5.0, episode length : 499, current eps : 0.871
+Iteration : 215500 | Episode : 431 | Total reward : -5.0, episode length : 499, current eps : 0.8707
+Iteration : 216000 | Episode : 432 | Total reward : -8.0, episode length : 499, current eps : 0.8704000000000001
+Iteration : 216500 | Episode : 433 | Total reward : -7.0, episode length : 499, current eps : 0.8701
+Iteration : 217000 | Episode : 434 | Total reward : -6.0, episode length : 499, current eps : 0.8698
+Iteration : 217500 | Episode : 435 | Total reward : -8.0, episode length : 499, current eps : 0.8694999999999999
+Iteration : 218000 | Episode : 436 | Total reward : -8.0, episode length : 499, current eps : 0.8692
+Iteration : 218500 | Episode : 437 | Total reward : -6.0, episode length : 499, current eps : 0.8689
+Iteration : 219000 | Episode : 438 | Total reward : -4.0, episode length : 499, current eps : 0.8686
+Iteration : 219500 | Episode : 439 | Total reward : -6.0, episode length : 499, current eps : 0.8683
+Iteration : 220000 | Updating target weights...
+0.016553186
+Average total reward of 10 episodes : -10.10
+action : 2, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+Iteration : 220000 | Episode : 440 | Total reward : -4.0, episode length : 499, current eps : 0.868
+Iteration : 220500 | Episode : 441 | Total reward : -8.0, episode length : 499, current eps : 0.8677
+Iteration : 221000 | Episode : 442 | Total reward : -6.0, episode length : 499, current eps : 0.8674
+Iteration : 221500 | Episode : 443 | Total reward : -10.0, episode length : 499, current eps : 0.8671
+Iteration : 222000 | Episode : 444 | Total reward : -6.0, episode length : 499, current eps : 0.8668
+Iteration : 222500 | Episode : 445 | Total reward : -8.0, episode length : 499, current eps : 0.8665
+Iteration : 223000 | Episode : 446 | Total reward : -8.0, episode length : 499, current eps : 0.8662
+Iteration : 223500 | Episode : 447 | Total reward : -8.0, episode length : 499, current eps : 0.8659
+Iteration : 224000 | Episode : 448 | Total reward : -3.0, episode length : 499, current eps : 0.8656
+Iteration : 224500 | Episode : 449 | Total reward : -2.0, episode length : 499, current eps : 0.8653
+Iteration : 225000 | Episode : 450 | Total reward : -7.0, episode length : 499, current eps : 0.865
+Iteration : 225500 | Episode : 451 | Total reward : -8.0, episode length : 499, current eps : 0.8647
+Iteration : 226000 | Episode : 452 | Total reward : -2.0, episode length : 499, current eps : 0.8644000000000001
+Iteration : 226500 | Episode : 453 | Total reward : -6.0, episode length : 499, current eps : 0.8641
+Iteration : 227000 | Episode : 454 | Total reward : -6.0, episode length : 499, current eps : 0.8638
+Iteration : 227500 | Episode : 455 | Total reward : -5.0, episode length : 499, current eps : 0.8634999999999999
+Iteration : 228000 | Episode : 456 | Total reward : -8.0, episode length : 499, current eps : 0.8632
+Iteration : 228500 | Episode : 457 | Total reward : -5.0, episode length : 499, current eps : 0.8629
+Iteration : 229000 | Episode : 458 | Total reward : -8.0, episode length : 499, current eps : 0.8626
+Iteration : 229500 | Episode : 459 | Total reward : -6.0, episode length : 499, current eps : 0.8623000000000001
+Iteration : 230000 | Updating target weights...
+0.016553186
+Average total reward of 10 episodes : -10.20
+action : 2, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+Iteration : 230000 | Episode : 460 | Total reward : -6.0, episode length : 499, current eps : 0.862
+Iteration : 230500 | Episode : 461 | Total reward : -4.0, episode length : 499, current eps : 0.8617
+Iteration : 231000 | Episode : 462 | Total reward : -3.0, episode length : 499, current eps : 0.8613999999999999
+Iteration : 231500 | Episode : 463 | Total reward : -7.0, episode length : 499, current eps : 0.8611
+Iteration : 232000 | Episode : 464 | Total reward : -3.0, episode length : 499, current eps : 0.8608
+Iteration : 232500 | Episode : 465 | Total reward : -6.0, episode length : 499, current eps : 0.8605
+Iteration : 233000 | Episode : 466 | Total reward : -4.0, episode length : 499, current eps : 0.8602
+Iteration : 233500 | Episode : 467 | Total reward : -9.0, episode length : 499, current eps : 0.8599
+Iteration : 234000 | Episode : 468 | Total reward : -6.0, episode length : 499, current eps : 0.8596
+Iteration : 234500 | Episode : 469 | Total reward : -8.0, episode length : 499, current eps : 0.8593
+Iteration : 235000 | Episode : 470 | Total reward : -6.0, episode length : 499, current eps : 0.859
+Iteration : 235500 | Episode : 471 | Total reward : -2.0, episode length : 499, current eps : 0.8587
+Iteration : 236000 | Episode : 472 | Total reward : -3.0, episode length : 499, current eps : 0.8584
+Iteration : 236500 | Episode : 473 | Total reward : -9.0, episode length : 499, current eps : 0.8581
+Iteration : 237000 | Episode : 474 | Total reward : -8.0, episode length : 499, current eps : 0.8578
+Iteration : 237500 | Episode : 475 | Total reward : -5.0, episode length : 499, current eps : 0.8575
+Iteration : 238000 | Episode : 476 | Total reward : -7.0, episode length : 499, current eps : 0.8572
+Iteration : 238500 | Episode : 477 | Total reward : -9.0, episode length : 499, current eps : 0.8569
+Iteration : 239000 | Episode : 478 | Total reward : -6.0, episode length : 499, current eps : 0.8566
+Iteration : 239500 | Episode : 479 | Total reward : -8.0, episode length : 499, current eps : 0.8563000000000001
+Iteration : 240000 | Updating target weights...
+0.016553186
+Average total reward of 10 episodes : -9.90
+action : 1, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 0, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+Iteration : 240000 | Episode : 480 | Total reward : -8.0, episode length : 499, current eps : 0.856
+Iteration : 240500 | Episode : 481 | Total reward : -6.0, episode length : 499, current eps : 0.8557
+Iteration : 241000 | Episode : 482 | Total reward : -8.0, episode length : 499, current eps : 0.8553999999999999
+Iteration : 241500 | Episode : 483 | Total reward : -5.0, episode length : 499, current eps : 0.8551
+Iteration : 242000 | Episode : 484 | Total reward : -7.0, episode length : 499, current eps : 0.8548
+Iteration : 242500 | Episode : 485 | Total reward : -8.0, episode length : 499, current eps : 0.8545
+Iteration : 243000 | Episode : 486 | Total reward : -2.0, episode length : 499, current eps : 0.8542
+Iteration : 243500 | Episode : 487 | Total reward : -7.0, episode length : 499, current eps : 0.8539
+Iteration : 244000 | Episode : 488 | Total reward : -5.0, episode length : 499, current eps : 0.8536
+Iteration : 244500 | Episode : 489 | Total reward : -9.0, episode length : 499, current eps : 0.8533
+Iteration : 245000 | Episode : 490 | Total reward : -8.0, episode length : 499, current eps : 0.853
+Iteration : 245500 | Episode : 491 | Total reward : -4.0, episode length : 499, current eps : 0.8527
+Iteration : 246000 | Episode : 492 | Total reward : -8.0, episode length : 499, current eps : 0.8524
+Iteration : 246500 | Episode : 493 | Total reward : -7.0, episode length : 499, current eps : 0.8521
+Iteration : 247000 | Episode : 494 | Total reward : -5.0, episode length : 499, current eps : 0.8518
+Iteration : 247500 | Episode : 495 | Total reward : -8.0, episode length : 499, current eps : 0.8515
+Iteration : 248000 | Episode : 496 | Total reward : -7.0, episode length : 499, current eps : 0.8512
+Iteration : 248500 | Episode : 497 | Total reward : -9.0, episode length : 499, current eps : 0.8509
+Iteration : 249000 | Episode : 498 | Total reward : -4.0, episode length : 499, current eps : 0.8506
+Iteration : 249500 | Episode : 499 | Total reward : -8.0, episode length : 499, current eps : 0.8503000000000001
+Iteration : 250000 | Updating target weights...
+0.016553186
+Average total reward of 10 episodes : -10.10
+action : 4, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 2, reward : -1.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 3, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 4, reward : 0.0, terminal : False
+action : 1, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 2, reward : 0.0, terminal : False
+action : 5, reward : 0.0, terminal : False
+action : 5, reward : -1.0, terminal : False
+Iteration : 250000 | Episode : 500 | Total reward : -9.0, episode length : 499, current eps : 0.85
+Iteration : 250500 | Episode : 501 | Total reward : -9.0, episode length : 499, current eps : 0.8497
+Iteration : 251000 | Episode : 502 | Total reward : -7.0, episode length : 499, current eps : 0.8493999999999999
+Iteration : 251500 | Episode : 503 | Total reward : -9.0, episode length : 499, current eps : 0.8491
+Iteration : 252000 | Episode : 504 | Total reward : -5.0, episode length : 499, current eps : 0.8488
+Iteration : 252500 | Episode : 505 | Total reward : -6.0, episode length : 499, current eps : 0.8485
+Iteration : 253000 | Episode : 506 | Total reward : -8.0, episode length : 499, current eps : 0.8482000000000001
+Iteration : 253500 | Episode : 507 | Total reward : -9.0, episode length : 499, current eps : 0.8479
+Iteration : 254000 | Episode : 508 | Total reward : -5.0, episode length : 499, current eps : 0.8476
