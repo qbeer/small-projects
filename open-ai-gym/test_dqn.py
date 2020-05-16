@@ -10,13 +10,13 @@ import collections
 import tensorflow as tf
 import logging
 
-env = gym.make('Breakout-v4')
+env = gym.make('Pong-v0')
 
 N_ACTIONS = env.action_space.n
-MAX_EPISODE_LENGTH = 300
+MAX_EPISODE_LENGTH = 500
 STACK_SIZE = 4
-IMG_HEIGHT = 64
-IMG_WIDTH = 48
+IMG_HEIGHT = 84
+IMG_WIDTH = 64
 
 q = DeepQNetwork(N_ACTIONS)
 q.load_weights('chkpt/q.h5')
@@ -52,7 +52,7 @@ for ep in range(10):
     
     for timestep in range(MAX_EPISODE_LENGTH):
 
-        #env.render()
+        env.render()
         
         action = select_action_e_greedy(state)
         
@@ -86,7 +86,7 @@ for ep in range(10):
     
     for timestep in range(MAX_EPISODE_LENGTH):
 
-        #env.render()
+        env.render()
         
         action = env.action_space.sample()
         

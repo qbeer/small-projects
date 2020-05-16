@@ -9,7 +9,7 @@ verify_ssl = true
 gym = {extras = ["atari"],version = "*"}
 numpy = "*"
 opencv-python = "*"
-tensorflow-gpu = {file = "https://files.pythonhosted.org/packages/9c/ce/701867b176b085574e63682a2774bf4851e2ce95343be7d8f1d8fbf0331b/tensorflow_gpu-2.0.1-cp36-cp36m-manylinux2010_x86_64.whl"}
+tensorflow-gpu = "*"
 
 [requires]
 python_version = "3.6"

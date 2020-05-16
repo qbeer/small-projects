@@ -10,10 +10,8 @@ if gpus:
     for gpu in gpus:
       tf.config.experimental.set_memory_growth(gpu, True)
     logical_gpus = tf.config.experimental.list_logical_devices('GPU')
-    print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
   except RuntimeError as e:
-    # Memory growth must be set before GPUs have been initialized
-    print(e)
+    pass
 
 from replay_memory import ReplayMemory
 from deep_q_network import DeepQNetwork
@@ -26,23 +24,23 @@ import logging
 logging.basicConfig(format='%(message)s', 
                     filename='dqn.log', level=logging.DEBUG)
 
-env = gym.make('Breakout-v4')
-test_env = gym.make('Breakout-v4')
+env = gym.make('Pong-v0')
+test_env = gym.make('Pong-v0')
 
 N_ACTIONS = env.action_space.n
 GAMMA = 0.99
 MAX_EPISODE_LENGTH = 500
 N_EPOSIDES = 10_000
 UPDATE_INTERVAL = 10_000
-REPLAY_MEMORY_SIZE = 150_000
+REPLAY_MEMORY_SIZE = 200_000
 STACK_SIZE = 4
-IMG_HEIGHT = 64
-IMG_WIDTH = 48
+IMG_HEIGHT = 84
+IMG_WIDTH = 64
 EPS_MAX = 1.0
 EPS_MIN = 0.1
 ANNEALATION_STEPS = 1_500_000
-MIN_EXPERIENCE_STEPS = 50_000
-MINI_BATCH_SIZE = 64
+MIN_EXPERIENCE_STEPS = 100_000
+MINI_BATCH_SIZE = 128
 
 OPTMIZER = tf.keras.optimizers.Adam(lr=1e-3)
 
@@ -172,7 +170,7 @@ for ep in range(N_EPOSIDES):
     state = preprocess_input(frames)
     
     total_reward = 0
-    current_lives = 5
+    current_lives = 0
     
     for timestep in range(MAX_EPISODE_LENGTH):
         

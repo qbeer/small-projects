@@ -25,6 +25,6 @@ def DeepQNetwork(n_actions):
         conv1, conv1_2, conv2, conv2_2, pool, dense1, dense2, out
     ])
     
-    model.build((None, 64, 48, 4))
+    model.build((None, 84, 64, 4))
     
     return model
