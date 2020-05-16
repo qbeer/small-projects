@@ -36,7 +36,7 @@ def preprocess_input(frames):
         # to gray and to 0-1
         obs = cv2.cvtColor(obs, cv2.COLOR_RGB2GRAY)
         obs = cv2.resize(obs, (IMG_WIDTH, IMG_HEIGHT))
-        observed[..., ind] += obs
+        observed[..., ind] += obs / 255.
     return observed.astype(np.float32)
 
 for ep in range(10):

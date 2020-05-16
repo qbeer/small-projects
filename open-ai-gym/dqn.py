@@ -42,7 +42,7 @@ ANNEALATION_STEPS = 1_500_000
 MIN_EXPERIENCE_STEPS = 100_000
 MINI_BATCH_SIZE = 128
 
-OPTMIZER = tf.keras.optimizers.Adam(lr=1e-3)
+OPTMIZER = tf.keras.optimizers.RMSprop(lr=5e-4)
 
 def get_current_epsilon(n_th_step):
     if n_th_step > ANNEALATION_STEPS:
@@ -74,7 +74,7 @@ def preprocess_input(frames):
         # to gray and to 0-1
         obs = cv2.cvtColor(obs, cv2.COLOR_RGB2GRAY)
         obs = cv2.resize(obs, (IMG_WIDTH, IMG_HEIGHT))
-        observed[..., ind] += obs
+        observed[..., ind] += obs / 255.
     return observed.astype(np.float32)
 
 @tf.function(experimental_relax_shapes=True)
