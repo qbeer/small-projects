@@ -14,7 +14,7 @@ if gpus:
     pass
 
 from replay_memory import ReplayMemory
-#from deep_q_network import DeepQNetwork
+from deep_q_network import DeepQNetwork
 import gym
 import numpy as np
 import cv2
@@ -42,7 +42,7 @@ ANNEALATION_STEPS = 1_500_000
 MIN_EXPERIENCE_STEPS = 10_000
 MINI_BATCH_SIZE = 128
 
-OPTMIZER = tf.keras.optimizers.RMSprop(lr=5e-4)
+OPTMIZER = tf.keras.optimizers.RMSprop(learning_rate=1e-4)
 
 def get_current_epsilon(n_th_step):
     if n_th_step > ANNEALATION_STEPS:
@@ -51,51 +51,11 @@ def get_current_epsilon(n_th_step):
         return EPS_MAX - (EPS_MAX - EPS_MIN) * n_th_step / ANNEALATION_STEPS
 
 # actions are : NOPE, FIRE (new ball), RIGHT, LEFT
-q = tf.keras.models.Sequential(layers=[
-        tf.keras.layers.Conv2D(32, (3, 3),
-                                        activation='relu',
-                                        ),
-        tf.keras.layers.Conv2D(64, (3, 3),
-                                            strides=2,
-                                            activation='relu',
-                                            ),
-        tf.keras.layers.Conv2D(64, (3, 3),
-                                            activation='relu',
-                                            ),
-        tf.keras.layers.Conv2D(128, (3, 3),
-                                            strides=2,
-                                            activation='relu',
-                                            ),
-        tf.keras.layers.Flatten(),
-        tf.keras.layers.Dense(128, activation='relu', ),
-        tf.keras.layers.Dense(64, activation='relu', ),
-        tf.keras.layers.Dense(N_ACTIONS, )
-    ])
+q = DeepQNetwork(N_ACTIONS)
 q.build((None, IMG_HEIGHT, IMG_WIDTH, STACK_SIZE))
 
-q_target = tf.keras.models.Sequential(layers=[
-        tf.keras.layers.Conv2D(32, (3, 3),
-                                        activation='relu',
-                                        ),
-        tf.keras.layers.Conv2D(64, (3, 3),
-                                            strides=2,
-                                            activation='relu',
-                                            ),
-        tf.keras.layers.Conv2D(64, (3, 3),
-                                            activation='relu',
-                                            ),
-        tf.keras.layers.Conv2D(128, (3, 3),
-                                            strides=2,
-                                            activation='relu',
-                                            ),
-        tf.keras.layers.Flatten(),
-        tf.keras.layers.Dense(128, activation='relu', ),
-        tf.keras.layers.Dense(64, activation='relu', ),
-        tf.keras.layers.Dense(N_ACTIONS, )
-])
-
+q_target = DeepQNetwork(N_ACTIONS)
 q_target.build((None, IMG_HEIGHT, IMG_WIDTH, STACK_SIZE))
-
 
 # Initialize both networks with the same weights
 q_target.set_weights(q.get_weights())
@@ -121,27 +81,22 @@ def preprocess_input(frames):
     return observed.astype(np.float32)
 
 @tf.function(experimental_relax_shapes=True)
-def perform_gradient_step_on_q_net():
+def perform_gradient_step_on_q_net(STATES, ACTIONS, REWARDS, NEXT_STATES, IS_TERMINALS):
     targets = []
     states = []
     actions = []
     
-    # Huber-loss instead of MSE
     loss_fn = tf.keras.losses.Huber()
     
-    samples = memory.sample_experiences(MINI_BATCH_SIZE)
-    
-    for ind, experience_sample in enumerate(samples):
-        state, action, reward, next_state, is_terminal = experience_sample
+    for ind in range(MINI_BATCH_SIZE):
+        state, action, reward, next_state, is_terminal = STATES[ind], ACTIONS[ind],\
+            REWARDS[ind], NEXT_STATES[ind], IS_TERMINALS[ind]
         
-        if is_terminal:
-            targets.append(reward)
-        else:
-            bootstrapped_reward = reward
+        if not is_terminal:
             bootstrap = GAMMA * tf.reduce_max(q_target(tf.expand_dims(next_state, axis=0)))
-            bootstrapped_reward += bootstrap
-            targets.append(bootstrapped_reward)
-           
+            reward += bootstrap
+            
+        targets.append(reward)
         states.append(state)
         actions.append(tf.one_hot(action, depth=N_ACTIONS))
     
@@ -160,8 +115,8 @@ def perform_gradient_step_on_q_net():
     
     OPTMIZER.apply_gradients(zip(grads, q.trainable_weights))
     
-    return targets, selected_states, actions    
-        
+    return targets, selected_states, actions
+
 def test_agent():
     
     rewards = []
@@ -176,7 +131,6 @@ def test_agent():
         state = preprocess_input(frames)
 
         total_reward = 0
-        current_lives = 5
 
         for timestep in range(MAX_EPISODE_LENGTH):
             action = select_action_e_greedy(state, 0.05)
@@ -208,7 +162,6 @@ for ep in range(N_EPOSIDES):
     state = preprocess_input(frames)
     
     total_reward = 0
-    current_lives = 0
     
     for timestep in range(MAX_EPISODE_LENGTH):
         
@@ -232,13 +185,24 @@ for ep in range(N_EPOSIDES):
         total_reward += reward
         
         if n_th_iteration > MIN_EXPERIENCE_STEPS:
-            targets, selected_states, actions = perform_gradient_step_on_q_net()
+            samples = memory.sample_experiences(MINI_BATCH_SIZE)
+            STATES = tf.convert_to_tensor([sample[0] for sample in samples])
+            ACTIONS = tf.convert_to_tensor([sample[1] for sample in samples])
+            REWARDS = tf.convert_to_tensor([sample[2] for sample in samples])
+            NEXT_STATES = tf.convert_to_tensor([sample[3] for sample in samples])
+            IS_TERMINALS = tf.convert_to_tensor([sample[4] for sample in samples])
+            
+            targets, selected_states, actions = perform_gradient_step_on_q_net(STATES,
+                                                                               ACTIONS,
+                                                                               REWARDS,
+                                                                               NEXT_STATES,
+                                                                               IS_TERMINALS)
             
             if (n_th_iteration - MIN_EXPERIENCE_STEPS) % UPDATE_INTERVAL == 0:
                 logging.info('Iteration : %d | Updating target weights...' % n_th_iteration)
                 q.save_weights('chkpt/q.h5')
                 
-                logging.info(np.mean((targets - selected_states)**2))
+                logging.info('Loss : %.5f' % np.mean((targets - selected_states)**2))
                 
                 for t, s_s in zip(targets, selected_states):
                     logging.info(f'target : {t}, predicted_target : {s_s}')
@@ -255,7 +219,8 @@ for ep in range(N_EPOSIDES):
         if terminal:
             total_reward -= 1
             break
-            
-    logging.info(f'Iteration : {n_th_iteration} | Episode : {ep + 1} | Total reward : {total_reward}, episode length : {timestep}, current eps : {current_eps}')      
+    
+    if n_th_iteration % 3000 == 0:        
+        logging.info(f'Iteration : {n_th_iteration} | Episode : {ep + 1} | Total reward : {total_reward}, episode length : {timestep}, current eps : {current_eps}')      
 
 env.close()

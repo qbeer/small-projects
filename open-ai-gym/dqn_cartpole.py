@@ -12,7 +12,7 @@ from tensorflow.keras.layers import Dense
 import logging
 
 logging.basicConfig(format='%(message)s', 
-                    filename='dqn_cartpole.log', level=logging.DEBUG)
+                    filename='dqn_cartpole_v2.log', level=logging.DEBUG)
 
 env = gym.make('CartPole-v0')
 test_env = gym.make('CartPole-v0')
@@ -21,17 +21,17 @@ N_ACTIONS = env.action_space.n
 GAMMA = 0.99
 MAX_EPISODE_LENGTH = 300
 N_EPOSIDES = 20_000
-UPDATE_INTERVAL = 5_000
+UPDATE_INTERVAL = 5000
 REPLAY_MEMORY_SIZE = 100_000
 EPS_MAX = 1.0
 EPS_MIN = 0.1
 ANNEALATION_STEPS = 500_000
-MIN_EXPERIENCE_STEPS = 35_000
+MIN_EXPERIENCE_STEPS = 25_000
 MINI_BATCH_SIZE = 128
 OBSERVATION_SIZE = 4
 NUMBER_OF_TEST_EPISODES = 25
 
-OPTMIZER = tf.keras.optimizers.RMSprop(lr=5e-4)
+OPTMIZER = tf.keras.optimizers.RMSprop(learning_rate=1e-4)
 
 def get_current_epsilon(n_th_step):
     if n_th_step > ANNEALATION_STEPS:
@@ -40,13 +40,13 @@ def get_current_epsilon(n_th_step):
         return EPS_MAX - (EPS_MAX - EPS_MIN) * n_th_step / ANNEALATION_STEPS
 
 q = tf.keras.models.Sequential(layers=[
-    Dense(32, activation='tanh', input_shape=(None, OBSERVATION_SIZE)),
+    Dense(32, activation='tanh', input_shape=(OBSERVATION_SIZE,)),
     Dense(64, activation='tanh'),
     Dense(N_ACTIONS),
 ])
 
 q_target = tf.keras.models.Sequential(layers=[
-    Dense(32, activation='tanh', input_shape=(None, OBSERVATION_SIZE)),
+    Dense(32, activation='tanh', input_shape=(OBSERVATION_SIZE,)),
     Dense(64, activation='tanh'),
     Dense(N_ACTIONS),
 ])
@@ -69,26 +69,22 @@ def preprocess_input(observation):
     return observation.reshape(OBSERVATION_SIZE).astype(np.float32)
 
 @tf.function(experimental_relax_shapes=True)
-def perform_gradient_step_on_q_net():
+def perform_gradient_step_on_q_net(STATES, ACTIONS, REWARDS, NEXT_STATES, IS_TERMINALS):
     targets = []
     states = []
     actions = []
     
     loss_fn = tf.keras.losses.Huber()
     
-    samples = memory.sample_experiences(MINI_BATCH_SIZE)
-    
-    for ind, experience_sample in enumerate(samples):
-        state, action, reward, next_state, is_terminal = experience_sample
+    for ind in range(MINI_BATCH_SIZE):
+        state, action, reward, next_state, is_terminal = STATES[ind], ACTIONS[ind],\
+            REWARDS[ind], NEXT_STATES[ind], IS_TERMINALS[ind]
         
-        if is_terminal:
-            targets.append(reward)
-        else:
-            bootstrapped_reward = reward
+        if not is_terminal:
             bootstrap = GAMMA * tf.reduce_max(q_target(tf.expand_dims(next_state, axis=0)))
-            bootstrapped_reward += bootstrap
-            targets.append(bootstrapped_reward)
-           
+            reward += bootstrap
+            
+        targets.append(reward)
         states.append(state)
         actions.append(tf.one_hot(action, depth=N_ACTIONS))
     
@@ -164,7 +160,18 @@ for ep in range(N_EPOSIDES):
         total_reward += reward
         
         if n_th_iteration > MIN_EXPERIENCE_STEPS:
-            targets, selected_states, actions = perform_gradient_step_on_q_net()
+            samples = memory.sample_experiences(MINI_BATCH_SIZE)
+            STATES = tf.convert_to_tensor([sample[0] for sample in samples])
+            ACTIONS = tf.convert_to_tensor([sample[1] for sample in samples])
+            REWARDS = tf.convert_to_tensor([sample[2] for sample in samples])
+            NEXT_STATES = tf.convert_to_tensor([sample[3] for sample in samples])
+            IS_TERMINALS = tf.convert_to_tensor([sample[4] for sample in samples])
+            
+            targets, selected_states, actions = perform_gradient_step_on_q_net(STATES,
+                                                                               ACTIONS,
+                                                                               REWARDS,
+                                                                               NEXT_STATES,
+                                                                               IS_TERMINALS)
             
             if n_th_iteration % UPDATE_INTERVAL == 0:
                 logging.info('Iteration : %d | Updating target weights...' % n_th_iteration)
@@ -172,10 +179,13 @@ for ep in range(N_EPOSIDES):
                 q_target.set_weights(q.get_weights())
 
                 test_agent()
+                
+                logging.info("Loss : %.5f" % np.mean((targets - selected_states)**2))
                     
         if terminal:
             break
-            
-    logging.info(f'Iteration : {n_th_iteration} | Episode : {ep + 1} | Total reward : {total_reward}, episode length : {timestep}, current eps : {current_eps}')        
+    
+    if n_th_iteration % 3000 == 0:        
+        logging.info(f'Iteration : {n_th_iteration} | Episode : {ep + 1} | Total reward : {total_reward}, episode length : {timestep}, current eps : {current_eps}')        
 
 env.close()

@@ -18,7 +18,7 @@ MAX_EPISODE_LENGTH = 2500
 OBSERVATION_SIZE = 4
 
 q = tf.keras.models.Sequential(layers=[
-    Dense(32, activation='tanh', input_shape=(None, OBSERVATION_SIZE)),
+    Dense(32, activation='tanh', input_shape=(OBSERVATION_SIZE,)),
     Dense(64, activation='tanh'),
     Dense(N_ACTIONS),
 ])
@@ -44,7 +44,7 @@ for ep in range(10):
     total_reward = 0
     
     for timestep in range(MAX_EPISODE_LENGTH):
-        env.render()   
+        #env.render()   
         action = select_action_e_greedy(state, 0.05)
         #action = env.action_space.sample()
         obs, reward, terminal, info = env.step(action)
@@ -64,7 +64,7 @@ for ep in range(10):
     total_reward = 0
     
     for timestep in range(MAX_EPISODE_LENGTH):
-        env.render()   
+        #env.render()   
         #action = select_action_e_greedy(state, 0.05)
         action = env.action_space.sample()
         obs, reward, terminal, info = env.step(action)
