@@ -1,5 +1,5 @@
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
 import tensorflow as tf
 import timeit
@@ -26,12 +26,12 @@ import logging
 logging.basicConfig(format='%(message)s', 
                     filename='dqn.log', level=logging.DEBUG)
 
-env = gym.make('Pong-v0')
-test_env = gym.make('Pong-v0')
+env = gym.make('Breakout-v0')
+test_env = gym.make('Breakout-v0')
 
 N_ACTIONS = env.action_space.n
 GAMMA = 0.99
-MAX_EPISODE_LENGTH = 300
+MAX_EPISODE_LENGTH = 350
 N_EPOSIDES = 10_000
 UPDATE_INTERVAL = 2_500
 REPLAY_MEMORY_SIZE = 125_000
@@ -42,7 +42,7 @@ EPS_MAX = 1.0
 EPS_MIN = 0.1
 ANNEALATION_STEPS = 1_500_000
 MIN_EXPERIENCE_STEPS = 10_000
-MINI_BATCH_SIZE = 128
+MINI_BATCH_SIZE = 64
 
 OPTMIZER = tf.keras.optimizers.RMSprop(learning_rate=1e-4)
 
@@ -150,8 +150,6 @@ for ep in range(N_EPOSIDES):
     
     total_reward = 0
     
-    start = timeit.timeit()
-    
     for timestep in range(MAX_EPISODE_LENGTH):
         
         n_th_iteration += 1
@@ -175,11 +173,11 @@ for ep in range(N_EPOSIDES):
         
         if n_th_iteration > MIN_EXPERIENCE_STEPS:
             samples = memory.sample_experiences(MINI_BATCH_SIZE)
-            STATES = tf.convert_to_tensor([sample[0] for sample in samples], dtype=tf.float32)
-            ACTIONS = tf.convert_to_tensor([sample[1] for sample in samples], dtype=tf.uint8)
-            REWARDS = tf.convert_to_tensor([sample[2] for sample in samples], dtype=tf.float32)
-            NEXT_STATES = tf.convert_to_tensor([sample[3] for sample in samples], dtype=tf.float32)
-            IS_TERMINALS = tf.convert_to_tensor([sample[4] for sample in samples], dtype=tf.bool)
+            STATES = tf.convert_to_tensor(np.array([sample[0] for sample in samples]), dtype=tf.float32)
+            ACTIONS = tf.convert_to_tensor(np.array([sample[1] for sample in samples]), dtype=tf.uint8)
+            REWARDS = tf.convert_to_tensor(np.array([sample[2] for sample in samples]), dtype=tf.float32)
+            NEXT_STATES = tf.convert_to_tensor(np.array([sample[3] for sample in samples]), dtype=tf.float32)
+            IS_TERMINALS = tf.convert_to_tensor(np.array([sample[4] for sample in samples]), dtype=tf.bool)
             
             perform_gradient_step_on_q_net(STATES,
                                             ACTIONS,
@@ -198,9 +196,6 @@ for ep in range(N_EPOSIDES):
         if terminal:
             total_reward -= 1
             break
-        
-    end = timeit.timeit()
-    print(start - end)
        
     logging.info(f'Iteration : {n_th_iteration} | Episode : {ep + 1} | Total reward : {total_reward}, episode length : {timestep}, current eps : {current_eps}')
     

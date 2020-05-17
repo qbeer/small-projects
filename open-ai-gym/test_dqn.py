@@ -10,7 +10,7 @@ import collections
 import tensorflow as tf
 import logging
 
-env = gym.make('Pong-v0')
+env = gym.make('Breakout-v0')
 
 N_ACTIONS = env.action_space.n
 MAX_EPISODE_LENGTH = 500
