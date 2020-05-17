@@ -19,6 +19,7 @@ IMG_HEIGHT = 84
 IMG_WIDTH = 64
 
 q = DeepQNetwork(N_ACTIONS)
+q.build((None, IMG_HEIGHT, IMG_WIDTH, STACK_SIZE))
 q.load_weights('chkpt/q.h5')
 
 def select_action_e_greedy(state, current_eps=0.05):
@@ -55,7 +56,7 @@ for ep in range(10):
         env.render()
         
         action = select_action_e_greedy(state)
-        print(action)
+        print(action, env.unwrapped.get_action_meanings()[action])
         
         frame, reward, terminal, info = env.step(action)
         
