@@ -55,6 +55,7 @@ for ep in range(10):
         env.render()
         
         action = select_action_e_greedy(state)
+        print(action)
         
         frame, reward, terminal, info = env.step(action)
         

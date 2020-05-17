@@ -14,7 +14,7 @@ if gpus:
     pass
 
 from replay_memory import ReplayMemory
-from deep_q_network import DeepQNetwork
+#from deep_q_network import DeepQNetwork
 import gym
 import numpy as np
 import cv2
@@ -31,7 +31,7 @@ N_ACTIONS = env.action_space.n
 GAMMA = 0.99
 MAX_EPISODE_LENGTH = 500
 N_EPOSIDES = 10_000
-UPDATE_INTERVAL = 10_000
+UPDATE_INTERVAL = 1_000
 REPLAY_MEMORY_SIZE = 200_000
 STACK_SIZE = 4
 IMG_HEIGHT = 84
@@ -39,7 +39,7 @@ IMG_WIDTH = 64
 EPS_MAX = 1.0
 EPS_MIN = 0.1
 ANNEALATION_STEPS = 1_500_000
-MIN_EXPERIENCE_STEPS = 100_000
+MIN_EXPERIENCE_STEPS = 10_000
 MINI_BATCH_SIZE = 128
 
 OPTMIZER = tf.keras.optimizers.RMSprop(lr=5e-4)
@@ -51,8 +51,51 @@ def get_current_epsilon(n_th_step):
         return EPS_MAX - (EPS_MAX - EPS_MIN) * n_th_step / ANNEALATION_STEPS
 
 # actions are : NOPE, FIRE (new ball), RIGHT, LEFT
-q = DeepQNetwork(N_ACTIONS)
-q_target = DeepQNetwork(N_ACTIONS)
+q = tf.keras.models.Sequential(layers=[
+        tf.keras.layers.Conv2D(32, (3, 3),
+                                        activation='relu',
+                                        ),
+        tf.keras.layers.Conv2D(64, (3, 3),
+                                            strides=2,
+                                            activation='relu',
+                                            ),
+        tf.keras.layers.Conv2D(64, (3, 3),
+                                            activation='relu',
+                                            ),
+        tf.keras.layers.Conv2D(128, (3, 3),
+                                            strides=2,
+                                            activation='relu',
+                                            ),
+        tf.keras.layers.Flatten(),
+        tf.keras.layers.Dense(128, activation='relu', ),
+        tf.keras.layers.Dense(64, activation='relu', ),
+        tf.keras.layers.Dense(N_ACTIONS, )
+    ])
+q.build((None, IMG_HEIGHT, IMG_WIDTH, STACK_SIZE))
+
+q_target = tf.keras.models.Sequential(layers=[
+        tf.keras.layers.Conv2D(32, (3, 3),
+                                        activation='relu',
+                                        ),
+        tf.keras.layers.Conv2D(64, (3, 3),
+                                            strides=2,
+                                            activation='relu',
+                                            ),
+        tf.keras.layers.Conv2D(64, (3, 3),
+                                            activation='relu',
+                                            ),
+        tf.keras.layers.Conv2D(128, (3, 3),
+                                            strides=2,
+                                            activation='relu',
+                                            ),
+        tf.keras.layers.Flatten(),
+        tf.keras.layers.Dense(128, activation='relu', ),
+        tf.keras.layers.Dense(64, activation='relu', ),
+        tf.keras.layers.Dense(N_ACTIONS, )
+])
+
+q_target.build((None, IMG_HEIGHT, IMG_WIDTH, STACK_SIZE))
+
 
 # Initialize both networks with the same weights
 q_target.set_weights(q.get_weights())
@@ -144,11 +187,6 @@ def test_agent():
             
             state = preprocess_input(frames)
             
-            # add negative reward on life loss
-            if current_lives > info['ale.lives']:
-                reward = -1
-                current_lives = info['ale.lives']
-            
             total_reward += reward
                 
             if terminal:
@@ -181,11 +219,6 @@ for ep in range(N_EPOSIDES):
         
         frame, reward, terminal, info = env.step(action)
         
-        # add negative reward on life loss
-        if current_lives > info['ale.lives']:
-            reward = -1.
-            current_lives = info['ale.lives']
-        
         old_state = state.copy()
         
         frames.append(frame)
@@ -206,6 +239,9 @@ for ep in range(N_EPOSIDES):
                 q.save_weights('chkpt/q.h5')
                 
                 logging.info(np.mean((targets - selected_states)**2))
+                
+                for t, s_s in zip(targets, selected_states):
+                    logging.info(f'target : {t}, predicted_target : {s_s}')
                 
                 q_target.set_weights(q.get_weights())
                 

@@ -22,9 +22,24 @@ def DeepQNetwork(n_actions):
     out = tf.keras.layers.Dense(n_actions, kernel_initializer='RandomNormal')
     
     model = tf.keras.models.Sequential(layers=[
-        conv1, conv1_2, conv2, conv2_2, pool, dense1, dense2, out
+        tf.keras.layers.Conv2D(32, (3, 3),
+                                        activation='relu',
+                                        kernel_initializer='RandomNormal')
+        tf.keras.layers.Conv2D(64, (3, 3),
+                                            strides=2,
+                                            activation='relu',
+                                            kernel_initializer='RandomNormal')
+        tf.keras.layers.Conv2D(64, (3, 3),
+                                            activation='relu',
+                                            kernel_initializer='RandomNormal')
+        tf.keras.layers.Conv2D(128, (3, 3),
+                                            strides=2,
+                                            activation='relu',
+                                            kernel_initializer='RandomNormal')
+        tf.keras.layers.Flatten()
+        tf.keras.layers.Dense(128, activation='relu', kernel_initializer='RandomNormal') 
+        tf.keras.layers.Dense(64, activation='relu', kernel_initializer='RandomNormal')
+        tf.keras.layers.Dense(n_actions, kernel_initializer='RandomNormal')
     ])
-    
-    model.build((None, 84, 64, 4))
     
     return model
