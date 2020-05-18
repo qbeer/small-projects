@@ -1,5 +1,5 @@
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 from replay_memory import ReplayMemory
 from deep_q_network import DeepQNetwork
@@ -21,12 +21,12 @@ N_ACTIONS = env.action_space.n
 GAMMA = 0.99
 MAX_EPISODE_LENGTH = 300
 N_EPOSIDES = 20_000
-UPDATE_INTERVAL = 5000
-REPLAY_MEMORY_SIZE = 100_000
+UPDATE_INTERVAL = 2_000
+REPLAY_MEMORY_SIZE = 50_000
 EPS_MAX = 1.0
-EPS_MIN = 0.1
-ANNEALATION_STEPS = 500_000
-MIN_EXPERIENCE_STEPS = 25_000
+EPS_MIN = 0.01
+ANNEALATION_STEPS = 200_000
+MIN_EXPERIENCE_STEPS = 1_000
 MINI_BATCH_SIZE = 128
 OBSERVATION_SIZE = 4
 NUMBER_OF_TEST_EPISODES = 25
@@ -70,32 +70,14 @@ def preprocess_input(observation):
 
 @tf.function(experimental_relax_shapes=True)
 def perform_gradient_step_on_q_net(STATES, ACTIONS, REWARDS, NEXT_STATES, IS_TERMINALS):
-    targets = []
-    states = []
-    actions = []
-    
     loss_fn = tf.keras.losses.Huber()
     
-    for ind in range(MINI_BATCH_SIZE):
-        state, action, reward, next_state, is_terminal = STATES[ind], ACTIONS[ind],\
-            REWARDS[ind], NEXT_STATES[ind], IS_TERMINALS[ind]
-        
-        if not is_terminal:
-            bootstrap = GAMMA * tf.reduce_max(q_target(tf.expand_dims(next_state, axis=0)))
-            reward += bootstrap
-            
-        targets.append(reward)
-        states.append(state)
-        actions.append(tf.one_hot(action, depth=N_ACTIONS))
-    
-    states = tf.stack(states)
-    
-    actions = tf.stack(actions)
-    
-    targets = tf.stack(targets)
+    targets = REWARDS + tf.multiply(tf.cast(IS_TERMINALS, tf.float32),
+                                    GAMMA * tf.reduce_max(q_target(NEXT_STATES), axis=1))
+    actions = tf.one_hot(ACTIONS, depth=N_ACTIONS)
            
     with tf.GradientTape() as tape:
-        selected_states = tf.multiply(q(states), actions)
+        selected_states = tf.multiply(q(STATES), actions)
         selected_states = tf.reduce_max(selected_states, axis=1)
         objective = loss_fn(targets, selected_states)
         
@@ -185,7 +167,9 @@ for ep in range(N_EPOSIDES):
         if terminal:
             break
     
-    if n_th_iteration % 3000 == 0:        
+    """
+    if n_th_iteration % 500 == 0: 
         logging.info(f'Iteration : {n_th_iteration} | Episode : {ep + 1} | Total reward : {total_reward}, episode length : {timestep}, current eps : {current_eps}')        
+    """
 
 env.close()
