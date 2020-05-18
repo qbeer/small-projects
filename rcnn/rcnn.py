@@ -1,7 +1,25 @@
+import os
+os.environ['CUDA_VISIBLE_DEVICES'] = '1' 
+
 import selectivesearch as ss
 import tensorflow as tf
+
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+  try:
+    # Currently, memory growth needs to be the same across GPUs
+    for gpu in gpus:
+      tf.config.experimental.set_memory_growth(gpu, True)
+    logical_gpus = tf.config.experimental.list_logical_devices('GPU')
+    print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
+  except RuntimeError as e:
+    # Memory growth must be set before GPUs have been initialized
+    print(e)
+
 import tensorflow_datasets as tfds
 import numpy as np
+
+import matplotlib.pyplot as plt
 
 N = 2
 MIN_IOU = .5
@@ -96,7 +114,7 @@ def build_model():
     bbox_preds = tf.keras.layers.Conv2D(1024, (3, 3), strides=(2, 2), activation='relu')(pooled_rois)
     bbox_preds = tf.keras.layers.Flatten()(bbox_preds)
     bbox_preds = tf.keras.layers.Dense(256, activation='relu')(bbox_preds)
-    bbox_preds = tf.keras.layers.Dense(4, activation='sigmoid')(bbox_preds) / 2. + .5
+    bbox_preds = tf.keras.layers.Dense(4, activation='sigmoid')(bbox_preds)
     #print('bbox_preds.shape : ', bbox_preds.shape)
 
     logits = tf.keras.layers.Conv2D(1024, (3, 3), strides=(2, 2), activation='relu')(pooled_rois)
@@ -213,7 +231,7 @@ for example in voc.batch(1).take(1):
     image = tf.image.resize(image, (224, 224))
     image = tf.keras.applications.vgg16.preprocess_input(image)
 
-    _, regions = ss.selective_search(image[0], scale=224, sigma=0.9, min_size=1600)
+    _, regions = ss.selective_search(image[0], scale=224, sigma=0.2, min_size=900)
 
     vgg16 = tf.keras.applications.VGG16(weights='imagenet',
                                     include_top=False, pooling=None)
@@ -232,30 +250,53 @@ for example in voc.batch(1).take(1):
 
 model = build_model()
 
-for epoch in range(100):
-    rolling_loss = 0.0
-    for voc_example in voc.take(10).batch(1):
-        # relative bboxes are given (!)
-        image, objects = voc_example['image'], voc_example['objects']
-        image = tf.image.resize(image, (224, 224))
-        image = tf.keras.applications.vgg16.preprocess_input(image)
-        _, regions = ss.selective_search(image[0], scale=224, sigma=0.9, min_size=2500)
-        rois = convert_regions_to_relative_rois(regions)
-        rois, roi_labels = label_regions(objects, rois)
+train = True
 
-        rois = tf.expand_dims(rois, axis=0)
+if train:
+    for epoch in range(10):
+        rolling_loss = 0.0
+        for voc_example in voc.take(25).batch(1):
+            # relative bboxes are given (!)
+            image, objects = voc_example['image'], voc_example['objects']
+            image = tf.image.resize(image, (224, 224))
+            image = tf.keras.applications.vgg16.preprocess_input(image)
+            _, regions = ss.selective_search(image[0], scale=224, sigma=0.2, min_size=360)
+            print(len(regions))
+            rois = convert_regions_to_relative_rois(regions)
+            rois, roi_labels = label_regions(objects, rois)
 
-        with tf.GradientTape() as tape:
-            logits, bbox_preds, pr = model([image, rois])
-            #print('logits : ', logits)
-            #print('bbox_preds : ', bbox_preds)
-            #print('pr : ', pr)
-            loss = fast_rcnn_loss(logits, roi_labels, bbox_preds, rois)
+            rois = tf.expand_dims(rois, axis=0)
+
+            with tf.GradientTape() as tape:
+                logits, bbox_preds, pr = model([image, rois])
+                #print('logits : ', logits)
+                #print('bbox_preds : ', bbox_preds)
+                #print('pr : ', pr)
+                loss = fast_rcnn_loss(logits, roi_labels, bbox_preds, rois)
+            
+            grads = tape.gradient(loss, model.trainable_weights)
+            optimizer.apply_gradients(zip(grads, model.trainable_weights))
+            
+            #print(loss)
+            rolling_loss += loss
         
-        grads = tape.gradient(loss, model.trainable_weights)
-        optimizer.apply_gradients(zip(grads, model.trainable_weights))
-        
-        #print(loss)
-        rolling_loss += loss
+        print(rolling_loss.numpy())
+        model.save_weights('model.h5')
+
+model.load_weights('model.h5')
+
+for example in voc.take(1).batch(1):
+    image, objects = example['image'], example['objects']
+    image = tf.image.resize(image, (224, 224))
+    image = tf.keras.applications.vgg16.preprocess_input(image)
+    _, regions = ss.selective_search(image[0], scale=224, sigma=0.2, min_size=360)
+    rois = convert_regions_to_relative_rois(regions)
+    rois, roi_labels = label_regions(objects, rois)
+
+    rois = tf.expand_dims(rois, axis=0)
     
-    print(rolling_loss.numpy())
+    logits, bboxes, pr = model([image, rois])
+
+    bboxes = bboxes.numpy()
+    
+    print(bboxes, objects['bbox'], rois)
