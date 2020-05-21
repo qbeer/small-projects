@@ -10,7 +10,7 @@ import collections
 import tensorflow as tf
 import logging
 
-env = gym.make('Breakout-v0')
+env = gym.make('Skiing-v0')
 
 N_ACTIONS = env.action_space.n
 MAX_EPISODE_LENGTH = 500
@@ -40,6 +40,10 @@ def preprocess_input(frames):
         observed[..., ind] += obs / 255.
     return observed.astype(np.float32)
 
+print('\nTrained agent : ')
+
+rewards = []
+
 for ep in range(10):
     
     initial_frame = env.reset() # initial observation
@@ -53,10 +57,10 @@ for ep in range(10):
     
     for timestep in range(MAX_EPISODE_LENGTH):
 
-        env.render()
+        #env.render()
         
         action = select_action_e_greedy(state)
-        print(action, env.unwrapped.get_action_meanings()[action])
+        #print(action, env.unwrapped.get_action_meanings()[action])
         
         frame, reward, terminal, info = env.step(action)
         
@@ -71,9 +75,14 @@ for ep in range(10):
         if terminal:
             break
     
+    rewards.append(total_reward)
     print(f'Total reward : {total_reward}')
     
-print('\nCompletely random agent : ')    
+print('Mean total rewards : %.2f' % np.mean(rewards))
+    
+print('\nCompletely random agent : ')  
+
+rewards = []  
 
 for ep in range(10):
     
@@ -88,7 +97,7 @@ for ep in range(10):
     
     for timestep in range(MAX_EPISODE_LENGTH):
 
-        env.render()
+        #env.render()
         
         action = env.action_space.sample()
         
@@ -105,6 +114,9 @@ for ep in range(10):
         if terminal:
             break
     
+    rewards.append(total_reward)
     print(f'Total reward : {total_reward}')
+    
+print('Mean total rewards : %.2f' % np.mean(rewards))
 
 env.close()

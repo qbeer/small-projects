@@ -24,25 +24,26 @@ import collections
 import logging
 
 logging.basicConfig(format='%(message)s', 
-                    filename='dqn.log', level=logging.DEBUG)
+                    filename='dqn_skiing.log', level=logging.DEBUG)
 
-env = gym.make('Breakout-v0')
-test_env = gym.make('Breakout-v0')
+env = gym.make('Skiing-v0')
+test_env = gym.make('Skiing-v0')
 
 N_ACTIONS = env.action_space.n
 GAMMA = 0.99
 MAX_EPISODE_LENGTH = 350
 N_EPOSIDES = 10_000
-UPDATE_INTERVAL = 2_500
-REPLAY_MEMORY_SIZE = 125_000
+UPDATE_INTERVAL = 5_000
+REPLAY_MEMORY_SIZE = 100_000
 STACK_SIZE = 4
 IMG_HEIGHT = 84
 IMG_WIDTH = 64
 EPS_MAX = 1.0
 EPS_MIN = 0.1
-ANNEALATION_STEPS = 1_500_000
+ANNEALATION_STEPS = 1_000_000
 MIN_EXPERIENCE_STEPS = 10_000
 MINI_BATCH_SIZE = 64
+N_TEST_STEPS = 25
 
 OPTMIZER = tf.keras.optimizers.RMSprop(learning_rate=1e-4)
 
@@ -104,12 +105,14 @@ def perform_gradient_step_on_q_net(STATES, ACTIONS, REWARDS, NEXT_STATES, IS_TER
     grads = tape.gradient(objective, q.trainable_weights)
     
     OPTMIZER.apply_gradients(zip(grads, q.trainable_weights))
+    
+    return targets, selected_action_values
 
 def test_agent():
     
     rewards = []
     
-    for ep in range(10):
+    for ep in range(N_TEST_STEPS):
     
         initial_frame = test_env.reset() # initial observation
         frames = collections.deque(maxlen=STACK_SIZE)
@@ -136,7 +139,7 @@ def test_agent():
             
         rewards.append(total_reward)
             
-    logging.info('Average total reward of 10 episodes : %.2f' % np.mean(rewards))
+    logging.info('Average total reward of %d episodes : %.2f' % (N_TEST_STEPS, np.mean(rewards)))
 
 n_th_iteration = 0
 
@@ -179,17 +182,19 @@ for ep in range(N_EPOSIDES):
             NEXT_STATES = tf.convert_to_tensor(np.array([sample[3] for sample in samples]), dtype=tf.float32)
             IS_TERMINALS = tf.convert_to_tensor(np.array([sample[4] for sample in samples]), dtype=tf.bool)
             
-            perform_gradient_step_on_q_net(STATES,
-                                            ACTIONS,
-                                            REWARDS,
-                                            NEXT_STATES,
-                                            IS_TERMINALS)
+            targets, selected_action_values = perform_gradient_step_on_q_net(STATES,
+                                                                            ACTIONS,
+                                                                            REWARDS,
+                                                                            NEXT_STATES,
+                                                                            IS_TERMINALS)
             
             if (n_th_iteration - MIN_EXPERIENCE_STEPS) % UPDATE_INTERVAL == 0:
                 logging.info('Iteration : %d | Updating target weights...' % n_th_iteration)
                 
                 q.save_weights('chkpt/q.h5')
                 q_target.set_weights(q.get_weights())
+                
+                logging.info('Loss : %.5f' % np.mean((targets - selected_action_values)**2))
                 
                 test_agent()
             

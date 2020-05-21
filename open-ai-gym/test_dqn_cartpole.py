@@ -44,9 +44,8 @@ for ep in range(10):
     total_reward = 0
     
     for timestep in range(MAX_EPISODE_LENGTH):
-        #env.render()   
+        env.render()   
         action = select_action_e_greedy(state, 0.05)
-        #action = env.action_space.sample()
         obs, reward, terminal, info = env.step(action)
         state = preprocess_input(obs)
         total_reward += reward
@@ -64,8 +63,7 @@ for ep in range(10):
     total_reward = 0
     
     for timestep in range(MAX_EPISODE_LENGTH):
-        #env.render()   
-        #action = select_action_e_greedy(state, 0.05)
+        env.render()   
         action = env.action_space.sample()
         obs, reward, terminal, info = env.step(action)
         state = preprocess_input(obs)

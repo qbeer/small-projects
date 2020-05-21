@@ -2,11 +2,13 @@ import numpy as np
 import cv2
 import gym
 
-IMG_HEIGHT = 64
-IMG_WIDTH = 48
+IMG_HEIGHT = 84
+IMG_WIDTH = 64
 STACK_SIZE = 4
 
-env = gym.make('BreakoutDeterministic-v4')
+env = gym.make('Skiing-v0')
+
+print(env.action_space.n)
 
 for D in range(10):
     env.reset()
