@@ -4,9 +4,9 @@ import gym
 
 IMG_HEIGHT = 84
 IMG_WIDTH = 64
-STACK_SIZE = 4
+STACK_SIZE = 16
 
-env = gym.make('Skiing-v0')
+env = gym.make('BreakoutNoFrameskip-v4')
 
 print(env.action_space.n)
 

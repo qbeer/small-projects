@@ -10,10 +10,10 @@ import collections
 import tensorflow as tf
 import logging
 
-env = gym.make('Skiing-v0')
+env = gym.make('BreakoutNoFrameskip-v4')
 
 N_ACTIONS = env.action_space.n
-MAX_EPISODE_LENGTH = 500
+MAX_EPISODE_LENGTH = 350
 STACK_SIZE = 4
 IMG_HEIGHT = 84
 IMG_WIDTH = 64

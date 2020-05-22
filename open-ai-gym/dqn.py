@@ -24,17 +24,17 @@ import collections
 import logging
 
 logging.basicConfig(format='%(message)s', 
-                    filename='dqn_skiing.log', level=logging.DEBUG)
+                    filename='dqn_breakout.log', level=logging.DEBUG)
 
-env = gym.make('Skiing-v0')
-test_env = gym.make('Skiing-v0')
+env = gym.make('BreakoutNoFrameskip-v4')
+test_env = gym.make('BreakoutNoFrameskip-v4')
 
 N_ACTIONS = env.action_space.n
 GAMMA = 0.99
 MAX_EPISODE_LENGTH = 350
-N_EPOSIDES = 10_000
-UPDATE_INTERVAL = 5_000
-REPLAY_MEMORY_SIZE = 100_000
+N_EPOSIDES = 15_000
+UPDATE_INTERVAL = 7_500
+REPLAY_MEMORY_SIZE = 125_000
 STACK_SIZE = 4
 IMG_HEIGHT = 84
 IMG_WIDTH = 64
@@ -49,12 +49,17 @@ OPTMIZER = tf.keras.optimizers.RMSprop(learning_rate=1e-4)
 
 def get_current_epsilon(n_th_step):
     if n_th_step > ANNEALATION_STEPS:
-        return EPS_MIN
+        if n_th_step > 2 * ANNEALATION_STEPS:
+            return 0.01
+        else: # in annealation steps reduce 0.1 to 0.01
+            return EPS_MIN - (EPS_MIN - 0.01) * (n_th_step - ANNEALATION_STEPS) / ANNEALATION_STEPS
     else:
         return EPS_MAX - (EPS_MAX - EPS_MIN) * n_th_step / ANNEALATION_STEPS
 
 q = DeepQNetwork(N_ACTIONS)
 q.build((None, IMG_HEIGHT, IMG_WIDTH, STACK_SIZE))
+
+q.load_weights('chkpt/q.h5')
 
 q_target = DeepQNetwork(N_ACTIONS)
 q_target.build((None, IMG_HEIGHT, IMG_WIDTH, STACK_SIZE))
@@ -141,7 +146,7 @@ def test_agent():
             
     logging.info('Average total reward of %d episodes : %.2f' % (N_TEST_STEPS, np.mean(rewards)))
 
-n_th_iteration = 0
+n_th_iteration = 1_000_000
 
 for ep in range(N_EPOSIDES):
     initial_frame = env.reset() # initial observation
