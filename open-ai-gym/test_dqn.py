@@ -10,13 +10,14 @@ import collections
 import tensorflow as tf
 import logging
 
-env = gym.make('BreakoutNoFrameskip-v4')
+env = gym.make('BreakoutDeterministic-v4')
 
 N_ACTIONS = env.action_space.n
 MAX_EPISODE_LENGTH = 350
 STACK_SIZE = 4
 IMG_HEIGHT = 84
 IMG_WIDTH = 64
+N_EPISODES = 25
 
 q = DeepQNetwork(N_ACTIONS)
 q.build((None, IMG_HEIGHT, IMG_WIDTH, STACK_SIZE))
@@ -37,14 +38,14 @@ def preprocess_input(frames):
         # to gray and to 0-1
         obs = cv2.cvtColor(obs, cv2.COLOR_RGB2GRAY)
         obs = cv2.resize(obs, (IMG_WIDTH, IMG_HEIGHT))
-        observed[..., ind] += obs / 255.
+        observed[..., ind] += obs / 148.
     return observed.astype(np.float32)
 
 print('\nTrained agent : ')
 
 rewards = []
 
-for ep in range(10):
+for ep in range(N_EPISODES):
     
     initial_frame = env.reset() # initial observation
     frames = collections.deque(maxlen=STACK_SIZE)
@@ -84,7 +85,7 @@ print('\nCompletely random agent : ')
 
 rewards = []  
 
-for ep in range(10):
+for ep in range(N_EPISODES):
     
     initial_frame = env.reset() # initial observation
     frames = collections.deque(maxlen=STACK_SIZE)

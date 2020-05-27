@@ -26,14 +26,14 @@ import logging
 logging.basicConfig(format='%(message)s', 
                     filename='dqn_breakout.log', level=logging.DEBUG)
 
-env = gym.make('BreakoutNoFrameskip-v4')
-test_env = gym.make('BreakoutNoFrameskip-v4')
+env = gym.make('BreakoutDeterministic-v4')
+test_env = gym.make('BreakoutDeterministic-v4')
 
 N_ACTIONS = env.action_space.n
 GAMMA = 0.99
 MAX_EPISODE_LENGTH = 350
-N_EPOSIDES = 15_000
-UPDATE_INTERVAL = 7_500
+N_EPOSIDES = 20_000
+UPDATE_INTERVAL = 5_000
 REPLAY_MEMORY_SIZE = 125_000
 STACK_SIZE = 4
 IMG_HEIGHT = 84
@@ -42,7 +42,7 @@ EPS_MAX = 1.0
 EPS_MIN = 0.1
 ANNEALATION_STEPS = 1_000_000
 MIN_EXPERIENCE_STEPS = 10_000
-MINI_BATCH_SIZE = 64
+MINI_BATCH_SIZE = 128
 N_TEST_STEPS = 25
 
 OPTMIZER = tf.keras.optimizers.RMSprop(learning_rate=1e-4)
@@ -58,8 +58,6 @@ def get_current_epsilon(n_th_step):
 
 q = DeepQNetwork(N_ACTIONS)
 q.build((None, IMG_HEIGHT, IMG_WIDTH, STACK_SIZE))
-
-q.load_weights('chkpt/q.h5')
 
 q_target = DeepQNetwork(N_ACTIONS)
 q_target.build((None, IMG_HEIGHT, IMG_WIDTH, STACK_SIZE))
@@ -84,7 +82,7 @@ def preprocess_input(frames):
         # to gray and to 0-1
         obs = cv2.cvtColor(obs, cv2.COLOR_RGB2GRAY)
         obs = cv2.resize(obs, (IMG_WIDTH, IMG_HEIGHT))
-        observed[..., ind] += obs / 255.
+        observed[..., ind] += obs / 148.
     return observed.astype(np.float32)
 
 @tf.function(input_signature=[
@@ -146,7 +144,7 @@ def test_agent():
             
     logging.info('Average total reward of %d episodes : %.2f' % (N_TEST_STEPS, np.mean(rewards)))
 
-n_th_iteration = 1_000_000
+n_th_iteration = 0
 
 for ep in range(N_EPOSIDES):
     initial_frame = env.reset() # initial observation
@@ -193,15 +191,25 @@ for ep in range(N_EPOSIDES):
                                                                             NEXT_STATES,
                                                                             IS_TERMINALS)
             
+            del STATES
+            del ACTIONS
+            del REWARDS
+            del NEXT_STATES
+            del IS_TERMINALS
+            
             if (n_th_iteration - MIN_EXPERIENCE_STEPS) % UPDATE_INTERVAL == 0:
                 logging.info('Iteration : %d | Updating target weights...' % n_th_iteration)
                 
                 q.save_weights('chkpt/q.h5')
                 q_target.set_weights(q.get_weights())
                 
-                logging.info('Loss : %.5f' % np.mean((targets - selected_action_values)**2))
+                logging.info('Loss : %.7f' % np.mean((targets - selected_action_values)**2))
                 
-                test_agent()
+                for t, s_av, _ in zip(targets.numpy(), selected_action_values.numpy(), range(10)):
+                    logging.info('%.4f \t %.4f' % (t, s_av))
+                
+                if (n_th_iteration - MIN_EXPERIENCE_STEPS) % (4 % UPDATE_INTERVAL) == 0:
+                    test_agent()
             
         if terminal:
             total_reward -= 1
