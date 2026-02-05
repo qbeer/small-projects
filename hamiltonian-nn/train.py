@@ -1,130 +1,202 @@
-from generate_data import DataGenerator
-from mlp import MLP
-import matplotlib.pyplot as plt
+#!/usr/bin/env python
+"""
+Training and evaluation script for Hamiltonian Neural Networks.
+
+Compares a baseline MLP (direct derivative prediction) against an HNN
+(learns Hamiltonian and derives dynamics via Hamilton's equations).
+"""
+import argparse
 import numpy as np
-import torch.optim as optim
-import torch.nn as nn
+import matplotlib.pyplot as plt
 import torch
-from hnn import HNN
 from scipy.integrate import solve_ivp
 
-gen = DataGenerator()
-X, y = gen.get_dataset(return_X_y=True)
+from generate_data import DataGenerator, mass_spring_hamiltonian
+from mlp import MLP
+from hnn import HNN
+from training import train_baseline_mlp, train_hnn
+from integrators import integrate_hnn_leapfrog
 
-colors=['bx', 'rx', 'gx']
 
-for i, ind in enumerate(np.random.choice(range(0, 25), 3)):
-    plt.plot(X[ind, :, 0], X[ind, :, 1], colors[i])
-plt.savefig('trajectory-samples.png')
+def parse_args():
+    parser = argparse.ArgumentParser(description="Train and compare HNN vs baseline MLP")
+    parser.add_argument("--epochs", type=int, default=80, help="Training epochs")
+    parser.add_argument("--lr", type=float, default=1e-4, help="Learning rate")
+    parser.add_argument("--seed", type=int, default=None, help="Random seed")
+    parser.add_argument("--n-trajectories", type=int, default=25, help="Number of training trajectories")
+    parser.add_argument("--use-leapfrog", action="store_true", help="Use symplectic leapfrog integrator")
+    parser.add_argument("--output", type=str, default="test.png", help="Output plot filename")
+    return parser.parse_args()
 
-net = MLP()
-criterion = nn.MSELoss()
-optimizer = optim.Adam(net.parameters(), lr=1e-4, weight_decay=1e-4)
 
-EPOCHS = 80
-
-for epoch in range(EPOCHS):
-    running_loss = 0.0
-    for ind in np.random.choice(range(25), 25, replace=False):
-        optimizer.zero_grad()
-
-        _X = torch.from_numpy(X[ind])
-        _y = torch.from_numpy(y[ind])
-
-        _y_hat = net(_X)
+def integrate_baseline(model, y0, t_span, t_eval):
+    """Integrate baseline MLP using scipy's solve_ivp."""
+    def dynamics(t, y):
+        y_tensor = torch.tensor(y, requires_grad=True, dtype=torch.float32).view(1, 2)
+        dy = model(y_tensor)
+        return dy.detach().numpy().reshape(-1)
     
-        loss = criterion(_y_hat, _y)
-        loss.backward()
-        optimizer.step()
+    sol = solve_ivp(dynamics, t_span=t_span, y0=y0, t_eval=t_eval)
+    return sol.y.T
 
-        running_loss += loss.item()
-    if (epoch + 1) % 10 == 0:
-        print('ITER %4d | MSE loss : %8.4f |' % ((epoch + 1) * 25,  running_loss))
 
-print('************************************')
-
-hnn_net = HNN()
-criterion1 = nn.MSELoss()
-criterion2 = nn.MSELoss()
-comparison_loss = nn.MSELoss()
-optimizer = optim.Adam(hnn_net.parameters(), lr=1e-4, weight_decay=1e-4)
-
-for epoch in range(EPOCHS):
-    running_loss = 0.0
-    hnn_loss = 0.0
-    for ind in np.random.choice(range(25), 25, replace=False):
-        optimizer.zero_grad()
-
-        _X = torch.from_numpy(X[ind])
-        _X.requires_grad_()
-        _y = torch.from_numpy(y[ind])
-
-        pred, energy = hnn_net(_X)
-        dHdq, dHdp = torch.split(pred, 1, dim=1)
-        q_dot, p_dot = torch.split(_y, 1, dim=1)
-
-        q_dot_hat, p_dot_hat = dHdp, -dHdq
-
-        _y_hat = torch.cat([q_dot_hat, p_dot_hat], axis=1)
+def integrate_hnn_rk(model, y0, t_span, t_eval):
+    """Integrate HNN using scipy's solve_ivp."""
+    def dynamics(t, y):
+        y_tensor = torch.tensor(y, requires_grad=True, dtype=torch.float32).view(1, 2)
+        dH, H = model(y_tensor)
+        dHdq, dHdp = dH[0, 0], dH[0, 1]
+        # Hamilton's equations
+        q_dot = dHdp.item()
+        p_dot = -dHdq.item()
+        return [q_dot, p_dot]
     
-        loss = criterion1(p_dot, -dHdq) + criterion2(q_dot, dHdp)
-        comp_loss = comparison_loss(_y_hat, _y)
-        loss.backward()
-        optimizer.step()
-
-        running_loss += comp_loss.item()
-        hnn_loss += loss.item()
-    if (epoch + 1) % 10 == 0:
-        print('ITER %4d | MSE loss : %8.4f | HNN loss : %8.4f' % ((epoch + 1) * 25,  running_loss, hnn_loss))
-
-X, y = gen.get_dataset(return_X_y=True)
-
-energy = y[0][:, 0]**2 / 2. - y[0][:, 1] ** 2 / 2.
-
-total_energy = y[0][:, 0]**2 / 2. + y[0][:, 1]**2 / 2
-
-real_start = torch.from_numpy(X[0][0])
-
-def baseline(t, y):
-    y = torch.tensor(y, requires_grad=True, dtype=torch.float32).view(1, 2)
-    dy = net(y)
-    return dy.data.numpy().reshape(-1)
-
-def hnn(t, y):
-    y = torch.tensor(y, requires_grad=True, dtype=torch.float32).view(1, 2)
-    dH, H = hnn_net(y)
-    dHdq, dHdp = torch.split(dH, 1, dim=1)
-    q_dot_hat, p_dot_hat = dHdp, -dHdq
-    dy = torch.cat([q_dot_hat, p_dot_hat], axis=1)
-    return dy.data.numpy().reshape(-1)
-
-baseline_model_output = solve_ivp(baseline, t_span=[0, 100], y0=real_start, t_eval=np.linspace(0, 100, 1000)).y.T
-
-real_start = torch.from_numpy(X[0][0])
-
-hnn_model_output = solve_ivp(hnn, t_span=[0, 100], y0=real_start, t_eval=np.linspace(0, 100, 1000)).y.T
+    sol = solve_ivp(dynamics, t_span=t_span, y0=y0, t_eval=t_eval)
+    return sol.y.T
 
 
-baseline_total_energy = np.sum(baseline_model_output ** 2 / 2, axis=1)
-hnn_total_energy = np.sum(hnn_model_output ** 2 / 2, axis=1)
+def main():
+    args = parse_args()
+    
+    if args.seed is not None:
+        np.random.seed(args.seed)
+        torch.manual_seed(args.seed)
+    
+    # Generate data
+    print("Generating training data...")
+    gen = DataGenerator(n_trajectories=args.n_trajectories, seed=args.seed)
+    X, y = gen.get_dataset(return_derivatives=True)
+    
+    # Plot sample trajectories
+    print("Plotting sample trajectories...")
+    colors = ['b', 'r', 'g']
+    plt.figure(figsize=(8, 8))
+    for i, ind in enumerate(np.random.choice(range(args.n_trajectories), min(3, args.n_trajectories), replace=False)):
+        plt.plot(X[ind, :, 0], X[ind, :, 1], f'{colors[i]}x', alpha=0.5, label=f'Trajectory {ind}')
+    plt.xlabel('q')
+    plt.ylabel('p')
+    plt.title('Sample Training Trajectories')
+    plt.legend()
+    plt.savefig('trajectory-samples.png', dpi=150)
+    plt.close()
+    
+    # Train baseline MLP
+    print("\n" + "="*50)
+    print("Training Baseline MLP")
+    print("="*50)
+    baseline_model = MLP(output_dim=2)
+    train_baseline_mlp(baseline_model, X, y, epochs=args.epochs, lr=args.lr)
+    
+    # Train HNN
+    print("\n" + "="*50)
+    print("Training Hamiltonian Neural Network")
+    print("="*50)
+    hnn_model = HNN()
+    train_hnn(hnn_model, X, y, epochs=args.epochs, lr=args.lr)
+    
+    # Evaluation
+    print("\n" + "="*50)
+    print("Evaluating models...")
+    print("="*50)
+    
+    # Get fresh test trajectory
+    test_gen = DataGenerator(n_trajectories=1, noise_std=0.0, seed=123)
+    X_test, _ = test_gen.get_dataset(return_derivatives=True)
+    y0 = X_test[0, 0]
+    
+    t_span = [0, 100]
+    t_eval = np.linspace(0, 100, 1000)
+    
+    # Integrate models
+    print("Integrating baseline model...")
+    baseline_traj = integrate_baseline(baseline_model, y0, t_span, t_eval)
+    
+    if args.use_leapfrog:
+        print("Integrating HNN with leapfrog...")
+        hnn_traj, learned_H = integrate_hnn_leapfrog(hnn_model, y0[0], y0[1], dt=0.1, n_steps=1000)
+    else:
+        print("Integrating HNN with RK45...")
+        hnn_traj = integrate_hnn_rk(hnn_model, y0, t_span, t_eval)
+        # Compute learned Hamiltonian along trajectory
+        learned_H = []
+        for q, p in hnn_traj:
+            x = torch.tensor([[q, p]], dtype=torch.float32)
+            H = hnn_model.hamiltonian(x)
+            learned_H.append(H.item())
+        learned_H = np.array(learned_H)
+    
+    # Compute energies
+    baseline_energy = np.sum(baseline_traj**2, axis=1) / 2
+    hnn_true_energy = np.sum(hnn_traj**2, axis=1) / 2
+    ground_truth_energy = np.sum(X_test[0]**2, axis=1) / 2
+    
+    # Plot results
+    print("Generating comparison plot...")
+    fig, axes = plt.subplots(2, 3, figsize=(15, 10))
+    
+    # Baseline phase space
+    axes[0, 0].plot(baseline_traj[:, 0], baseline_traj[:, 1], 'r-', alpha=0.7, label='Baseline')
+    axes[0, 0].plot(X_test[0, :, 0], X_test[0, :, 1], 'g--', alpha=0.5, label='Ground Truth')
+    axes[0, 0].set_xlabel('q')
+    axes[0, 0].set_ylabel('p')
+    axes[0, 0].set_title('Baseline: Phase Space')
+    axes[0, 0].legend()
+    axes[0, 0].set_aspect('equal')
+    
+    # Baseline energy
+    axes[0, 1].plot(baseline_energy, 'r-', label='Baseline')
+    axes[0, 1].axhline(y=ground_truth_energy[0], color='g', linestyle='--', label='True E₀')
+    axes[0, 1].set_xlabel('Time step')
+    axes[0, 1].set_ylabel('Energy')
+    axes[0, 1].set_title('Baseline: True Energy')
+    axes[0, 1].legend()
+    
+    # HNN phase space
+    axes[1, 0].plot(hnn_traj[:, 0], hnn_traj[:, 1], 'b-', alpha=0.7, label='HNN')
+    axes[1, 0].plot(X_test[0, :, 0], X_test[0, :, 1], 'g--', alpha=0.5, label='Ground Truth')
+    axes[1, 0].set_xlabel('q')
+    axes[1, 0].set_ylabel('p')
+    axes[1, 0].set_title('HNN: Phase Space')
+    axes[1, 0].legend()
+    axes[1, 0].set_aspect('equal')
+    
+    # HNN true energy
+    axes[1, 1].plot(hnn_true_energy, 'b-', label='HNN (True E)')
+    axes[1, 1].axhline(y=ground_truth_energy[0], color='g', linestyle='--', label='True E₀')
+    axes[1, 1].set_xlabel('Time step')
+    axes[1, 1].set_ylabel('Energy')
+    axes[1, 1].set_title('HNN: True Energy (q²+p²)/2')
+    axes[1, 1].legend()
+    
+    # HNN learned Hamiltonian
+    axes[1, 2].plot(learned_H, 'm-', label='Learned H')
+    axes[1, 2].set_xlabel('Time step')
+    axes[1, 2].set_ylabel('H')
+    axes[1, 2].set_title('HNN: Learned Hamiltonian')
+    axes[1, 2].legend()
+    
+    # Energy comparison
+    axes[0, 2].plot(baseline_energy, 'r-', alpha=0.7, label='Baseline')
+    axes[0, 2].plot(hnn_true_energy, 'b-', alpha=0.7, label='HNN')
+    axes[0, 2].axhline(y=ground_truth_energy[0], color='g', linestyle='--', label='True E₀')
+    axes[0, 2].set_xlabel('Time step')
+    axes[0, 2].set_ylabel('Energy')
+    axes[0, 2].set_title('Energy Comparison')
+    axes[0, 2].legend()
+    
+    plt.tight_layout()
+    plt.savefig(args.output, dpi=150)
+    print(f"Saved plot to {args.output}")
+    
+    # Print summary
+    print("\n" + "="*50)
+    print("Summary")
+    print("="*50)
+    print(f"Baseline energy drift: {baseline_energy[-1] - baseline_energy[0]:.4f}")
+    print(f"HNN true energy std:   {np.std(hnn_true_energy):.4f}")
+    print(f"HNN learned H std:     {np.std(learned_H):.4f}")
+    print(f"HNN learned H range:   {np.max(learned_H) - np.min(learned_H):.4f}")
 
-fig, axes = plt.subplots(2, 2, figsize=(12, 12))
 
-for ind, ax in enumerate(axes.flatten()):
-    if ind == 0:
-        ax.plot(baseline_model_output[:, 0], baseline_model_output[:, 1], 'rx')
-        ax.plot(X[0][:, 0], X[0][:, 1], 'gx')
-        ax.set_title('Baseline p-q')
-    if ind == 2:
-        ax.plot(hnn_model_output[:, 0], hnn_model_output[:, 1], 'bx')
-        ax.plot(X[0][:, 0], X[0][:, 1], 'gx')
-        ax.set_title('HNN p-q')
-    if ind == 1:
-        ax.plot(range(baseline_total_energy.size), baseline_total_energy, 'r-')
-        ax.plot(range(total_energy.size), total_energy, 'g-')
-        ax.set_title('Baseline E')
-    if ind == 3:
-        ax.plot(range(hnn_total_energy.size), hnn_total_energy, 'b-')
-        ax.plot(range(total_energy.size), total_energy, 'g-')
-        ax.set_title('HNN E')
-    plt.savefig('test.png')
+if __name__ == "__main__":
+    main()

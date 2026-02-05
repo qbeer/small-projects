@@ -2,15 +2,26 @@ import torch
 
 
 class MLP(torch.nn.Module):
-    def __init__(self, output_dim = 2):
+    def __init__(self, input_dim=2, hidden_dims=(128, 64, 32), output_dim=2):
+        """
+        Configurable MLP with flexible architecture.
+        
+        Args:
+            input_dim: Input dimension (default: 2 for q, p)
+            hidden_dims: Tuple of hidden layer sizes
+            output_dim: Output dimension
+        """
         super(MLP, self).__init__()
-        self.mlp = torch.nn.Sequential(torch.nn.Linear(2, 128),
-                                       torch.nn.Tanh(),
-                                       torch.nn.Linear(128, 64),
-                                       torch.nn.Tanh(),
-                                       torch.nn.Linear(64, 32),
-                                       torch.nn.Tanh(),
-                                       torch.nn.Linear(32, output_dim, bias=None))
+        
+        layers = []
+        prev_dim = input_dim
+        for hidden_dim in hidden_dims:
+            layers.append(torch.nn.Linear(prev_dim, hidden_dim))
+            layers.append(torch.nn.Tanh())
+            prev_dim = hidden_dim
+        layers.append(torch.nn.Linear(prev_dim, output_dim, bias=None))
+        
+        self.mlp = torch.nn.Sequential(*layers)
 
     def forward(self, x):
         return self.mlp(x)
